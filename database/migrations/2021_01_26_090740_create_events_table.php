@@ -15,6 +15,16 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description');
+            $table->string('type');
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->string('slug')->nullable()->unasigned();
+            $table->integer('attendant_count')->default(0);
+            $table->text('report')->nullable();
+            $table->unsignedBigInteger('creator_id')->nullable()->unasigned();
+            $table->string('creator_type')->nullable()->unasigned();
             $table->timestamps();
         });
     }

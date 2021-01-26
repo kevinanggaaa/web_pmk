@@ -15,6 +15,8 @@ class CreateCounselorsTable extends Migration
     {
         Schema::create('counselors', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('phone');
             $table->timestamps();
         });
     }

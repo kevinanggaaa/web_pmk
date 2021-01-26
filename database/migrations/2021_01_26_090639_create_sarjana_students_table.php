@@ -15,7 +15,16 @@ class CreateSarjanaStudentsTable extends Migration
     {
         Schema::create('sarjana_students', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('student_id');
+            $table->string('sarjana');
+            $table->string('department');
+            $table->integer('year_entry');
+            $table->integer('year_graduate')->nullable();
             $table->timestamps();
+
+            $table->foreign('student_id')
+                ->references('id')
+                ->on('students');
         });
     }
 

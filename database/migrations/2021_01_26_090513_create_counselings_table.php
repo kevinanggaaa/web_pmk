@@ -15,7 +15,20 @@ class CreateCounselingsTable extends Migration
     {
         Schema::create('counselings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->foreignId('counselor_id');
+            $table->string('name');
+            $table->string('phone');
+            $table->string('topic');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+
+            $table->foreign('counselor_id')
+                ->references('id')
+                ->on('counselors');
         });
     }
 
