@@ -17,14 +17,7 @@ class CreateAlumnisTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('department');
-            $table->integer('year_entry')->nullable();
-            $table->integer('year_graduate')->nullable();
-            $table->string('phone');
             $table->string('job')->nullable();
-            $table->string('gender');
-            $table->string('address')->nullable();
-            $table->string('avatar')->nullable();
-            $table->integer('year_end')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -17,8 +17,7 @@ class CreateCounselingsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('counselor_id');
-            $table->string('name');
-            $table->string('phone');
+            $table->dateTime('date_time');
             $table->string('topic');
             $table->timestamps();
 

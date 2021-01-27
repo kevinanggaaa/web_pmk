@@ -22,6 +22,7 @@ class CreateEventsTable extends Migration
             $table->dateTime('end');
             $table->string('slug')->nullable()->unasigned();
             $table->integer('attendant_count')->default(0);
+            $table->text('attendant_id')->nullable();
             $table->text('report')->nullable();
             $table->unsignedBigInteger('creator_id')->nullable()->unasigned();
             $table->string('creator_type')->nullable()->unasigned();
