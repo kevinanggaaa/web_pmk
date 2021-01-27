@@ -15,7 +15,12 @@ class CreateLecturersTable extends Migration
     {
         Schema::create('lecturers', function (Blueprint $table) {
             $table->id();
+            $table->string('nidn')->unique();
+            $table->string('name');
+            $table->string('department');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
