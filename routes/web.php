@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlumniController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,7 @@ Route::get('/', function () {
 // Route::get('/', function () {
 //     return view('landing_template');
 // });
+
+Route::prefix('admin')->group(function () {
+	Route::resource('/alumnis', AlumniController::class);
+});
