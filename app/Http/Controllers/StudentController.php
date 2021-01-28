@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Http\Requests\StudentRequest;
 
 class StudentController extends Controller
 {
@@ -14,7 +15,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = Student::all();
+
+        return view('students.index', compact('students'));
     }
 
     /**
@@ -24,7 +27,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('students.create');
     }
 
     /**
@@ -33,9 +36,18 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
-        //
+        Student::create([
+            'name' => $request['name'],
+            'nrp' => $request['nrp'],
+            'department' => $request['department'],
+            'year_entry' => $request['year_entry'],
+            'year_graduate' => $request['year_graduate']
+        ]);
+
+        return redirect()->route('students.index')
+            ->with('success', 'Data mahasiswa berhasil ditambahkan');
     }
 
     /**
@@ -46,7 +58,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return view('students.show', compact('student'));
     }
 
     /**
@@ -57,7 +69,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return view('students.edit', compact('student'));
     }
 
     /**
@@ -67,9 +79,18 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(StudentRequest $request, Student $student)
     {
-        //
+
+        $student->name = $request['name'];
+        $student->nrp = $request['nrp'];
+        $student->department = $request['department'];
+        $student->year_entry = $request['year_entry'];
+        $student->year_graduate = $request['year_graduate'];
+        $student->save();
+
+        return redirect()->route('students.index')
+            ->with('success', 'Data mahasiswa berhasil diubah');
     }
 
     /**
@@ -80,6 +101,9 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
+
+        return redirect()->route('students.index')
+            ->with('success', 'Data mahasiswa berhasil dihapus');
     }
 }

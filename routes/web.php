@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CounselorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,8 @@ Route::get('/', function () {
 // Route::get('/', function () {
 //     return view('landing_template');
 // });
+
+Route::prefix('admin')->group(function () {
+    Route::resource('/students', StudentController::class);
+    Route::resource('/counselors', CounselorController::class);
+});
