@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\PrayerRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,8 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function () {
 	Route::resource('/alumnis', AlumniController::class);
+});
+
+Route::prefix('admin')->group(function () {
+	Route::resource('/prayer-requests', PrayerRequestController::class);
 });
