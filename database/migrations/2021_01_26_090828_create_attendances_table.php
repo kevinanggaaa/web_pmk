@@ -15,7 +15,19 @@ class CreateAttendancesTable extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->foreignId('event_id');
+
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+
+
+            $table->foreign('event_id')
+                ->references('id')
+                ->on('events');
         });
     }
 

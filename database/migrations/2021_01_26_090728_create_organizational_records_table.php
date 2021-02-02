@@ -15,7 +15,16 @@ class CreateOrganizationalRecordsTable extends Migration
     {
         Schema::create('organizational_records', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->string('position');
+            $table->string('category');
+            $table->integer('year_start');
+            $table->integer('year_end');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
         });
     }
 
