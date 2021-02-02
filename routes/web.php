@@ -7,7 +7,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CounselorController;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\OrganizationalRecordController;
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +31,5 @@ Route::prefix('admin')->group(function () {
     Route::resource('/organizational-records', OrganizationalRecordController::class);
     Route::resource('/prayer-requests', PrayerRequestController::class);
     Route::resource('/alumnis', AlumniController::class);
+    Route::resource('/users', UserController::class);
 });

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -13,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = user::all();
+
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -23,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -34,7 +38,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'name' => $request['name'],
+            'pkk' => $request['pkk'],
+            'address' => $request['address'],
+            'address_origin' => $request['address_origin'],
+            'phone' => $request['phone'],
+            'parent_phone' => $request['parent_phone'],
+            'line' => $request['line'],
+            'birthdate' => $request['birthdate'],
+            'gender' => $request['gender'],
+            'avatar' => $request['avatar'],
+            'date_death' => $request['date_death']
+        ]);
+
+        return redirect()->route('users.index')
+            ->with('success', 'Data user berhasil ditambahkan');
     }
 
     /**
@@ -43,9 +64,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -54,9 +75,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -66,9 +87,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->email = $request['email'];
+        $user->password = Hash::make($request['password']);
+        $user->name = $request['name'];
+        $user->pkk = $request['pkk'];
+        $user->address = $request['address'];
+        $user->address_origin = $request['address_origin'];
+        $user->phone = $request['phone'];
+        $user->parent_phone = $request['parent_phone'];
+        $user->line = $request['line'];
+        $user->birthdate = $request['birthdate'];
+        $user->gender = $request['gender'];
+        $user->avatar = $request['avatar'];
+        $user->date_death = $request['date_death'];
+        $user->save();
+
+        return redirect()->route('users.index')
+            ->with('success', 'Data user berhasil diubah');
     }
 
     /**
@@ -77,8 +114,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('users.index')
+            ->with('success', 'Data user berhasil dihapus');
     }
 }
