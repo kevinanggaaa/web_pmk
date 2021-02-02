@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\PrayerRequestController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CounselorController;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\OrganizationalRecordController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +29,6 @@ Route::prefix('admin')->group(function () {
     Route::resource('/counselors', CounselorController::class);
     Route::resource('/lecturers', LecturerController::class);
     Route::resource('/organizationalRecords', OrganizationalRecordController::class);
+	  Route::resource('/prayer-requests', PrayerRequestController::class);
+    Route::resource('/alumnis', AlumniController::class);
 });
