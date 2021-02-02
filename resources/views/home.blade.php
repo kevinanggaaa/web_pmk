@@ -2,24 +2,40 @@
 
 @section('content')
 
-<div class="slider-item js-fullheight" style="background-image:url(salvation/images/bg_2.jpg);">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-            <div class="col-md-8 ftco-animate">
-                <div class="text mt-md-5 w-100 text-center">
-                    <h2>Welcome to Salvation Church</h2>
-                    <h1 class="mb-3">Perfect Church For Imperfect People</h1>
-                    <p class="mb-4 pb-3">Far far away, behind the word mountains, far from the countries
-                        Vokalia and Consonantia, there live the blind texts. Separated they live in.</p>
-                    <p class="mb-0"><a href="#" class="btn btn-primary py-3 px-2 px-md-4">Become A
-                            Volunteer</a></p>
+<section class="hero-wrap js-fullheight">
+    <div class="home-slider js-fullheight owl-carousel">
+        <div class="slider-item js-fullheight" style="background-image:url(salvation/images/bg_1.jpg);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+                    <div class="col-md-8 ftco-animate">
+                        <div class="text mt-md-5 w-100 text-center">
+                            <h2>Transforming Live</h2>
+                            <h1 class="mb-3">Total Surrender to God</h1>
+                            <p class="mb-4 pb-3">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in.</p>
+                            <p class="mb-0"><a href="#" class="btn btn-primary py-3 px-2 px-md-4">Become A Volunteer</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-item js-fullheight" style="background-image:url(salvation/images/bg_2.jpg);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+                    <div class="col-md-8 ftco-animate">
+                        <div class="text mt-md-5 w-100 text-center">
+                            <h2>Welcome to PMK ITS</h2>
+                            <h1 class="mb-3">Perkumpulan Mahasiswa Kristen ITS</h1>
+                            <p class="mb-4 pb-3">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in.</p>
+                            <p class="mb-0"><a href="#" class="btn btn-primary py-3 px-2 px-md-4">Become A Volunteer</a></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 </section>
 
 <section class="ftco-section ftco-no-pb ftco-no-pt">
@@ -31,7 +47,7 @@
                         <div class="services-2">
                             <div class="icon"><span class="flaticon-church"></span></div>
                             <div class="text">
-                                <h4>Worhip</h4>
+                                <h4>Worship</h4>
                                 <span class="subheading">What to expect</span>
                                 <p>Far far away, behind the word mountains, far from the countries Vokalia and
                                     Consonantia, there live the blind texts.</p>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Counseling;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CounselingController extends Controller
 {
@@ -39,8 +40,9 @@ class CounselingController extends Controller
      */
     public function store(CounselingRequest $request)
     {
+        $user = Auth::user();
         Counseling::create([
-            'user_id' => $request['user_id'],
+            'user_id' => $user->id,
             'counselor_id' => $request['counselor_id'],
             'date_time' => $request['date_time'],
             'topic' => $request['topic'],
