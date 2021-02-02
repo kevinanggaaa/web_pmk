@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\PrayerRequestController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CounselorController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +22,9 @@ Route::get('/', function () {
     return view('mahasiswa/coba');
 });
 
-// Route::get('/', function () {
-//     return view('landing_template');
-// });
-
 Route::prefix('admin')->group(function () {
-    Route::resource('/students', StudentController::class);
-    Route::resource('/counselors', CounselorController::class);
+	Route::resource('/prayer-requests', PrayerRequestController::class);
+  Route::resource('/students', StudentController::class);
+  Route::resource('/counselors', CounselorController::class);
+  Route::resource('/alumnis', AlumniController::class);
 });
