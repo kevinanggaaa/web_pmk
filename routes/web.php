@@ -28,7 +28,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/students', StudentController::class);
     Route::resource('/counselors', CounselorController::class);
     Route::resource('/lecturers', LecturerController::class);
-    Route::resource('/organizationalRecords', OrganizationalRecordController::class);
-	  Route::resource('/prayer-requests', PrayerRequestController::class);
+    Route::resource('/organizational-records', OrganizationalRecordController::class);
+    Route::resource('/prayer-requests', PrayerRequestController::class);
     Route::resource('/alumnis', AlumniController::class);
 });

@@ -44,7 +44,7 @@
 
         <div class="card-tools">
             <div class="">
-                <a class="btn btn-success" href="{{ route('organizationalRecords.create') }}"> Tambah data organisasi</a>
+                <a class="btn btn-success" href="{{ route('organizational-records.create') }}"> Tambah data organisasi</a>
             </div>
         </div>
     </div>
@@ -72,13 +72,13 @@
                     <td>
                         <div style="display: flex">
                             <div style="margin-right: 5px;">
-                                <a class="btn btn-info" href="{{ route('organizationalRecords.show',$organizationalRecord->id) }}"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-info" href="{{ route('organizational-records.show',$organizationalRecord->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
                             <div style="margin-right: 5px;">
-                                <a class="btn btn-primary" href="{{ route('organizationalRecords.edit',$organizationalRecord->id) }}"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-primary" href="{{ route('organizational-records.edit',$organizationalRecord->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
                             <div style="margin-right: 5px;">
-                                <form action="{{ route('organizationalRecords.destroy', $organizationalRecord->id) }}" method="POST" class="display: inline;">
+                                <form action="{{ route('organizational-records.destroy', $organizationalRecord->id) }}" method="POST" class="display: inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>

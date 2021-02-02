@@ -33,7 +33,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card card-primary">
-            <form role="form" method="POST" action="{{ route('organizationalRecords.store')  }}" enctype="multipart/form-data">
+            <form role="form" method="POST" action="{{ route('organizational-records.store')  }}" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="row">

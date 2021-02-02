@@ -33,7 +33,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card card-primary">
-            <form role="form" method="POST" action="{{ route('organizationalRecords.update', $organizationalRecord->id)  }}" enctype="multipart/form-data">
+            <form role="form" method="POST" action="{{ route('organizational-records.update', $organizationalRecord->id)  }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="card-body">
