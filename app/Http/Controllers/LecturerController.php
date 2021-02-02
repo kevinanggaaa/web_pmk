@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lecturer;
 use Illuminate\Http\Request;
+use App\Http\Requests\LecturerRequest;
 
 class LecturerController extends Controller
 {
@@ -14,7 +15,8 @@ class LecturerController extends Controller
      */
     public function index()
     {
-        //
+        $lecturers = Lecturer::all();
+        return view('lecturers.index', compact('lecturers'));
     }
 
     /**
@@ -24,7 +26,7 @@ class LecturerController extends Controller
      */
     public function create()
     {
-        //
+        return view('lecturers.create');
     }
 
     /**
@@ -35,7 +37,14 @@ class LecturerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Lecturer::create([
+            'nidn' => $request['nidn'],
+            'name' => $request['name'],
+            'department' => $request['department']
+        ]);
+
+        return redirect()->route('lecturers.index')
+            ->with('success', 'Data dosen berhasil ditambahkan');
     }
 
     /**
@@ -46,7 +55,7 @@ class LecturerController extends Controller
      */
     public function show(Lecturer $lecturer)
     {
-        //
+        return view('lecturers.show', compact('lecturer'));
     }
 
     /**
@@ -57,7 +66,7 @@ class LecturerController extends Controller
      */
     public function edit(Lecturer $lecturer)
     {
-        //
+        return view('lecturers.edit', compact('lecturer'));
     }
 
     /**
@@ -69,7 +78,13 @@ class LecturerController extends Controller
      */
     public function update(Request $request, Lecturer $lecturer)
     {
-        //
+        $lecturer->nidn = $request['nidn'];
+        $lecturer->name = $request['name'];
+        $lecturer->department = $request['department'];
+        $lecturer->save();
+
+        return redirect()->route('lecturers.index')
+            ->with('success', 'Data dosen berhasil diubah');
     }
 
     /**
@@ -80,6 +95,9 @@ class LecturerController extends Controller
      */
     public function destroy(Lecturer $lecturer)
     {
-        //
+        $lecturer->delete();
+
+        return redirect()->route('lecturers.index')
+            ->with('success', 'Data dosen berhasil dihapus');
     }
 }

@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lecturer extends Model
+class OrganizationalRecord extends Model
 {
     use HasFactory;
 
-    protected $table = 'lecturers';
+    protected $table = 'organizational_records';
 
     protected $fillable = [
-        'nidn',
-        'name',
-        'department'
+        'position',
+        'category',
+        'year_start',
+        'year_end'
     ];
 }
