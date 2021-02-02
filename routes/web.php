@@ -21,7 +21,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('landing_template');
+    return view('home');
 });
 
 Route::prefix('admin')->group(function () {
