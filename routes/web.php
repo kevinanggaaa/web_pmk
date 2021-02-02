@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CounselorController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,5 @@ Route::get('/', function () {
 Route::prefix('admin')->group(function () {
     Route::resource('/students', StudentController::class);
     Route::resource('/counselors', CounselorController::class);
+    Route::resource('/users', UserController::class);
 });
