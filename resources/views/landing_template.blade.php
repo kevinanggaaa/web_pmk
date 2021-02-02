@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>Salvation - Free Bootstrap 4 Template by Colorlib</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
+
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
+
 	<link rel="stylesheet" href="{{asset('salvation/css/animate.css')}}">
-	
+
 	<link rel="stylesheet" href="{{asset('salvation/css/owl.carousel.min.css')}}">
 	<link rel="stylesheet" href="{{asset('salvation/css/owl.theme.default.min.css')}}">
 	<link rel="stylesheet" href="{{asset('salvation/css/magnific-popup.css')}}">
@@ -22,6 +23,7 @@
 	<link rel="stylesheet" href="{{asset('salvation/css/flaticon.css')}}">
 	<link rel="stylesheet" href="{{asset('salvation/css/style.css')}}">
 </head>
+
 <body>
 
 	<div class="wrap">
@@ -62,6 +64,31 @@
 					<li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 					<li class="nav-item cta"><a href="contact.html" class="nav-link">Donate</a></li>
+					@auth
+					<li class="nav-item dropdown">
+						<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+							{{'Welcome, '.Auth::user()->email }}
+							{{-- @if(Auth::user()->avatar)
+                        <img src="{{asset('/storage/images/'.Auth::user()->avatar)}}" alt="avatar" width="40">
+							@endif
+							<span class="caret"></span> --}}
+						</a>
+
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+								{{ __('Logout') }}
+							</a>
+
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								@csrf
+							</form>
+						</div>
+					</li>
+					@endauth
+					@guest
+					<li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
+					@endguest
 				</ul>
 			</div>
 		</div>
@@ -114,6 +141,31 @@
 						<li><a href="#" class="py-2 d-block">Events</a></li>
 						<li><a href="#" class="py-2 d-block">Blog</a></li>
 						<li><a href="#" class="py-2 d-block">Contact</a></li>
+						@auth
+						<li class="nav-item dropdown">
+							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+								{{'Welcome, '.Auth::user()->email }}
+								{{-- @if(Auth::user()->avatar)
+                        <img src="{{asset('/storage/images/'.Auth::user()->avatar)}}" alt="avatar" width="40">
+								@endif
+								<span class="caret"></span> --}}
+							</a>
+
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+									{{ __('Logout') }}
+								</a>
+
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+									@csrf
+								</form>
+							</div>
+						</li>
+						@endauth
+						@guest
+						<li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
+						@endguest
 					</ul>
 				</div>
 				<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
@@ -130,37 +182,45 @@
 			<div class="row mt-5">
 				<div class="col-md-12 text-center">
 
-					<p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-					</div>
+					<p class="copyright">
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright &copy;<script>
+							document.write(new Date().getFullYear());
+						</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</p>
 				</div>
 			</div>
-		</footer>
-
-		
-		
-
-		<!-- loader -->
-		<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+		</div>
+	</footer>
 
 
-		<script src="{{asset('salvation/js/jquery.min.js')}}"></script>
-		<script src="{{asset('salvation/js/jquery-migrate-3.0.1.min.js')}}"></script>
-		<script src="{{asset('salvation/js/popper.min.js')}}"></script>
-		<script src="{{asset('salvation/js/bootstrap.min.js')}}"></script>
-		<script src="{{asset('salvation/js/jquery.easing.1.3.js')}}"></script>
-		<script src="{{asset('salvation/js/jquery.waypoints.min.js')}}"></script>
-		<script src="{{asset('salvation/js/jquery.stellar.min.js')}}"></script>
-		<script src="{{asset('salvation/js/jquery.animateNumber.min.js')}}"></script>
-		<script src="{{asset('salvation/js/bootstrap-datepicker.js')}}"></script>
-		<script src="{{asset('salvation/js/jquery.timepicker.min.js')}}"></script>
-		<script src="{{asset('salvation/js/owl.carousel.min.js')}}"></script>
-		<script src="{{asset('salvation/js/jquery.magnific-popup.min.js')}}"></script>
-		<script src="{{asset('salvation/js/scrollax.min.js')}}"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-		<script src="{{asset('salvation/js/google-map.js')}}"></script>
-		<script src="{{asset('salvation/js/main.js')}}"></script>
-		
-	</body>
-	</html>
+
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+		</svg></div>
+
+
+	<script src="{{asset('salvation/js/jquery.min.js')}}"></script>
+	<script src="{{asset('salvation/js/jquery-migrate-3.0.1.min.js')}}"></script>
+	<script src="{{asset('salvation/js/popper.min.js')}}"></script>
+	<script src="{{asset('salvation/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('salvation/js/jquery.easing.1.3.js')}}"></script>
+	<script src="{{asset('salvation/js/jquery.waypoints.min.js')}}"></script>
+	<script src="{{asset('salvation/js/jquery.stellar.min.js')}}"></script>
+	<script src="{{asset('salvation/js/jquery.animateNumber.min.js')}}"></script>
+	<script src="{{asset('salvation/js/bootstrap-datepicker.js')}}"></script>
+	<script src="{{asset('salvation/js/jquery.timepicker.min.js')}}"></script>
+	<script src="{{asset('salvation/js/owl.carousel.min.js')}}"></script>
+	<script src="{{asset('salvation/js/jquery.magnific-popup.min.js')}}"></script>
+	<script src="{{asset('salvation/js/scrollax.min.js')}}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="{{asset('salvation/js/google-map.js')}}"></script>
+	<script src="{{asset('salvation/js/main.js')}}"></script>
+
+</body>
+
+</html>
