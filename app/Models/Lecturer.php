@@ -16,4 +16,9 @@ class Lecturer extends Model
         'name',
         'department'
     ];
+
+    public function profile()
+    {
+        return $this->morphOne('App\Models\Profile', 'profilable');
+    }
 }

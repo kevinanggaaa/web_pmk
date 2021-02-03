@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AlumniController;
-use App\Http\Controllers\PrayerRequestController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\CounselorController;
-use App\Http\Controllers\LecturerController;
-use App\Http\Controllers\OrganizationalRecordController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\LecturerController;
+use App\Http\Controllers\CounselorController;
+use App\Http\Controllers\PrayerRequestController;
+use App\Http\Controllers\OrganizationalRecordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,6 @@ Route::prefix('admin')->group(function () {
     Route::resource('/prayer-requests', PrayerRequestController::class);
     Route::resource('/alumnis', AlumniController::class);
     Route::resource('/users', UserController::class);
+    Route::resource('/profiles', ProfileController::class);
+    Route::get('/profiles/{student}/editStudent', [ProfileController::class, 'editStudent'])->name('profiles.editStudent');
 });

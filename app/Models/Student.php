@@ -18,4 +18,9 @@ class Student extends Model
         'year_entry',
         'year_graduate'
     ];
+
+    public function profile()
+    {
+        return $this->morphOne('App\Models\Profile', 'profilable');
+    }
 }
