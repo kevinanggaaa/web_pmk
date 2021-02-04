@@ -10,6 +10,7 @@ use App\Http\Controllers\CounselorController;
 use App\Http\Controllers\PrayerRequestController;
 use App\Http\Controllers\OrganizationalRecordController;
 use App\Http\Controllers\CounselingController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,4 +39,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/profiles/{student}/editStudent', [ProfileController::class, 'editStudent'])->name('profiles.editStudent');
     Route::get('/profiles/{alumni}/editAlumni', [ProfileController::class, 'editAlumni'])->name('profiles.editAlumni');
     Route::get('/profiles/{lecturer}/editLecturer', [ProfileController::class, 'editLecturer'])->name('profiles.editLecturer');
+
+   
+    Route::resource('/roles', RoleManagementController::class);
+
+    Route::resource('/banners', BannerController::class);
+
+    Route::resource('/posts', PostController::class);
 });
