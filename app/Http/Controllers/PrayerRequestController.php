@@ -15,9 +15,9 @@ class PrayerRequestController extends Controller
      */
     public function index(Request $request)
     {
-        
+
         $prayerRequests = PrayerRequest::all();
-       
+
 
         return view('prayer-requests.index', compact('prayerRequests'));
     }
@@ -43,7 +43,7 @@ class PrayerRequestController extends Controller
         PrayerRequest::create([
             'name' => $request['name'],
             'content' => $request['content'],
-            'status' => $request['status'],
+            'status' => "requested",
         ]);
 
         return redirect()->route('prayer-requests.index')

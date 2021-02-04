@@ -29,7 +29,6 @@ class PrayerRequestRequest extends FormRequest
         return [
             'name' => 'required|string',
             'content' => 'required|string',
-            'status' => 'required|string',
         ];
     }
 }

@@ -46,20 +46,11 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="content">Content doa</label>
-                                <input type="text" class="form-control {{$errors->has('content') ? 'is-invalid' : ''}}" id="content" name="content" placeholder="Masukkan Content doa" value="{{old('content')}}" required>
+                                <textarea class="form-control {{$errors->has('content') ? 'is-invalid' : ''}}" id="content" name="content" placeholder="Masukkan Content doa" value="{{old('content')}}" required></textarea>
                                 @error('content')
-                                <span class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <input type="text" class="form-control {{$errors->has('status') ? 'is-invalid' : ''}}" id="status" name="status" placeholder="Masukkan Status" value="{{old('status')}}" required>
-                                @error('status')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>
