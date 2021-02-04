@@ -1,4 +1,4 @@
-@extends('adminlte.master')
+@extends('adminlte.template')
 
 @section('content')
 @if ($errors->any())
@@ -40,18 +40,9 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label for="counselee_name">Nama</label>
-                                <input type="text" class="form-control" id="counselee_name" name="counselee_name" placeholder="Masukkan Nama" value="{{ $counseling->counselee_name }}" required>
-                                @error('counselee_name')
-                                <span class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label for="counselee_contact">Contact</label>
-                                <input type="text" name="counselee_contact" id="counselee_contact" class="form-control" placeholder="Masukkan Contact" value="{{ $counseling->counselee_contact }}" required>
-                                @error('counselee_contact')
+                                <label for="topic">Topik</label>
+                                <input type="text" name="topic" id="topic" class="form-control" placeholder="Masukkan Contact" value="{{ $counseling->topic }}" required>
+                                @error('topic')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>
@@ -68,11 +59,25 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="date_time">Tanggal</label>
+                                {{-- <input type="datetime-local" class="form-control {{$errors->has('date_time') ? 'is-invalid' : ''}}" id="date_time" name="date_time"
+                                placeholder="Masukkan tanggal" value="{{old('date_time')}}"> --}}
+                                <div class="input-group">
+                                    <input type="datetime-local" class="form-control {{$errors->has('date_time') ? 'is-invalid' : ''}}" id="verified_date" name="date_time" placeholder="Masukkan tanggal" value="{{old('date_time')}}" required>
+                                </div>
+                                @error('date_time')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
+                </div>
             </form>
         </div>
     </div>

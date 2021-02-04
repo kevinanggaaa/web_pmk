@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Counseling;
+use App\Models\Counselor;
 use Illuminate\Http\Request;
+use App\Http\Requests\CounselingRequest;
 use Illuminate\Support\Facades\Auth;
 
 class CounselingController extends Controller
@@ -15,9 +17,10 @@ class CounselingController extends Controller
      */
     public function index()
     {
+        $counselors = Counselor::all();
         $counselings = Counseling::all();
 
-        return view('counselings.index', compact('counselings'));
+        return view('counselings.index', compact('counselings', 'counselors'));
     }
 
     /**
@@ -40,16 +43,17 @@ class CounselingController extends Controller
      */
     public function store(CounselingRequest $request)
     {
-        $user = Auth::user();
+        
+        $user = Auth::user()->id;
         Counseling::create([
-            'user_id' => $user->id,
+            'user_id' => $user,
             'counselor_id' => $request['counselor_id'],
             'date_time' => $request['date_time'],
             'topic' => $request['topic'],
         ]);
 
         return redirect()->route('counselings.index')
-            ->with('success', 'Data counseling berhasil ditambahkan');
+            ->with('success', 'Data konseling berhasil ditambahkan');
     }
 
     /**
@@ -60,7 +64,7 @@ class CounselingController extends Controller
      */
     public function show(Counseling $counseling)
     {
-        return view('counselings.show', compact('counseling'));
+        
     }
 
     /**
@@ -85,13 +89,13 @@ class CounselingController extends Controller
      */
     public function update(CounselingRequest $request, Counseling $counseling)
     {
-        $counseling->counselee_name = $request['counselee_name'];
-        $counseling->counselee_contact = $request['counselee_contact'];
+        $counseling->date_time = $request['date_time'];
+        $counseling->topic = $request['topic'];
         $counseling->counselor_id = $request['counselor_id'];
         $counseling->save();
 
         return redirect()->route('counselings.index')
-            ->with('success', 'Data counseling berhasil diubah');
+            ->with('success', 'Data konseling berhasil diubah');
     }
 
     /**

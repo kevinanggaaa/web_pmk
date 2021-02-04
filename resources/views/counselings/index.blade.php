@@ -1,4 +1,4 @@
-@extends('adminlte.master')
+@extends('adminlte.template')
 
 @section('content')
 @if ($message = Session::get('success'))
@@ -41,13 +41,13 @@
         </div>
         @endif
 
-        @can('edit counseling')
+        <!-- @can('edit counseling')
         <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
             IMPORT EXCEL
-        </button>
+        </button> -->
 
         <!-- Import Excel -->
-        <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <form method="post" action="{{route('counselings.import_excel')}}" enctype="multipart/form-data">
                     <div class="modal-content">
@@ -71,16 +71,14 @@
                     </div>
                 </form>
             </div>
-        </div>
-        @endcan
-
-        <a href="{{route('counselings.export_excel')}}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+        </div> -->
+        <!-- @endcan -->
+ 
+        
 
         <div class="card-tools">
             <div class="">
-                @can('add counseling')
                 <a class="btn btn-success" href="{{ route('counselings.create') }}"> Tambah data Counseling</a>
-                @endcan
             </div>
         </div>
     </div>
@@ -90,33 +88,33 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Nama</th>
-                    <th>Contact</th>
-                    <th>Counselor</th>
+                    <th>Topik</th>
+                    <th>Konselor</th>
+                    <th>Tanggal</th>
                     <th style="width: 280px">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($counselings as $counseling)
                 <tr>
-                    <td>{{ $counseling->counselee_name }}</td>
-                    <td>{{ $counseling->counselee_contact }}</td>
-                    <td>{{ $counseling->counselor->name}}</td>
+                    <td>{{ $counseling->topic }}</td>
+                    @foreach ($counselors as $counselor)
+                        @if ($counselor->id == $counseling->counselor_id)
+                        <td>{{ $counselor->name }}</td>
+                        @endif
+                    @endforeach
+                    <td>{{ $counseling->date_time}}</td>
                     <td>
                         <div style="display: flex">
                             <div style="margin-right: 5px;">
-                                @can('edit counseling')
                                 <a class="btn btn-primary" href="{{ route('counselings.edit',$counseling->id) }}"><i class="fa fa-edit"></i></a>
-                                @endcan
                             </div>
                             <div style="margin-right: 5px;">
-                                @can('delete counseling')
                                 <form action="{{ route('counselings.destroy', $counseling->id) }}" method="POST" class="display: inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                 </form>
-                                @endcan
                             </div>
                         </div>
                     </td>

@@ -9,7 +9,7 @@ use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\CounselorController;
 use App\Http\Controllers\PrayerRequestController;
 use App\Http\Controllers\OrganizationalRecordController;
-
+use App\Http\Controllers\CounselingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +33,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/prayer-requests', PrayerRequestController::class);
     Route::resource('/alumnis', AlumniController::class);
     Route::resource('/users', UserController::class);
+    Route::resource('/counselings', CounselingController::class);
     Route::resource('/profiles', ProfileController::class);
     Route::get('/profiles/{student}/editStudent', [ProfileController::class, 'editStudent'])->name('profiles.editStudent');
 });
