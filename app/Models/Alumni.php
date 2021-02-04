@@ -16,4 +16,9 @@ class Alumni extends Model
         'department',
         'job',
     ];
+
+    public function profile()
+    {
+        return $this->morphOne('App\Models\Profile', 'profilable');
+    }
 }
