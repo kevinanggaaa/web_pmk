@@ -64,8 +64,9 @@
                 @foreach ($lecturers as $lecturer)
                 <tr>
                     <td>{{ $lecturer->nidn }}</td>
-                    <td>{{ $lecturer->department }}</td>
                     <td>{{ $lecturer->name }}</td>
+                    <td>{{ $lecturer->department }}</td>
+                    
 
                     <td>
                         <div style="display: flex">
