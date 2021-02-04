@@ -62,10 +62,8 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="date_time">Tanggal</label>
-                                {{-- <input type="datetime-local" class="form-control {{$errors->has('date_time') ? 'is-invalid' : ''}}" id="date_time" name="date_time"
-                                placeholder="Masukkan tanggal" value="{{old('date_time')}}"> --}}
                                 <div class="input-group">
-                                    <input type="datetime-local" class="form-control {{$errors->has('date_time') ? 'is-invalid' : ''}}" id="verified_date" name="date_time" placeholder="Masukkan tanggal" value="{{old('date_time')}}" required>
+                                    <input type="datetime-local" class="form-control {{$errors->has('date_time') ? 'is-invalid' : ''}}" id="verified_date" name="date_time" value="{{ date("Y-m-d\TH:i:s", strtotime($counseling->date_time)) }}" required>
                                 </div>
                                 @error('date_time')
                                 <span class="error invalid-feedback">{{$message}}</span>

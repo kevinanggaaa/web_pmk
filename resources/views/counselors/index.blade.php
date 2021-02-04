@@ -53,7 +53,7 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>NID</th>
+                    <th>ID</th>
                     <th>Nama</th>
                     <th style="width: 280px">Action</th>
                 </tr>
@@ -61,7 +61,7 @@
             <tbody>
                 @foreach ($counselors as $counselor)
                 <tr>
-                    <td>{{ $counselor->nid }}</td>
+                    <td>{{ $counselor->id }}</td>
                     <td>{{ $counselor->name }}</td>
 
                     <td>
