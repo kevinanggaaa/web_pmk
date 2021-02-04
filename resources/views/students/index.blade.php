@@ -64,8 +64,9 @@
                 @foreach ($students as $student)
                 <tr>
                     <td>{{ $student->nrp }}</td>
-                    <td>{{ $student->department }}</td>
+                    
                     <td>{{ $student->name }}</td>
+                    <td>{{ $student->department }}</td>
 
                     <td>
                         <div style="display: flex">
