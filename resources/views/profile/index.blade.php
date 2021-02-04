@@ -40,7 +40,7 @@
         <div class="card">
             <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link active fas fa-user-cog" href="{{ route('profiles.editStudent',$user->profiles[0]->model->id) }}"></a>
+                    <li class="nav-item"><a class="nav-link active fas fa-user-cog" href="{{ route('users.edit',$user->id) }}"></a>
                     </li>
                 </ul>
 
@@ -92,8 +92,40 @@
                                     <td>Jenis Kelamin</td>
                                     <td>{{ $user->gender }}</td>
                                 </tr>
-                                @foreach ($user->profiles as $profile)
-                                @if($profile->model_type == "App\Models\Student")
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- /.tab-pane -->
+
+
+                </div>
+                <!-- /.tab-content -->
+
+                <!-- /.tab-content -->
+            </div><!-- /.card-body -->
+        </div>
+
+
+        @foreach ($user->profiles as $profile)
+        @if($profile->model_type == "App\Models\Student")
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active fas fa-user-cog" href="{{ route('profiles.editStudent',$profile->model->id) }}"></a>
+                    </li>
+                </ul>
+
+
+            </div><!-- /.card-header -->
+            <div class="card-body">
+                <div class="tab-content">
+
+                    <div class="active tab-pane" id="data-diri">
+                        <table class="table">
+                            <tbody>
                                 <tr>
                                     <td>
                                         <h2>Mahasiswa</h2>
@@ -116,37 +148,6 @@
                                     <td>Tahun lulus</td>
                                     <td>{{ $profile->model->year_end }}</td>
                                 </tr>
-                                @elseif($profile->model_type == "App\Models\Alumni")
-                                <tr>
-                                    <td>
-                                        <h2>Alumni</h2>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Department</td>
-                                    <td>{{ $profile->model->department }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Pekerjaan</td>
-                                    <td>{{ $profile->model->job }}</td>
-                                </tr>
-                                @elseif($profile->model_type == "App\Models\Lecturer")
-                                <tr>
-                                    <td>
-                                        <h2>Dosen</h2>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Department</td>
-                                    <td>{{ $profile->model->department }}</td>
-                                </tr>
-                                <tr>
-                                    <td>NID</td>
-                                    <td>{{ $profile->model->nidn }}</td>
-                                </tr>
-                                @endif
-                                @endforeach
-
                             </tbody>
                         </table>
 
@@ -160,6 +161,94 @@
                 <!-- /.tab-content -->
             </div><!-- /.card-body -->
         </div>
+
+        @elseif($profile->model_type == "App\Models\Alumni")
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active fas fa-user-cog" href="{{ route('profiles.editAlumni',$profile->model->id) }}"></a>
+                    </li>
+                </ul>
+
+
+            </div><!-- /.card-header -->
+            <div class="card-body">
+                <div class="tab-content">
+
+                    <div class="active tab-pane" id="data-diri">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h2>Alumni</h2>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Department</td>
+                                    <td>{{ $profile->model->department }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Pekerjaan</td>
+                                    <td>{{ $profile->model->job }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- /.tab-pane -->
+
+
+                </div>
+                <!-- /.tab-content -->
+
+                <!-- /.tab-content -->
+            </div><!-- /.card-body -->
+        </div>
+
+        @elseif($profile->model_type == "App\Models\Lecturer")
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active fas fa-user-cog" href="{{ route('profiles.editLecturer',$profile->model->id) }}"></a>
+                    </li>
+                </ul>
+
+
+            </div><!-- /.card-header -->
+            <div class="card-body">
+                <div class="tab-content">
+
+                    <div class="active tab-pane" id="data-diri">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h2>Dosen</h2>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Department</td>
+                                    <td>{{ $profile->model->department }}</td>
+                                </tr>
+                                <tr>
+                                    <td>NID</td>
+                                    <td>{{ $profile->model->nidn }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- /.tab-pane -->
+
+
+                </div>
+                <!-- /.tab-content -->
+
+                <!-- /.tab-content -->
+            </div><!-- /.card-body -->
+        </div>
+        @endif
+        @endforeach
         <!-- /.nav-tabs-custom -->
     </div>
     <!-- /.col -->

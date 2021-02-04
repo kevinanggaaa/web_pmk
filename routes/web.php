@@ -36,4 +36,6 @@ Route::prefix('admin')->group(function () {
     Route::resource('/counselings', CounselingController::class);
     Route::resource('/profiles', ProfileController::class);
     Route::get('/profiles/{student}/editStudent', [ProfileController::class, 'editStudent'])->name('profiles.editStudent');
+    Route::get('/profiles/{alumni}/editAlumni', [ProfileController::class, 'editAlumni'])->name('profiles.editAlumni');
+    Route::get('/profiles/{lecturer}/editLecturer', [ProfileController::class, 'editLecturer'])->name('profiles.editLecturer');
 });
