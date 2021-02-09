@@ -27,12 +27,25 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')->group(function () {
+    Route::get('/students/export_excel', [StudentController::class, 'export_excel'])->name('students.export_excel');
+    Route::post('/students/import_excel', [StudentController::class, 'import_excel'])->name('students.import_excel');
     Route::resource('/students', StudentController::class);
+    
+
     Route::resource('/counselors', CounselorController::class);
+
+    Route::get('/lecturers/export_excel', [LecturerController::class, 'export_excel'])->name('lecturers.export_excel');
+    Route::post('/lecturers/import_excel', [LecturerController::class, 'import_excel'])->name('lecturers.import_excel');
     Route::resource('/lecturers', LecturerController::class);
+    
+
     Route::resource('/organizational-records', OrganizationalRecordController::class);
     Route::resource('/prayer-requests', PrayerRequestController::class);
+
+    Route::get('/alumnis/export_excel', [AlumniController::class, 'export_excel'])->name('alumnis.export_excel');
+    Route::post('/alumnis/import_excel', [AlumniController::class, 'import_excel'])->name('alumnis.import_excel');
     Route::resource('/alumnis', AlumniController::class);
+
     Route::resource('/users', UserController::class);
     Route::resource('/counselings', CounselingController::class);
     Route::resource('/profiles', ProfileController::class);
