@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\UserEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserEventController extends Controller
 {
@@ -35,7 +37,15 @@ class UserEventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        UserEvent::create([
+            'user_id' => $user->id,
+            'event_id' => $request['id'],
+        ]);
+
+        return redirect()->route('events.index')
+            ->with('success', 'Absen telah berhasil');
     }
 
     /**

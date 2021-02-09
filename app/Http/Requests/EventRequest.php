@@ -27,8 +27,7 @@ class EventRequest extends FormRequest
             'title' => 'required|string',
             'description' => 'required|string',
             'type' => 'required|string',
-            'start' => 'required',
-            'end' => 'required',
+            'reservationtime' => 'required|string',
         ];
     }
 }
