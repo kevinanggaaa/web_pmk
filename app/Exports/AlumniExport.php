@@ -26,9 +26,9 @@ class AlumniExport implements FromCollection, WithHeadings, WithEvents, WithMapp
     public function headings(): array
     {
         return [
-            'Nama',
-            'Departemen',
-            'Pekerjaan',
+            'name',
+            'department',
+            'job',
         ];
     }
 

@@ -26,9 +26,9 @@ class LecturerExport implements FromCollection, WithHeadings, WithEvents, WithMa
     public function headings(): array
     {
         return [
-            'Nidn',
-            'Nama',
-            'Departemen',
+            'nidn',
+            'name',
+            'department',
         ];
     }
 

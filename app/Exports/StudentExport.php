@@ -27,11 +27,11 @@ class StudentExport implements FromCollection, WithHeadings, WithEvents, WithMap
     public function headings(): array
     {
         return [
-            'Nama',
-            'Nrp',
-            'Departemen',
-            'Tahun masuk',
-            'Tahun lulus',
+            'name',
+            'nrp',
+            'department',
+            'year_entry',
+            'year_graduate',
         ];
     }
 
