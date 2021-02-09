@@ -14,7 +14,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::all();
+
+        return view('events.index', compact('events'));
     }
 
     /**
@@ -24,7 +26,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('events.create');
     }
 
     /**
@@ -33,9 +35,18 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        //
+        Event::create([
+            'title' => $request['title'],
+            'description' => $request['description'],
+            'type' => $request['type'],
+            'start' => $request['start'],
+            'end' => $request['end'],
+        ]);
+
+        return redirect()->route('events.index')
+            ->with('success', 'Data konselor berhasil ditambahkan');
     }
 
     /**
@@ -46,7 +57,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        return view('events.show', compact('event'));
     }
 
     /**
@@ -57,7 +68,7 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        return view('events.edit', compact('event'));
     }
 
     /**
@@ -67,9 +78,17 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(EventRequest $request, Event $event)
     {
-        //
+        $event->title = $request['title'];
+        $event->description = $request['description'];
+        $event->type = $request['type'];
+        $event->start = $request['start'];
+        $event->end = $request['end'];
+        $event->save();
+
+        return redirect()->route('events.index')
+            ->with('success', 'Data konselor berhasil diubah');
     }
 
     /**
@@ -80,6 +99,9 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $event->delete();
+
+        return redirect()->route('events.index')
+            ->with('success', 'Data konselor berhasil dihapus');
     }
 }

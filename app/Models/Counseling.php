@@ -17,4 +17,9 @@ class Counseling extends Model
         'date_time',
         'topic'
     ];
+
+    public function counselor()
+    {
+        return $this->belongsTo(Counselor::class);
+    }
 }
