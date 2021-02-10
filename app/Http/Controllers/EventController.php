@@ -6,6 +6,7 @@ use App\Models\Event;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventRequest;
+use App\Models\User;
 use App\Models\UserEvent;
 use Illuminate\Support\Facades\Auth;
 
@@ -80,7 +81,12 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return view('events.show', compact('event'));
+        $users = collect(new User);
+        foreach (explode(';', $event->attendant_id) as $attend_id) {
+            $attendant = User::where('id', $attend_id)->first();
+            $users =   $users->addIfNotNull($attendant);
+        }
+        return view('events.show', compact('event', 'users'));
     }
 
     public function showAttend(Event $event)
