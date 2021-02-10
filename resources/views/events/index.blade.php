@@ -78,6 +78,7 @@
                                 <a class="btn btn-primary" href="{{ route('events.edit',$event->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
                             @endif
+                            @if($event->attendant_id == null)
                             @php($absen = 1)
                             @foreach ($attends as $attend)
                             <?php
@@ -97,6 +98,7 @@
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('events.showAttend',$event->id) }}"><i class="fa fa-user"></i></a>
                             </div>
+                            @endif
                             @endif
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('events.destroy', $event->id) }}" method="POST" class="display: inline;">

@@ -83,10 +83,22 @@
                             </div>
                             <!-- /.form group -->
                         </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="report">Report</label>
+                                <input type="text" class="form-control {{$errors->has('report') ? 'is-invalid' : ''}}" id="report" name="report" placeholder="Masukkan report Acara" value="{{$event->report}}">
+                                @error('report')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i>Submit</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Submit</button>
+                    <div style="margin-right: 5px; display: inline;">
+                        <a class="btn btn-secondary" href="{{ route('events.finnish',$event->id) }}"><i class="fa fa-flag"> finnish</i></a>
+                    </div>
                 </div>
             </form>
         </div>

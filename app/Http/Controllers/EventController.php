@@ -123,7 +123,8 @@ class EventController extends Controller
         $event->type = $request['type'];
         $event->start = $request['start'];
         $event->end = $request['end'];
-        $event->slug = createSlug($request->title);
+        $event->report = $request['report'];
+        $event->slug = $this->createSlug($request->title);
         $event->save();
 
         return redirect()->route('events.index')
@@ -174,5 +175,24 @@ class EventController extends Controller
         return Event::select('slug')->where('slug', 'like', $slug . '%')
             ->where('id', '<>', $id)
             ->get();
+    }
+
+    public function finnish(Event $event)
+    {
+
+        $attends = UserEvent::where('event_id', $event->id)->get();
+
+        $temp = '';
+        foreach ($attends as $attend) {
+            $temp .= $attend->user_id  . ";";
+        }
+
+        $event->attendant_id = $temp;
+        $event->save();
+
+        UserEvent::where('event_id', $event->id)->delete();
+
+        return redirect()->route('events.index')
+            ->with('success', 'Event telah selesai');
     }
 }
