@@ -80,7 +80,7 @@
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="peserta">
-                        Vijay Gonna Finish This!
+
                     </div>
                     <!-- /.tab-pane -->
                 </div>
