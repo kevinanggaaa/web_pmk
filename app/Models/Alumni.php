@@ -12,6 +12,7 @@ class Alumni extends Model
     protected $table = 'alumnis';
 
     protected $fillable = [
+        'email',
         'name',
         'department',
         'job',

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Alumni;
 use Illuminate\Http\Request;
 use App\Http\Requests\AlumniRequest;
+use App\Models\User;
+use App\Models\Profile;
+use Illuminate\Support\Facades\Auth;
 
 
 class AlumniController extends Controller
@@ -40,15 +43,52 @@ class AlumniController extends Controller
     public function store(AlumniRequest $request)
     {
 
-        Alumni::create([
+        $user = User::firstOrcreate([
+            'email' => $request['email'],
+            'password' => bcrypt($request['nrp']),
             'name' => $request['name'],
-            'department' => $request['department'],
-            'job' => $request['job']
+            'pkk' => $request['pkk'],
+            'address' => $request['address'],
+            'address_origin' => $request['address_origin'],
+            'phone' => $request['phone'],
+            'parent_phone' => $request['parent_phone'],
+            'line' => $request['line'],
+            'birthdate' => $request['birthdate'],
+            'gender' => $request['gender'],
+            'date_death' => $request['date_death'],
         ]);
 
+        if($user->wasRecentlyCreated){
+            $alumni = Alumni::firstOrcreate([
+                'email' => $request['email'],
+                'name' => $request['name'],
+                'department' => $request['department'],
+                'job' => $request['job']
+            ]);
 
-        return redirect()->route('alumnis.index')
-            ->with('success', 'Data alumni berhasil ditambahkan');
+            if($alumni->wasRecentlyCreated){
+                $model_id = Alumni::select('id')->where('email', $request['email'])->first();
+                $user_id = User::select('id')->where('email', $request['email'])->first();
+
+                Profile::create([
+                    'profile_id' => $request['email'],
+                    'user_id' => $user_id->id,
+                    'model_id' => $model_id->id,
+                    'model_type' => 'App\Models\Alumni',
+                ]);
+
+                return redirect()->route('alumnis.index')
+                    ->with('success', 'Data alumni berhasil ditambahkan');
+            }
+            else{
+                return redirect()->route('alumnis.create')
+                ->with('fail', 'Maaf email yang didaftarkan sudah digunakan sebelumnya');
+            }
+        }
+        else{
+            return redirect()->route('alumnis.create')
+            ->with('fail', 'Maaf email yang didaftarkan sudah digunakan sebelumnya');
+        }
     }
 
     /**
@@ -59,7 +99,9 @@ class AlumniController extends Controller
      */
     public function show(Alumni $alumni)
     {
-        return view('alumnis.show', compact('alumni'));
+        $profile = Profile::select()->where('profile_id', $alumni['email'])->first();
+        $user = User::select()->where('id',$profile->user_id)->first();
+        return view('alumnis.show', compact('alumni', 'user'));
     }
 
     /**
@@ -82,6 +124,7 @@ class AlumniController extends Controller
      */
     public function update(AlumniRequest $request, Alumni $alumni)
     {
+        $alumni->email = $request['email'];
         $alumni->name = $request['name'];
         $alumni->department = $request['department'];
         $alumni->job = $request['job'];

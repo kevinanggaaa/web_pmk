@@ -11,6 +11,13 @@ class Profile extends Model
 
     protected $table = 'profiles';
 
+    protected $fillable = [
+        'profile_id',
+        'user_id',
+        'model_id',
+        'model_type'
+    ];
+
     public function model()
     {
         return $this->morphTo();
