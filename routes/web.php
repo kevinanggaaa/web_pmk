@@ -12,6 +12,7 @@ use App\Http\Controllers\CounselorController;
 use App\Http\Controllers\UserEventController;
 use App\Http\Controllers\CounselingController;
 use App\Http\Controllers\PrayerRequestController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\OrganizationalRecordController;
 
 /*
@@ -48,6 +49,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/events/{event}/finnish', [EventController::class, 'finnish'])->name('events.finnish');
     Route::resource('/roles', RoleManagementController::class);
 
+
+    Route::resource('/roles', RoleController::class);
     Route::resource('/banners', BannerController::class);
 
     Route::resource('/posts', PostController::class);

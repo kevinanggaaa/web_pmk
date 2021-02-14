@@ -89,7 +89,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="avatar">Avatar</label>
-                                    <input type="file" name="avatar" id="avatar" class="form-control" value="{{ $student->avatar }}">
+                                    <input type="file" name="avatar" id="avatar" class="form-control" value="{{ $user->avatar }}">
                                     @error('avatar')
                                     <span class="error invalid-feedback">{{$message}}</span>
                                     @enderror
@@ -131,11 +131,25 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="date_death">Tanggal Wafat</label>
-                                    <input type="date_death" name="date_death" id="date_death" class="form-control {{$errors->has('date_death') ? 'is-invalid' : ''}}" value="{{$user->date_death}}" required>
+                                    <input type="date" name="date_death" id="date_death" class="form-control {{$errors->has('date_death') ? 'is-invalid' : ''}}" value="{{$user->date_death}}" required>
                                     @error('date_death')
                                     <span class="error invalid-feedback">{{$message}}</span>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Roles:</label>
+                                    <select class="duallistbox" multiple="multiple" name="role_ids[]">
+                                        @foreach($selected_roles as $role)
+                                            <option value="{{$role->id}}" selected>{{$role->name}}</option>
+                                        @endforeach
+                                        @foreach($unselected_roles as $role)
+                                            <option value="{{$role->id}}">{{$role->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <!-- /.form-group -->
                             </div>
                         </div>
                     </div>
@@ -143,6 +157,7 @@
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary swalDefaultInfo" value="Data user" id="data"><i class="fa fa-paper-plane"></i> Submit</button>
                     </div>
+                </div>
             </form>
         </div>
     </div>
@@ -150,12 +165,22 @@
 @endsection
 
 @push('scripts')
-<script src="{{asset('/adminlte/plugins/moment/moment.min.js')}}"></script>
-<script src="{{asset('/adminlte/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
+<script src="{{asset('/AdminLTE-3.0.5/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('/AdminLTE-3.0.5/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
 
 <script>
     $('.datemask').inputmask('yyyy', {
         'placeholder': 'yyyy'
     })
+</script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.js')}}"></script>
+<script>
+    $duallistbox = $('.duallistbox')
+    $duallistbox.bootstrapDualListbox({
+        nonSelectedListLabel: 'Available Roles',
+        selectedListLabel: 'Chosen Roles',
+        moveOnSelect: false,
+        moveAllLabel: 'aaa'
+    });
 </script>
 @endpush
