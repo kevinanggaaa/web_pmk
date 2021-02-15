@@ -80,6 +80,24 @@
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="peserta">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if ($event->attendant_id != "")
+                                @foreach($users as $user)
+                                <tr>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                </tr>
+                                @endforeach
+                                @endif
+                            </tbody>
+                        </table>
 
                     </div>
                     <!-- /.tab-pane -->

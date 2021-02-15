@@ -67,7 +67,7 @@
                                 <input type="hidden" id="id" name="id" value="{{$event->id}}">
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary"><i class=" fa fa-user"></i>Submit</button>
+                                    <button type="submit" class="btn btn-primary"><i class=" fa fa-user"></i>Attend</button>
                                 </div>
                             </form>
                         </div>
