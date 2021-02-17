@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Alumni;
 use Illuminate\Http\Request;
 use App\Http\Requests\AlumniRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\AlumniExport;
+use App\Imports\AlumniImport;
+use Session;
 use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Auth;
-
 
 class AlumniController extends Controller
 {
@@ -146,5 +149,36 @@ class AlumniController extends Controller
 
         return redirect()->route('alumnis.index')
             ->with('success', 'Data alumni berhasil dihapus');
+    }
+
+    public function export_excel()
+    {
+        return Excel::download(new AlumniExport, 'alumni.xlsx');
+    }
+
+    public function import_excel(Request $request)
+    {
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx',
+        ]);
+
+        // menangkap file excel
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = rand().$file->getClientOriginalName();
+
+        // upload ke folder file_siswa di dalam folder public
+        $file->move('file_alumni', $nama_file);
+
+        // import data
+        Excel::import(new AlumniImport, public_path('/file_alumni/'.$nama_file));
+
+        // notifikasi dengan session
+        Session::flash('sukses', 'Data Alumni Berhasil Diimport!');
+
+        // alihkan halaman kembali
+        return redirect('/admin/alumnis');
     }
 }
