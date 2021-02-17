@@ -65,3 +65,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/posts', PostController::class);
     Route::get('/events/slug/{slug}', [EventController::class, 'showSlug'])->name('events.showSlug');
 });
+
+Route::get('test', function() {
+    Storage::disk('google')->put('test.txt', 'Hello World');
+});

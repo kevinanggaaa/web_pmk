@@ -178,6 +178,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        App\Providers\GoogleDriveServiceProvider::class,
     ],
 
     /*
