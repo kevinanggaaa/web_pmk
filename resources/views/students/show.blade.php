@@ -75,6 +75,42 @@
                                     <td>Tahun lulus</td>
                                     <td>{{ $student->year_end }}</td>
                                 </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>{{ $user->email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>PKK</td>
+                                    <td>{{ $user->pkk }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Alamat</td>
+                                    <td>{{ $user->address }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Alamat asal</td>
+                                    <td>{{ $user->address_origin }}</td>
+                                </tr>
+                                <tr>
+                                    <td>No telp</td>
+                                    <td>{{ $user->phone }}</td>
+                                </tr>
+                                <tr>
+                                    <td>No telp ortu</td>
+                                    <td>{{ $user->parent_phone }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Id line</td>
+                                    <td>{{ $user->line }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tanggal lahir</td>
+                                    <td>{{ $user->birthdate }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Jenis kelamin</td>
+                                    <td>{{ $user->gender }}</td>
+                                </tr>
                             </tbody>
                         </table>
 

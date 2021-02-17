@@ -9,6 +9,9 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StudentExport;
 use App\Imports\StudentImport;
 use Session;
+use App\Models\User;
+use App\Models\Profile;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -42,16 +45,53 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request)
     {
-        Student::create([
+        $user = User::firstOrcreate([
+            'email' => $request['email'],
+            'password' => bcrypt($request['nrp']),
             'name' => $request['name'],
-            'nrp' => $request['nrp'],
-            'department' => $request['department'],
-            'year_entry' => $request['year_entry'],
-            'year_graduate' => $request['year_graduate']
+            'pkk' => $request['pkk'],
+            'address' => $request['address'],
+            'address_origin' => $request['address_origin'],
+            'phone' => $request['phone'],
+            'parent_phone' => $request['parent_phone'],
+            'line' => $request['line'],
+            'birthdate' => $request['birthdate'],
+            'gender' => $request['gender'],
+            'date_death' => $request['date_death'],
         ]);
 
-        return redirect()->route('students.index')
-            ->with('success', 'Data mahasiswa berhasil ditambahkan');
+        if($user->wasRecentlyCreated){
+            $student = Student::firstOrcreate([
+                'nrp' => $request['nrp'],
+                'name' => $request['name'],
+                'department' => $request['department'],
+                'year_entry' => $request['year_entry'],
+                'year_graduate' => $request['year_graduate']
+            ]);
+
+            if($student->wasRecentlyCreated){
+                $model_id = Student::select('id')->where('nrp', $request['nrp'])->first();
+                $user_id = User::select('id')->where('email', $request['email'])->first();
+
+                Profile::create([
+                    'profile_id' => $request['nrp'],
+                    'user_id' => $user_id->id,
+                    'model_id' => $model_id->id,
+                    'model_type' => 'App\Models\Student',
+                ]);
+
+                return redirect()->route('students.index')
+                    ->with('success', 'Data mahasiswa berhasil ditambahkan');
+            }
+            else{
+                return redirect()->route('students.create')
+                ->with('fail', 'Maaf nrp yang didaftarkan sudah digunakan sebelumnya');
+            }
+        }
+        else{
+            return redirect()->route('students.create')
+            ->with('fail', 'Maaf email yang didaftarkan sudah digunakan sebelumnya');
+        }
     }
 
     /**
@@ -62,7 +102,10 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        return view('students.show', compact('student'));
+        $profile = Profile::select()->where('profile_id', $student['nrp'])->first();
+        $user = User::select()->where('id',$profile->user_id)->first();
+ 
+        return view('students.show', compact('student', 'user'));
     }
 
     /**

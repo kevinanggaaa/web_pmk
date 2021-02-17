@@ -97,6 +97,63 @@
     <script src="{{asset('AdminLTE-3.0.5/dist/js/pages/dashboard.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('AdminLTE-3.0.5/dist/js/demo.js')}}"></script>
+
+    <script type="text/javascript">
+        /** add active class and stay opened when selected */
+        var url = window.location;
+        // for sidebar menu entirely but not cover treeview
+        $('ul.nav-sidebar a').filter(function() {
+            return this.href == url;
+        }).addClass('active');
+        // for treeview
+        $('ul.nav-treeview a').filter(function() {
+            return this.href == url;
+        }).parentsUntil(".nav-sidebar > .nav-treeview").addClass('menu-open').prev('a').addClass('active');
+    </script>
+
+    <script>
+        $('.deleteData').on('click', function(e) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'ml-3 btn btn-success',
+                    cancelButton: 'mr-3 btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+            e.preventDefault();
+            var form = $(this).parents('form');
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    form.submit();
+                    swalWithBootstrapButtons.fire(
+                        'Deleted!',
+                        'Data has been deleted.',
+                        'success'
+                    );
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Data is not deleted',
+                        'error'
+                    )
+                }
+            });
+        });
+    </script>
+    @stack('scripts')
 </body>
 
 </html>

@@ -9,6 +9,9 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\LecturerExport;
 use App\Imports\LecturerImport;
 use Session;
+use App\Models\User;
+use App\Models\Profile;
+use Illuminate\Support\Facades\Auth;
 
 class LecturerController extends Controller
 {
@@ -41,14 +44,51 @@ class LecturerController extends Controller
      */
     public function store(Request $request)
     {
-        Lecturer::create([
-            'nidn' => $request['nidn'],
+        $user = User::firstOrcreate([
+            'email' => $request['email'],
+            'password' => bcrypt($request['nrp']),
             'name' => $request['name'],
-            'department' => $request['department']
+            'pkk' => $request['pkk'],
+            'address' => $request['address'],
+            'address_origin' => $request['address_origin'],
+            'phone' => $request['phone'],
+            'parent_phone' => $request['parent_phone'],
+            'line' => $request['line'],
+            'birthdate' => $request['birthdate'],
+            'gender' => $request['gender'],
+            'date_death' => $request['date_death'],
         ]);
 
-        return redirect()->route('lecturers.index')
-            ->with('success', 'Data dosen berhasil ditambahkan');
+        if($user->wasRecentlyCreated){
+            $lecturer = Lecturer::firstOrcreate([
+                'nidn' => $request['nidn'],
+                'name' => $request['name'],
+                'department' => $request['department']
+            ]);
+
+            if($lecturer->wasRecentlyCreated){
+                $model_id = Lecturer::select('id')->where('nidn', $request['nidn'])->first();
+                $user_id = User::select('id')->where('email', $request['email'])->first();
+
+                Profile::create([
+                    'profile_id' => $request['nidn'],
+                    'user_id' => $user_id->id,
+                    'model_id' => $model_id->id,
+                    'model_type' => 'App\Models\Lecturer',
+                ]);
+
+                return redirect()->route('lecturers.index')
+                    ->with('success', 'Data dosen berhasil ditambahkan');
+            }
+            else{
+                return redirect()->route('lecturers.create')
+                ->with('fail', 'Maaf nidn yang didaftarkan sudah digunakan sebelumnya');
+            }
+        }
+        else{
+            return redirect()->route('lecturers.create')
+            ->with('fail', 'Maaf email yang didaftarkan sudah digunakan sebelumnya');
+        }
     }
 
     /**
@@ -59,7 +99,9 @@ class LecturerController extends Controller
      */
     public function show(Lecturer $lecturer)
     {
-        return view('lecturers.show', compact('lecturer'));
+        $profile = Profile::select()->where('profile_id', $lecturer['nidn'])->first();
+        $user = User::select()->where('id',$profile->user_id)->first();
+        return view('lecturers.show', compact('lecturer', 'user'));
     }
 
     /**
