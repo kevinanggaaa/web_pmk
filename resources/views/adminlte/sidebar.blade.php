@@ -27,8 +27,7 @@
             </a>
           </li>
          
-
-       
+          @if(auth()->user()->hasRole('Super Admin'))
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link active">
               <i class="nav-icon fa fa-users"></i>
@@ -52,9 +51,8 @@
               </li>
             </ul>
           </li>
-         
+          @endif
         </ul>
-
 
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
@@ -68,68 +66,74 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                           
+                                @if(auth()->user()->hasPermissionTo('view lecturer'))
                                 <li class="nav-item">
                                     <a href="{{route ('lecturers.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Dosen</p>
                                     </a>
                                 </li>
-                            
+                                @endif
 
-                            
+                                @if(auth()->user()->hasPermissionTo('view student'))
                                 <li class="nav-item">
                                     <a href="{{route ('students.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Mahasiswa</p>
                                     </a>
                                 </li>
-                            
-
+                                @endif
                            
+                                @if(auth()->user()->hasPermissionTo('view alumni'))
                                 <li class="nav-item">
                                     <a href="{{route ('alumnis.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Alumni</p>
                                     </a>
                                 </li>
-                            
+                                @endif
 
-                            
+                                @if(auth()->user()->hasPermissionTo('view organizational record'))
+                                <li class="nav-item">
+                                    <a href="{{route ('organizational-records.index')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Histori Organisasi</p>
+                                    </a>
+                                </li>
+                                @endif
+
+                                @if(auth()->user()->hasPermissionTo('view counselor'))
                                 <li class="nav-item">
                                     <a href="{{route ('counselors.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Konselor</p>
                                     </a>
                                 </li>
-                            
+                                @endif
 
-                           
+                                @if(auth()->user()->hasPermissionTo('view counseling'))
                                 <li class="nav-item">
                                     <a href="{{route ('counselings.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Konseling</p>
                                     </a>
                                 </li>
-                           
+                                @endif
 
-                           
-                               
-
-                            
-                            <li class="nav-item">
-                                <a href="{{route ('prayer-requests.index')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Pray Request</p>
-                                </a>
-                            </li>
-                           
+                                @if(auth()->user()->hasPermissionTo('view prayer request'))
+                                <li class="nav-item">
+                                    <a href="{{route ('prayer-requests.index')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Pray Request</p>
+                                    </a>
+                                </li>
+                                @endif
                         </ul>
                     </li>
-                </ul>
+        </ul>
 
      
-
+        @if(auth()->user()->hasRole('Super Admin'))
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                           with font-awesome or any other icon font library -->
@@ -143,29 +147,24 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                           
                                 <li class="nav-item">
                                     <a href="{{route ('banners.create')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Banner</p>
                                     </a>
                                 </li>
-                           
-
-                           
                                 <li class="nav-item">
                                     <a href="{{route ('posts.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Post</p>
                                     </a>
                                 </li>
-                            
                         </ul>
                     </li>
                     
-                </ul>
-            </nav>
-        </div>
-    </aside>
+        </ul>
+        @endif
+      </nav>
+    </div>
+  </aside>
 </aside>
-

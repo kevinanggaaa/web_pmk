@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Gate;
 
 class RoleSeeder extends Seeder
 {
@@ -155,6 +156,51 @@ class RoleSeeder extends Seeder
         $delete_organizational_record = Permission::create(['name' => 'delete organizational record', 'guard_name' => 'web']);
 
         // Give Role Permission
+        
+        /*
+            Super admin
+        */
+        $super_admin->givePermissionTo($add_student);
+        $super_admin->givePermissionTo($view_student);
+        $super_admin->givePermissionTo($view_detail_student);
+        $super_admin->givePermissionTo($edit_student);
+        $super_admin->givePermissionTo($delete_student);
+        $super_admin->givePermissionTo($add_alumni);
+        $super_admin->givePermissionTo($view_alumni);
+        $super_admin->givePermissionTo($view_detail_alumni);
+        $super_admin->givePermissionTo($edit_alumni);
+        $super_admin->givePermissionTo($delete_alumni);
+        $super_admin->givePermissionTo($add_lecturer);
+        $super_admin->givePermissionTo($view_lecturer);
+        $super_admin->givePermissionTo($view_detail_lecturer);
+        $super_admin->givePermissionTo($edit_lecturer);
+        $super_admin->givePermissionTo($delete_lecturer);
+        $super_admin->givePermissionTo($add_event);
+        $super_admin->givePermissionTo($view_event);
+        $super_admin->givePermissionTo($view_detail_event);
+        $super_admin->givePermissionTo($edit_event);
+        $super_admin->givePermissionTo($delete_event);
+        $super_admin->givePermissionTo($add_counseling);
+        $super_admin->givePermissionTo($view_counseling);
+        $super_admin->givePermissionTo($view_detail_counseling);
+        $super_admin->givePermissionTo($edit_counseling);
+        $super_admin->givePermissionTo($delete_counseling);
+        $super_admin->givePermissionTo($add_counselor);
+        $super_admin->givePermissionTo($view_counselor);
+        $super_admin->givePermissionTo($view_detail_counselor);
+        $super_admin->givePermissionTo($edit_counselor);
+        $super_admin->givePermissionTo($delete_counselor);
+        $super_admin->givePermissionTo($add_prayer_request);
+        $super_admin->givePermissionTo($view_prayer_request);
+        $super_admin->givePermissionTo($view_detail_prayer_request);
+        $super_admin->givePermissionTo($edit_prayer_request);
+        $super_admin->givePermissionTo($delete_prayer_request);
+        $super_admin->givePermissionTo($add_organizational_record);
+        $super_admin->givePermissionTo($view_organizational_record);
+        $super_admin->givePermissionTo($view_detail_organizational_record);
+        $super_admin->givePermissionTo($edit_organizational_record);
+        $super_admin->givePermissionTo($delete_organizational_record);
+
         /*
             Ketua
         */
@@ -172,6 +218,7 @@ class RoleSeeder extends Seeder
         $ketua->givePermissionTo($view_counseling);
         $ketua->givePermissionTo($view_detail_counseling);
         $ketua->givePermissionTo($add_counseling);
+        $ketua->givePermissionTo($delete_counseling);
         $ketua->givePermissionTo($view_prayer_request);
         $ketua->givePermissionTo($view_detail_prayer_request);
         $ketua->givePermissionTo($add_prayer_request);
@@ -196,6 +243,7 @@ class RoleSeeder extends Seeder
         $sekretaris->givePermissionTo($view_counseling);
         $sekretaris->givePermissionTo($view_detail_counseling);
         $sekretaris->givePermissionTo($add_counseling);
+        $sekretaris->givePermissionTo($delete_counseling);
         $sekretaris->givePermissionTo($view_prayer_request);
         $sekretaris->givePermissionTo($view_detail_prayer_request);
         $sekretaris->givePermissionTo($add_prayer_request);
@@ -220,6 +268,7 @@ class RoleSeeder extends Seeder
         $bendahara->givePermissionTo($view_counseling);
         $bendahara->givePermissionTo($view_detail_counseling);
         $bendahara->givePermissionTo($add_counseling);
+        $bendahara->givePermissionTo($delete_counseling);
         $bendahara->givePermissionTo($view_prayer_request);
         $bendahara->givePermissionTo($view_detail_prayer_request);
         $bendahara->givePermissionTo($add_prayer_request);
@@ -243,6 +292,7 @@ class RoleSeeder extends Seeder
         $bph_dope->givePermissionTo($view_detail_counselor);
         $bph_dope->givePermissionTo($view_counseling);
         $bph_dope->givePermissionTo($view_detail_counseling);
+        $bph_dope->givePermissionTo($delete_counseling);
         $bph_dope->givePermissionTo($add_counseling);
         $bph_dope->givePermissionTo($view_prayer_request);
         $bph_dope->givePermissionTo($view_detail_prayer_request);
@@ -268,6 +318,7 @@ class RoleSeeder extends Seeder
         $bph_kutu->givePermissionTo($view_counseling);
         $bph_kutu->givePermissionTo($view_detail_counseling);
         $bph_kutu->givePermissionTo($add_counseling);
+        $bph_kutu->givePermissionTo($delete_counseling);
         $bph_kutu->givePermissionTo($view_prayer_request);
         $bph_kutu->givePermissionTo($view_detail_prayer_request);
         $bph_kutu->givePermissionTo($add_prayer_request);
@@ -292,6 +343,7 @@ class RoleSeeder extends Seeder
         $bph_medfo->givePermissionTo($view_counseling);
         $bph_medfo->givePermissionTo($view_detail_counseling);
         $bph_medfo->givePermissionTo($add_counseling);
+        $bph_medfo->givePermissionTo($delete_counseling);
         $bph_medfo->givePermissionTo($view_prayer_request);
         $bph_medfo->givePermissionTo($view_detail_prayer_request);
         $bph_medfo->givePermissionTo($add_prayer_request);
@@ -316,6 +368,7 @@ class RoleSeeder extends Seeder
         $bph_pemuridan->givePermissionTo($view_counseling);
         $bph_pemuridan->givePermissionTo($view_detail_counseling);
         $bph_pemuridan->givePermissionTo($add_counseling);
+        $bph_pemuridan->givePermissionTo($delete_counseling);
         $bph_pemuridan->givePermissionTo($view_prayer_request);
         $bph_pemuridan->givePermissionTo($view_detail_prayer_request);
         $bph_pemuridan->givePermissionTo($add_prayer_request);
@@ -336,6 +389,7 @@ class RoleSeeder extends Seeder
         $pengurus_pemuridan->givePermissionTo($view_counseling);
         $pengurus_pemuridan->givePermissionTo($view_detail_counseling);
         $pengurus_pemuridan->givePermissionTo($add_counseling);
+        $pengurus_pemuridan->givePermissionTo($delete_counseling);
         $pengurus_pemuridan->givePermissionTo($view_prayer_request);
         $pengurus_pemuridan->givePermissionTo($view_detail_prayer_request);
         $pengurus_pemuridan->givePermissionTo($add_prayer_request);
@@ -355,6 +409,7 @@ class RoleSeeder extends Seeder
         $pengurus_dope->givePermissionTo($view_counseling);
         $pengurus_dope->givePermissionTo($view_detail_counseling);
         $pengurus_dope->givePermissionTo($add_counseling);
+        $pengurus_dope->givePermissionTo($delete_counseling);
         $pengurus_dope->givePermissionTo($view_prayer_request);
         $pengurus_dope->givePermissionTo($view_detail_prayer_request);
         $pengurus_dope->givePermissionTo($add_prayer_request);
@@ -374,6 +429,7 @@ class RoleSeeder extends Seeder
         $pengurus_medfo->givePermissionTo($view_counseling);
         $pengurus_medfo->givePermissionTo($view_detail_counseling);
         $pengurus_medfo->givePermissionTo($add_counseling);
+        $pengurus_medfo->givePermissionTo($delete_counseling);
         $pengurus_medfo->givePermissionTo($view_prayer_request);
         $pengurus_medfo->givePermissionTo($view_detail_prayer_request);
         $pengurus_medfo->givePermissionTo($add_prayer_request);
@@ -393,6 +449,7 @@ class RoleSeeder extends Seeder
         $mahasiswa->givePermissionTo($view_counseling);
         $mahasiswa->givePermissionTo($view_detail_counseling);
         $mahasiswa->givePermissionTo($add_counseling);
+        $mahasiswa->givePermissionTo($delete_counseling);
         $mahasiswa->givePermissionTo($view_prayer_request);
         $mahasiswa->givePermissionTo($view_detail_prayer_request);
         $mahasiswa->givePermissionTo($add_prayer_request);
@@ -411,6 +468,7 @@ class RoleSeeder extends Seeder
         $pkk->givePermissionTo($view_counseling);
         $pkk->givePermissionTo($view_detail_counseling);
         $pkk->givePermissionTo($add_counseling);
+        $pkk->givePermissionpkko($delete_counseling);
         $pkk->givePermissionTo($view_prayer_request);
         $pkk->givePermissionTo($view_detail_prayer_request);
         $pkk->givePermissionTo($add_prayer_request);
