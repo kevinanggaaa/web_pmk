@@ -141,7 +141,27 @@ class LecturerController extends Controller
      */
     public function destroy(Lecturer $lecturer)
     {
+        
+        $user = Profile::select()
+        ->where('model_type',"App\Models\Lecturer")
+        ->where('model_id',$lecturer->id)
+        ->first();
+
+        $check_profile = Profile::select()
+        ->whereNotIn('model_type',['App\Models\Lecturer'])
+        ->where('user_id',$user->user_id)
+        ->get();
+
         $lecturer->delete();
+
+        $delete_profile = Profile::select()
+        ->where('model_type',"App\Models\Lecturer")
+        ->where('user_id',$user->user_id)
+        ->delete();
+
+        if($check_profile->isEmpty()){
+            $delete_user = User::select()->where('id',$user->user_id)->delete();
+        }
 
         return redirect()->route('lecturers.index')
             ->with('success', 'Data dosen berhasil dihapus');

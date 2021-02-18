@@ -145,7 +145,27 @@ class AlumniController extends Controller
      */
     public function destroy(Alumni $alumni)
     {
+        
+        $user = Profile::select()
+        ->where('model_type',"App\Models\Alumni")
+        ->where('model_id',$alumni->id)
+        ->first();
+
+        $check_profile = Profile::select()
+        ->whereNotIn('model_type',['App\Models\Alumni'])
+        ->where('user_id',$user->user_id)
+        ->get();
+
         $alumni->delete();
+
+        $delete_profile = Profile::select()
+        ->where('model_type',"App\Models\Alumni")
+        ->where('user_id',$user->user_id)
+        ->delete();
+
+        if($check_profile->isEmpty()){
+            $delete_user = User::select()->where('id',$user->user_id)->delete();
+        }
 
         return redirect()->route('alumnis.index')
             ->with('success', 'Data alumni berhasil dihapus');

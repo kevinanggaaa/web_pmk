@@ -138,33 +138,16 @@ class UserController extends Controller
 
         foreach ($profiles as $profile){ 
             if($profile->model_type == "App\Models\Student"){
-
-                
                 $number = $profile->model_id;
-                // $profile->delete();
-                // dd($profile);
                 $data = Student::where('id', $number)->first()->delete();
-
-                // $data = Student::where('id', $profile->model_id)->first()->delete();
-                // $profile->delete();
-                
-            // $deletedRows = Flight::where('active', 0)->delete();
             }
             else if($profile->model_type == "App\Models\Lecturer"){
                 $number = $profile->model_id;
-                // $profile->delete();
                 $data = Lecturer::where('id', $number)->first()->delete();
-
-                // $data = Lecturer::where('id', $profile->model_id)->first()->delete();
-                // $profile->delete();
             }
             else if($profile->model_type == "App\Models\Alumni"){
                 $number = $profile->model_id;
-                // $profile->delete();
                 $data = Alumni::where('id', $number)->first()->delete();
-
-                // $data = Alumni::where('id', $profile->model_id)->first()->delete();
-                // $profile->delete();
             }
         }
 

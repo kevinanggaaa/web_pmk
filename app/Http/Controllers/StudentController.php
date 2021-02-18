@@ -148,8 +148,27 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
+        $user = Profile::select()
+        ->where('model_type',"App\Models\Student")
+        ->where('model_id',$student->id)
+        ->first();
+
+        $check_profile = Profile::select()
+        ->whereNotIn('model_type',['App\Models\Student'])
+        ->where('user_id',$user->user_id)
+        ->get();
+
         $student->delete();
 
+        $delete_profile = Profile::select()
+        ->where('model_type',"App\Models\Student")
+        ->where('user_id',$user->user_id)
+        ->delete();
+
+        if($check_profile->isEmpty()){
+            $delete_user = User::select()->where('id',$user->user_id)->delete();
+        }
+        
         return redirect()->route('students.index')
             ->with('success', 'Data mahasiswa berhasil dihapus');
     }
