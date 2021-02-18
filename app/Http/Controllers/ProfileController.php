@@ -6,6 +6,7 @@ use App\Models\Alumni;
 use App\Models\Lecturer;
 use App\Models\Profile;
 use App\Models\Student;
+use App\Models\OrganizationalRecord;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,9 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('profile.index', compact('user'));
+        $organizations = OrganizationalRecord::select()->where('user_id',$user->id)->get();
+        
+        return view('profile.index', compact('user','organizations'));
     }
 
     public function editStudent(Student $student)

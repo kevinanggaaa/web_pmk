@@ -58,7 +58,7 @@
                     <th>Topik</th>
                     <th>Konselor</th>
                     <th>Tanggal</th>
-                    @if(auth()->user()->hasAnyPermission(['view detail counseling', 'edit counseling', 'delete counseling']))
+                    @if(auth()->user()->hasAnyPermission(['edit counseling', 'delete counseling']))
                     <th style="width: 280px">Action</th>
                     @endif
                 </tr>
@@ -74,7 +74,7 @@
                     @endforeach
                     <td>{{ $counseling->date_time}}</td>
 
-                    @if(auth()->user()->hasAnyPermission(['view detail counseling', 'edit counseling', 'delete counseling']))
+                    @if(auth()->user()->hasAnyPermission(['edit counseling', 'delete counseling']))
                     <td>
                         <div style="display: flex">
                             <!-- @if(auth()->user()->hasPermissionTo('view detail counseling'))

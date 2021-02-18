@@ -12,6 +12,7 @@ class OrganizationalRecord extends Model
     protected $table = 'organizational_records';
 
     protected $fillable = [
+        'user_id',
         'position',
         'category',
         'year_start',

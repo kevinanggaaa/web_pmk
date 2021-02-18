@@ -52,6 +52,7 @@
     </div>
 
     <!-- /.card-header -->
+    @if(auth()->user()->hasRole(['bph dope', 'pengurus dope']))
     <div class="card-body p-3">
         <table id="example1" class="table table-bordered table-striped">
             <thead>
@@ -101,6 +102,7 @@
     {{-- <div class="card-footer">
         {{$prayerRequests->links("pagination::bootstrap-4")}}
     </div> --}}
+    @endif
 </div>
 
 @endsection

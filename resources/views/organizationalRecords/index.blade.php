@@ -58,8 +58,8 @@
                 <tr>
                     <th>Posisi</th>
                     <th>Kategori</th>
-                    <!-- <th>Tahun masuk</th>
-                    <th>Tahun selesai</th> -->
+                    <th>Tahun mulai</th>
+                    <th>Tahun selesai</th>
                     @if(auth()->user()->hasAnyPermission(['view detail organizational record', 'edit organizational record', 'delete organizational record']))
                     <th style="width: 280px">Action</th>
                     @endif
@@ -70,8 +70,8 @@
                 <tr>
                     <td>{{ $organizationalRecord->position }}</td>
                     <td>{{ $organizationalRecord->category }}</td>
-                    <!-- <td>{{ $organizationalRecord->year_entry }}</td>
-                    <td>{{ $organizationalRecord->year_end }}</td> -->
+                    <td>{{ $organizationalRecord->year_start }}</td>
+                    <td>{{ $organizationalRecord->year_end }}</td>
 
                     @if(auth()->user()->hasAnyPermission(['view detail organizational record', 'edit organizational record', 'delete organizational record']))
                     <td>
@@ -82,13 +82,13 @@
                             </div>
                             @endif
 
-                            @if(auth()->user()->hasPermissionTo('edit detail organizational record'))
+                            @if(auth()->user()->hasPermissionTo('edit organizational record'))
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('organizational-records.edit',$organizationalRecord->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
                             @endif
 
-                            @if(auth()->user()->hasPermissionTo('delete detail organizational record'))
+                            @if(auth()->user()->hasPermissionTo('delete organizational record'))
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('organizational-records.destroy', $organizationalRecord->id) }}" method="POST" class="display: inline;">
                                     @csrf

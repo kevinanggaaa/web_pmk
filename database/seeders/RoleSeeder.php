@@ -508,7 +508,6 @@ class RoleSeeder extends Seeder
         $alumni->givePermissionTo($view_lecturer);
         $alumni->givePermissionTo($view_event);
         $alumni->givePermissionTo($view_detail_event);
-        $alumni->givePermissionTo($view_counselor);
 
 
         /*
@@ -519,6 +518,5 @@ class RoleSeeder extends Seeder
         $pengurus_alumni->givePermissionTo($view_lecturer);
         $pengurus_alumni->givePermissionTo($view_event);
         $pengurus_alumni->givePermissionTo($view_detail_event);
-        $pengurus_alumni->givePermissionTo($view_counselor);
     }
 }
