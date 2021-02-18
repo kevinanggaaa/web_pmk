@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use App\Models\Profile;
+use App\Models\Student;
+use App\Models\Lecturer;
+use App\Models\Alumni;
 
 class UserController extends Controller
 {
@@ -130,6 +134,39 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $profiles = Profile::select()->where('user_id',$user->id)->get();
+
+        foreach ($profiles as $profile){ 
+            $data = "";
+            
+            if($profile->model_type == "App\Models\Student"){
+
+                $number = $profile->model_id;
+                $profile->delete();
+                $data = Student::where('id', $number)->first()->delete();
+
+                // $data = Student::where('id', $profile->model_id)->first()->delete();
+                // $profile->delete();
+            }
+            else if($profile->model_type == "App\Models\Lecturer"){
+                $number = $profile->model_id;
+                $profile->delete();
+                $data = Lecturer::where('id', $number)->first()->delete();
+
+                // $data = Lecturer::where('id', $profile->model_id)->first()->delete();
+                // $profile->delete();
+            }
+            else if($profile->model_type == "App\Models\Alumni"){
+                $number = $profile->model_id;
+                $profile->delete();
+                $data = Alumni::where('id', $number)->first()->delete();
+
+                // $data = Alumni::where('id', $profile->model_id)->first()->delete();
+                // $profile->delete();
+            }
+        }
+
+        // $profiles->delete();
         $user->delete();
 
         return redirect()->route('users.index')
