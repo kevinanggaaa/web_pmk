@@ -468,7 +468,7 @@ class RoleSeeder extends Seeder
         $pkk->givePermissionTo($view_counseling);
         $pkk->givePermissionTo($view_detail_counseling);
         $pkk->givePermissionTo($add_counseling);
-        $pkk->givePermissionpkko($delete_counseling);
+        $pkk->givePermissionTo($delete_counseling);
         $pkk->givePermissionTo($view_prayer_request);
         $pkk->givePermissionTo($view_detail_prayer_request);
         $pkk->givePermissionTo($add_prayer_request);

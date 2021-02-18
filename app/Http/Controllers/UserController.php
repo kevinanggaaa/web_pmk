@@ -137,20 +137,22 @@ class UserController extends Controller
         $profiles = Profile::select()->where('user_id',$user->id)->get();
 
         foreach ($profiles as $profile){ 
-            $data = "";
-            
             if($profile->model_type == "App\Models\Student"){
 
+                
                 $number = $profile->model_id;
-                $profile->delete();
+                // $profile->delete();
+                // dd($profile);
                 $data = Student::where('id', $number)->first()->delete();
 
                 // $data = Student::where('id', $profile->model_id)->first()->delete();
                 // $profile->delete();
+                
+            // $deletedRows = Flight::where('active', 0)->delete();
             }
             else if($profile->model_type == "App\Models\Lecturer"){
                 $number = $profile->model_id;
-                $profile->delete();
+                // $profile->delete();
                 $data = Lecturer::where('id', $number)->first()->delete();
 
                 // $data = Lecturer::where('id', $profile->model_id)->first()->delete();
@@ -158,7 +160,7 @@ class UserController extends Controller
             }
             else if($profile->model_type == "App\Models\Alumni"){
                 $number = $profile->model_id;
-                $profile->delete();
+                // $profile->delete();
                 $data = Alumni::where('id', $number)->first()->delete();
 
                 // $data = Alumni::where('id', $profile->model_id)->first()->delete();
@@ -166,7 +168,7 @@ class UserController extends Controller
             }
         }
 
-        // $profiles->delete();
+        $delete_profile = Profile::select()->where('user_id',$user->id)->delete();
         $user->delete();
 
         return redirect()->route('users.index')
