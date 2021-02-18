@@ -71,7 +71,8 @@ class UserController extends Controller
         $metadata = Storage::disk('google')->listContents('1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm');
         $path=null;
         foreach($metadata as $item){
-            if($item['name'] == $user->avatar){
+            $name = "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/" . $item['name'];
+            if($name == $user->avatar){
                 $path = $item['path'];
                 break;
             }
