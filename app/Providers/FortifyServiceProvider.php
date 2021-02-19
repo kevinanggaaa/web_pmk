@@ -2,12 +2,14 @@
 
 namespace App\Providers;
 
+use Laravel\Fortify\Fortify;
 use App\Actions\Fortify\CreateNewUser;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Cache\RateLimiting\Limit;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
+use Illuminate\Support\Facades\RateLimiter;
 use App\Actions\Fortify\UpdateUserProfileInformation;
-use Illuminate\Support\ServiceProvider;
-use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -33,6 +35,10 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
+        RateLimiter::for("login", function () {
+            Limit::perMinute(5);
+        });
+        
         Fortify::loginView(function () {
             return view('auth.login');
         });
@@ -45,8 +51,8 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.forgot-password');
         });
 
-        Fortify::resetPasswordView(function () {
-            return view('auth.reset-password');
-        });
+        Fortify::resetPasswordView(function ($request) {
+            return view('auth.reset-password', ['request' => $request]);
+     });
     }
 }

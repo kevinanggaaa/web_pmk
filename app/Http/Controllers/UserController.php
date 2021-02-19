@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
+use App\Models\Profile;
+use App\Models\Student;
+use App\Models\Lecturer;
+use App\Models\Alumni;
 
 class UserController extends Controller
 {
@@ -27,7 +32,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -38,7 +44,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create([
+        $user = User::create([
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'name' => $request['name'],
@@ -54,6 +60,8 @@ class UserController extends Controller
             'date_death' => $request['date_death']
         ]);
 
+        $user->assignRole($request->role_ids);
+
         return redirect()->route('users.index')
             ->with('success', 'Data user berhasil ditambahkan');
     }
@@ -66,7 +74,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        $selected_roles = $user->roles;
+        return view('users.show', compact('user', 'selected_roles'));
     }
 
     /**
@@ -77,7 +86,14 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $selected_roles = $user->roles;
+        $unselected_roles = Role::all()->diff($selected_roles);
+        return view('users.edit')
+            ->with([
+                'user' => $user,
+                'selected_roles' => $selected_roles,
+                'unselected_roles' => $unselected_roles,
+            ]);
     }
 
     /**
@@ -104,6 +120,8 @@ class UserController extends Controller
         $user->date_death = $request['date_death'];
         $user->save();
 
+        $user->syncRoles($request->role_ids);
+
         return redirect()->route('users.index')
             ->with('success', 'Data user berhasil diubah');
     }
@@ -116,6 +134,24 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $profiles = Profile::select()->where('user_id',$user->id)->get();
+
+        foreach ($profiles as $profile){ 
+            if($profile->model_type == "App\Models\Student"){
+                $number = $profile->model_id;
+                $data = Student::where('id', $number)->first()->delete();
+            }
+            else if($profile->model_type == "App\Models\Lecturer"){
+                $number = $profile->model_id;
+                $data = Lecturer::where('id', $number)->first()->delete();
+            }
+            else if($profile->model_type == "App\Models\Alumni"){
+                $number = $profile->model_id;
+                $data = Alumni::where('id', $number)->first()->delete();
+            }
+        }
+
+        $delete_profile = Profile::select()->where('user_id',$user->id)->delete();
         $user->delete();
 
         return redirect()->route('users.index')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OrganizationalRecord;
 use Illuminate\Http\Request;
 use App\Http\Requests\OrganizationalRecordRequest;
+use Illuminate\Support\Facades\Auth;
 
 class OrganizationalRecordController extends Controller
 {
@@ -37,14 +38,17 @@ class OrganizationalRecordController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user()->id;
+        // dd($request['year_end']);
         OrganizationalRecord::create([
+            'user_id' => $user,
             'position' => $request['position'],
             'category' => $request['category'],
             'year_start' => $request['year_start'],
-            'year_end' => $request['year_end']
+            'year_end' => $request['year_end'],
         ]);
 
-        return redirect()->route('OrganizationalRecords.index')
+        return redirect()->route('organizationalRecords.index')
             ->with('success', 'Data organisasi berhasil ditambahkan');
     }
 

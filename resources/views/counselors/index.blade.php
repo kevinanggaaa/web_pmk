@@ -41,11 +41,13 @@
         </div>
         @endif
 
+        @if(auth()->user()->hasPermissionTo('add counselor'))
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('counselors.create') }}"> Tambah data konselor</a>
             </div>
         </div>
+        @endif
     </div>
 
     <!-- /.card-header -->
@@ -55,7 +57,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Nama</th>
+                    @if(auth()->user()->hasAnyPermission(['view detail counselor', 'edit counselor', 'delete counselor']))
                     <th style="width: 280px">Action</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -64,14 +68,22 @@
                     <td>{{ $counselor->id }}</td>
                     <td>{{ $counselor->name }}</td>
 
+                    @if(auth()->user()->hasAnyPermission(['view detail counselor', 'edit counselor', 'delete counselor']))
                     <td>
                         <div style="display: flex">
+                            @if(auth()->user()->hasPermissionTo('view detail counselor'))
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('counselors.show',$counselor->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
+                            @endif
+
+                            @if(auth()->user()->hasPermissionTo('edit counselor'))
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('counselors.edit',$counselor->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
+                            @endif
+
+                            @if(auth()->user()->hasPermissionTo('delete counselor'))
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('counselors.destroy', $counselor->id) }}" method="POST" class="display: inline;">
                                     @csrf
@@ -79,8 +91,10 @@
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
+                            @endif
                         </div>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>

@@ -58,13 +58,13 @@
                         <div class="col-md-6">
                             <!-- Date dd/mm/yyyy -->
                             <div class="form-group">
-                                <label for="year_entry">Tahun Masuk</label>
+                                <label for="year_start">Tahun Masuk</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                     </div>
-                                    <input name="year_entry" id="year_entry" type="text" class="datemask form-control {{$errors->has('year_entry') ? 'is-invalid' : ''}}" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask value="{{old('year_entry')}}" required>
-                                    @error('year_entry')
+                                    <input name="year_start" id="year_start" type="text" class="datemask form-control {{$errors->has('year_start') ? 'is-invalid' : ''}}" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask value="{{old('year_start')}}">
+                                    @error('year_start')
                                     <span class="error invalid-feedback">{{$message}}</span>
                                     @enderror
                                 </div>
