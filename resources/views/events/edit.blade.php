@@ -96,9 +96,11 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Submit</button>
+                    @if($event->attendant_id == null)
                     <div style="margin-right: 5px; display: inline;">
                         <a class="btn btn-secondary" href="{{ route('events.finnish',$event->id) }}"><i class="fa fa-flag"> finnish</i></a>
                     </div>
+                    @endif
                 </div>
             </form>
         </div>

@@ -187,12 +187,14 @@ class EventController extends Controller
     {
 
         $attends = UserEvent::where('event_id', $event->id)->get();
-
+        $count = 0;
         $temp = '';
         foreach ($attends as $attend) {
             $temp .= $attend->user_id  . ";";
+            $count += 1;
         }
 
+        $event->attendant_count = $count;
         $event->attendant_id = $temp;
         $event->save();
 
