@@ -41,46 +41,13 @@
         </div>
         @endif
 
-        <!-- @can('edit counseling')
-        <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
-            IMPORT EXCEL
-        </button> -->
-
-        <!-- Import Excel -->
-        <!-- <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <form method="post" action="{{route('counselings.import_excel')}}" enctype="multipart/form-data">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
-                        </div>
-                        <div class="modal-body">
-
-                            {{ csrf_field() }}
-
-                            <label>Pilih file excel</label>
-                            <div class="form-group">
-                                <input type="file" name="file" required="required">
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Import</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div> -->
-        <!-- @endcan -->
- 
-        
-
+        @if(auth()->user()->hasPermissionTo('add counseling'))
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('counselings.create') }}"> Tambah data Counseling</a>
             </div>
         </div>
+        @endif
     </div>
 
     <!-- /.card-header -->
@@ -91,7 +58,9 @@
                     <th>Topik</th>
                     <th>Konselor</th>
                     <th>Tanggal</th>
+                    @if(auth()->user()->hasAnyPermission(['edit counseling', 'delete counseling']))
                     <th style="width: 280px">Action</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -104,11 +73,23 @@
                         @endif
                     @endforeach
                     <td>{{ $counseling->date_time}}</td>
+
+                    @if(auth()->user()->hasAnyPermission(['edit counseling', 'delete counseling']))
                     <td>
                         <div style="display: flex">
+                            <!-- @if(auth()->user()->hasPermissionTo('view detail counseling'))
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('counselings.edit',$counseling->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
+                            @endif -->
+
+                            @if(auth()->user()->hasPermissionTo('edit counseling'))
+                            <div style="margin-right: 5px;">
+                                <a class="btn btn-primary" href="{{ route('counselings.edit',$counseling->id) }}"><i class="fa fa-edit"></i></a>
+                            </div>
+                            @endif
+
+                            @if(auth()->user()->hasPermissionTo('delete counseling'))
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('counselings.destroy', $counseling->id) }}" method="POST" class="display: inline;">
                                     @csrf
@@ -116,9 +97,10 @@
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
+                            @endif
                         </div>
                     </td>
-
+                    @endif
                 </tr>
                 @endforeach
             </tbody>

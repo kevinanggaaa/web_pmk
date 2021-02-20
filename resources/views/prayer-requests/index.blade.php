@@ -42,20 +42,17 @@
         </div>
         @endif
 
-       
-
-      
-
+        @if(auth()->user()->hasPermissionTo('add prayer request'))
         <div class="card-tools">
-           
             <div class="">
                 <a class="btn btn-success" href="{{ route('prayer-requests.create') }}"> Tambah data pray request</a>
             </div>
-           
         </div>
+        @endif
     </div>
 
     <!-- /.card-header -->
+    @if(auth()->user()->hasRole(['bph dope', 'pengurus dope']))
     <div class="card-body p-3">
         <table id="example1" class="table table-bordered table-striped">
             <thead>
@@ -63,7 +60,9 @@
                     <th>Nama</th>
                     <th>Content doa</th>
                     <th>Status</th>
+                    @if(auth()->user()->hasAnyPermission(['edit prayer request', 'delete prayer request']))
                     <th style="width: 280px">Action</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -72,24 +71,29 @@
                     <td>{{ $prayerRequest->name }}</td>
                     <td>{{ $prayerRequest->content }}</td>
                     <td>{{ $prayerRequest->status }}</td>
+
+                    @if(auth()->user()->hasAnyPermission(['edit prayer request', 'delete prayer request']))
                     <td>
                         <div style="display: flex">
+
+                            @if(auth()->user()->hasPermissionTo('edit prayer request'))
                             <div style="margin-right: 5px;">
-                               
                                 <a class="btn btn-primary" href="{{ route('prayer-requests.edit',$prayerRequest->id) }}"><i class="fa fa-edit"></i></a>
-                                
                             </div>
+                            @endif
+
+                            @if(auth()->user()->hasPermissionTo('delete prayer request'))
                             <div style="margin-right: 5px;">
-                              
                                 <form action="{{ route('prayer-requests.destroy', $prayerRequest->id) }}" method="POST" class="display: inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger deleteData" ><i class="fa fa-trash"></i></button>
                                 </form>
-                               
                             </div>
+                            @endif
                         </div>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>
@@ -98,6 +102,7 @@
     {{-- <div class="card-footer">
         {{$prayerRequests->links("pagination::bootstrap-4")}}
     </div> --}}
+    @endif
 </div>
 
 @endsection

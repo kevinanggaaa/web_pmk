@@ -92,8 +92,16 @@
                                     <td>Jenis Kelamin</td>
                                     <td>{{ $user->gender }}</td>
                                 </tr>
-
-
+                                <tr>
+                                    <td>History Organisasi</td>
+                                    <td></td>
+                                    @foreach($organizations as $organization)
+                                    <tr>
+                                        <td></td>
+                                        <td>{{$organization->position}} {{$organization->category}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tr>
                             </tbody>
                         </table>
 

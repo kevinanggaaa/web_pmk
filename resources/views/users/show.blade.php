@@ -99,6 +99,15 @@
                                     <td>Tanggal Wafat</td>
                                     <td>{{ $user->date_death }}</td>
                                 </tr>
+                                <tr>
+                                    <td>Role</td>
+                                    @foreach($selected_roles as $role)
+                                    <tr>
+                                        <td></td>
+                                        <td>{{$role->name}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tr>
                             </tbody>
                         </table>
 

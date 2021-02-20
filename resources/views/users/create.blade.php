@@ -136,7 +136,17 @@
                                 @enderror
                             </div>
                         </div>
-
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Roles:</label>
+                                <select class="duallistbox" multiple="multiple" name="role_ids[]">
+                                    @foreach($roles as $role)
+                                    <option value="{{$role->id}}">{{$role->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
                     </div>
                 </div>
 
@@ -150,12 +160,23 @@
 @endsection
 
 @push('scripts')
-<script src="{{asset('/adminlte/plugins/moment/moment.min.js')}}"></script>
-<script src="{{asset('/adminlte/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
+<script src="{{asset('/AdminLTE-3.0.5/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('/AdminLTE-3.0.5/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
 
 <script>
     $('.datemask').inputmask('yyyy', {
         'placeholder': 'yyyy'
     })
+</script>
+
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.js')}}"></script>
+<script>
+    $duallistbox = $('.duallistbox')
+    $duallistbox.bootstrapDualListbox({
+        nonSelectedListLabel: 'Available Roles',
+        selectedListLabel: 'Chosen Roles',
+        moveOnSelect: false,
+        moveAllLabel: 'aaa'
+    });
 </script>
 @endpush

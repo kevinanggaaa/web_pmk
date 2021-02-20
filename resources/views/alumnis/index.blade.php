@@ -42,6 +42,7 @@
         </div>
         @endif
 
+        @if(auth()->user()->hasPermissionTo('add alumni'))
         <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
             IMPORT EXCEL
         </button>
@@ -72,16 +73,19 @@
                 </form>
             </div>
         </div>
+        @endif
 
+        @if(auth()->user()->hasPermissionTo('view detail alumni'))
         <a href="{{route('alumnis.export_excel')}}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+        @endif
 
+        @if(auth()->user()->hasPermissionTo('add alumni'))
         <div class="card-tools">
-           
             <div class="">
                 <a class="btn btn-success" href="{{ route('alumnis.create') }}"> Tambah data alumni</a>
             </div>
-          
         </div>
+        @endif
     </div>
 
     <!-- /.card-header -->
@@ -92,9 +96,9 @@
                     <th>Nama</th>
                     <th>Department</th>
                     <th>Pekerjaan</th>
-                    
-                        <th style="width: 280px">Action</th>
-                   
+                    @if(auth()->user()->hasAnyPermission(['view detail alumni', 'edit alumni', 'delete alumni']))
+                    <th style="width: 280px">Action</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -104,30 +108,34 @@
                     <td>{{ $alumni->department }}</td>
                     <td>{{ $alumni->job }}</td>
                     
+                    @if(auth()->user()->hasAnyPermission(['view detail alumni', 'edit alumni', 'delete alumni']))
                     <td>
                         <div style="display: flex">
+                            @if(auth()->user()->hasPermissionTo('view detail alumni'))
                             <div style="margin-right: 5px;">
-                                
                                 <a class="btn btn-info" href="{{ route('alumnis.show',$alumni->id) }}"><i class="fa fa-eye"></i></a>
-                               
                             </div>
+                            @endif
+
+                            @if(auth()->user()->hasPermissionTo('edit alumni'))
                             <div style="margin-right: 5px;">
-                                
                                 <a class="btn btn-primary" href="{{ route('alumnis.edit',$alumni->id) }}"><i class="fa fa-edit"></i></a>
-                              
                             </div>
+                            @endif
+
+                            @if(auth()->user()->hasPermissionTo('delete alumni'))
                             <div style="margin-right: 5px;">
-                              
                                 <form action="{{ route('alumnis.destroy', $alumni->id) }}" method="POST" class="display: inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                 </form>
-                                
                             </div>
+                            @endif
                         </div>
                     </td>
-                   
+                    @endif
+
                 </tr>
                 @endforeach
             </tbody>

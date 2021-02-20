@@ -18,7 +18,14 @@ class CounselingController extends Controller
     public function index()
     {
         $counselors = Counselor::all();
-        $counselings = Counseling::all();
+
+        if(Auth::user()->hasRole(['Super Admin', 'bph medfo', 'pengurus medfo'])){
+            $counselings = Counseling::all();
+        } 
+        else{
+            $user = Auth::user()->id;
+            $counselings = Counseling::select()->where('user_id', $user)->get();
+        }   
 
         return view('counselings.index', compact('counselings', 'counselors'));
     }
