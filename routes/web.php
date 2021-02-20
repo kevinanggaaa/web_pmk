@@ -28,7 +28,7 @@ use App\Http\Controllers\OrganizationalRecordController;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::prefix('admin')->group(function () {
     Route::get('/students/export_excel', [StudentController::class, 'export_excel'])->name('students.export_excel');

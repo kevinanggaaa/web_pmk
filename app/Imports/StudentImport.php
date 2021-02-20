@@ -2,12 +2,13 @@
 
 namespace App\Imports;
 
-use App\Models\Student;
 use App\Models\User;
+use App\Models\Profile;
+use App\Models\Student;
+use Maatwebsite\Excel\Row;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Row;
 
 
 class StudentImport implements ToModel, WithHeadingRow
@@ -46,6 +47,19 @@ class StudentImport implements ToModel, WithHeadingRow
         ]);
         
         $user ->assignRole('Mahasiswa');
+
+
+        if($student->wasRecentlyCreated){
+                $model_id = Student::select('id')->where('nrp', $row['nrp'])->first();
+                $user_id = User::select('id')->where('email', $row['email'])->first();
+
+                Profile::create([
+                    'profile_id' => $row['nrp'],
+                    'user_id' => $user_id->id,
+                    'model_id' => $model_id->id,
+                    'model_type' => 'App\Models\Student',
+                ]);
+        }
 
         if (! $student->wasRecentlyCreated) {
             $student->update([

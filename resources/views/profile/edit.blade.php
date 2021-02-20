@@ -99,7 +99,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="current_address">Alamat Saat Ini</label>
-                                <input type="text" class="form-control {{$errors->has('current_address') ? 'is-invalid' : ''}}" id="current_address" name="current_address" placeholder="Masukkan alamat mahasiswa" value="{{$user->profiles[0]->model->current_address}}">
+                                <input type="text" class="form-control {{$errors->has('current_address') ? 'is-invalid' : ''}}" id="current_address" name="current_address" placeholder="Masukkan alamat mahasiswa" value="{{$user->profiles[0]->model->address}}">
                                 @error('current_address')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -108,7 +108,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="origin_address">Alamat Asal</label>
-                                <input type="text" class="form-control {{$errors->has('origin_address') ? 'is-invalid' : ''}}" id="origin_address" name="origin_address" placeholder="Masukkan alamat asal mahasiswa" value="{{$user->profiles[0]->model->origin_address}}">
+                                <input type="text" class="form-control {{$errors->has('origin_address') ? 'is-invalid' : ''}}" id="origin_address" name="origin_address" placeholder="Masukkan alamat asal mahasiswa" value="{{$user->profiles[0]->model->address_origin}}">
                                 @error('origin_address')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror

@@ -44,6 +44,12 @@ class LecturerController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->file('avatar') == null){
+            $file_name = "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg";
+        }
+        else{
+            $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
+        }
         $user = User::firstOrcreate([
             'email' => $request['email'],
             'password' => bcrypt($request['nrp']),
@@ -57,6 +63,7 @@ class LecturerController extends Controller
             'birthdate' => $request['birthdate'],
             'gender' => $request['gender'],
             'date_death' => $request['date_death'],
+            'avatar' => $file_name,
         ]);
 
         if($user->wasRecentlyCreated){

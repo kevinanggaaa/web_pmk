@@ -51,7 +51,6 @@ class StudentController extends Controller
         }
         else{
             $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
-
         }
         $user = User::firstOrcreate([
             'email' => $request['email'],

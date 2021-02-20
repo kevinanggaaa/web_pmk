@@ -45,7 +45,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
+        if($request->file('avatar') == null){
+            $file_name = "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg";
+        }
+        else{
+            $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
+        }
         $user = User::create([
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
@@ -76,6 +81,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $selected_roles = $user->roles;
         $metadata = Storage::disk('google')->listContents('1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm');
         $path=null;
         foreach($metadata as $item){
@@ -86,7 +92,7 @@ class UserController extends Controller
             }
         };
         $url = Storage::disk('google')->url($path);
-        return view('users.show', compact('user','url'));
+        return view('users.show', compact('user','url','selected_roles'));
     }
 
     /**
@@ -116,13 +122,12 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $file = $request['avatar'];
-
-        $nama_file = time().'_'.$file->getClientOriginalName();
-
-        // isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'profile_picture';
-        $file->move($tujuan_upload, $nama_file);
+        if($request->file('avatar') == null){
+            $file_name = "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg";
+        }
+        else{
+            $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
+        }
 
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
@@ -135,7 +140,7 @@ class UserController extends Controller
         $user->line = $request['line'];
         $user->birthdate = $request['birthdate'];
         $user->gender = $request['gender'];
-        $user->avatar = $nama_file;
+        $user->avatar = $file_name;
         $user->date_death = $request['date_death'];
         $user->save();
 

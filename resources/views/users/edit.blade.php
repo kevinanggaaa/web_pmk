@@ -71,7 +71,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="current_address">Alamat Saat Ini</label>
-                                    <input type="text" class="form-control {{$errors->has('current_address') ? 'is-invalid' : ''}}" id="current_address" name="current_address" placeholder="Masukkan alamat mahasiswa" value="{{$user->current_address}}">
+                                    <input type="text" class="form-control {{$errors->has('current_address') ? 'is-invalid' : ''}}" id="current_address" name="current_address" placeholder="Masukkan alamat mahasiswa" value="{{$user->address}}">
                                     @error('current_address')
                                     <span class="error invalid-feedback">{{$message}}</span>
                                     @enderror
@@ -80,7 +80,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="origin_address">Alamat Asal</label>
-                                    <input type="text" class="form-control {{$errors->has('origin_address') ? 'is-invalid' : ''}}" id="origin_address" name="origin_address" placeholder="Masukkan alamat asal mahasiswa" value="{{$user->origin_address}}">
+                                    <input type="text" class="form-control {{$errors->has('origin_address') ? 'is-invalid' : ''}}" id="origin_address" name="origin_address" placeholder="Masukkan alamat asal mahasiswa" value="{{$user->address_origin}}">
                                     @error('origin_address')
                                     <span class="error invalid-feedback">{{$message}}</span>
                                     @enderror
@@ -131,7 +131,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="date_death">Tanggal Wafat</label>
-                                    <input type="date" name="date_death" id="date_death" class="form-control {{$errors->has('date_death') ? 'is-invalid' : ''}}" value="{{$user->date_death}}" required>
+                                    <input type="date" name="date_death" id="date_death" class="form-control {{$errors->has('date_death') ? 'is-invalid' : ''}}" value="{{$user->date_death}}">
                                     @error('date_death')
                                     <span class="error invalid-feedback">{{$message}}</span>
                                     @enderror
