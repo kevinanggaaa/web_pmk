@@ -44,7 +44,7 @@ class LecturerImport implements ToModel, WithHeadingRow
             'avatar' => "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg",
         ]);
 
-        $user->assignRole('Lecturer');
+        $user->assignRole('Dosen');
 
         if ($lecturer->wasRecentlyCreated) {
             $model_id = Lecturer::select('id')->where('nidn', $row['nidn'])->first();
