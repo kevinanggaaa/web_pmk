@@ -25,8 +25,6 @@
                 <ul class="nav nav-pills">
                     <li class="nav-item"><a class="nav-link active" href="#informasi" data-toggle="tab">Informasi</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="#peserta" data-toggle="tab">Peserta</a>
-                    </li>
                 </ul>
             </div><!-- /.card-header -->
             <div class="card-body">
@@ -72,11 +70,6 @@
                             </form>
                         </div>
                     </div>
-                    <!-- /.tab-pane -->
-                    <div class="tab-pane" id="peserta">
-                        Vijay Gonna Finish This!
-                    </div>
-                    <!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
 

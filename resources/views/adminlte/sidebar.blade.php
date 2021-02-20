@@ -128,6 +128,12 @@
                                     </a>
                                 </li>
                                 @endif
+                                <li class="nav-item">
+                                    <a href="{{route ('events.index')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Event</p>
+                                    </a>
+                                </li>
                         </ul>
                     </li>
         </ul>
