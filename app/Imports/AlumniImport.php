@@ -23,6 +23,7 @@ class AlumniImport implements ToModel, WithHeadingRow
         // $row = $row->toArray();
 
         $alumni = Alumni::firstOrCreate([
+            'email' => $row['email'],
             'name' => $row['name'],
             'department' => $row['department'],
             'job' => $row['job'],
