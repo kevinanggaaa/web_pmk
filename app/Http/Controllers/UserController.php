@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use App\Models\Profile;
@@ -44,6 +46,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
+        User::create([
         $user = User::create([
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
@@ -56,7 +60,7 @@ class UserController extends Controller
             'line' => $request['line'],
             'birthdate' => $request['birthdate'],
             'gender' => $request['gender'],
-            'avatar' => $request['avatar'],
+            'avatar' => $file_name,
             'date_death' => $request['date_death']
         ]);
 
@@ -74,8 +78,17 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $selected_roles = $user->roles;
-        return view('users.show', compact('user', 'selected_roles'));
+        $metadata = Storage::disk('google')->listContents('1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm');
+        $path=null;
+        foreach($metadata as $item){
+            $name = "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/" . $item['name'];
+            if($name == $user->avatar){
+                $path = $item['path'];
+                break;
+            }
+        };
+        $url = Storage::disk('google')->url($path);
+        return view('users.show', compact('user','url'));
     }
 
     /**
@@ -105,6 +118,14 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $file = $request['avatar'];
+
+        $nama_file = time().'_'.$file->getClientOriginalName();
+
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'profile_picture';
+        $file->move($tujuan_upload, $nama_file);
+
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
         $user->name = $request['name'];
@@ -116,7 +137,7 @@ class UserController extends Controller
         $user->line = $request['line'];
         $user->birthdate = $request['birthdate'];
         $user->gender = $request['gender'];
-        $user->avatar = $request['avatar'];
+        $user->avatar = $nama_file;
         $user->date_death = $request['date_death'];
         $user->save();
 
