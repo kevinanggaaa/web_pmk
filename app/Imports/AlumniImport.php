@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Row;
 
+
 class AlumniImport implements ToModel, WithHeadingRow
 {
     /**
@@ -26,7 +27,7 @@ class AlumniImport implements ToModel, WithHeadingRow
                 'job' => $row['job'],
         ]);
 
-        User::firstOrcreate([
+        $user = User::firstOrcreate([
             'email' => $row['email'],
             'password' => bcrypt($row['email']),
             'name' => $row['name'],
@@ -39,9 +40,10 @@ class AlumniImport implements ToModel, WithHeadingRow
             'birthdate' => $row['birthdate'],
             'gender' => $row['gender'],
             'date_death' => $row['date_death'],
+            'avatar' => "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg",
         ]);
         
-        // ->assignRole('mahasiswa')
+        $user ->assignRole('Alumni');
 
         if (! $alumni->wasRecentlyCreated) {
             $alumni->update([

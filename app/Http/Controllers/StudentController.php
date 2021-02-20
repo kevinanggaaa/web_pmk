@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
-use Illuminate\Http\Request;
-use App\Http\Requests\StudentRequest;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\StudentExport;
-use App\Imports\StudentImport;
 use Session;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Student;
+use Illuminate\Http\Request;
+use App\Exports\StudentExport;
+use App\Imports\StudentImport;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\StudentRequest;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -45,6 +46,13 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request)
     {
+        if($request->file('avatar') == null){
+            $file_name = "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg";
+        }
+        else{
+            $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
+
+        }
         $user = User::firstOrcreate([
             'email' => $request['email'],
             'password' => bcrypt($request['nrp']),
@@ -58,7 +66,9 @@ class StudentController extends Controller
             'birthdate' => $request['birthdate'],
             'gender' => $request['gender'],
             'date_death' => $request['date_death'],
+            'avatar' => $file_name,
         ]);
+        $user->assignRole('Mahasiswa');
 
         if($user->wasRecentlyCreated){
             $student = Student::firstOrcreate([
@@ -104,8 +114,18 @@ class StudentController extends Controller
     {
         $profile = Profile::select()->where('profile_id', $student['nrp'])->first();
         $user = User::select()->where('id',$profile->user_id)->first();
+        $metadata = Storage::disk('google')->listContents('1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm');
+        $path=null;
+        foreach($metadata as $item){
+            $name = "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/" . $item['name'];
+            if($name == $user->avatar){
+                $path = $item['path'];
+                break;
+            }
+        };
+        $url = Storage::disk('google')->url($path);
  
-        return view('students.show', compact('student', 'user'));
+        return view('students.show', compact('student', 'user', 'url'));
     }
 
     /**

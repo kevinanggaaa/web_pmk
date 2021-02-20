@@ -37,20 +37,11 @@
                 @csrf
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text" class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}" id="email" name="email" placeholder="Masukkan email" value="{{old('email')}}" required>
                                 @error('email')
-                                <span class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="text" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}" id="password" name="password" placeholder="Masukkan password" value="{{old('password')}}" required>
-                                @error('password')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>
@@ -66,7 +57,7 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="address_origin">Alamat saat ini</label>
+                                <label for="address_origin">Alamat Asal</label>
                                 <input type="text" class="form-control {{$errors->has('address_origin') ? 'is-invalid' : ''}}" id="address_origin" name="address_origin" placeholder="Masukkan alamat asal" value="{{old('address_origin')}}" required>
                                 @error('address_origin')
                                 <span class="error invalid-feedback">{{$message}}</span>

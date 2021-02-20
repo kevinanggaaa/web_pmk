@@ -27,6 +27,9 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
+                @auth
+                <li class="nav-item"><a href="{{route ('students.index')}}" class="nav-link">Admin</a></li>
+                @endauth
                 <li class="nav-item"><a href="index" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="ministries" class="nav-link">Ministries</a></li>

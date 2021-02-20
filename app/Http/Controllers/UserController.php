@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use App\Models\User;
 use Spatie\Permission\Models\Role;
 use App\Models\Profile;
 use App\Models\Student;
@@ -47,7 +46,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
-        User::create([
         $user = User::create([
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
