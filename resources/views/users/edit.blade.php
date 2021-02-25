@@ -52,8 +52,8 @@
                         </div>
                         <div class=" col-sm-12">
                                 <div class="form-group">
-                                    <label for="name">Nama Mahasiswa</label>
-                                    <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" id="name" name="name" placeholder="Masukkan nama mahasiswa" value="{{$user->name}}" required>
+                                    <label for="name">Nama </label>
+                                    <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" id="name" name="name" placeholder="Masukkan nama " value="{{$user->name}}" required>
                                     @error('name')
                                     <span class="error invalid-feedback">{{$message}}</span>
                                     @enderror
@@ -62,7 +62,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="pkk">Nrp PKK</label>
-                                    <input type="text" class="form-control {{$errors->has('pkk') ? 'is-invalid' : ''}}" id="pkk" name="pkk" placeholder="Masukkan nrp PKK" value="{{$user->pkk}}" required>
+                                    <input type="text" class="form-control {{$errors->has('pkk') ? 'is-invalid' : ''}}" id="pkk" name="pkk" placeholder="Masukkan nrp PKK" value="{{$user->pkk}}" >
                                     @error('pkk')
                                     <span class="error invalid-feedback">{{$message}}</span>
                                     @enderror
@@ -116,7 +116,7 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="birthdate">Tanggal lahir</label>
-                                    <input type="date" name="birthdate" id="birthdate" class="form-control {{$errors->has('birthdate') ? 'is-invalid' : ''}}" value="{{$user->birthdate}}">
+                                    <input type="date" name="birthdate" id="birthdate" class="form-control {{$errors->has('birthdate') ? 'is-invalid' : ''}}" value="{{$user->birthdate}}" required>
                                     @error('birthdate')
                                     <span class="error invalid-feedback">{{$message}}</span>
                                     @enderror

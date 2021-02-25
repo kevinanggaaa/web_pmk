@@ -22,13 +22,13 @@ class LecturerImport implements ToModel, WithHeadingRow
     {
         // $row = $row->toArray();
 
-        $lecturer = Lecturer::firstOrCreate([
+        $lecturer = Lecturer::updateOrCreate([
             'nidn' => $row['nidn'],
             'name' => $row['name'],
             'department' => $row['department'],
         ]);
 
-        $user = User::firstOrcreate([
+        $user = User::updateOrCreate([
             'email' => $row['email'],
             'password' => bcrypt($row['nidn']),
             'name' => $row['name'],

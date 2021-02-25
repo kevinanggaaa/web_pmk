@@ -14,6 +14,7 @@ use App\Http\Controllers\CounselingController;
 use App\Http\Controllers\PrayerRequestController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\OrganizationalRecordController;
+use App\Http\Controllers\BirthdayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/users-events', UserEventController::class);
     Route::resource('/alumnis', AlumniController::class);
 
+    Route::resource('/birthday', BirthdayController::class);
     Route::resource('/users', UserController::class);
     Route::resource('/counselings', CounselingController::class);
     Route::resource('/profiles', ProfileController::class);

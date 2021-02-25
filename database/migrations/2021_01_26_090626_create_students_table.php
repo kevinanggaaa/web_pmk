@@ -17,8 +17,8 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('nrp')->unique();
-            $table->string('department');
-            $table->integer('year_entry');
+            $table->string('department')->nullable();
+            $table->integer('year_entry')->nullable();
             $table->integer('year_graduate')->nullable();
             
 

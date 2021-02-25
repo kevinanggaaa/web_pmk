@@ -18,8 +18,8 @@ class CreateOrganizationalRecordsTable extends Migration
             $table->foreignId('user_id');
             $table->string('position');
             $table->string('category');
-            $table->integer('year_start');
-            $table->integer('year_end');
+            $table->integer('year_start')->nullable();
+            $table->integer('year_end')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

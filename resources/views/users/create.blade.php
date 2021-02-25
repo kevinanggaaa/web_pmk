@@ -51,8 +51,8 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="name">Nama Mahasiswa</label>
-                                <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" id="name" name="name" placeholder="Masukkan nama mahasiswa" value="{{old('name')}}" required>
+                                <label for="name">Nama </label>
+                                <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" id="name" name="name" placeholder="Masukkan nama " value="{{old('name')}}" required>
                                 @error('name')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -70,7 +70,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="current_address">Alamat Saat Ini</label>
-                                <input type="text" class="form-control {{$errors->has('current_address') ? 'is-invalid' : ''}}" id="current_address" name="current_address" placeholder="Masukkan alamat mahasiswa" value="{{old('current_address')}}">
+                                <input type="text" class="form-control {{$errors->has('current_address') ? 'is-invalid' : ''}}" id="current_address" name="current_address" placeholder="Masukkan alamat " value="{{old('current_address')}}">
                                 @error('current_address')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -79,7 +79,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="origin_address">Alamat Asal</label>
-                                <input type="text" class="form-control {{$errors->has('origin_address') ? 'is-invalid' : ''}}" id="origin_address" name="origin_address" placeholder="Masukkan alamat asal mahasiswa" value="{{old('origin_address')}}">
+                                <input type="text" class="form-control {{$errors->has('origin_address') ? 'is-invalid' : ''}}" id="origin_address" name="origin_address" placeholder="Masukkan alamat asal " value="{{old('origin_address')}}">
                                 @error('origin_address')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -106,7 +106,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="birthdate">Tanggal lahir</label>
-                                <input type="date" name="birthdate" id="birthdate" class="form-control {{$errors->has('birthdate') ? 'is-invalid' : ''}}" value="{{old('birthdate')}}">
+                                <input type="date" name="birthdate" id="birthdate" class="form-control {{$errors->has('birthdate') ? 'is-invalid' : ''}}" value="{{old('birthdate')}}" required>
                                 @error('birthdate')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -160,23 +160,32 @@
 @endsection
 
 @push('scripts')
-<script src="{{asset('/AdminLTE-3.0.5/plugins/moment/moment.min.js')}}"></script>
-<script src="{{asset('/AdminLTE-3.0.5/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
+<!-- <script src="{{asset('/AdminLTE-3.0.5/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('/AdminLTE-3.0.5/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script> -->
 
-<script>
+<!-- <script>
     $('.datemask').inputmask('yyyy', {
         'placeholder': 'yyyy'
     })
-</script>
+</script> -->
 
 <script src="{{ asset('/AdminLTE-3.0.5/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.js')}}"></script>
+
 <script>
-    $duallistbox = $('.duallistbox')
+    $duallistbox = $('.duallistbox');
+    
     $duallistbox.bootstrapDualListbox({
         nonSelectedListLabel: 'Available Roles',
         selectedListLabel: 'Chosen Roles',
         moveOnSelect: false,
         moveAllLabel: 'aaa'
+    });
+    $(function () {
+        var dualListContainer = $('select[name="role_ids[]"]').bootstrapDualListbox('getContainer');
+        dualListContainer.find('.moveall i').removeClass().addClass('fa fa-arrow-right');
+        dualListContainer.find('.removeall i').removeClass().addClass('fa fa-arrow-left');
+        dualListContainer.find('.move i').removeClass().addClass('fa fa-arrow-right');
+        dualListContainer.find('.remove i').removeClass().addClass('fa fa-arrow-left');
     });
 </script>
 @endpush

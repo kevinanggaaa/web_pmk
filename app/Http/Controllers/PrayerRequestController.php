@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PrayerRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\PrayerRequestRequest;
 
@@ -17,9 +18,9 @@ class PrayerRequestController extends Controller
     {
 
         $prayerRequests = PrayerRequest::all();
+        $users = User::all();
 
-
-        return view('prayer-requests.index', compact('prayerRequests'));
+        return view('prayer-requests.index', compact('prayerRequests', 'users'));
     }
 
     /**
@@ -40,7 +41,9 @@ class PrayerRequestController extends Controller
      */
     public function store(PrayerRequestRequest $request)
     {
+        $user = Auth::user()->id;
         PrayerRequest::create([
+            'user_id' => $user,
             'name' => $request['name'],
             'content' => $request['content'],
             'status' => "requested",

@@ -56,6 +56,7 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th>Nama</th>
                     <th>Posisi</th>
                     <th>Kategori</th>
                     <th>Tahun mulai</th>
@@ -68,6 +69,13 @@
             <tbody>
                 @foreach ($organizationalRecords as $organizationalRecord)
                 <tr>
+                    @foreach($users as $user)
+                        @if($organizationalRecord->user_id == $user->id){
+                            <td>{{ $user->name }}</td>
+                            @break
+                        }
+                        @endif
+                    @endforeach
                     <td>{{ $organizationalRecord->position }}</td>
                     <td>{{ $organizationalRecord->category }}</td>
                     <td>{{ $organizationalRecord->year_start }}</td>
@@ -111,10 +119,10 @@
 
 @push('scripts')
 <!-- Datatables -->
-<script src="{{ asset('/adminlte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{ asset('/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{ asset('/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{ asset('/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <script>
     $(function() {
         $("#example1").DataTable({

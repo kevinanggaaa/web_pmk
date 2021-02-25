@@ -158,50 +158,6 @@ class RoleSeeder extends Seeder
         // Give Role Permission
         
         /*
-            Super admin
-        */
-        $super_admin->givePermissionTo($add_student);
-        $super_admin->givePermissionTo($view_student);
-        $super_admin->givePermissionTo($view_detail_student);
-        $super_admin->givePermissionTo($edit_student);
-        $super_admin->givePermissionTo($delete_student);
-        $super_admin->givePermissionTo($add_alumni);
-        $super_admin->givePermissionTo($view_alumni);
-        $super_admin->givePermissionTo($view_detail_alumni);
-        $super_admin->givePermissionTo($edit_alumni);
-        $super_admin->givePermissionTo($delete_alumni);
-        $super_admin->givePermissionTo($add_lecturer);
-        $super_admin->givePermissionTo($view_lecturer);
-        $super_admin->givePermissionTo($view_detail_lecturer);
-        $super_admin->givePermissionTo($edit_lecturer);
-        $super_admin->givePermissionTo($delete_lecturer);
-        $super_admin->givePermissionTo($add_event);
-        $super_admin->givePermissionTo($view_event);
-        $super_admin->givePermissionTo($view_detail_event);
-        $super_admin->givePermissionTo($edit_event);
-        $super_admin->givePermissionTo($delete_event);
-        $super_admin->givePermissionTo($add_counseling);
-        $super_admin->givePermissionTo($view_counseling);
-        $super_admin->givePermissionTo($view_detail_counseling);
-        $super_admin->givePermissionTo($edit_counseling);
-        $super_admin->givePermissionTo($delete_counseling);
-        $super_admin->givePermissionTo($add_counselor);
-        $super_admin->givePermissionTo($view_counselor);
-        $super_admin->givePermissionTo($view_detail_counselor);
-        $super_admin->givePermissionTo($edit_counselor);
-        $super_admin->givePermissionTo($delete_counselor);
-        $super_admin->givePermissionTo($add_prayer_request);
-        $super_admin->givePermissionTo($view_prayer_request);
-        $super_admin->givePermissionTo($view_detail_prayer_request);
-        $super_admin->givePermissionTo($edit_prayer_request);
-        $super_admin->givePermissionTo($delete_prayer_request);
-        $super_admin->givePermissionTo($add_organizational_record);
-        $super_admin->givePermissionTo($view_organizational_record);
-        $super_admin->givePermissionTo($view_detail_organizational_record);
-        $super_admin->givePermissionTo($edit_organizational_record);
-        $super_admin->givePermissionTo($delete_organizational_record);
-
-        /*
             Ketua
         */
         $ketua->givePermissionTo($add_student);

@@ -52,7 +52,9 @@ class StudentController extends Controller
         else{
             $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
         }
-        $user = User::firstOrcreate([
+
+        
+        $user = User::updateOrCreate([
             'email' => $request['email'],
             'password' => bcrypt($request['nrp']),
             'name' => $request['name'],
@@ -70,7 +72,7 @@ class StudentController extends Controller
         $user->assignRole('Mahasiswa');
 
         if($user->wasRecentlyCreated){
-            $student = Student::firstOrcreate([
+            $student = Student::updateOrCreate([
                 'nrp' => $request['nrp'],
                 'name' => $request['name'],
                 'department' => $request['department'],
@@ -93,13 +95,15 @@ class StudentController extends Controller
                     ->with('success', 'Data mahasiswa berhasil ditambahkan');
             }
             else{
-                return redirect()->route('students.create')
-                ->with('fail', 'Maaf nrp yang didaftarkan sudah digunakan sebelumnya');
+                return abort(404,'Maaf nrp yang didaftarkan sudah digunakan sebelumnya');
+                // return redirect()->route('students.create')
+                // ->with('fail', 'Maaf nrp yang didaftarkan sudah digunakan sebelumnya');
             }
         }
         else{
-            return redirect()->route('students.create')
-            ->with('fail', 'Maaf email yang didaftarkan sudah digunakan sebelumnya');
+            return abort(404,'Maaf email yang didaftarkan sudah digunakan sebelumnya');
+            // return redirect()->route('students.create')
+            // ->with('fail', 'Maaf email yang didaftarkan sudah digunakan sebelumnya');
         }
     }
 

@@ -94,9 +94,9 @@
 
 @push('scripts')
 
-<script src="{{ asset('/adminlte/plugins/moment/moment.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/moment/moment.min.js')}}"></script>
 <!-- date-range-picker -->
-<script src="{{ asset('/adminlte/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/daterangepicker/daterangepicker.js')}}"></script>
 
 <script>
     $('#reservationtime').daterangepicker({

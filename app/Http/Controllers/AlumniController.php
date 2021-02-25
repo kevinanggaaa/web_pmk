@@ -53,7 +53,7 @@ class AlumniController extends Controller
             $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
         }
 
-        $user = User::firstOrcreate([
+        $user = User::updateOrCreate([
             'email' => $request['email'],
             'password' => bcrypt($request['nrp']),
             'name' => $request['name'],
@@ -70,7 +70,7 @@ class AlumniController extends Controller
         ]);
 
         if($user->wasRecentlyCreated){
-            $alumni = Alumni::firstOrcreate([
+            $alumni = Alumni::updateOrCreate([
                 'email' => $request['email'],
                 'name' => $request['name'],
                 'department' => $request['department'],
