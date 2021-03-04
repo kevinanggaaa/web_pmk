@@ -50,7 +50,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="department">Department</label>
-                                <input type="text" class="form-control {{$errors->has('department') ? 'is-invalid' : ''}}" id="department" name="department" placeholder="Masukkan department mahasiswa" value="{{$student->department}}" required>
+                                <input type="text" class="form-control {{$errors->has('department') ? 'is-invalid' : ''}}" id="department" name="department" placeholder="Masukkan department mahasiswa" value="{{$student->department}}" >
                                 @error('department')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -73,7 +73,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                     </div>
-                                    <input name="year_entry" id="year_entry" type="text" class="datemask form-control {{$errors->has('year_entry') ? 'is-invalid' : ''}}" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask value="{{$student->year_entry}}" required>
+                                    <input name="year_entry" id="year_entry" type="text" class="datemask form-control {{$errors->has('year_entry') ? 'is-invalid' : ''}}" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask value="{{$student->year_entry}}" >
                                     @error('year_entry')
                                     <span class="error invalid-feedback">{{$message}}</span>
                                     @enderror
@@ -110,8 +110,8 @@
 @endsection
 
 @push('scripts')
-<script src="{{asset('/adminlte/plugins/moment/moment.min.js')}}"></script>
-<script src="{{asset('/adminlte/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
+<script src="{{asset('/AdminLTE-3.0.5/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('/AdminLTE-3.0.5/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
 
 <script>
     $('.datemask').inputmask('yyyy', {

@@ -50,7 +50,7 @@ class LecturerController extends Controller
         else{
             $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
         }
-        $user = User::firstOrcreate([
+        $user = User::updateOrCreate([
             'email' => $request['email'],
             'password' => bcrypt($request['nrp']),
             'name' => $request['name'],
@@ -67,7 +67,7 @@ class LecturerController extends Controller
         ]);
 
         if($user->wasRecentlyCreated){
-            $lecturer = Lecturer::firstOrcreate([
+            $lecturer = Lecturer::updateOrCreate([
                 'nidn' => $request['nidn'],
                 'name' => $request['name'],
                 'department' => $request['department']

@@ -26,8 +26,6 @@ class StudentRequest extends FormRequest
         return [
             'name' => 'required|string',
             'nrp' => 'required|string',
-            'department' => 'required',
-            'year_entry' => 'required'
         ];
     }
 }

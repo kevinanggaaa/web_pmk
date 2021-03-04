@@ -6,6 +6,7 @@ use App\Models\OrganizationalRecord;
 use Illuminate\Http\Request;
 use App\Http\Requests\OrganizationalRecordRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class OrganizationalRecordController extends Controller
 {
@@ -17,7 +18,9 @@ class OrganizationalRecordController extends Controller
     public function index()
     {
         $organizationalRecords = OrganizationalRecord::all();
-        return view('organizationalRecords.index', compact('organizationalRecords'));
+        $users = User::all();
+
+        return view('organizationalRecords.index', compact('organizationalRecords', 'users'));
     }
 
     /**

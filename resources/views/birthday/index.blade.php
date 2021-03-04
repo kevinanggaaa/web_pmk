@@ -12,12 +12,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Konselor PMK ITS</h1>
+                <h1>Ulang tahun PMK ITS</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Konselor</li>
+                    <li class="breadcrumb-item active">Ulang tahun</li>
                 </ol>
             </div>
         </div>
@@ -26,6 +26,7 @@
 
 <div class="card">
     <div class="card-header">
+
         {{-- notifikasi form validasi --}}
         @if ($errors->has('file'))
         <span class="invalid-feedback" role="alert">
@@ -40,14 +41,6 @@
             <strong>{{ $sukses }}</strong>
         </div>
         @endif
-
-        @if(auth()->user()->hasPermissionTo('add counselor'))
-        <div class="card-tools">
-            <div class="">
-                <a class="btn btn-success" href="{{ route('counselors.create') }}"> Tambah data konselor</a>
-            </div>
-        </div>
-        @endif
     </div>
 
     <!-- /.card-header -->
@@ -55,46 +48,23 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Nama</th>
-                    @if(auth()->user()->hasAnyPermission(['view detail counselor', 'edit counselor', 'delete counselor']))
+                    <th>Tanggal lahir</th>
                     <th style="width: 280px">Action</th>
-                    @endif
                 </tr>
             </thead>
             <tbody>
-                @foreach ($counselors as $counselor)
+                @foreach ($users as $user)
                 <tr>
-                    <td>{{ $counselor->id }}</td>
-                    <td>{{ $counselor->name }}</td>
-
-                    @if(auth()->user()->hasAnyPermission(['view detail counselor', 'edit counselor', 'delete counselor']))
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->birthdate }}</td>
                     <td>
                         <div style="display: flex">
-                            @if(auth()->user()->hasPermissionTo('view detail counselor'))
                             <div style="margin-right: 5px;">
-                                <a class="btn btn-info" href="{{ route('counselors.show',$counselor->id) }}"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-info" href="{{ route('users.show',$user->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
-                            @endif
-
-                            @if(auth()->user()->hasPermissionTo('edit counselor'))
-                            <div style="margin-right: 5px;">
-                                <a class="btn btn-primary" href="{{ route('counselors.edit',$counselor->id) }}"><i class="fa fa-edit"></i></a>
-                            </div>
-                            @endif
-
-                            @if(auth()->user()->hasPermissionTo('delete counselor'))
-                            <div style="margin-right: 5px;">
-                                <form action="{{ route('counselors.destroy', $counselor->id) }}" method="POST" class="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
-                                </form>
-                            </div>
-                            @endif
                         </div>
                     </td>
-                    @endif
                 </tr>
                 @endforeach
             </tbody>
@@ -103,6 +73,7 @@
 </div>
 
 @endsection
+
 @push('scripts')
 <!-- Datatables -->
 <script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables/jquery.dataTables.min.js')}}"></script>

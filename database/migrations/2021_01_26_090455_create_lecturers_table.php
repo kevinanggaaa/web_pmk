@@ -17,7 +17,7 @@ class CreateLecturersTable extends Migration
             $table->id();
             $table->string('nidn')->unique();
             $table->string('name');
-            $table->string('department');
+            $table->string('department')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

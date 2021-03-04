@@ -22,7 +22,7 @@ class StudentImport implements ToModel, WithHeadingRow
     {
         // $row = $row->toArray();
 
-        $student = Student::firstOrCreate([
+        $student = Student::updateOrCreate([
                 'name' => $row['name'],
                 'nrp' => $row['nrp'],
                 'department' => $row['department'],
@@ -30,7 +30,7 @@ class StudentImport implements ToModel, WithHeadingRow
                 'year_graduate' => $row['year_graduate'],
         ]);
 
-        $user = User::firstOrcreate([
+        $user = User::updateOrCreate([
             'email' => $row['email'],
             'password' => bcrypt($row['nrp']),
             'name' => $row['name'],

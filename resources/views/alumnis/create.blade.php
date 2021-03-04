@@ -49,7 +49,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="address">Alamat</label>
-                                <input type="text" class="form-control {{$errors->has('address') ? 'is-invalid' : ''}}" id="address" name="address" placeholder="Masukkan alamat" value="{{old('address')}}" required>
+                                <input type="text" class="form-control {{$errors->has('address') ? 'is-invalid' : ''}}" id="address" name="address" placeholder="Masukkan alamat" value="{{old('address')}}" >
                                 @error('address')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -58,7 +58,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="address_origin">Alamat Asal</label>
-                                <input type="text" class="form-control {{$errors->has('address_origin') ? 'is-invalid' : ''}}" id="address_origin" name="address_origin" placeholder="Masukkan alamat asal" value="{{old('address_origin')}}" required>
+                                <input type="text" class="form-control {{$errors->has('address_origin') ? 'is-invalid' : ''}}" id="address_origin" name="address_origin" placeholder="Masukkan alamat asal" value="{{old('address_origin')}}" >
                                 @error('address_origin')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -67,7 +67,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="phone">No telp</label>
-                                <input type="text" class="form-control {{$errors->has('phone') ? 'is-invalid' : ''}}" id="phone" name="phone" placeholder="Masukkan no telp" value="{{old('phone')}}" required>
+                                <input type="text" class="form-control {{$errors->has('phone') ? 'is-invalid' : ''}}" id="phone" name="phone" placeholder="Masukkan no telp" value="{{old('phone')}}" >
                                 @error('phone')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -76,7 +76,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="parent_phone">No telp ortu</label>
-                                <input type="text" class="form-control {{$errors->has('parent_phone') ? 'is-invalid' : ''}}" id="parent_phone" name="parent_phone" placeholder="Masukkan no telp orang tua" value="{{old('parent_phone')}}" required>
+                                <input type="text" class="form-control {{$errors->has('parent_phone') ? 'is-invalid' : ''}}" id="parent_phone" name="parent_phone" placeholder="Masukkan no telp orang tua" value="{{old('parent_phone')}}" >
                                 @error('parent_phone')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -85,7 +85,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="line">Id line</label>
-                                <input type="text" class="form-control {{$errors->has('line') ? 'is-invalid' : ''}}" id="line" name="line" placeholder="Masukkan line mahasiswa" value="{{old('line')}}" required>
+                                <input type="text" class="form-control {{$errors->has('line') ? 'is-invalid' : ''}}" id="line" name="line" placeholder="Masukkan line mahasiswa" value="{{old('line')}}" >
                                 @error('line')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -112,7 +112,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="pkk">PKK</label>
-                                <input type="text" class="form-control {{$errors->has('pkk') ? 'is-invalid' : ''}}" id="pkk" name="pkk" placeholder="Masukkan PKK" value="{{old('pkk')}}" required>
+                                <input type="text" class="form-control {{$errors->has('pkk') ? 'is-invalid' : ''}}" id="pkk" name="pkk" placeholder="Masukkan PKK" value="{{old('pkk')}}" >
                                 @error('pkk')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -139,7 +139,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="department">Department</label>
-                                <input type="text" name="department" id="department" class="form-control {{$errors->has('department') ? 'is-invalid' : ''}}" placeholder="Masukkan Nama Department" value="{{old('department')}}" required>
+                                <input type="text" name="department" id="department" class="form-control {{$errors->has('department') ? 'is-invalid' : ''}}" placeholder="Masukkan Nama Department" value="{{old('department')}}" >
                                 @error('department')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -174,8 +174,8 @@
 @endsection
 
 @push('scripts')
-<script src="{{asset('/adminlte/plugins/moment/moment.min.js')}}"></script>
-<script src="{{asset('/adminlte/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
+<script src="{{asset('/AdminLTE-3.0.5/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('/AdminLTE-3.0.5/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
 
 <script>
     $('.datemask').inputmask('yyyy', {

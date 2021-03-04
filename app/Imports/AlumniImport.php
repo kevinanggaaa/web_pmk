@@ -22,14 +22,14 @@ class AlumniImport implements ToModel, WithHeadingRow
     {
         // $row = $row->toArray();
 
-        $alumni = Alumni::firstOrCreate([
+        $alumni = Alumni::updateOrCreate([
             'email' => $row['email'],
             'name' => $row['name'],
             'department' => $row['department'],
             'job' => $row['job'],
         ]);
 
-        $user = User::firstOrcreate([
+        $user = User::updateOrCreate([
             'email' => $row['email'],
             'password' => bcrypt($row['email']),
             'name' => $row['name'],
