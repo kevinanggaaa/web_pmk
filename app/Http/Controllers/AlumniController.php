@@ -45,61 +45,57 @@ class AlumniController extends Controller
      */
     public function store(AlumniRequest $request)
     {
+        $user = User::firstOrCreate(
+            [
+                'email' => $request['email']
+            ],
+            [
+                'password' => bcrypt($request['nrp']),
+                'name' => $request['name'],
+                'pkk' => $request['pkk'],
+                'address' => $request['address'],
+                'address_origin' => $request['address_origin'],
+                'phone' => $request['phone'],
+                'parent_phone' => $request['parent_phone'],
+                'line' => $request['line'],
+                'birthdate' => $request['birthdate'],
+                'gender' => $request['gender'],
+                'date_death' => $request['date_death'],
+                'avatar' => $file_name,        
+            ]
+        );
 
-        if($request->file('avatar') == null){
-            $file_name = "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg";
-        }
-        else{
-            $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
-        }
-
-        $user = User::updateOrCreate([
-            'email' => $request['email'],
-            'password' => bcrypt($request['nrp']),
-            'name' => $request['name'],
-            'pkk' => $request['pkk'],
-            'address' => $request['address'],
-            'address_origin' => $request['address_origin'],
-            'phone' => $request['phone'],
-            'parent_phone' => $request['parent_phone'],
-            'line' => $request['line'],
-            'birthdate' => $request['birthdate'],
-            'gender' => $request['gender'],
-            'date_death' => $request['date_death'],
-            'avatar' => $file_name,
-        ]);
-
-        if($user->wasRecentlyCreated){
-            $alumni = Alumni::updateOrCreate([
-                'email' => $request['email'],
+        $alumni = Alumni::firstOrCreate(
+            [
+                'email' => $request['email']
+            ],
+            [
                 'name' => $request['name'],
                 'department' => $request['department'],
                 'job' => $request['job']
+            ]
+        );
+
+        if($alumni->wasRecentlyCreated){
+            $model_id = Alumni::select('id')->where('email', $request['email'])->first();
+            $user_id = User::select('id')->where('email', $request['email'])->first();
+
+            Profile::create([
+                'profile_id' => $request['email'],
+                'user_id' => $user_id->id,
+                'model_id' => $model_id->id,
+                'model_type' => 'App\Models\Alumni',
             ]);
 
-            if($alumni->wasRecentlyCreated){
-                $model_id = Alumni::select('id')->where('email', $request['email'])->first();
-                $user_id = User::select('id')->where('email', $request['email'])->first();
+            $user->assignRole('Alumni');
 
-                Profile::create([
-                    'profile_id' => $request['email'],
-                    'user_id' => $user_id->id,
-                    'model_id' => $model_id->id,
-                    'model_type' => 'App\Models\Alumni',
-                ]);
-
-                return redirect()->route('alumnis.index')
-                    ->with('success', 'Data alumni berhasil ditambahkan');
-            }
-            else{
-                return redirect()->route('alumnis.create')
-                ->with('fail', 'Maaf email yang didaftarkan sudah digunakan sebelumnya');
-            }
+            return redirect()->route('alumnis.index')
+                ->with('success', 'Data alumni berhasil ditambahkan');
         }
-        else{
-            return redirect()->route('alumnis.create')
-            ->with('fail', 'Maaf email yang didaftarkan sudah digunakan sebelumnya');
-        }
+        
+        return view('alumnis.create-error')
+            ->with('request', $request)
+            ->with('message','Data alumni gagal ditambahkan karena terdapat duplikasi pada email');
     }
 
     /**
@@ -204,7 +200,7 @@ class AlumniController extends Controller
         Excel::import(new AlumniImport, public_path('/file_alumni/'.$nama_file));
 
         // notifikasi dengan session
-        Session::flash('sukses', 'Data Alumni Berhasil Diimport!');
+        Session::flash('sukses', 'Data Alumni Telah Diimport!');
 
         // alihkan halaman kembali
         return redirect('/admin/alumnis');

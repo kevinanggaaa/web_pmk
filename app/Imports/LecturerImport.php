@@ -22,27 +22,34 @@ class LecturerImport implements ToModel, WithHeadingRow
     {
         // $row = $row->toArray();
 
-        $lecturer = Lecturer::updateOrCreate([
-            'nidn' => $row['nidn'],
-            'name' => $row['name'],
-            'department' => $row['department'],
+        $lecturer = Lecturer::firstOrCreate(
+            [
+                'nidn' => $row['nidn'],
+            ],
+            [
+                'name' => $row['name'],
+                'department' => $row['department'],
         ]);
 
-        $user = User::updateOrCreate([
-            'email' => $row['email'],
-            'password' => bcrypt($row['nidn']),
-            'name' => $row['name'],
-            'pkk' => $row['pkk'],
-            'address' => $row['address'],
-            'address_origin' => $row['address_origin'],
-            'phone' => $row['phone'],
-            'parent_phone' => $row['parent_phone'],
-            'line' => $row['line'],
-            'birthdate' => $row['birthdate'],
-            'gender' => $row['gender'],
-            'date_death' => $row['date_death'],
-            'avatar' => "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg",
-        ]);
+        $user = User::firstOrCreate(
+            [
+                'email' => $row['email'],
+            ],
+            [
+                'password' => bcrypt($row['nidn']),
+                'name' => $row['name'],
+                'pkk' => $row['pkk'],
+                'address' => $row['address'],
+                'address_origin' => $row['address_origin'],
+                'phone' => $row['phone'],
+                'parent_phone' => $row['parent_phone'],
+                'line' => $row['line'],
+                'birthdate' => $row['birthdate'],
+                'gender' => $row['gender'],
+                'date_death' => $row['date_death'],
+                'avatar' => "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg",
+            ]
+        );
 
         $user->assignRole('Dosen');
 
@@ -58,13 +65,13 @@ class LecturerImport implements ToModel, WithHeadingRow
             ]);
         }
 
-        if (!$lecturer->wasRecentlyCreated) {
-            $lecturer->update([
-                'nidn' => $row['nidn'],
-                'name' => $row['name'],
-                'department' => $row['department'],
-            ]);
-        }
+        // if (!$lecturer->wasRecentlyCreated) {
+        //     $lecturer->update([
+        //         'nidn' => $row['nidn'],
+        //         'name' => $row['name'],
+        //         'department' => $row['department'],
+        //     ]);
+        // }
         // return new Lecturer([
         //     //
         // ]);

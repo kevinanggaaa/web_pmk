@@ -45,66 +45,59 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StudentRequest $request)
-    {
-        if($request->file('avatar') == null){
-            $file_name = "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg";
-        }
-        else{
-            $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
-        }
+    {   
+        $user = User::firstOrCreate(
+            [
+                'email' => $request['email']
+            ],
+            [
+                'password' => bcrypt($request['nrp']),
+                'name' => $request['name'],
+                'pkk' => $request['pkk'],
+                'address' => $request['address'],
+                'address_origin' => $request['address_origin'],
+                'phone' => $request['phone'],
+                'parent_phone' => $request['parent_phone'],
+                'line' => $request['line'],
+                'birthdate' => $request['birthdate'],
+                'gender' => $request['gender'],
+                'date_death' => $request['date_death'],
+                'avatar' => "123",
+            ]
+        );
 
-        
-        $user = User::updateOrCreate([
-            'email' => $request['email'],
-            'password' => bcrypt($request['nrp']),
-            'name' => $request['name'],
-            'pkk' => $request['pkk'],
-            'address' => $request['address'],
-            'address_origin' => $request['address_origin'],
-            'phone' => $request['phone'],
-            'parent_phone' => $request['parent_phone'],
-            'line' => $request['line'],
-            'birthdate' => $request['birthdate'],
-            'gender' => $request['gender'],
-            'date_death' => $request['date_death'],
-            'avatar' => $file_name,
-        ]);
-        $user->assignRole('Mahasiswa');
-
-        if($user->wasRecentlyCreated){
-            $student = Student::updateOrCreate([
-                'nrp' => $request['nrp'],
+        $student = Student::firstOrCreate(
+            [
+                'nrp' => $request['nrp']
+            ],
+            [
                 'name' => $request['name'],
                 'department' => $request['department'],
                 'year_entry' => $request['year_entry'],
                 'year_graduate' => $request['year_graduate']
+            ]
+        );
+
+        if($student->wasRecentlyCreated){
+            $model_id = Student::select('id')->where('nrp', $request['nrp'])->first();
+            $user_id = User::select('id')->where('email', $request['email'])->first();
+
+            Profile::create([
+                'profile_id' => $request['nrp'],
+                'user_id' => $user_id->id,
+                'model_id' => $model_id->id,
+                'model_type' => 'App\Models\Student',
             ]);
 
-            if($student->wasRecentlyCreated){
-                $model_id = Student::select('id')->where('nrp', $request['nrp'])->first();
-                $user_id = User::select('id')->where('email', $request['email'])->first();
+            $user->assignRole('Mahasiswa');
 
-                Profile::create([
-                    'profile_id' => $request['nrp'],
-                    'user_id' => $user_id->id,
-                    'model_id' => $model_id->id,
-                    'model_type' => 'App\Models\Student',
-                ]);
+            return redirect()->route('students.index')
+                ->with('success', 'Data mahasiswa berhasil ditambahkan');
+        }
 
-                return redirect()->route('students.index')
-                    ->with('success', 'Data mahasiswa berhasil ditambahkan');
-            }
-            else{
-                return abort(404,'Maaf nrp yang didaftarkan sudah digunakan sebelumnya');
-                // return redirect()->route('students.create')
-                // ->with('fail', 'Maaf nrp yang didaftarkan sudah digunakan sebelumnya');
-            }
-        }
-        else{
-            return abort(404,'Maaf email yang didaftarkan sudah digunakan sebelumnya');
-            // return redirect()->route('students.create')
-            // ->with('fail', 'Maaf email yang didaftarkan sudah digunakan sebelumnya');
-        }
+        return view('students.create-error')
+            ->with('request', $request)
+            ->with('message','Data mahasiswa gagal ditambahkan karena terdapat duplikasi pada email / nrp');
     }
 
     /**
@@ -221,7 +214,7 @@ class StudentController extends Controller
         Excel::import(new StudentImport, public_path('/file_mahasiswa/'.$nama_file));
 
         // notifikasi dengan session
-        Session::flash('sukses', 'Data Mahasiswa Berhasil Diimport!');
+        Session::flash('sukses', 'Data Mahasiswa Telah Diimport!');
 
         // alihkan halaman kembali
         return redirect('/admin/students');

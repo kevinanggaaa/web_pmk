@@ -22,28 +22,36 @@ class AlumniImport implements ToModel, WithHeadingRow
     {
         // $row = $row->toArray();
 
-        $alumni = Alumni::updateOrCreate([
-            'email' => $row['email'],
-            'name' => $row['name'],
-            'department' => $row['department'],
-            'job' => $row['job'],
-        ]);
+        $alumni = Alumni::firstOrCreate(
+            [
+                'email' => $row['email'],
+            ],
+            [
+                'name' => $row['name'],
+                'department' => $row['department'],
+                'job' => $row['job'],
+            ]
+        );
 
-        $user = User::updateOrCreate([
-            'email' => $row['email'],
-            'password' => bcrypt($row['email']),
-            'name' => $row['name'],
-            'pkk' => $row['pkk'],
-            'address' => $row['address'],
-            'address_origin' => $row['address_origin'],
-            'phone' => $row['phone'],
-            'parent_phone' => $row['parent_phone'],
-            'line' => $row['line'],
-            'birthdate' => $row['birthdate'],
-            'gender' => $row['gender'],
-            'date_death' => $row['date_death'],
-            'avatar' => "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg",
-        ]);
+        $user = User::firstOrCreate(
+            [
+                'email' => $row['email'],
+            ],
+            [
+                'password' => bcrypt($row['email']),
+                'name' => $row['name'],
+                'pkk' => $row['pkk'],
+                'address' => $row['address'],
+                'address_origin' => $row['address_origin'],
+                'phone' => $row['phone'],
+                'parent_phone' => $row['parent_phone'],
+                'line' => $row['line'],
+                'birthdate' => $row['birthdate'],
+                'gender' => $row['gender'],
+                'date_death' => $row['date_death'],
+                'avatar' => "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg",
+            ]
+        );
 
         $user->assignRole('Alumni');
 
@@ -59,13 +67,13 @@ class AlumniImport implements ToModel, WithHeadingRow
             ]);
         }
 
-        if (!$alumni->wasRecentlyCreated) {
-            $alumni->update([
-                'name' => $row['name'],
-                'department' => $row['department'],
-                'job' => $row['job'],
-            ]);
-        }
+        // if (!$alumni->wasRecentlyCreated) {
+        //     $alumni->update([
+        //         'name' => $row['name'],
+        //         'department' => $row['department'],
+        //         'job' => $row['job'],
+        //     ]);
+        // }
         // return new Alumni([
         //     //
         // ]);
