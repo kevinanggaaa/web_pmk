@@ -46,6 +46,17 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request)
     {   
+        if($request['avatar'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+          $file = $request['avatar'];
+          $nama_file = time().'_'.$file->getClientOriginalName();
+          // isi dengan nama folder tempat kemana file diupload
+          $tujuan_upload = 'avatar';
+          $file->move($tujuan_upload, $nama_file);
+        }
+      
         $user = User::firstOrCreate(
             [
                 'email' => $request['email']
@@ -62,7 +73,7 @@ class StudentController extends Controller
                 'birthdate' => $request['birthdate'],
                 'gender' => $request['gender'],
                 'date_death' => $request['date_death'],
-                'avatar' => "123",
+                'avatar' => $nama_file,
             ]
         );
 

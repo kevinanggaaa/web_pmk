@@ -62,15 +62,17 @@ Route::prefix('admin')->group(function () {
     Route::get('/events/{event}/attend', [EventController::class, 'showAttend'])->name('events.showAttend');
     Route::get('/events/{event}/finnish', [EventController::class, 'finnish'])->name('events.finnish');
     Route::resource('/roles', RoleManagementController::class);
+    Route::put('/users/updateAvatar/{user}', [UserController::class, 'updateAvatar'])->name('users.updateAvatar');
 
 
     Route::resource('/roles', RoleController::class);
     Route::resource('/banners', BannerController::class);
 
     Route::resource('/posts', PostController::class);
-    Route::get('/events/slug/{slug}', [EventController::class, 'showSlug'])->name('events.showSlug');
+    
 });
 
+Route::get('/events/{slug}', [EventController::class, 'showSlug'])->name('events.showSlug');
 Route::get('test', function() {
     Storage::disk('google')->put('test.txt', 'Hello World');
 });

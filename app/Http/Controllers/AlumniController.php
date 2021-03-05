@@ -45,6 +45,18 @@ class AlumniController extends Controller
      */
     public function store(AlumniRequest $request)
     {
+        if($request['avatar'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+          $file = $request['avatar'];
+          $nama_file = time().'_'.$file->getClientOriginalName();
+
+          // isi dengan nama folder tempat kemana file diupload
+          $tujuan_upload = 'avatar';
+          $file->move($tujuan_upload, $nama_file);
+        }
+
         $user = User::firstOrCreate(
             [
                 'email' => $request['email']
