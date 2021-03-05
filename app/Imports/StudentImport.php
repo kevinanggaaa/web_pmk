@@ -20,56 +20,63 @@ class StudentImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        // $row = $row->toArray();
 
-        $student = Student::updateOrCreate([
+        $user = User::firstOrCreate(
+            [
+                'email' => $row['email']
+            ],
+            [
+                'password' => bcrypt($row['nrp']),
                 'name' => $row['name'],
-                'nrp' => $row['nrp'],
-                'department' => $row['department'],
-                'year_entry' => $row['year_entry'],
-                'year_graduate' => $row['year_graduate'],
-        ]);
-
-        $user = User::updateOrCreate([
-            'email' => $row['email'],
-            'password' => bcrypt($row['nrp']),
-            'name' => $row['name'],
-            'pkk' => $row['pkk'],
-            'address' => $row['address'],
-            'address_origin' => $row['address_origin'],
-            'phone' => $row['phone'],
-            'parent_phone' => $row['parent_phone'],
-            'line' => $row['line'],
-            'birthdate' => $row['birthdate'],
-            'gender' => $row['gender'],
-            'date_death' => $row['date_death'],
-            'avatar' => "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg",
-        ]);
+                'pkk' => $row['pkk'],
+                'address' => $row['address'],
+                'address_origin' => $row['address_origin'],
+                'phone' => $row['phone'],
+                'parent_phone' => $row['parent_phone'],
+                'line' => $row['line'],
+                'birthdate' => $row['birthdate'],
+                'gender' => $row['gender'],
+                'date_death' => $row['date_death'],
+                'avatar' => "123",
+            ]
+        );
         
         $user ->assignRole('Mahasiswa');
-
-
-        if($student->wasRecentlyCreated){
-                $model_id = Student::select('id')->where('nrp', $row['nrp'])->first();
-                $user_id = User::select('id')->where('email', $row['email'])->first();
-
-                Profile::create([
-                    'profile_id' => $row['nrp'],
-                    'user_id' => $user_id->id,
-                    'model_id' => $model_id->id,
-                    'model_type' => 'App\Models\Student',
-                ]);
-        }
-
-        if (! $student->wasRecentlyCreated) {
-            $student->update([
-                'name' => $row['name'],
+        
+        $student = Student::firstOrCreate(
+            [
                 'nrp' => $row['nrp'],
+            ],
+            [
+                'name' => $row['name'],
                 'department' => $row['department'],
                 'year_entry' => $row['year_entry'],
-                'year_graduate' => $row['year_graduate'],
+                'year_graduate' => $row['year_graduate']
+            ]
+        );
+
+        if($student->wasRecentlyCreated){
+            $model_id = Student::select('id')->where('nrp', $row['nrp'])->first();
+            $user_id = User::select('id')->where('email', $row['email'])->first();
+
+            Profile::create([
+                'profile_id' => $row['nrp'],
+                'user_id' => $user_id->id,
+                'model_id' => $model_id->id,
+                'model_type' => 'App\Models\Student',
             ]);
         }
+
+        // if (! $student->wasRecentlyCreated) {
+        //     $student->update([
+        //         'name' => $row['name'],
+        //         'nrp' => $row['nrp'],
+        //         'department' => $row['department'],
+        //         'year_entry' => $row['year_entry'],
+        //         'year_graduate' => $row['year_graduate'],
+        //     ]);
+        // }
+
         // return new Student([
         //     //
         // ]);

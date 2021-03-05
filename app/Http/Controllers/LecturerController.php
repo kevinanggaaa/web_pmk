@@ -48,58 +48,63 @@ class LecturerController extends Controller
             $nama_file = 'default.jpg';
         }
         else{
-        $file = $request['avatar'];
-        $nama_file = time().'_'.$file->getClientOriginalName();
-        // isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'avatar';
-        $file->move($tujuan_upload, $nama_file);
+          $file = $request['avatar'];
+          $nama_file = time().'_'.$file->getClientOriginalName();
+          // isi dengan nama folder tempat kemana file diupload
+          $tujuan_upload = 'avatar';
+          $file->move($tujuan_upload, $nama_file);
         }
-        $user = User::updateOrCreate([
-            'email' => $request['email'],
-            'password' => bcrypt($request['nrp']),
-            'name' => $request['name'],
-            'pkk' => $request['pkk'],
-            'address' => $request['address'],
-            'address_origin' => $request['address_origin'],
-            'phone' => $request['phone'],
-            'parent_phone' => $request['parent_phone'],
-            'line' => $request['line'],
-            'birthdate' => $request['birthdate'],
-            'gender' => $request['gender'],
-            'date_death' => $request['date_death'],
-            'avatar' => $nama_file,
-        ]);
+      
+        $user = User::firstOrCreate(
+            [
+                'email' => $request['email']
+            ],
+            [
+                'password' => bcrypt($request['nrp']),
+                'name' => $request['name'],
+                'pkk' => $request['pkk'],
+                'address' => $request['address'],
+                'address_origin' => $request['address_origin'],
+                'phone' => $request['phone'],
+                'parent_phone' => $request['parent_phone'],
+                'line' => $request['line'],
+                'birthdate' => $request['birthdate'],
+                'gender' => $request['gender'],
+                'date_death' => $request['date_death'],
+                'avatar' => $nama_file,
+            ]
+        );
 
-        if($user->wasRecentlyCreated){
-            $lecturer = Lecturer::updateOrCreate([
-                'nidn' => $request['nidn'],
+        $lecturer = Lecturer::firstOrCreate(
+            [
+                'nidn' => $request['nidn']
+            ],
+            [
                 'name' => $request['name'],
                 'department' => $request['department']
+            ]
+        );
+
+        if($lecturer->wasRecentlyCreated){
+            $model_id = Lecturer::select('id')->where('nidn', $request['nidn'])->first();
+            $user_id = User::select('id')->where('email', $request['email'])->first();
+
+            Profile::create([
+                'profile_id' => $request['nidn'],
+                'user_id' => $user_id->id,
+                'model_id' => $model_id->id,
+                'model_type' => 'App\Models\Lecturer',
             ]);
 
-            if($lecturer->wasRecentlyCreated){
-                $model_id = Lecturer::select('id')->where('nidn', $request['nidn'])->first();
-                $user_id = User::select('id')->where('email', $request['email'])->first();
+            $user->assignRole('Dosen');
 
-                Profile::create([
-                    'profile_id' => $request['nidn'],
-                    'user_id' => $user_id->id,
-                    'model_id' => $model_id->id,
-                    'model_type' => 'App\Models\Lecturer',
-                ]);
+            return redirect()->route('lecturers.index')
+                ->with('success', 'Data dosen berhasil ditambahkan');
+        }
 
-                return redirect()->route('lecturers.index')
-                    ->with('success', 'Data dosen berhasil ditambahkan');
-            }
-            else{
-                return redirect()->route('lecturers.create')
-                ->with('fail', 'Maaf nidn yang didaftarkan sudah digunakan sebelumnya');
-            }
-        }
-        else{
-            return redirect()->route('lecturers.create')
-            ->with('fail', 'Maaf email yang didaftarkan sudah digunakan sebelumnya');
-        }
+        return view('lecturers.create-error')
+            ->with('request', $request)
+            ->with('message','Data dosen gagal ditambahkan karena terdapat duplikasi pada email / nidn');
     }
 
     /**
@@ -203,7 +208,7 @@ class LecturerController extends Controller
         Excel::import(new LecturerImport, public_path('/file_dosen/'.$nama_file));
 
         // notifikasi dengan session
-        Session::flash('sukses', 'Data Dosen Berhasil Diimport!');
+        Session::flash('sukses', 'Data Dosen Telah Diimport!');
 
         // alihkan halaman kembali
         return redirect('/admin/lecturers');
