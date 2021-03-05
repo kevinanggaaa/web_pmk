@@ -45,11 +45,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->file('avatar') == null){
-            $file_name = "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg";
+        if($request['avatar'] == null){
+            $nama_file = 'default.jpg';
         }
         else{
-            $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
+        $file = $request['avatar'];
+        $nama_file = time().'_'.$file->getClientOriginalName();
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'avatar';
+        $file->move($tujuan_upload, $nama_file);
         }
         $user = User::create([
             'email' => $request['email'],
@@ -63,7 +67,7 @@ class UserController extends Controller
             'line' => $request['line'],
             'birthdate' => $request['birthdate'],
             'gender' => $request['gender'],
-            'avatar' => $file_name,
+            'avatar' => $nama_file,
             'date_death' => $request['date_death']
         ]);
 
@@ -82,17 +86,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         $selected_roles = $user->roles;
-        $metadata = Storage::disk('google')->listContents('1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm');
-        $path=null;
-        foreach($metadata as $item){
-            $name = "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/" . $item['name'];
-            if($name == $user->avatar){
-                $path = $item['path'];
-                break;
-            }
-        };
-        $url = Storage::disk('google')->url($path);
-        return view('users.show', compact('user','url','selected_roles'));
+        return view('users.show', compact('user','selected_roles'));
     }
 
     /**
@@ -122,13 +116,16 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if($request->file('avatar') == null){
-            $file_name = "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/default.jpg";
+        if($request['avatar'] == null){
+            $nama_file = 'default.jpg';
         }
         else{
-            $file_name = $request->file('avatar')->store("1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm","google");
+        $file = $request['avatar'];
+        $nama_file = time().'_'.$file->getClientOriginalName();
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'avatar';
+        $file->move($tujuan_upload, $nama_file);
         }
-
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
         $user->name = $request['name'];
@@ -140,7 +137,7 @@ class UserController extends Controller
         $user->line = $request['line'];
         $user->birthdate = $request['birthdate'];
         $user->gender = $request['gender'];
-        $user->avatar = $file_name;
+        $user->avatar = $nama_file;
         $user->date_death = $request['date_death'];
         $user->save();
 
@@ -150,6 +147,21 @@ class UserController extends Controller
             ->with('success', 'Data user berhasil diubah');
     }
 
+    public function updateAvatar(Request $request, User $user)
+    {
+        
+        $file = $request['avatar'];
+        $nama_file = time().'_'.$file->getClientOriginalName();
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'avatar';
+        $file->move($tujuan_upload, $nama_file);
+        
+        $user->avatar = $nama_file;
+        $user->save();
+
+        return redirect()->route('users.index')
+            ->with('success', 'Foto Profil berhasil diubah');
+    }
     /**
      * Remove the specified resource from storage.
      *
