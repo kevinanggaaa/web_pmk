@@ -55,12 +55,6 @@
 </head>
 
 <body >
-@if ($message = Session::get('fail'))
-<div class="alert alert-danger">
-    <p>{{ $message }}</p>
-</div>
-@endif
-
 <div class="container contact">
 	<div class="row">
 		<div class="col-md-3">
@@ -73,27 +67,7 @@
 		
         <div class="col-md-9">
             <div class="contact-form">
-                <form role="form" method="POST" action="{{ route('events.attend', $event->id)  }}">
-                    @csrf
-                    @method('PUT')
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="nrp">NRP / NID / Email</label>
-                                    <input type="text" class="form-control {{$errors->has('nrp') ? 'is-invalid' : ''}}" id="nrp" name="nrp" placeholder="Masukkan NRP / NID / Email" value="{{old('nrp')}}">
-                                    @error('nrp')
-                                    <span class="error invalid-feedback">{{$message}}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary"><i class=" fa fa-paper-plane"></i>Absen</button>
-                        </div>
-                    </div>
-                </form>
+                <h1>{{$message}}</h1>
             </div>
         </div>
 	</div>

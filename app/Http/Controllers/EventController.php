@@ -9,6 +9,7 @@ use App\Http\Requests\EventRequest;
 use App\Models\User;
 use App\Models\UserEvent;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Profile;
 
 class EventController extends Controller
 {
@@ -97,7 +98,18 @@ class EventController extends Controller
     public function showSlug($slug)
     {
         $event = Event::where('slug', $slug)->first();
-        return view('events.show', compact('event'));
+        $users = collect(new User);
+        foreach (explode(';', $event->attendant_id) as $attend_id) {
+            $attendant = User::where('id', $attend_id)->first();
+            $users =   $users->addIfNotNull($attendant);
+        }
+        return view('events.show', compact('event', 'users'));
+    }
+
+    public function attendView($slug)
+    {
+        $event = Event::where('slug', $slug)->first();
+        return view('events.attend', compact('event'));
     }
 
     /**
@@ -181,6 +193,41 @@ class EventController extends Controller
         return Event::select('slug')->where('slug', 'like', $slug . '%')
             ->where('id', '<>', $id)
             ->get();
+    }
+
+    public function attend(Request $request, Event $event)
+    {
+        $profiles = Profile::all();
+        $userEvents = UserEvent::all();
+        $temp = 0;
+        foreach($profiles as $profile){
+            if($request['nrp'] == $profile->profile_id){
+                foreach($userEvents as $userEvent){
+                    if($profile->user_id == $userEvent->user_id && $event->id == $userEvent->event_id){
+                        $temp = 2;
+                        $message = 'Anda telah melakukan absensi';
+                        return view('events.response',compact('message'));
+                    }
+                }
+                if($temp != 2){
+                    UserEvent::create([
+                        'user_id' => $profile->user_id,
+                        'event_id' => $event->id,
+                    ]);
+                    $temp = 1;
+                }
+                
+            }
+        }
+        if($temp == 1){
+            $message = 'Anda berhasil melakukan absensi';
+            return view('events.response',compact('message'));
+        }
+        else{
+            $message = 'Anda tidak terdaftar sebagai user';
+            return view('events.response',compact('message'));
+        }
+        
     }
 
     public function finnish(Event $event)
