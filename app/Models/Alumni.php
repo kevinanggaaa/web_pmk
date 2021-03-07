@@ -15,6 +15,7 @@ class Alumni extends Model
         'email',
         'name',
         'department',
+        'angkatan',
         'job',
     ];
 

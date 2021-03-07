@@ -158,6 +158,15 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="angkatan">Angkatan</label>
+                                <input type="text" name="angkatan" id="angkatan" class="form-control {{$errors->has('angkatan') ? 'is-invalid' : ''}}" placeholder="Masukkan angkatan" value="{{$request->angkatan}}">
+                                @error('angkatan')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
                         
                                 </div>
                                 <!-- /.input group -->

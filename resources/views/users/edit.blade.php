@@ -12,6 +12,12 @@
 </div>
 @endif
 
+@if ($message = Session::get('fail'))
+<div class="alert alert-danger">
+    <p>{{ $message }}</p>
+</div>
+@endif
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -159,6 +165,7 @@
                                     @enderror
                                 </div>
                             </div>
+                            @if(auth()->user()->hasRole('Super Admin'))
                             <div class="col-12">
                                 <div class="form-group">
                                     <label>Roles:</label>
@@ -173,6 +180,7 @@
                                 </div>
                                 <!-- /.form-group -->
                             </div>
+                            @endif
                         </div>
                     </div>
 

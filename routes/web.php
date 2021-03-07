@@ -31,6 +31,8 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('/new-pray-requests', [PrayerRequestController::class, 'create']);
+
 Route::prefix('admin')->group(function () {
     Route::get('/students/export_excel', [StudentController::class, 'export_excel'])->name('students.export_excel');
     Route::post('/students/import_excel', [StudentController::class, 'import_excel'])->name('students.import_excel');

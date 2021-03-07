@@ -19,6 +19,7 @@ class CreateAlumnisTable extends Migration
             $table->string('name');
             $table->string('department')->nullable();
             $table->string('job')->nullable();
+            $table->string('angkatan')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

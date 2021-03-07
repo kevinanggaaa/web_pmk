@@ -30,7 +30,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Mahasiswa</li>
+                    <li class="breadcrumb-item active">Profile</li>
                     <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </div>
@@ -48,7 +48,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="name">Nama Mahasiswa</label>
+                                <label for="name">Nama</label>
                                 <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" id="name" name="name" placeholder="Masukkan nama mahasiswa" value="{{$user->profiles[0]->model->name}}">
                                 @error('name')
                                 <span class="error invalid-feedback">{{$message}}</span>

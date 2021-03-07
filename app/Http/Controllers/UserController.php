@@ -120,13 +120,18 @@ class UserController extends Controller
             $nama_file = 'default.jpg';
         }
         else{
-        $file = $request['avatar'];
-        $nama_file = time().'_'.$file->getClientOriginalName();
-        // isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'avatar';
-        $file->move($tujuan_upload, $nama_file);
+            $file = $request['avatar'];
+            $nama_file = time().'_'.$file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'avatar';
+            $file->move($tujuan_upload, $nama_file);
         }
-        $user->email = $request['email'];
+
+        $cek_email = User::select()
+        ->where('email',$request->email)
+        ->whereNotIn('id', [$user->id])
+        ->first();
+
         $user->password = Hash::make($request['password']);
         $user->name = $request['name'];
         $user->pkk = $request['pkk'];
@@ -141,12 +146,33 @@ class UserController extends Controller
         $user->date_death = $request['date_death'];
         $user->save();
 
-        $user->syncRoles($request->role_ids);
+        if($cek_email == null){
+            $user->email = $request['email'];
+            $user->syncRoles($request->role_ids);
+            $user->save();
 
-        return redirect()->route('users.index')
-            ->with('success', 'Data user berhasil diubah');
+            if(Auth::user()->hasRole(['Alumni', 'pengurus alumni'])){
+                $user_id = Auth::user()->id;
+                $profile = Profile::select()
+                            ->where('user_id', $user_id)
+                            ->where('model_type', "App\Models\Alumni")
+                            ->first();
+
+                Alumni::select()
+                ->where('id', $profile->model_id)
+                ->update(['email' => $request['email']]);
+
+            }
+
+            return redirect()->route('users.index')
+                ->with('success', 'Data user berhasil diubah');
+        }
+        else{
+            return redirect('admin/users/'.$user->id.'/edit')
+                ->with('fail','Data user gagal diubah karena duplikasi email');
+        }
     }
-
+    
     public function updateAvatar(Request $request, User $user)
     {
         

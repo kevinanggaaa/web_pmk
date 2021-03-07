@@ -84,7 +84,8 @@ class AlumniController extends Controller
             [
                 'name' => $request['name'],
                 'department' => $request['department'],
-                'job' => $request['job']
+                'job' => $request['job'],
+                'angkatan' => $request['angkatan']
             ]
         );
 
@@ -143,14 +144,38 @@ class AlumniController extends Controller
      */
     public function update(AlumniRequest $request, Alumni $alumni)
     {
-        $alumni->email = $request['email'];
-        $alumni->name = $request['name'];
-        $alumni->department = $request['department'];
-        $alumni->job = $request['job'];
-        $alumni->save();
+        $cek_email = Alumni::select()
+        ->where('email',$request->email)
+        ->whereNotIn('id', [$alumni->id])
+        ->first();
 
-        return redirect()->route('alumnis.index')
+        if($cek_email == null){
+            $alumni->email = $request['email'];
+            $alumni->name = $request['name'];
+            $alumni->department = $request['department'];
+            $alumni->job = $request['job'];
+            $alumni->angkatan = $request['angkatan'];
+            $alumni->save();
+
+            $user_id = Auth::user()->id;
+
+            User::select()
+            ->where('id', $user_id)
+            ->update(['email' => $request['email']]);
+
+            return redirect()->route('alumnis.index')
             ->with('success', 'Data alumni berhasil diubah');
+        }
+        else{
+            $alumni->name = $request['name'];
+            $alumni->department = $request['department'];
+            $alumni->job = $request['job'];
+            $alumni->angkatan = $request['angkatan'];
+            $alumni->save();
+
+            return redirect('admin/profiles/'.$alumni->id.'/editAlumni')
+                ->with('fail','Data alumni gagal diubah karena duplikasi email');
+        }    
     }
 
     /**

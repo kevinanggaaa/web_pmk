@@ -41,15 +41,15 @@ class PrayerRequestController extends Controller
      */
     public function store(PrayerRequestRequest $request)
     {
-        $user = Auth::user()->id;
+    //     $user = Auth::user()->id;
         PrayerRequest::create([
-            'user_id' => $user,
+            // 'user_id' => 123,
             'name' => $request['name'],
             'content' => $request['content'],
             'status' => "requested",
         ]);
 
-        return redirect()->route('prayer-requests.index')
+        return redirect()->route('home')
             ->with('success', 'Data request doa berhasil ditambahkan');
     }
 

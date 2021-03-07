@@ -58,6 +58,10 @@
                                     <td>{{ $alumni->job }}</td>
                                 </tr>
                                 <tr>
+                                    <td>Angkatan</td>
+                                    <td>{{ $alumni->angkatan }}</td>
+                                </tr>
+                                <tr>
                                     <td>Email</td>
                                     <td>{{ $user->email }}</td>
                                 </tr>

@@ -100,6 +100,7 @@
                     <th>Nama</th>
                     <th>Department</th>
                     <th>Pekerjaan</th>
+                    <th>Angkatan</th>
                     @if(auth()->user()->hasAnyPermission(['view detail alumni', 'edit alumni', 'delete alumni']))
                     <th style="width: 280px">Action</th>
                     @endif
@@ -111,6 +112,7 @@
                     <td>{{ $alumni->name }}</td>
                     <td>{{ $alumni->department }}</td>
                     <td>{{ $alumni->job }}</td>
+                    <td>{{ $alumni->angkatan }}</td>
                     
                     @if(auth()->user()->hasAnyPermission(['view detail alumni', 'edit alumni', 'delete alumni']))
                     <td>

@@ -12,6 +12,12 @@
 </div>
 @endif
 
+@if ($message = Session::get('fail'))
+<div class="alert alert-danger">
+    <p>{{ $message }}</p>
+</div>
+@endif
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">

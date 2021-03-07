@@ -19,7 +19,7 @@ class AlumniExport implements FromCollection, WithHeadings, WithEvents, WithMapp
     public function collection()
     {
         return Alumni::get([
-            'name', 'department', 'job',
+            'name', 'department', 'job', 'alumni',
         ]);
     }
 
@@ -29,6 +29,7 @@ class AlumniExport implements FromCollection, WithHeadings, WithEvents, WithMapp
             'name',
             'department',
             'job',
+            'alumni',
         ];
     }
 
@@ -39,7 +40,7 @@ class AlumniExport implements FromCollection, WithHeadings, WithEvents, WithMapp
     {
         return [
             AfterSheet::class   =>  function (AfterSheet $event) {
-                $event->sheet->getDelegate()->getStyle('A1:C1')
+                $event->sheet->getDelegate()->getStyle('A1:D1')
                     ->getFill()->setFillType(Fill::FILL_SOLID)
                     ->getStartColor()->setARGB(Color::COLOR_YELLOW);
             },
@@ -57,6 +58,7 @@ class AlumniExport implements FromCollection, WithHeadings, WithEvents, WithMapp
             $row->name,
             $row->department,
             $row->job,
+            $row->alumni,
         ];
     }
 }

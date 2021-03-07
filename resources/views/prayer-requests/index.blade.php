@@ -45,7 +45,7 @@
         @if(auth()->user()->hasPermissionTo('add prayer request'))
         <div class="card-tools">
             <div class="">
-                <a class="btn btn-success" href="{{ route('prayer-requests.create') }}"> Tambah data pray request</a>
+                <a class="btn btn-success" href="{{ route('/new-pray-requests') }}"> Tambah data pray request</a>
             </div>
         </div>
         @endif

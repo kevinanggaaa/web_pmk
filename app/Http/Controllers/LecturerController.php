@@ -140,13 +140,30 @@ class LecturerController extends Controller
      */
     public function update(Request $request, Lecturer $lecturer)
     {
-        $lecturer->nidn = $request['nidn'];
-        $lecturer->name = $request['name'];
-        $lecturer->department = $request['department'];
-        $lecturer->save();
+        $cek_nidn = Lecturer::select()
+        ->where('nidn',$request->nidn)
+        ->whereNotIn('id', [$lecturer->id])
+        ->first();
 
-        return redirect()->route('lecturers.index')
-            ->with('success', 'Data dosen berhasil diubah');
+        if($cek_email == null){
+            $lecturer->nidn = $request['nidn'];
+            $lecturer->name = $request['name'];
+            $lecturer->department = $request['department'];
+            $lecturer->save();
+
+            return redirect()->route('lecturers.index')
+                ->with('success', 'Data dosen berhasil diubah');
+        }
+        else{
+            $lecturer->name = $request['name'];
+            $lecturer->department = $request['department'];
+            $lecturer->save();
+
+            return redirect('admin/profiles/'.$lecturer->id.'/editLecturer')
+                ->with('fail','Data dosen gagal diubah karena duplikasi nidn');
+        }  
+
+        
     }
 
     /**

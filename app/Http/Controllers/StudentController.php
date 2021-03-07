@@ -143,6 +143,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
+        // return view('students.edit', compact('student'))->with('messages','error');
         return view('students.edit', compact('student'));
     }
 
@@ -155,16 +156,33 @@ class StudentController extends Controller
      */
     public function update(StudentRequest $request, Student $student)
     {
+        $cek_nrp = Student::select()
+        ->where('nrp',$request->nrp)
+        ->whereNotIn('id', [$student->id])
+        ->first();
 
         $student->name = $request['name'];
-        $student->nrp = $request['nrp'];
         $student->department = $request['department'];
         $student->year_entry = $request['year_entry'];
         $student->year_graduate = $request['year_graduate'];
         $student->save();
 
-        return redirect()->route('students.index')
-            ->with('success', 'Data mahasiswa berhasil diubah');
+        if($cek_nrp == null){
+            $student->nrp = $request['nrp'];
+            $student->save();
+
+            return redirect()->route('students.index')
+                ->with('success', 'Data mahasiswa berhasil diubah');
+        }
+
+        else{
+            
+            return redirect('admin/profiles/'.$student->id.'/editStudent')
+                ->with('fail','Data mahasiswa gagal diubah karena duplikasi nrp');
+
+            // return redirect()->route('students.edit')
+            //     ->with('fail', 'Data mahasiswa gagal diubah karena duplikasi nrp');
+        }
     }
 
     /**
