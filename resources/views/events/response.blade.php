@@ -59,7 +59,6 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="contact-info">
-				<img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image"/>
 				<h2>Absen</h2>
 				<h4>PMK ITS</h4>
 			</div>

@@ -71,7 +71,7 @@ class EventController extends Controller
         ]);
 
         return redirect()->route('events.index')
-            ->with('success', 'Data konselor berhasil ditambahkan');
+            ->with('success', 'Event berhasil ditambahkan');
     }
 
     /**
@@ -90,11 +90,6 @@ class EventController extends Controller
         return view('events.show', compact('event', 'users'));
     }
 
-    public function showAttend(Event $event)
-    {
-        return view('events.Attend', compact('event'));
-    }
-
     public function showSlug($slug)
     {
         $event = Event::where('slug', $slug)->first();
@@ -109,7 +104,13 @@ class EventController extends Controller
     public function attendView($slug)
     {
         $event = Event::where('slug', $slug)->first();
-        return view('events.attend', compact('event'));
+        if($event->attendant_count == 0){
+            return view('events.attend', compact('event'));
+        }
+        else{
+            $message = "Event telah selesai";
+            return view('events.response', compact('message'));
+        }
     }
 
     /**
@@ -146,7 +147,7 @@ class EventController extends Controller
         $event->save();
 
         return redirect()->route('events.index')
-            ->with('success', 'Data konselor berhasil diubah');
+            ->with('success', 'Event berhasil diubah');
     }
 
     /**
@@ -201,14 +202,17 @@ class EventController extends Controller
         $userEvents = UserEvent::all();
         $temp = 0;
         foreach($profiles as $profile){
+            //mengecek apakah user terdaftar pada database
             if($request['nrp'] == $profile->profile_id){
                 foreach($userEvents as $userEvent){
+                    //mengecek apakah user telah melakukan absensi atau tidak 
                     if($profile->user_id == $userEvent->user_id && $event->id == $userEvent->event_id){
                         $temp = 2;
                         $message = 'Anda telah melakukan absensi';
                         return view('events.response',compact('message'));
                     }
                 }
+                //jika belum melakukan absen, maka store datanya ke database
                 if($temp != 2){
                     UserEvent::create([
                         'user_id' => $profile->user_id,
@@ -219,10 +223,12 @@ class EventController extends Controller
                 
             }
         }
+        //jika telah berhasil melakukan absen
         if($temp == 1){
             $message = 'Anda berhasil melakukan absensi';
             return view('events.response',compact('message'));
         }
+        //jika tidak terdaftar sebagai user
         else{
             $message = 'Anda tidak terdaftar sebagai user';
             return view('events.response',compact('message'));
@@ -236,15 +242,19 @@ class EventController extends Controller
         $attends = UserEvent::where('event_id', $event->id)->get();
         $count = 0;
         $temp = '';
+
+        //menyimpan data dari peserta yang melakukan absen pada database UserEvent menjadi string, serta menghitung jumlah peserta
         foreach ($attends as $attend) {
             $temp .= $attend->user_id  . ";";
             $count += 1;
         }
 
+        //menginput data string peserta dan jumlah ke database
         $event->attendant_count = $count;
         $event->attendant_id = $temp;
         $event->save();
 
+        //menghapus data peserta pada userEvent yang telah disimpan pada string peserta
         UserEvent::where('event_id', $event->id)->delete();
 
         return redirect()->route('events.index')

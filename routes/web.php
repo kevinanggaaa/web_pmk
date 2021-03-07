@@ -61,7 +61,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/profiles/{student}/editStudent', [ProfileController::class, 'editStudent'])->name('profiles.editStudent');
     Route::get('/profiles/{alumni}/editAlumni', [ProfileController::class, 'editAlumni'])->name('profiles.editAlumni');
     Route::get('/profiles/{lecturer}/editLecturer', [ProfileController::class, 'editLecturer'])->name('profiles.editLecturer');
-    Route::get('/events/{event}/attend', [EventController::class, 'showAttend'])->name('events.showAttend');
     Route::get('/events/{event}/finnish', [EventController::class, 'finnish'])->name('events.finnish');
     Route::resource('/roles', RoleManagementController::class);
     Route::put('/users/updateAvatar/{user}', [UserController::class, 'updateAvatar'])->name('users.updateAvatar');

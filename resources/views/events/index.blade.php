@@ -89,29 +89,6 @@
                                 @endif
                             @endif
 
-                            @if($event->attendant_id == null)
-                            @php($absen = 1)
-                            @foreach ($attends as $attend)
-                            <?php
-                            if ($attend->event_id != $event->id) {
-                                $absen = 1;
-                            } elseif ($attend->event_id == $event->id) {
-                                $absen = 2;
-                                break;
-                            }
-                            ?>
-                            @endforeach
-                            @if($absen == 2)
-                            <div style="margin-right: 5px;">
-                                <a class="btn btn-secondary" href="" onclick="return false;"><i class="fa fa-user-check"></i></a>
-                            </div>
-                            @elseif($absen == 1)
-                            <div style="margin-right: 5px;">
-                                <a class="btn btn-primary" href="{{ route('events.showAttend',$event->id) }}"><i class="fa fa-user"></i></a>
-                            </div>
-                            @endif
-                            @endif
-
                             @if(auth()->user()->hasPermissionTo('delete event'))
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('events.destroy', $event->id) }}" method="POST" class="display: inline;">
