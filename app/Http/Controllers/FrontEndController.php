@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\LandingPageAbout;
-use App\Models\LandingPageVisiMisi;
 use App\Models\LandingPageHome;
+use App\Models\LandingPageAbout;
+use Illuminate\Support\Facades\DB;
 use App\Models\LandingPageRenungan;
+use App\Models\LandingPageVisiMisi;
 
 class FrontEndController extends Controller
 {
@@ -19,8 +20,8 @@ class FrontEndController extends Controller
     public function indexAll()
     {
         $homes = LandingPageHome::latest()->take(3)->get();
-        $VisiMisis = DB::table('LandingPageVisiMisi')->latest()->first();
-        $abouts = DB::table('LandingPageAbout')->latest()->first();
+        $VisiMisis = DB::table('landing_page_visi_misis')->latest()->first();
+        $abouts = DB::table('landing_page_abouts')->latest()->first();
         $renungans = LandingPageRenungan::latest()->take(3)->get();
 
         return view('home', compact('homes', 'VisiMisis', 'abouts', 'renungans'));
@@ -28,26 +29,26 @@ class FrontEndController extends Controller
 
     public function indexHome()
     {
-        $home = LandingPageHome::all();
-        return view('landingPageHome.index', compact('home'));
+        $homes = LandingPageHome::all();
+        return view('landingPageHome.index', compact('homes'));
     }
 
     public function indexVisiMisi()
     {
-        $VisiMisi = LandingPageVisiMisi::all();
-        return view('landingPageVisiMisi.index', compact('VisiMisi'));
+        $VisiMisis = LandingPageVisiMisi::all();
+        return view('landingPageVisiMisi.index', compact('VisiMisis'));
     }
 
     public function indexAbout()
     {
-        $about = LandingPageAbout::all();
-        return view('landingPageAbout.index', compact('about'));
+        $abouts = LandingPageAbout::all();
+        return view('landingPageAbout.index', compact('abouts'));
     }
 
     public function indexRenungan()
     {
-        $renungan = LandingPageRenungan::all();
-        return view('landingPageRenungan.index', compact('renungan'));
+        $renungans = LandingPageRenungan::all();
+        return view('landingPageRenungan.index', compact('renungans'));
     }
 
     /**
@@ -100,7 +101,7 @@ class FrontEndController extends Controller
             'image' => $nama_file
         ]);
 
-        return redirect()->route('landingPageHome.index')
+        return redirect()->route('landingPage.indexHome')
             ->with('success', 'Data landing page home berhasil ditambahkan');
     }
 
@@ -117,7 +118,7 @@ class FrontEndController extends Controller
             'subjudul' => $request['subjudul'],
         ]);
 
-        return redirect()->route('landingPageVisiMisi.index')
+        return redirect()->route('landingPage.indexVisiMisi')
             ->with('success', 'Data landing page visi misi berhasil ditambahkan');
     }
 
@@ -140,7 +141,7 @@ class FrontEndController extends Controller
             'image' => $nama_file
         ]);
 
-        return redirect()->route('landingPageAbout.index')
+        return redirect()->route('landingPage.indexAbout')
             ->with('success', 'Data landing page about berhasil ditambahkan');
     }
 
@@ -164,7 +165,7 @@ class FrontEndController extends Controller
             'image' => $nama_file
         ]);
 
-        return redirect()->route('landingPageRenungan.index')
+        return redirect()->route('landingPage.indexRenungan')
             ->with('success', 'Data landing page renungan berhasil ditambahkan');
     }
 
@@ -257,7 +258,7 @@ class FrontEndController extends Controller
         $home->image = $nama_file;
         $home->save();
 
-        return redirect()->route('landingPageHome.index')
+        return redirect()->route('landingPage.indexHome')
                 ->with('success', 'Data landing page home berhasil diubah');
     }
 
@@ -276,7 +277,7 @@ class FrontEndController extends Controller
         $VisiMisi->subjudul = $request->subjudul;
         $VisiMisi->save();
 
-        return redirect()->route('landingPageVisiMisi.index')
+        return redirect()->route('landingPage.indexVisiMisi')
             ->with('success', 'Data landing page visi misi berhasil diubah');
     }
 
@@ -301,7 +302,7 @@ class FrontEndController extends Controller
         $about->image = $nama_file;
         $about->save();
 
-        return redirect()->route('landingPageAbout.index')
+        return redirect()->route('landingPage.indexAbout')
                 ->with('success', 'Data landing page about berhasil diubah');
     }
 
@@ -327,7 +328,7 @@ class FrontEndController extends Controller
         $renungan->image = $nama_file;
         $renungan->save();
 
-        return redirect()->route('landingPageRenungan.index')
+        return redirect()->route('landingPage.indexRenungan')
                 ->with('success', 'Data landing page renungan berhasil diubah');
 
     }
@@ -342,7 +343,7 @@ class FrontEndController extends Controller
     {
         $home = LandingPageHome::select()->where('id', $id)->first();
         $home->delete();
-        return redirect()->route('landingPageHome.index')
+        return redirect()->route('landingPage.indexHome')
             ->with('success', 'Data landing page home berhasil dihapus');
     }
 
@@ -350,7 +351,7 @@ class FrontEndController extends Controller
     {
         $VisiMisi = LandingPageVisiMisi::select()->where('id', $id)->first();
         $VisiMisi->delete();
-        return redirect()->route('landingPageVisiMisi.index')
+        return redirect()->route('landingPage.indexVisiMisi')
             ->with('success', 'Data landing page visi misi berhasil dihapus');
     }
 
@@ -358,7 +359,7 @@ class FrontEndController extends Controller
     {
         $about = LandingPageAbout::select()->where('id', $id)->first();
         $About->delete();
-        return redirect()->route('landingPageAbout.index')
+        return redirect()->route('landingPage.indexAbout')
             ->with('success', 'Data landing page about berhasil dihapus');
     }
 
@@ -366,7 +367,7 @@ class FrontEndController extends Controller
     {
         $renungan = LandingPageRenungan::select()->where('id', $id)->first();
         $Renungan->delete();
-        return redirect()->route('landingPageRenungan.index')
+        return redirect()->route('landingPage.indexRenungan')
             ->with('success', 'Data landing page renungan berhasil dihapus');
     }
 }
