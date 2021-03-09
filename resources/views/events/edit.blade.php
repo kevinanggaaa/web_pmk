@@ -33,6 +33,29 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card card-primary">
+            <form role="form" method="POST" action="{{ route('events.updateImage', $event->id)  }}" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="image">Image</label>
+                                <input type="file" name="image" id="image" class="form-control" value="{{ $event->image }}">
+                                @error('avatar')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary swalDefaultInfo" value="Data event" id="data"><i class="fa fa-paper-plane"></i>Upload</button>
+                </div>
+            </form>
+        </div>
+        <div class="card card-primary">
             <form role="form" method="POST" action="{{ route('events.update', $event->id)  }}">
                 @csrf
                 @method('PUT')

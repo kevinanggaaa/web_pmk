@@ -145,17 +145,6 @@ class EventController extends Controller
      */
     public function update(EventRequest $request, Event $event)
     {
-        if($request['image'] == null){
-            $nama_file = 'default.jpg';
-        }
-        else{
-            $file = $request['image'];
-            $nama_file = time().'_'.$file->getClientOriginalName();
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'landingpage/event';
-            $file->move($tujuan_upload, $nama_file);
-        }
-
         $request['reservationtime'] = explode(' - ', $request['reservationtime']);
         $request['start'] = date('Y-m-d H:i:s', strtotime($request['reservationtime'][0]));
         $request['end'] = date('Y-m-d H:i:s', strtotime($request['reservationtime'][1]));
@@ -165,13 +154,28 @@ class EventController extends Controller
         $event->type = $request['type'];
         $event->start = $request['start'];
         $event->end = $request['end'];
-        $event->image = $nama_file;
         $event->report = $request['report'];
         $event->slug = $this->createSlug($request->title);
         $event->save();
 
         return redirect()->route('events.index')
             ->with('success', 'Event berhasil diubah');
+    }
+
+    public function updateImage(Request $request, Event $event)
+    {
+        
+        $file = $request['Image'];
+        $nama_file = time().'_'.$file->getClientOriginalName();
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'landingpage/event';
+        $file->move($tujuan_upload, $nama_file);
+        
+        $event->image = $nama_file;
+        $event->save();
+
+        return redirect()->route('events.index')
+            ->with('success', 'Foto Event berhasil diubah');
     }
 
     /**

@@ -373,7 +373,7 @@
             </div>
         </div>
 
-        $foreach($renungans as $renungan)
+        @foreach($renungans as $renungan)
         <div class="row d-flex">
             <div class="col-md-6 col-lg-4 d-flex ftco-animate">
                 <div class="blog-entry align-self-stretch">
@@ -385,12 +385,12 @@
                         </div>
                         <h3 class="heading"><a href="#">{{$renungan->lokasiFirman}}</a></h3>
                         <p>{{$renungan->isiFirman}}</p>
-                        <!-- <p><a href="#" class="btn btn-primary">Read more</a></p> -->
+                        <p><a href="https://www.instagram.com/pmk_its/?hl=id" class="btn btn-primary">Read more</a></p>
                     </div>
                 </div>
             </div>  
         </div>
-        $endforeach
+        @endforeach
         <!-- <div class="row d-flex">
             <div class="col-md-6 col-lg-4 d-flex ftco-animate">
                 <div class="blog-entry align-self-stretch">

@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
-use Spatie\Permission\Models\Role;
+use App\Models\Alumni;
 use App\Models\Profile;
 use App\Models\Student;
 use App\Models\Lecturer;
-use App\Models\Alumni;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -116,17 +117,6 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if($request['avatar'] == null){
-            $nama_file = 'default.jpg';
-        }
-        else{
-            $file = $request['avatar'];
-            $nama_file = time().'_'.$file->getClientOriginalName();
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'avatar';
-            $file->move($tujuan_upload, $nama_file);
-        }
-
         $cek_email = User::select()
         ->where('email',$request->email)
         ->whereNotIn('id', [$user->id])
@@ -142,7 +132,6 @@ class UserController extends Controller
         $user->line = $request['line'];
         $user->birthdate = $request['birthdate'];
         $user->gender = $request['gender'];
-        $user->avatar = $nama_file;
         $user->date_death = $request['date_death'];
         $user->save();
 
