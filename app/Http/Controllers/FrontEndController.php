@@ -15,24 +15,39 @@ class FrontEndController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function indexAll()
+    {
+        $homes = LandingPageHome::latest()->take(3)->get();
+        $VisiMisis = DB::table('LandingPageVisiMisi')->latest()->first();
+        $abouts = DB::table('LandingPageAbout')->latest()->first();
+        $renungans = LandingPageRenungan::latest()->take(3)->get();
+
+        return view('home', compact('homes', 'VisiMisis', 'abouts', 'renungans'));
+    }
+
     public function indexHome()
     {
-        
+        $home = LandingPageHome::all();
+        return view('landingPageHome.index', compact('home'));
     }
 
     public function indexVisiMisi()
     {
-        
+        $VisiMisi = LandingPageVisiMisi::all();
+        return view('landingPageVisiMisi.index', compact('VisiMisi'));
     }
 
     public function indexAbout()
     {
-        
+        $about = LandingPageAbout::all();
+        return view('landingPageAbout.index', compact('about'));
     }
 
     public function indexRenungan()
     {
-        
+        $renungan = LandingPageRenungan::all();
+        return view('landingPageRenungan.index', compact('renungan'));
     }
 
     /**
@@ -68,22 +83,89 @@ class FrontEndController extends Controller
      */
     public function storeHome(Request $request)
     {
-        //
+        if($request['image'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+            $file = $request['image'];
+            $nama_file = time().'_'.$file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'landingpage/home';
+            $file->move($tujuan_upload, $nama_file);
+        }
+        $home = LandingPageHome::create([
+            'title' => $request['title'],
+            'subtitle' => $request['subtitle'],
+            'description' => $request['description'],
+            'image' => $nama_file
+        ]);
+
+        return redirect()->route('landingPageHome.index')
+            ->with('success', 'Data landing page home berhasil ditambahkan');
     }
 
     public function storeVisiMisi(Request $request)
     {
-        
+        $VisiMisi = LandingPageVisiMisi::create([
+            'title1' => $request['title1'],
+            'description1' => $request['description1'],
+            'title2' => $request['title2'],
+            'description2' => $request['description2'],
+            'title3' => $request['title3'],
+            'description3' => $request['description3'],
+            'judul' => $request['judul'],
+            'subjudul' => $request['subjudul'],
+        ]);
+
+        return redirect()->route('landingPageVisiMisi.index')
+            ->with('success', 'Data landing page visi misi berhasil ditambahkan');
     }
 
     public function storeAbout(Request $request)
     {
-        
+        if($request['image'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+            $file = $request['image'];
+            $nama_file = time().'_'.$file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'landingpage/about';
+            $file->move($tujuan_upload, $nama_file);
+        }
+        $about = LandingPageAbout::create([
+            'title' => $request['title'],
+            'subtitle' => $request['subtitle'],
+            'description' => $request['description'],
+            'image' => $nama_file
+        ]);
+
+        return redirect()->route('landingPageAbout.index')
+            ->with('success', 'Data landing page about berhasil ditambahkan');
     }
 
     public function storeRenungan(Request $request)
     {
-        
+        if($request['image'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+            $file = $request['image'];
+            $nama_file = time().'_'.$file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'landingpage/renungan';
+            $file->move($tujuan_upload, $nama_file);
+        }
+        $renungan = LandingPageRenungan::create([
+            'title' => $request['title'],
+            'lokasiFirman' => $request['lokasiFirman'],
+            'isiFirman' => $request['isiFirman'],
+            'bacaan' => $request['bacaan'],
+            'image' => $nama_file
+        ]);
+
+        return redirect()->route('landingPageRenungan.index')
+            ->with('success', 'Data landing page renungan berhasil ditambahkan');
     }
 
     /**
@@ -94,22 +176,26 @@ class FrontEndController extends Controller
      */
     public function showHome($id)
     {
-        //
+        $home = LandingPageHome::select()->where('id', $id)->first();
+        return view('landingPageHome.show', compact('home'));
     }
 
     public function showVisiMisi($id)
     {
-        
+        $VisiMisi = LandingPageVisiMisi::select()->where('id', $id)->first();
+        return view('landingPageVisiMisi.show', compact('VisiMisi'));
     }
 
     public function showAbout($id)
     {
-        
+        $about = LandingPageAbout::select()->where('id', $id)->first();
+        return view('landingPageAbout.show', compact('about'));
     }
 
     public function showRenungan($id)
     {
-        
+        $renungan = LandingPageRenungan::select()->where('id', $id)->first();
+        return view('landingPageRenungan.show', compact('renungan'));
     }
     
 
@@ -121,22 +207,26 @@ class FrontEndController extends Controller
      */
     public function editHome($id)
     {
-        //
+        $home = LandingPageHome::select()->where('id', $id)->first();
+        return view('landingPageHome.edit', compact('home'));
     }
 
     public function editVisiMisi($id)
     {
-        
+        $VisiMisi = LandingPageVisiMisi::select()->where('id', $id)->first();
+        return view('landingPageVisiMisi.edit', compact('VisiMisi'));
     }
 
     public function editAbout($id)
     {
-        
+        $about = LandingPageAbout::select()->where('id', $id)->first();
+        return view('landingPageAbout.edit', compact('about'));
     }
 
     public function editRenungan($id)
     {
-        
+        $renungan = LandingPageRenungan::select()->where('id', $id)->first();
+        return view('landingPageRenungan.edit', compact('renungan'));
     }
 
     /**
@@ -148,22 +238,98 @@ class FrontEndController extends Controller
      */
     public function updateHome(Request $request, $id)
     {
-        //
+        if($request['image'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+            $file = $request['image'];
+            $nama_file = time().'_'.$file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'landingpage/home';
+            $file->move($tujuan_upload, $nama_file);
+        }
+
+        $home = LandingPageHome::select()->where('id', $id)->first();
+
+        $home->title = $request->title;
+        $home->subtitle = $request->subtitle;
+        $home->description = $request->description;
+        $home->image = $nama_file;
+        $home->save();
+
+        return redirect()->route('landingPageHome.index')
+                ->with('success', 'Data landing page home berhasil diubah');
     }
 
     public function updateVisiMisi(Request $request, $id)
     {
-        
+
+        $VisiMisi = LandingPageVisiMisi::select()->where('id', $id)->first();
+
+        $VisiMisi->title1 = $request->title1;
+        $VisiMisi->description1 = $request->description1;
+        $VisiMisi->title2 = $request->title2;
+        $VisiMisi->description2 = $request->description2;
+        $VisiMisi->title3 = $request->title3;
+        $VisiMisi->description3 = $request->description3;
+        $VisiMisi->judul = $request->judul;
+        $VisiMisi->subjudul = $request->subjudul;
+        $VisiMisi->save();
+
+        return redirect()->route('landingPageVisiMisi.index')
+            ->with('success', 'Data landing page visi misi berhasil diubah');
     }
 
     public function updateAbout(Request $request, $id)
     {
-        
+        if($request['image'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+            $file = $request['image'];
+            $nama_file = time().'_'.$file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'landingpage/about';
+            $file->move($tujuan_upload, $nama_file);
+        }
+
+        $about = LandingPageAbout::select()->where('id', $id)->first();
+
+        $about->title = $request->title;
+        $about->subtitle = $request->subtitle;
+        $about->description = $request->description;
+        $about->image = $nama_file;
+        $about->save();
+
+        return redirect()->route('landingPageAbout.index')
+                ->with('success', 'Data landing page about berhasil diubah');
     }
 
     public function updateRenungan(Request $request, $id)
     {
-        
+        if($request['image'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+            $file = $request['image'];
+            $nama_file = time().'_'.$file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'landingpage/renungan';
+            $file->move($tujuan_upload, $nama_file);
+        }
+
+        $renungan = LandingPageRenungan::select()->where('id', $id)->first();
+
+        $renungan->title = $request->title;
+        $renungan->lokasiFirman = $request->lokasiFirman;
+        $renungan->isiFirman = $request->isiFirman;
+        $renungan->bacaan = $request->bacaan;
+        $renungan->image = $nama_file;
+        $renungan->save();
+
+        return redirect()->route('landingPageRenungan.index')
+                ->with('success', 'Data landing page renungan berhasil diubah');
+
     }
 
     /**
@@ -174,7 +340,7 @@ class FrontEndController extends Controller
      */
     public function destroyHome($id)
     {
-        $home = LandingPageHome::find($id);
+        $home = LandingPageHome::select()->where('id', $id)->first();
         $home->delete();
         return redirect()->route('landingPageHome.index')
             ->with('success', 'Data landing page home berhasil dihapus');
@@ -182,7 +348,7 @@ class FrontEndController extends Controller
 
     public function destroyVisiMisi($id)
     {
-        $VisiMisi = LandingPageVisiMisi::find($id);
+        $VisiMisi = LandingPageVisiMisi::select()->where('id', $id)->first();
         $VisiMisi->delete();
         return redirect()->route('landingPageVisiMisi.index')
             ->with('success', 'Data landing page visi misi berhasil dihapus');
@@ -190,7 +356,7 @@ class FrontEndController extends Controller
 
     public function destroyAbout($id)
     {
-        $About = LandingPageAbout::find($id);
+        $about = LandingPageAbout::select()->where('id', $id)->first();
         $About->delete();
         return redirect()->route('landingPageAbout.index')
             ->with('success', 'Data landing page about berhasil dihapus');
@@ -198,7 +364,7 @@ class FrontEndController extends Controller
 
     public function destroyRenungan($id)
     {
-        $Renungan = LandingPageRenungan::find($id);
+        $renungan = LandingPageRenungan::select()->where('id', $id)->first();
         $Renungan->delete();
         return redirect()->route('landingPageRenungan.index')
             ->with('success', 'Data landing page renungan berhasil dihapus');

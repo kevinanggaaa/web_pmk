@@ -80,6 +80,15 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="image">Gambar</label>
+                                <input type="file" name="image" id="image" class="form-control " value="{{$renungan->image}}">
+                                @error('image')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                 </div>
 

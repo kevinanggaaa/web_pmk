@@ -19,6 +19,7 @@ class CreateLandingPageRenungansTable extends Migration
             $table->string('lokasiFirman');
             $table->string('isiFirman');
             $table->string('bacaan');
+            $table->string('image');
             $table->timestamps();
         });
     }
