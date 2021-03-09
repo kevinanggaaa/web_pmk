@@ -122,6 +122,5 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/events/{slug}', [EventController::class, 'showSlug'])->name('events.showSlug');
-Route::get('test', function() {
-    Storage::disk('google')->put('test.txt', 'Hello World');
-});
+Route::get('/attends/{slug}', [EventController::class, 'attendView'])->name('events.attendView');
+Route::put('/events/{event}', [EventController::class, 'attend'])->name('events.attend');
