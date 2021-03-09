@@ -19,11 +19,11 @@ class FrontEndController extends Controller
     public function indexAll()
     {
         $homes = LandingPageHome::latest()->take(3)->get();
-        $VisiMisis = DB::table('LandingPageVisiMisi')->latest()->first();
-        $abouts = DB::table('LandingPageAbout')->latest()->first();
+        $VisiMisi = DB::table('LandingPageVisiMisi')->latest()->first();
+        $about = DB::table('LandingPageAbout')->latest()->first();
         $renungans = LandingPageRenungan::latest()->take(3)->get();
 
-        return view('home', compact('homes', 'VisiMisis', 'abouts', 'renungans'));
+        return view('home', compact('homes', 'VisiMisi', 'about', 'renungans'));
     }
 
     public function indexHome()

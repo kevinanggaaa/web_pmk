@@ -5,7 +5,7 @@
 <section class="hero-wrap js-fullheight">
     <div class="home-slider js-fullheight owl-carousel">
         @foreach($homes as $home)
-        <div class="slider-item js-fullheight" style="background-image:url(salvation/images/bg_2.jpg);">
+        <div class="slider-item js-fullheight" style="background-image:url('landingpage/home/{{$home->title}}');">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
@@ -21,7 +21,7 @@
         </div>
         @endforeach
 
-        <div class="slider-item js-fullheight" style="background-image:url(salvation/images/bg_2.jpg);">
+        <!-- <div class="slider-item js-fullheight" style="background-image:url(salvation/images/bg_2.jpg);">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 
@@ -48,10 +48,9 @@
                         <div class="services-2">
                             <div class="icon"><span class="flaticon-church"></span></div>
                             <div class="text">
-                                <h4>Worship</h4>
-                                <span class="subheading">What to expect</span>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                    Consonantia, there live the blind texts.</p>
+                                <h4>{{$VisiMisi->title1}}</h4>
+                                <!-- <span class="subheading">What to expect</span> -->
+                                <p>{{$VisiMisi->description1}}</p>
                             </div>
                         </div>
                     </div>
@@ -59,10 +58,8 @@
                         <div class="services-2">
                             <div class="icon"><span class="flaticon-pray"></span></div>
                             <div class="text">
-                                <h4>Connect</h4>
-                                <span class="subheading">Contact Members</span>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                    Consonantia, there live the blind texts.</p>
+                                <h4>{{$VisiMisi->title2}}</h4>
+                                <p>{{$VisiMisi->description2}}</p>
                             </div>
                         </div>
                     </div>
@@ -70,10 +67,8 @@
                         <div class="services-2">
                             <div class="icon"><span class="flaticon-love"></span></div>
                             <div class="text">
-                                <h4>God's Love</h4>
-                                <span class="subheading">Beliefs and History</span>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                    Consonantia, there live the blind texts.</p>
+                                <h4>{{$VisiMisi->title3}}</h4>
+                                <p>{{$VisiMisi->description3}}</p>
                             </div>
                         </div>
                     </div>
@@ -82,9 +77,8 @@
             <div class="col-md-4 d-flex">
                 <div class="services-2 services-block">
                     <div class="text">
-                        <h4>A Christian should live for the glory of God and the well-being of others.</h4>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts.</p>
+                        <h4>{{$VisiMisi->judul}}</h4>
+                        <p>{{$VisiMisi->subjudul}}</p>
                     </div>
                 </div>
             </div>
@@ -96,18 +90,15 @@
     <div class="container">
         <div class="row d-flex">
             <div class="col-md-6 d-flex">
-                <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0" style="background-image:url(salvation/images/about-3.jpg);">
+                <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0" style="background-image:url('landingpage/about/{{$about->image}}');">
                 </div>
             </div>
             <div class="col-md-6 pl-md-5 py-md-5">
                 <div class="heading-section pt-md-5 mb-4">
-                    <span class="subheading">Welcome to Salvation Church</span>
-                    <h2 class="mb-5">Connect, Grow and Serve with Us</h2>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
-                        It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
-                        It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                    <p><a href="#" class="btn btn-primary">Learn More</a></p>
+                    <span class="subheading">{{$about->subtitle}}</span>
+                    <h2 class="mb-5">{{$about->title}}</h2>
+                    <p>{{$about->description}}</p>
+                    <!-- <p><a href="#" class="btn btn-primary">Learn More</a></p> -->
                 </div>
             </div>
         </div>
@@ -349,11 +340,30 @@
     <div class="container">
         <div class="row justify-content-center pb-5 mb-3">
             <div class="col-md-7 heading-section text-center ftco-animate">
-                <span class="subheading">Our Blog</span>
-                <h2>Latest news from our blog</h2>
+                <span class="subheading">Renungan harian</span>
+                <h2>Renungan harian terbaru PMK ITS</h2>
             </div>
         </div>
+
+        $foreach($renungans as $renungan)
         <div class="row d-flex">
+            <div class="col-md-6 col-lg-4 d-flex ftco-animate">
+                <div class="blog-entry align-self-stretch">
+                    <a href="blog-single.html" class="block-20" style="background-image: url('landingpage/renungan/{{$renungan->image}}');">
+                    </a>
+                    <div class="text p-4">
+                        <div class="meta mb-2">
+                            <div><a href="#">{{$renungan->created_at}}</a></div>
+                        </div>
+                        <h3 class="heading"><a href="#">{{$renungan->lokasiFirman}}</a></h3>
+                        <p>{{$renungan->isiFirman}}</p>
+                        <!-- <p><a href="#" class="btn btn-primary">Read more</a></p> -->
+                    </div>
+                </div>
+            </div>  
+        </div>
+        $endforeach
+        <!-- <div class="row d-flex">
             <div class="col-md-6 col-lg-4 d-flex ftco-animate">
                 <div class="blog-entry align-self-stretch">
                     <a href="blog-single.html" class="block-20" style="background-image: url('salvation/images/image_1.jpg');">
@@ -370,42 +380,8 @@
                         <p><a href="#" class="btn btn-primary">Read more</a></p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-4 d-flex ftco-animate">
-                <div class="blog-entry align-self-stretch">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('salvation/images/image_2.jpg');">
-                    </a>
-                    <div class="text p-4">
-                        <div class="meta mb-2">
-                            <div><a href="#">July 20, 2020</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Building Holy &amp; Healthy Lives God’s</a></h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                            Consonantia</p>
-                        <p><a href="#" class="btn btn-primary">Read more</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 d-flex ftco-animate">
-                <div class="blog-entry align-self-stretch">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('salvation/images/image_3.jpg');">
-                    </a>
-                    <div class="text p-4">
-                        <div class="meta mb-2">
-                            <div><a href="#">July 20, 2020</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Building Holy &amp; Healthy Lives God’s</a></h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                            Consonantia</p>
-                        <p><a href="#" class="btn btn-primary">Read more</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+            </div>  
+        </div> -->
     </div>
 </section>
 
