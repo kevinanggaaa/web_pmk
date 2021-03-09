@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-6 d-flex align-items-center">
                 <p class="mb-0 location">
-                    <span class="fa fa-map-marker mr-2"></span> 203 Fake St. Mountain View, San Francisco, California, USA
+                    <span class="fa fa-map-marker mr-2"></span> Sukolilo (60111), Surabaya, East Java , Jawa Timur, Indonesia
                 </p>
             </div>
             <div class="col-md-6 d-flex justify-content-md-end">
@@ -20,7 +20,7 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index">Salvation</a>
+        <a class="navbar-brand" href="index">PMK ITS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
@@ -28,18 +28,15 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 @auth
-                <li class="nav-item"><a href="{{route ('students.index')}}" class="nav-link">Admin</a></li>
+                <li class="nav-item"><a href="{{route ('profiles.index')}}" class="nav-link">Profile</a></li>
                 @endauth
-                <li class="nav-item"><a href="index" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="ministries" class="nav-link">Ministries</a></li>
-                <li class="nav-item"><a href="sermons" class="nav-link">Sermons</a></li>
-                <li class="nav-item"><a href="events" class="nav-link">Events</a></li>
-                <li class="nav-item"><a href="blog" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="sermons" class="nav-link">Persekutuan Jumat</a></li>
+                <li class="nav-item"><a href="events" class="nav-link">Renungan</a></li>
+                <li class="nav-item"><a href="blog" class="nav-link">Event</a></li>
                 <li class="nav-item"><a href="contact" class="nav-link">Contact</a></li>
-                <li class="nav-item cta"><a href="contact" class="nav-link">Donate</a></li>
                 @auth
-                <li class="nav-item dropdown">
+                <li class="nav-item cta dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{'Welcome, '.Auth::user()->email }}
                         {{-- @if(Auth::user()->avatar)
@@ -50,7 +47,7 @@
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                            document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 
@@ -61,7 +58,7 @@
                 </li>
                 @endauth
                 @guest
-                <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
+                <li class="nav-item cta"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
                 @endguest
             </ul>
         </div>

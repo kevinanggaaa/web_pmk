@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-                <h2 class="footer-heading">Salvation</h2>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                <h2 class="footer-heading">PMK ITS</h2>
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <ul class="ftco-footer-social p-0">
                     <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
                     <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
@@ -15,7 +15,7 @@
                 <div class="block-21 mb-4 d-flex">
                     <a class="img mr-4 rounded" style="background-image: url('salvation/images/image_1.jpg');"></a>
                     <div class="text">
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                        <h3 class="heading"><a href="#">"Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h3>
                         <div class="meta">
                             <div><a href="#">Aug. 10, 2020</a></div>
                             <div><a href="#">Admin</a></div>

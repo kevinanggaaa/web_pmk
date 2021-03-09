@@ -37,6 +37,38 @@ class AlumniController extends Controller
         return view('alumnis.create');
     }
 
+    public function createform()
+    {
+        return view('alumnis.form-create');
+    }
+
+    public function nameBirthdate()
+    {
+        $alumnis = Alumni::all();
+        return view('alumnis.name-birthdate', compact('alumnis'));
+    }
+
+    public function checkBirthdate(Request $request)
+    {
+        $alumnis = Alumni::all();
+        $birthdate = $request->input('birthdate');
+        $alumni_id = $request->input('name');
+
+        $profile = Profile::select()
+                    ->where('model_id', $alumni_id)
+                    ->where('model_type', "App\Models\Alumni")
+                    ->first();
+        $user_id = User::select()->where('id', $profile->user_id)->first();
+
+        if($birthdate == $user_id->birthdate){
+
+        }
+        else{
+            return view('alumnis.name-birthdate', compact('alumnis'))
+                ->with('fail','Maaf data yang dimasukkan salah.');;
+        } 
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -46,15 +78,15 @@ class AlumniController extends Controller
     public function store(AlumniRequest $request)
     {
         if($request['avatar'] == null){
-            $nama_file = 'default.jpg';
+            $file_name = 'default.jpg';
         }
         else{
           $file = $request['avatar'];
-          $nama_file = time().'_'.$file->getClientOriginalName();
+          $file_name = time().'_'.$file->getClientOriginalName();
 
           // isi dengan nama folder tempat kemana file diupload
           $tujuan_upload = 'avatar';
-          $file->move($tujuan_upload, $nama_file);
+          $file->move($tujuan_upload, $file_name);
         }
 
         $user = User::firstOrCreate(
