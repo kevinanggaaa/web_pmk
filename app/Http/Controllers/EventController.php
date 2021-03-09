@@ -165,7 +165,7 @@ class EventController extends Controller
     public function updateImage(Request $request, Event $event)
     {
         
-        $file = $request['Image'];
+        $file = $request['image'];
         $nama_file = time().'_'.$file->getClientOriginalName();
         // isi dengan nama folder tempat kemana file diupload
         $tujuan_upload = 'landingpage/event';
