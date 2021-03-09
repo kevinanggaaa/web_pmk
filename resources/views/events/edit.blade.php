@@ -60,7 +60,19 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="type">Type</label>
-                                <input type="text" name="type" id="type" class="form-control {{$errors->has('type') ? 'is-invalid' : ''}}" placeholder="Masukkan Tipe Acara" value="{{$event->type}}" required>
+                                <select name="type" id="type" class="form-control {{$errors->has('type') ? 'is-invalid' : ''}}" required>
+                                    <option value="">== Pilih Type ==</option>
+                                        <option value="PJ" <?php if($event->type=="PJ") echo 'selected="selected"'; ?>>Persekutuan Jumat</option>
+                                        <option value="Camp" <?php if($event->type=="Camp") echo 'selected="selected"'; ?>>Camp</option>
+                                        <option value="Paskah" <?php if($event->type=="Paskah") echo 'selected="selected"'; ?>>Paskah</option>
+                                        <option value="Natal" <?php if($event->type=="Natal") echo 'selected="selected"'; ?>>Natal</option>
+                                        <option value="LPJ" <?php if($event->type=="LPJ") echo 'selected="selected"'; ?>>Laporan Pertanggungjawaban</option>
+                                        <option value="praRaker" <?php if($event->type=="praRaker") echo 'selected="selected"'; ?>>Pra Rapat Kerja</option>
+                                        <option value="Raker" <?php if($event->type=="Raker") echo 'selected="selected"'; ?>>Rapat Kerja</option>
+                                        <option value="Student" <?php if($event->type=="Student") echo 'selected="selected"'; ?>>Mahasiswa</option>
+                                        <option value="Lecturer" <?php if($event->type=="Lecturer") echo 'selected="selected"'; ?>>Dosen</option>
+                                        <option value="Alumni"<?php if($event->type=="Alumni") echo 'selected="selected"'; ?>>Alumni</option>
+                                </select>
                                 @error('type')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror

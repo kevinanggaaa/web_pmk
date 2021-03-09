@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Models\LandingPageHome;
 use App\Models\LandingPageAbout;
@@ -23,8 +24,9 @@ class FrontEndController extends Controller
         $VisiMisis = DB::table('landing_page_visi_misis')->latest()->first();
         $abouts = DB::table('landing_page_abouts')->latest()->first();
         $renungans = LandingPageRenungan::latest()->take(3)->get();
+        $psJumats = Event::where('type', 'PJ')->latest()->take(3)->get();
 
-        return view('home', compact('homes', 'VisiMisis', 'abouts', 'renungans'));
+        return view('home', compact('homes', 'VisiMisis', 'abouts', 'renungans', 'psJumats'));
     }
 
     public function indexHome()

@@ -58,7 +58,19 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="type">Type</label>
-                                <input type="text" name="type" id="type" class="form-control {{$errors->has('type') ? 'is-invalid' : ''}}" placeholder="Masukkan Tipe Acara" value="{{old('type')}}" required>
+                                <select name="type" id="type" class="form-control {{$errors->has('type') ? 'is-invalid' : ''}}" required>
+                                    <option value="">== Pilih Type ==</option>
+                                        <option value="PJ">Persekutuan Jumat</option>
+                                        <option value="Camp">Camp</option>
+                                        <option value="Paskah">Paskah</option>
+                                        <option value="Natal">Natal</option>
+                                        <option value="LPJ">Laporan Pertanggungjawaban</option>
+                                        <option value="praRaker">Pra Rapat Kerja</option>
+                                        <option value="Raker">Rapat Kerja</option>
+                                        <option value="Student">Mahasiswa</option>
+                                        <option value="Lecturer">Dosen</option>
+                                        <option value="Alumni">Alumni</option>
+                                </select>
                                 @error('type')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -80,6 +92,15 @@
                                 <!-- /.input group -->
                             </div>
                             <!-- /.form group -->
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="image">Gambar</label>
+                                <input type="file" name="image" id="image" class="form-control " value="{{old('image')}}">
+                                @error('image')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                 </div>

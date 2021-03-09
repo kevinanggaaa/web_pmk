@@ -45,6 +45,17 @@ class EventController extends Controller
      */
     public function store(EventRequest $request)
     {
+        if($request['image'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+            $file = $request['image'];
+            $nama_file = time().'_'.$file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'landingpage/event';
+            $file->move($tujuan_upload, $nama_file);
+        }
+
         $request['reservationtime'] = explode(' - ', $request['reservationtime']);
         $request['start'] = date('Y-m-d H:i:s', strtotime($request['reservationtime'][0]));
         $request['end'] = date('Y-m-d H:i:s', strtotime($request['reservationtime'][1]));
@@ -65,6 +76,7 @@ class EventController extends Controller
             'type' => $request['type'],
             'start' => $request['start'],
             'end' => $request['end'],
+            'image' => $nama_file,
             'slug' => $this->createSlug($request->title),
             'creator_id' => $user->id,
             'creator_type' => $creator,
@@ -133,6 +145,17 @@ class EventController extends Controller
      */
     public function update(EventRequest $request, Event $event)
     {
+        if($request['image'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+            $file = $request['image'];
+            $nama_file = time().'_'.$file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'landingpage/event';
+            $file->move($tujuan_upload, $nama_file);
+        }
+
         $request['reservationtime'] = explode(' - ', $request['reservationtime']);
         $request['start'] = date('Y-m-d H:i:s', strtotime($request['reservationtime'][0]));
         $request['end'] = date('Y-m-d H:i:s', strtotime($request['reservationtime'][1]));
@@ -142,6 +165,7 @@ class EventController extends Controller
         $event->type = $request['type'];
         $event->start = $request['start'];
         $event->end = $request['end'];
+        $event->image = $nama_file;
         $event->report = $request['report'];
         $event->slug = $this->createSlug($request->title);
         $event->save();
