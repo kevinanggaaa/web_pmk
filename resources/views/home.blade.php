@@ -5,7 +5,7 @@
 <section class="hero-wrap js-fullheight">
     <div class="home-slider js-fullheight owl-carousel">
         @foreach($homes as $home)
-        <div class="slider-item js-fullheight" style="background-image:url('landingpage/home/{{$home->title}}');">
+        <div class="slider-item js-fullheight" style="background-image:url(landingpage/home/{{$home->image}});">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
