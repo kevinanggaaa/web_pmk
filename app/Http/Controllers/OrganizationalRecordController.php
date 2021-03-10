@@ -10,6 +10,14 @@ use App\Models\User;
 
 class OrganizationalRecordController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view organizational record')->only('index');
+        $this->middleware('permission:view detail organizational record')->only('show');
+        $this->middleware('permission:add organizational record')->only('create');
+        $this->middleware('permission:edit organizational record')->only('edit');
+        $this->middleware('permission:delete organizational record')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

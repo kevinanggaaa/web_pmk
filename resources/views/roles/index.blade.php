@@ -42,11 +42,13 @@
             </div>
         @endif
 
+        @if(auth()->user()->hasPermissionTo('add role'))
         <div class="card-tools">
                 <div class="">
                     <a class="btn btn-success" href="{{ route('roles.create') }}">Tambah Role Baru</a>
                 </div>
         </div>
+        @endif
     </div>
 
     <!-- /.card-header -->
@@ -55,21 +57,33 @@
             <thead>
             <tr>
                 <th style="">Role</th>
+
+                @if(auth()->user()->hasAnyPermission(['view detail role', 'edit role', 'delete role']))
                 <th style="">Action</th>
+                @endif
             </tr>
             </thead>
             <tbody>
             @foreach ($roles as $role)
                 <tr>
                     <td>{{ $role->name }}</td>
+
+                    @if(auth()->user()->hasAnyPermission(['view detail role', 'edit role', 'delete role']))
                     <td>
                         <div style="display: flex">
-                            <div style="margin-right: 5px;">
-                                    <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}"><i class="fa fa-eye"></i></a>
-                            </div>
-                            <div style="margin-right: 5px;">
-                                    <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}"><i class="fa fa-edit"></i></a>
-                            </div>
+                            @if(auth()->user()->hasPermissionTo('view detail role'))
+                                <div style="margin-right: 5px;">
+                                        <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}"><i class="fa fa-eye"></i></a>
+                                </div>
+                            @endif
+
+                            @if(auth()->user()->hasPermissionTo('edit role'))
+                                <div style="margin-right: 5px;">
+                                        <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}"><i class="fa fa-edit"></i></a>
+                                </div>
+                            @endif
+
+                            @if(auth()->user()->hasPermissionTo('delete role'))
                             <div style="margin-right: 5px;">
                                 @can('delete role')
                                     <form action="{{ route('roles.destroy', $role->id) }}" method="POST" class="display: inline;">
@@ -79,8 +93,10 @@
                                     </form>
                                 @endcan
                             </div>
+                            @endif
                         </div>
                     </td>
+                    @endif
                 </tr>
             @endforeach
             </tbody>

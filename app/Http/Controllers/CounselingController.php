@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class CounselingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view counseling')->only('index');
+        $this->middleware('permission:add counseling')->only('create');
+        $this->middleware('permission:edit counseling')->only('edit');
+        $this->middleware('permission:delete counseling')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *

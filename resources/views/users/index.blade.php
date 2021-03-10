@@ -42,11 +42,13 @@
         </div>
         @endif
 
+        @if(auth()->user()->hasPermissionTo('add user'))
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('users.create') }}"> Tambah data user</a>
             </div>
         </div>
+        @endif
     </div>
 
     <!-- /.card-header -->
@@ -56,7 +58,10 @@
                 <tr>
                     <th>Email</th>
                     <th>Name</th>
+
+                    @if(auth()->user()->hasAnyPermission(['view detail user', 'edit user', 'delete user']))
                     <th style="width: 280px">Action</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -65,24 +70,33 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->name }}</td>
 
+                    @if(auth()->user()->hasAnyPermission(['view detail user', 'edit user', 'delete user']))
                     <td>
                         <div style="display: flex">
-                            <div style="margin-right: 5px;">
-                                <a class="btn btn-info" href="{{ route('users.show',$user->id) }}"><i class="fa fa-eye"></i></a>
-                            </div>
-                            <div style="margin-right: 5px;">
-                                <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-edit"></i></a>
-                            </div>
-                            <div style="margin-right: 5px;">
-                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
-                                </form>
-                            </div>
+                            @if(auth()->user()->hasPermissionTo('view detail user'))
+                                <div style="margin-right: 5px;">
+                                    <a class="btn btn-info" href="{{ route('users.show',$user->id) }}"><i class="fa fa-eye"></i></a>
+                                </div>
+                            @endif
+
+                            @if(auth()->user()->hasPermissionTo('edit user'))
+                                <div style="margin-right: 5px;">
+                                    <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-edit"></i></a>
+                                </div>
+                            @endif
+
+                            @if(auth()->user()->hasPermissionTo('delete user'))
+                                <div style="margin-right: 5px;">
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            @endif
                         </div>
                     </td>
-
+                    @endif
                 </tr>
                 @endforeach
             </tbody>

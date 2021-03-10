@@ -15,6 +15,16 @@ use Illuminate\Support\Facades\Auth;
 
 class LecturerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view lecturer')->only('index');
+        $this->middleware('permission:view detail lecturer')->only('export_excel');
+        $this->middleware('permission:view detail lecturer')->only('show');
+        $this->middleware('permission:add lecturer')->only('create');
+        $this->middleware('permission:add lecturer')->only('import_excel');
+        $this->middleware('permission:edit lecturer')->only('edit');
+        $this->middleware('permission:delete lecturer')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
