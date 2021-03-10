@@ -15,6 +15,17 @@ use Illuminate\Support\Facades\Auth;
 
 class AlumniController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view alumni')->only('index');
+        $this->middleware('permission:view detail alumni')->only('export_excel');
+        $this->middleware('permission:view detail alumni')->only('show');
+        $this->middleware('permission:add alumni')->only('create');
+        $this->middleware('permission:add alumni')->only('import_excel');
+        $this->middleware('permission:edit alumni')->only('edit');
+        $this->middleware('permission:delete alumni')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *

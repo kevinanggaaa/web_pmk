@@ -55,7 +55,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}" id="email" name="email" placeholder="Masukkan Nama Alumni" value="{{ $alumni->email }}" required>
+                                <input type="text" class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}" id="email" name="email" placeholder="Masukkan Email Alumni" value="{{ $alumni->email }}" required>
                                 @error('email')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror

@@ -155,6 +155,18 @@ class RoleSeeder extends Seeder
         $edit_organizational_record = Permission::create(['name' => 'edit organizational record', 'guard_name' => 'web']);
         $delete_organizational_record = Permission::create(['name' => 'delete organizational record', 'guard_name' => 'web']);
 
+        $add_role = Permission::create(['name' => 'add role', 'guard_name' => 'web']);
+        $view_role = Permission::create(['name' => 'view role', 'guard_name' => 'web']);
+        $view_detail_role = Permission::create(['name' => 'view detail role', 'guard_name' => 'web']);
+        $edit_role = Permission::create(['name' => 'edit role', 'guard_name' => 'web']);
+        $delete_role = Permission::create(['name' => 'delete role', 'guard_name' => 'web']);
+
+        $add_user = Permission::create(['name' => 'add user', 'guard_name' => 'web']);
+        $view_user = Permission::create(['name' => 'view user', 'guard_name' => 'web']);
+        $view_detail_user = Permission::create(['name' => 'view detail user', 'guard_name' => 'web']);
+        $edit_user = Permission::create(['name' => 'edit user', 'guard_name' => 'web']);
+        $delete_user = Permission::create(['name' => 'delete user', 'guard_name' => 'web']);
+
         // Give Role Permission
         
         /*

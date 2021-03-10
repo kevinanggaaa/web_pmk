@@ -77,12 +77,6 @@
                     @if(auth()->user()->hasAnyPermission(['edit counseling', 'delete counseling']))
                     <td>
                         <div style="display: flex">
-                            <!-- @if(auth()->user()->hasPermissionTo('view detail counseling'))
-                            <div style="margin-right: 5px;">
-                                <a class="btn btn-primary" href="{{ route('counselings.edit',$counseling->id) }}"><i class="fa fa-edit"></i></a>
-                            </div>
-                            @endif -->
-
                             @if(auth()->user()->hasPermissionTo('edit counseling'))
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('counselings.edit',$counseling->id) }}"><i class="fa fa-edit"></i></a>

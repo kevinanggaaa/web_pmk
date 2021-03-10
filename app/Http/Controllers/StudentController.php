@@ -16,6 +16,16 @@ use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view student')->only('index');
+        $this->middleware('permission:view detail student')->only('export_excel');
+        $this->middleware('permission:view detail student')->only('show');
+        $this->middleware('permission:add student')->only('create');
+        $this->middleware('permission:add student')->only('import_excel');
+        $this->middleware('permission:edit student')->only('edit');
+        $this->middleware('permission:delete student')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

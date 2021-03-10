@@ -10,6 +10,15 @@ use App\Models\User;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view role')->only('index');
+        $this->middleware('permission:view detail role')->only('show');
+        $this->middleware('permission:add role')->only('create');
+        $this->middleware('permission:edit role')->only('edit');
+        $this->middleware('permission:delete role')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
