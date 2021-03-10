@@ -122,7 +122,6 @@ class UserController extends Controller
         ->whereNotIn('id', [$user->id])
         ->first();
 
-        $user->password = Hash::make($request['password']);
         $user->name = $request['name'];
         $user->pkk = $request['pkk'];
         $user->address = $request['address'];
@@ -152,9 +151,15 @@ class UserController extends Controller
                 ->update(['email' => $request['email']]);
 
             }
+            if(Auth::user()->id == $user->id){
+                return redirect()->route('profiles.index')
+                    ->with('success', 'Data profile berhasil diubah');
+            }
+            else{
+                return redirect()->route('users.index')
+                    ->with('success', 'Data user berhasil diubah');
+            }
 
-            return redirect()->route('users.index')
-                ->with('success', 'Data user berhasil diubah');
         }
         else{
             return redirect('admin/users/'.$user->id.'/edit')
@@ -174,8 +179,30 @@ class UserController extends Controller
         $user->avatar = $nama_file;
         $user->save();
 
-        return redirect()->route('users.index')
-            ->with('success', 'Foto Profil berhasil diubah');
+        if(Auth::user()->id == $user->id){
+            return redirect()->route('profiles.index')
+                ->with('success', 'Foto profile berhasil diubah');
+        }
+        else{
+            return redirect()->route('users.index')
+                ->with('success', 'Foto User berhasil diubah');
+        }
+        
+    }
+
+    public function updatePassword(Request $request, User $user)
+    {   
+        $user->password = Hash::make($request['password']);
+        $user->save();
+
+        if(Auth::user()->id == $user->id){
+            return redirect()->route('profiles.index')
+                ->with('success', 'password berhasil diubah');
+        }
+        else{
+            return redirect()->route('users.index')
+                ->with('success', 'password berhasil diubah');
+        }
     }
     /**
      * Remove the specified resource from storage.

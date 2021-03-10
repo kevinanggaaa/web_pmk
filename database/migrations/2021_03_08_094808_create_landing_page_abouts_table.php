@@ -17,7 +17,7 @@ class CreateLandingPageAboutsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('subtitle');
-            $table->string('description');
+            $table->text('description');
             $table->string('image');
             $table->timestamps();
         });

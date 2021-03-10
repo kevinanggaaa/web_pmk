@@ -1,6 +1,11 @@
 @extends('adminlte.template')
 
 @section('content')
+@if ($message = Session::get('success'))
+<div class="alert alert-success">
+    <p>{{ $message }}</p>
+</div>
+@endif
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">

@@ -62,6 +62,26 @@
             </form>
         </div>
         <div class="card card-primary">
+            <form role="form" method="POST" action="{{ route('users.updatePassword', $user->id)  }}" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="password">Ganti Password</label>
+                                <input type="password" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}" id="password" name="password" placeholder="Ganti password" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary swalDefaultInfo" value="Data user" id="data"><i class="fa fa-paper-plane"></i>Ganti</button>
+                </div>
+            </form>
+        </div>
+        <div class="card card-primary">
             <form role="form" method="POST" action="{{ route('users.update', $user->id)  }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -71,12 +91,6 @@
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}" id="email" name="email" placeholder="Masukkan email" value="{{$user->email}}" required>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}" id="password" name="password" placeholder="Masukkan password" value="{{$user->password}}" required>
                             </div>
                         </div>
                         <div class="col-sm-12">

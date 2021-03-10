@@ -17,7 +17,7 @@ class CreatePrayerRequestsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable();
             $table->string('name')->nullable();
-            $table->string('content');
+            $table->text('content');
             $table->string('status')->nullable();
             $table->timestamps();
 

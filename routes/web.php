@@ -79,6 +79,7 @@ Route::prefix('admin')->group(function () {
 
     Route::resource('/roles', RoleManagementController::class);
     Route::put('/users/updateAvatar/{user}', [UserController::class, 'updateAvatar'])->name('users.updateAvatar');
+    Route::put('/users/updatePassword/{user}', [UserController::class, 'updatePassword'])->name('users.updatePassword');
     Route::put('/users/updateImage/{event}', [EventController::class, 'updateImage'])->name('events.updateImage');
 
     Route::resource('/roles', RoleController::class);
