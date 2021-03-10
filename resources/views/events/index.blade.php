@@ -41,13 +41,13 @@
         </div>
         @endif
 
-        @if(auth()->user()->hasPermissionTo('add event'))
+        @can('add event'))
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('events.create') }}"> Tambah data event</a>
             </div>
         </div>
-        @endif
+        @endcan
     </div>
 
     <!-- /.card-header -->
@@ -75,21 +75,21 @@
                     @if(auth()->user()->hasAnyPermission(['view detail event', 'edit event', 'delete event']))
                     <td>
                         <div style="display: flex">
-                            @if(auth()->user()->hasPermissionTo('view detail event'))
+                            @can('view detail event'))
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('events.show',$event->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->hasPermissionTo('edit event'))
+                            @can('edit event'))
                                 @if($event->creator_id == $user->id)
                                 <div style="margin-right: 5px;">
                                     <a class="btn btn-primary" href="{{ route('events.edit',$event->id) }}"><i class="fa fa-edit"></i></a>
                                 </div>
                                 @endif
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->hasPermissionTo('delete event'))
+                            @can('delete event'))
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('events.destroy', $event->id) }}" method="POST" class="display: inline;">
                                     @csrf
@@ -97,7 +97,7 @@
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
-                            @endif
+                            @endcan
                         </div>
                     </td>
                     @endif

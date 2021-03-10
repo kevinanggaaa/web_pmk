@@ -74,13 +74,13 @@
                     <td>
                         <div style="display: flex">
 
-                            @if(auth()->user()->hasPermissionTo('edit prayer request'))
+                            @can('edit prayer request'))
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('prayer-requests.edit',$prayerRequest->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->hasPermissionTo('delete prayer request'))
+                            @can('delete prayer request'))
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('prayer-requests.destroy', $prayerRequest->id) }}" method="POST" class="display: inline;">
                                     @csrf
@@ -88,7 +88,7 @@
                                     <button type="submit" class="btn btn-danger deleteData" ><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
-                            @endif
+                            @endcan
                         </div>
                     </td>
                     @endif
