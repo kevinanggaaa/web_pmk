@@ -66,14 +66,14 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                                @if(auth()->user()->hasPermissionTo('view lecturer'))
+                                @can('view lecturer')
                                 <li class="nav-item">
                                     <a href="{{route ('lecturers.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Dosen</p>
                                     </a>
                                 </li>
-                                @endif
+                                @endcan
 
                                 @if(auth()->user()->hasPermissionTo('view student'))
                                 <li class="nav-item">

@@ -34,7 +34,6 @@ class UserSeeder extends Seeder
         ]);
 
         $super_admin->assignRole('Super Admin');
-        $super_admin->assignRole('Mahasiswa');
 
         Student::create([
             'name' => 'superadmin',
@@ -61,12 +60,16 @@ class UserSeeder extends Seeder
             'user_id' => '1',
             'model_id' => '1',
             'model_type' => 'App\Models\Student',
-        ],[
+        ]);
+        
+        Profile::create([
             'profile_id' => '51724',
             'user_id' => '1',
             'model_id' => '1',
             'model_type' => 'App\Models\Lecturer',
-        ],[
+        ]);
+
+        Profile::create([
             'profile_id' => 'superadmin@pmk.its.ac.id',
             'user_id' => '1',
             'model_id' => '1',

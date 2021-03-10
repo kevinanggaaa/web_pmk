@@ -373,8 +373,9 @@
             </div>
         </div>
 
-        @foreach($renungans as $renungan)
+        
         <div class="row d-flex">
+            @foreach($renungans as $renungan)
             <div class="col-md-6 col-lg-4 d-flex ftco-animate">
                 <div class="blog-entry align-self-stretch">
                     <a href="blog-single.html" class="block-20" style="background-image: url('landingpage/renungan/{{$renungan->image}}');">
@@ -389,8 +390,9 @@
                     </div>
                 </div>
             </div>  
+            @endforeach
         </div>
-        @endforeach
+        
         <!-- <div class="row d-flex">
             <div class="col-md-6 col-lg-4 d-flex ftco-animate">
                 <div class="blog-entry align-self-stretch">
@@ -474,141 +476,4 @@
     </div>
 </section>
 
-<section class="ftco-section ftco-no-pt">
-    <div class="container">
-        <div class="row justify-content-center pb-5 mb-3">
-            <div class="col-md-7 heading-section text-center ftco-animate">
-                <span class="subheading">Contact Us</span>
-                <h2>Prayer Request</h2>
-            </div>
-        </div>
-        <div class="row no-gutters">
-            <div class="col-md-7">
-                <div class="contact-wrap w-100 p-md-5 p-4">
-                    <h3 class="mb-4">Prayer Request</h3>
-                    <form method="POST" id="contactForm" name="contactForm" class="contactForm">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="label" for="name">Full Name</label>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Name">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="label" for="prayer-req-content">Nama</label>
-                                    <textarea name="content" class="form-control" id="prayer-req-content" cols="30" rows="4" placeholder="Message"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="submit" value="Send Message" class="btn btn-primary">
-                                    <div class="submitting"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-md-5 d-flex align-items-stretch">
-                <div class="info-wrap w-100 p-5 img" style="background-image: url(salvation/images/about-3.jpg);">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<section class="ftco-section ftco-no-pt">
-    <div class="container">
-        <div class="row justify-content-center pb-5 mb-3">
-            <div class="col-md-7 heading-section text-center ftco-animate">
-                <span class="subheading">Contact Us</span>
-                <h2>Counseling Request</h2>
-            </div>
-        </div>
-        <div class="row no-gutters">
-            <div class="col-md-5 d-flex align-items-stretch">
-                <div class="info-wrap w-100 p-5 img" style="background-image: url(salvation/images/about-3.jpg);">
-                </div>
-            </div>
-            <div class="col-md-7">
-                <div class="contact-wrap w-100 p-md-5 p-4">
-                    <h3 class="mb-4">Counseling Request</h3>
-                    <form method="POST" id="contactForm" name="contactForm" class="contactForm">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="label" for="counselee-name">Nama</label>
-                                    <input type="text" class="form-control" name="counselee-name" id="counselee-name" placeholder="Name">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="label" for="counselee-contact">Kontak untuk dihubungi</label>
-                                    <input type="text" class="form-control" name="counselee-contact" id="counselee-contact" placeholder="Kontak yang bisa dihubungi">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="submit" value="Send Message" class="btn btn-primary">
-                                    <div class="submitting"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<section class="ftco-section ftco-no-pb ftco-no-pt">
-    <div class="container-fluid px-md-0">
-        <div class="row no-gutters justify-content-center pb-5 mb-3">
-            <div class="col-md-7 heading-section text-center ftco-animate">
-                <span class="subheading">Gallery</span>
-                <h2>Galleries</h2>
-            </div>
-        </div>
-        <div class="row no-gutters">
-            <div class="col-md-3">
-                <a href="images/gallery-1.jpg" class="image-popup img gallery ftco-animate" style="background-image: url(salvation/images/gallery-1.jpg);">
-                    <span class="overlay"></span>
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a href="images/gallery-2.jpg" class="image-popup img gallery ftco-animate" style="background-image: url(salvation/images/gallery-2.jpg);">
-                    <span class="overlay"></span>
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a href="images/gallery-3.jpg" class="image-popup img gallery ftco-animate" style="background-image: url(salvation/images/gallery-3.jpg);">
-                    <span class="overlay"></span>
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a href="images/gallery-4.jpg" class="image-popup img gallery ftco-animate" style="background-image: url(salvation/images/gallery-4.jpg);">
-                    <span class="overlay"></span>
-                </a>
-            </div>
-            <div class="col-md-6">
-                <a href="images/gallery-5.jpg" class="image-popup img gallery ftco-animate" style="background-image: url(salvation/images/gallery-5.jpg);">
-                    <span class="overlay"></span>
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a href="images/gallery-6.jpg" class="image-popup img gallery ftco-animate" style="background-image: url(salvation/images/gallery-6.jpg);">
-                    <span class="overlay"></span>
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a href="images/gallery-7.jpg" class="image-popup img gallery ftco-animate" style="background-image: url(salvation/images/gallery-7.jpg);">
-                    <span class="overlay"></span>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
 @endsection
