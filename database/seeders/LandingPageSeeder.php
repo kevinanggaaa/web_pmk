@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\LandingPageHome;
+use App\Models\LandingPageVisiMisi;
+use App\Models\LandingPageAbout;
+use App\Models\LandingPageRenungan;
 use Illuminate\Database\Seeder;
 
 class LandingPageSeeder extends Seeder

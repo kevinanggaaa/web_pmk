@@ -39,6 +39,29 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card card-primary">
+            <form role="form" method="POST" action="{{ route('landingPage.updateRenunganAvatar', $renungan->id)  }}" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="image">Gambar</label>
+                                <input type="file" name="image" id="image" class="form-control" value="{{ $renungan->image }}" required>
+                                @error('image')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary swalDefaultInfo" value="Data user" id="data"><i class="fa fa-paper-plane"></i> Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="card card-primary">
             <form role="form" method="POST" action="{{ route('landingPage.updateRenungan', $renungan->id)  }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -76,15 +99,6 @@
                                 <label for="bacaan">Bacaan</label>
                                 <input type="text" class="form-control {{$errors->has('bacaan') ? 'is-invalid' : ''}}" id="bacaan" name="bacaan" placeholder="Masukkan bacaan" value="{{$renungan->bacaan}}" required>
                                 @error('bacaan')
-                                <span class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="image">Gambar</label>
-                                <input type="file" name="image" id="image" class="form-control " value="{{$renungan->image}}">
-                                @error('image')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>

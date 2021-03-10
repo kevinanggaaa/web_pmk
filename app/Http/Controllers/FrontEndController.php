@@ -241,23 +241,11 @@ class FrontEndController extends Controller
      */
     public function updateHome(Request $request, $id)
     {
-        if($request['image'] == null){
-            $nama_file = 'default.jpg';
-        }
-        else{
-            $file = $request['image'];
-            $nama_file = time().'_'.$file->getClientOriginalName();
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'landingpage/home';
-            $file->move($tujuan_upload, $nama_file);
-        }
-
         $home = LandingPageHome::select()->where('id', $id)->first();
 
         $home->title = $request->title;
         $home->subtitle = $request->subtitle;
         $home->description = $request->description;
-        $home->image = $nama_file;
         $home->save();
 
         return redirect()->route('landingPage.indexHome')
@@ -285,6 +273,59 @@ class FrontEndController extends Controller
 
     public function updateAbout(Request $request, $id)
     {
+        $about = LandingPageAbout::select()->where('id', $id)->first();
+
+        $about->title = $request->title;
+        $about->subtitle = $request->subtitle;
+        $about->description = $request->description;
+        $about->save();
+
+        return redirect()->route('landingPage.indexAbout')
+                ->with('success', 'Data landing page about berhasil diubah');
+    }
+
+    public function updateRenungan(Request $request, $id)
+    {
+
+        $renungan = LandingPageRenungan::select()->where('id', $id)->first();
+
+        $renungan->title = $request->title;
+        $renungan->lokasiFirman = $request->lokasiFirman;
+        $renungan->isiFirman = $request->isiFirman;
+        $renungan->bacaan = $request->bacaan;
+        $renungan->save();
+
+        return redirect()->route('landingPage.indexRenungan')
+                ->with('success', 'Data landing page renungan berhasil diubah');
+
+    }
+
+    public function updateHomeAvatar(Request $request, User $id)
+    {
+        
+        if($request['image'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+            $file = $request['image'];
+            $nama_file = time().'_'.$file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'landingpage/home';
+            $file->move($tujuan_upload, $nama_file);
+        }
+
+        $home = LandingPageHome::select()->where('id', $id)->first();
+
+        $home->image = $nama_file;
+        $home->save();
+
+        return redirect()->route('landingPage.indexHome')
+            ->with('success', 'Foto landing page home berhasil diubah');
+    }
+
+    public function updateAboutAvatar(Request $request, User $id)
+    {
+        
         if($request['image'] == null){
             $nama_file = 'default.jpg';
         }
@@ -298,18 +339,16 @@ class FrontEndController extends Controller
 
         $about = LandingPageAbout::select()->where('id', $id)->first();
 
-        $about->title = $request->title;
-        $about->subtitle = $request->subtitle;
-        $about->description = $request->description;
         $about->image = $nama_file;
         $about->save();
 
         return redirect()->route('landingPage.indexAbout')
-                ->with('success', 'Data landing page about berhasil diubah');
+            ->with('success', 'Foto landing page about berhasil diubah');
     }
 
-    public function updateRenungan(Request $request, $id)
+    public function updateRenunganAvatar(Request $request, User $id)
     {
+        
         if($request['image'] == null){
             $nama_file = 'default.jpg';
         }
@@ -323,17 +362,13 @@ class FrontEndController extends Controller
 
         $renungan = LandingPageRenungan::select()->where('id', $id)->first();
 
-        $renungan->title = $request->title;
-        $renungan->lokasiFirman = $request->lokasiFirman;
-        $renungan->isiFirman = $request->isiFirman;
-        $renungan->bacaan = $request->bacaan;
         $renungan->image = $nama_file;
         $renungan->save();
 
         return redirect()->route('landingPage.indexRenungan')
-                ->with('success', 'Data landing page renungan berhasil diubah');
-
+            ->with('success', 'Foto landing page renungan berhasil diubah');
     }
+    
 
     /**
      * Remove the specified resource from storage.

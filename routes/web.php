@@ -51,6 +51,7 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/alumnis/export_excel', [AlumniController::class, 'export_excel'])->name('alumnis.export_excel');
     Route::post('/alumnis/import_excel', [AlumniController::class, 'import_excel'])->name('alumnis.import_excel');
+    Route::put('/alumnis/updateAvatar/{alumni}', [AlumniController::class, 'updateAvatar'])->name('alumnis.updateAvatar');
     Route::resource('/alumnis', AlumniController::class);
 
     Route::resource('/events', EventController::class);
@@ -91,6 +92,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/landingPageHome/{home}', [FrontEndController::class, 'showHome'])->name('landingPage.showHome');
     Route::get('/landingPageHome/{home}/edit', [FrontEndController::class, 'editHome'])->name('landingPage.editHome');
     Route::put('/landingPageHome/{home}', [FrontEndController::class, 'updateHome'])->name('landingPage.updateHome');
+    Route::put('/landingPageHome/updateAvatar/{home}', [FrontEndControllerController::class, 'updateHomeAvatar'])->name('landingPage.updateHomeAvatar');
     Route::delete('/landingPageHome/{home}', [FrontEndController::class, 'destroyHome'])->name('landingPage.deleteHome');
 
     Route::get('/landingPageVisiMisi', [FrontEndController::class, 'indexVisiMisi'])->name('landingPage.indexVisiMisi');
@@ -107,6 +109,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/landingPageAbout/{about}', [FrontEndController::class, 'showAbout'])->name('landingPage.showAbout');
     Route::get('/landingPageAbout/{about}/edit', [FrontEndController::class, 'editAbout'])->name('landingPage.editAbout');
     Route::put('/landingPageAbout/{about}', [FrontEndController::class, 'updateAbout'])->name('landingPage.updateAbout');
+    Route::put('/landingPageAbout/updateAvatar/{about}', [FrontEndControllerController::class, 'updateAboutAvatar'])->name('landingPage.updateAboutAvatar');
     Route::delete('/landingPageAbout/{about}', [FrontEndController::class, 'destroyAbout'])->name('landingPage.deleteAbout');
 
     Route::get('/landingPageRenungan', [FrontEndController::class, 'indexRenungan'])->name('landingPage.indexRenungan');
@@ -115,6 +118,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/landingPageRenungan/{renungan}', [FrontEndController::class, 'showRenungan'])->name('landingPage.showRenungan');
     Route::get('/landingPageRenungan/{renungan}/edit', [FrontEndController::class, 'editRenungan'])->name('landingPage.editRenungan');
     Route::put('/landingPageRenungan/{renungan}', [FrontEndController::class, 'updateRenungan'])->name('landingPage.updateRenungan');
+    Route::put('/landingPageRenungan/updateAvatar/{renungan}', [FrontEndControllerController::class, 'updateRenunganAvatar'])->name('landingPage.updateRenunganAvatar');
     Route::delete('/landingPageRenungan/{renungan}', [FrontEndController::class, 'destroyRenungan'])->name('landingPage.deleteRenungan');
 });
 
