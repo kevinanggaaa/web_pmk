@@ -43,6 +43,14 @@
                                     <td>{{$event->description}}</td>
                                 </tr>
                                 <tr>
+                                    <td>Pembicara</td>
+                                    <td>{{$event->speaker}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Link</td>
+                                    <td>{{$event->link}}</td>
+                                </tr>
+                                <tr>
                                     <td>Tipe</td>
                                     <td>{{$event->type}}</td>
                                 </tr>
@@ -57,10 +65,6 @@
                                 <tr>
                                     <td>Jumlah Peserta</td>
                                     <td>{{$event->attendant_count}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Id Peserta yang Hadir</td>
-                                    <td>{{$event->attendant_id}}</td>
                                 </tr>
                                 <tr>
                                     <td>Report</td>

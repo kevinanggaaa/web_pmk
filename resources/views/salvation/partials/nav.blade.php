@@ -30,10 +30,10 @@
                 @auth
                 <li class="nav-item"><a href="{{route ('profiles.index')}}" class="nav-link">Profile</a></li>
                 @endauth
-                <li class="nav-item"><a href="about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="sermons" class="nav-link">Persekutuan Jumat</a></li>
-                <li class="nav-item"><a href="events" class="nav-link">Renungan</a></li>
-                <li class="nav-item"><a href="blog" class="nav-link">Event</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#persekutuan-jumat" class="nav-link">Persekutuan Jumat</a></li>
+                <li class="nav-item"><a href="#renungan" class="nav-link">Renungan</a></li>
+                <li class="nav-item"><a href="#event" class="nav-link">Event</a></li>
                 <li class="nav-item"><a href="contact" class="nav-link">Contact</a></li>
                 @auth
                 <li class="nav-item cta dropdown">

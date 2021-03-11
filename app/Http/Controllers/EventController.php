@@ -78,6 +78,8 @@ class EventController extends Controller
             'end' => $request['end'],
             'image' => $nama_file,
             'slug' => $this->createSlug($request->title),
+            'speaker' => $request['speaker'],
+            'link' => $request['link'],
             'creator_id' => $user->id,
             'creator_type' => $creator,
         ]);
@@ -156,6 +158,8 @@ class EventController extends Controller
         $event->end = $request['end'];
         $event->report = $request['report'];
         $event->slug = $this->createSlug($request->title);
+        $event->speaker = $request['speaker'];
+        $event->link = $request['link'];
         $event->save();
 
         return redirect()->route('events.index')

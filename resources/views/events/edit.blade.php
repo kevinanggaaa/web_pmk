@@ -70,12 +70,29 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="description">Deskripsi</label>
                                 <input type="text" class="form-control {{$errors->has('description') ? 'is-invalid' : ''}}" id="description" name="description" placeholder="Masukkan Deskripsi Acara" value="{{$event->description}}" required>
                                 @error('description')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="speaker">Pembicara</label>
+                                <input type="text" class="form-control {{$errors->has('speaker') ? 'is-invalid' : ''}}" id="speaker" name="speaker" placeholder="Masukkan Deskripsi Acara" value="{{$event->speaker}}">
+                                @error('speaker')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="link">Link</label>
+                                <input type="text" class="form-control {{$errors->has('link') ? 'is-invalid' : ''}}" id="link" name="link" placeholder="Masukkan Link Video" value="{{$event->link}}">
+                                @error('link')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>

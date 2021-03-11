@@ -57,6 +57,24 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
+                                <label for="speaker">Pembicara</label>
+                                <input type="text" class="form-control {{$errors->has('speaker') ? 'is-invalid' : ''}}" id="speaker" name="speaker" placeholder="Masukkan Nama Pembicara" value="{{old('speaker')}}">
+                                @error('speaker')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="link">Link</label>
+                                <input type="link" class="form-control {{$errors->has('link') ? 'is-invalid' : ''}}" id="link" name="link" placeholder="Masukkan Link Video" value="{{old('link')}}">
+                                @error('link')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
                                 <label for="type">Type</label>
                                 <select name="type" id="type" class="form-control {{$errors->has('type') ? 'is-invalid' : ''}}" required>
                                     <option value="">== Pilih Type ==</option>
