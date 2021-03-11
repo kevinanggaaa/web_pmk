@@ -50,7 +50,6 @@
                 <tr>
                     <th>Nama</th>
                     <th>Tanggal lahir</th>
-                    <th style="width: 280px">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,13 +57,6 @@
                 <tr>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->birthdate }}</td>
-                    <td>
-                        <div style="display: flex">
-                            <div style="margin-right: 5px;">
-                                <a class="btn btn-info" href="{{ route('users.show',$user->id) }}"><i class="fa fa-eye"></i></a>
-                            </div>
-                        </div>
-                    </td>
                 </tr>
                 @endforeach
             </tbody>

@@ -46,7 +46,7 @@
         </div>
         @endif
 
-        @can('add alumni'))
+        @can('add alumni')
         <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
             IMPORT EXCEL
         </button>
@@ -79,11 +79,11 @@
         </div>
         @endcan
 
-        @can('view detail alumni'))
+        @can('view detail alumni')
         <a href="{{route('alumnis.export_excel')}}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
         @endcan
 
-        @can('add alumni'))
+        @can('add alumni')
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('alumnis.create') }}"> Tambah data alumni</a>
@@ -117,19 +117,19 @@
                     @if(auth()->user()->hasAnyPermission(['view detail alumni', 'edit alumni', 'delete alumni']))
                     <td>
                         <div style="display: flex">
-                            @can('view detail alumni'))
+                            @can('view detail alumni')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('alumnis.show',$alumni->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
                             @endcan
 
-                            @can('edit alumni'))
+                            @can('edit alumni')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('alumnis.edit',$alumni->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
                             @endcan
 
-                            @can('delete alumni'))
+                            @can('delete alumni')
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('alumnis.destroy', $alumni->id) }}" method="POST" class="display: inline;">
                                     @csrf

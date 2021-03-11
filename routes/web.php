@@ -34,7 +34,9 @@ use App\Http\Controllers\FrontEndController;
 
 Route::get('/', [FrontEndController::class, 'indexAll'])->name('home');
 
-Route::get('/new-pray-requests', [PrayerRequestController::class, 'create']);
+Route::get('/new-pray-requests', [PrayerRequestController::class, 'create'])->name('prayRequest.new');
+
+Route::get('/renungan/{renungan}', [FrontEndController::class, 'showRenunganDetail'])->name('renungan.show');
 
 Route::get('/new-alumni', [AlumniController::class, 'createform']);
 Route::get('/check-alumni', [AlumniController::class, 'nameBirthdate']);

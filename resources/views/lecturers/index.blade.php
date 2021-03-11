@@ -46,7 +46,7 @@
         </div>
         @endif
 
-        @can('add lecturer'))
+        @can('add lecturer')
         <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
             IMPORT EXCEL
         </button>
@@ -80,11 +80,11 @@
         </div>
         @endcan
 
-        @can('view detail lecturer'))
+        @can('view detail lecturer')
         <a href="{{route('lecturers.export_excel')}}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
         @endcan
 
-        @can('add lecturer'))
+        @can('add lecturer')
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('lecturers.create') }}"> Tambah data dosen</a>
@@ -117,19 +117,19 @@
                     @if(auth()->user()->hasAnyPermission(['view detail lecturer', 'edit lecturer', 'delete lecturer']))
                     <td>
                         <div style="display: flex">
-                            @can('view detail lecturer'))
+                            @can('view detail lecturer')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('lecturers.show',$lecturer->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
                             @endcan
 
-                            @can('edit lecturer'))
+                            @can('edit lecturer')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('lecturers.edit',$lecturer->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
                             @endcan
 
-                            @can('delete lecturer'))
+                            @can('delete lecturer')
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('lecturers.destroy', $lecturer->id) }}" method="POST" class="display: inline;">
                                     @csrf

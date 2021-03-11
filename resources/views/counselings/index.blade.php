@@ -41,7 +41,7 @@
         </div>
         @endif
 
-        @can('add counseling'))
+        @can('add counseling')
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('counselings.create') }}"> Tambah data Counseling</a>
@@ -77,13 +77,13 @@
                     @if(auth()->user()->hasAnyPermission(['edit counseling', 'delete counseling']))
                     <td>
                         <div style="display: flex">
-                            @can('edit counseling'))
+                            @can('edit counseling')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('counselings.edit',$counseling->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
                             @endcan
 
-                            @can('delete counseling'))
+                            @can('delete counseling')
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('counselings.destroy', $counseling->id) }}" method="POST" class="display: inline;">
                                     @csrf

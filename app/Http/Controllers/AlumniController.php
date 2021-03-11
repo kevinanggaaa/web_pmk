@@ -88,6 +88,12 @@ class AlumniController extends Controller
      */
     public function store(AlumniRequest $request)
     {
+        $ultah = explode('-', $request->birthdate);
+        $year = $ultah[0];
+        $month = $ultah[1];
+        $day  = $ultah[2];
+        $ultah = $day . '' . $month . '' . $year;
+        
         if($request['avatar'] == null){
             $file_name = 'default.jpg';
         }
@@ -105,7 +111,7 @@ class AlumniController extends Controller
                 'email' => $request['email']
             ],
             [
-                'password' => bcrypt($request['nrp']),
+                'password' => bcrypt($ultah),
                 'name' => $request['name'],
                 'pkk' => $request['pkk'],
                 'address' => $request['address'],

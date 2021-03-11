@@ -22,6 +22,12 @@ class AlumniImport implements ToModel, WithHeadingRow
     {
         // $row = $row->toArray();
 
+        $ultah = explode('-', $row->birthdate);
+        $year = $ultah[0];
+        $month = $ultah[1];
+        $day  = $ultah[2];
+        $ultah = $day . '' . $month . '' . $year;
+
         $alumni = Alumni::firstOrCreate(
             [
                 'email' => $row['email'],
@@ -39,7 +45,7 @@ class AlumniImport implements ToModel, WithHeadingRow
                 'email' => $row['email'],
             ],
             [
-                'password' => bcrypt($row['email']),
+                'password' => bcrypt($ultah),
                 'name' => $row['name'],
                 'pkk' => $row['pkk'],
                 'address' => $row['address'],

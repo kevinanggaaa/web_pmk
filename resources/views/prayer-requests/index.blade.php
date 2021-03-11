@@ -44,7 +44,7 @@
 
         <div class="card-tools">
             <div class="">
-                <a class="btn btn-success" href="{{ route('/new-pray-requests') }}"> Tambah data pray request</a>
+                <a class="btn btn-success" href="{{ route('prayRequest.new') }}"> Tambah data pray request</a>
             </div>
         </div>
     </div>

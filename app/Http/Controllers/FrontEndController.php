@@ -242,9 +242,16 @@ class FrontEndController extends Controller
         return view('landingPageRenungan.show', compact('renungan'));
     }
 
+
     public function showTestimony(LandingPageTestimony $testimony)
     {
         return view('landingPageTestimony.show', compact('testimony'));
+    }
+
+    public function showRenunganDetail($id)
+    {
+        $renungan = LandingPageRenungan::select()->where('id', $id)->first();
+        return view('landingPageRenungan.renungan', compact('renungan'));
     }
     
 

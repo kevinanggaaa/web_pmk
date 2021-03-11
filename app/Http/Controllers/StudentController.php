@@ -56,6 +56,12 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request)
     {   
+        $ultah = explode('-', $request->birthdate);
+        $year = $ultah[0];
+        $month = $ultah[1];
+        $day  = $ultah[2];
+        $ultah = $day . '' . $month . '' . $year;
+
         if($request['avatar'] == null){
             $nama_file = 'default.jpg';
         }
@@ -72,7 +78,7 @@ class StudentController extends Controller
                 'email' => $request['email']
             ],
             [
-                'password' => bcrypt($request['nrp']),
+                'password' => bcrypt($ultah),
                 'name' => $request['name'],
                 'pkk' => $request['pkk'],
                 'address' => $request['address'],

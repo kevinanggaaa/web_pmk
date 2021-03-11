@@ -22,6 +22,12 @@ class LecturerImport implements ToModel, WithHeadingRow
     {
         // $row = $row->toArray();
 
+        $ultah = explode('-', $row->birthdate);
+        $year = $ultah[0];
+        $month = $ultah[1];
+        $day  = $ultah[2];
+        $ultah = $day . '' . $month . '' . $year;
+
         $lecturer = Lecturer::firstOrCreate(
             [
                 'nidn' => $row['nidn'],
@@ -36,7 +42,7 @@ class LecturerImport implements ToModel, WithHeadingRow
                 'email' => $row['email'],
             ],
             [
-                'password' => bcrypt($row['nidn']),
+                'password' => bcrypt($ultah),
                 'name' => $row['name'],
                 'pkk' => $row['pkk'],
                 'address' => $row['address'],

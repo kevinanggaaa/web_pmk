@@ -42,7 +42,7 @@
         </div>
         @endif
 
-        @can('add organizational record'))
+        @can('add organizational record')
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('organizational-records.create') }}"> Tambah data organisasi</a>
@@ -84,19 +84,19 @@
                     @if(auth()->user()->hasAnyPermission(['view detail organizational record', 'edit organizational record', 'delete organizational record']))
                     <td>
                         <div style="display: flex">
-                            @can('view detail organizational record'))
+                            @can('view detail organizational record')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('organizational-records.show',$organizationalRecord->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
                             @endcan
 
-                            @can('edit organizational record'))
+                            @can('edit organizational record')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('organizational-records.edit',$organizationalRecord->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
                             @endcan
 
-                            @can('delete organizational record'))
+                            @can('delete organizational record')
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('organizational-records.destroy', $organizationalRecord->id) }}" method="POST" class="display: inline;">
                                     @csrf
