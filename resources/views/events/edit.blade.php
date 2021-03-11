@@ -90,6 +90,15 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
+                                <label for="location">Lokasi</label>
+                                <input type="text" class="form-control {{$errors->has('location') ? 'is-invalid' : ''}}" id="location" name="location" placeholder="Masukkan Lokasi Acara" value="{{$event->location}}">
+                                @error('location')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
                                 <label for="link">Link</label>
                                 <input type="text" class="form-control {{$errors->has('link') ? 'is-invalid' : ''}}" id="link" name="link" placeholder="Masukkan Link Video" value="{{$event->link}}">
                                 @error('link')

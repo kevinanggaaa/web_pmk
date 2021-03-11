@@ -23,6 +23,7 @@ class CreateEventsTable extends Migration
             $table->string('image');
             $table->string('speaker')->nullable();
             $table->string('link')->nullable();
+            $table->string('location');
             $table->string('slug')->nullable()->unasigned();
             $table->integer('attendant_count')->default(0);
             $table->text('attendant_id')->nullable();

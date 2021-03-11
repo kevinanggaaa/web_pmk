@@ -181,7 +181,7 @@
                             @if($pj->speaker)
                             <span>Speaker: <a href="#" class="ptr">{{$pj->speaker}}</a></span>
                             @endif
-                            <span><a href="#">{{$pj->start}} until @if($pj->end){{$pj->end}}@endif</a></span>
+                            <span><a href="#">{{$pj->start}}@if($pj->end) until {{$pj->end}}@endif</a></span>
                         </p>
                     </div>
                     <p>{{$pj->description}}</p>
@@ -206,83 +206,29 @@
     <div class="container">
         <div class="row justify-content-center pb-5">
             <div class="col-md-7 heading-section heading-section-white text-center ftco-animate">
-                <span class="subheading">Testimony</span>
-                <h2>Transform Lives</h2>
+                <span class="subheading">Kesaksian</span>
+                <h2>PMK Sharing</h2>
             </div>
         </div>
         <div class="row ftco-animate">
             <div class="col-md-12">
                 <div class="carousel-testimony owl-carousel">
+                    @foreach($testimonies as $testimony)
                     <div class="item">
                         <div class="testimony-wrap d-md-flex">
-                            <div class="user-img" style="background-image: url(salvation/images/person_1.jpg)">
+                            <div class="user-img" style="background-image: url(landingpage/testimony/{{$testimony->image}})">
                             </div>
                             <div class="text pl-md-4">
                                 <span class="quote d-flex align-items-center justify-content-center">
                                     <i class="fa fa-quote-left"></i>
                                 </span>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                    Consonantia, there live the blind texts.</p>
-                                <p class="name">Michael Fox</p>
+                                <p>{{$testimony->quote}}</p>
+                                <p class="name">{{$testimony->name}}</p>
+                                <p>{{$testimony->position}}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="testimony-wrap d-md-flex">
-                            <div class="user-img" style="background-image: url(salvation/images/person_2.jpg)">
-                            </div>
-                            <div class="text pl-md-4">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-quote-left"></i>
-                                </span>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                    Consonantia, there live the blind texts.</p>
-                                <p class="name">Mike Shawn</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap d-md-flex">
-                            <div class="user-img" style="background-image: url(salvation/images/person_3.jpg)">
-                            </div>
-                            <div class="text pl-md-4">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-quote-left"></i>
-                                </span>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                    Consonantia, there live the blind texts.</p>
-                                <p class="name">Mark Smith</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap d-md-flex">
-                            <div class="user-img" style="background-image: url(salvation/images/person_4.jpg)">
-                            </div>
-                            <div class="text pl-md-4">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-quote-left"></i>
-                                </span>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                    Consonantia, there live the blind texts.</p>
-                                <p class="name">Kyle Meyer</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap d-md-flex">
-                            <div class="user-img" style="background-image: url(salvation/images/person_1.jpg)">
-                            </div>
-                            <div class="text pl-md-4">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-quote-left"></i>
-                                </span>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                    Consonantia, there live the blind texts.</p>
-                                <p class="name">John Doe</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -317,26 +263,6 @@
             </div>  
             @endforeach
         </div>
-        
-        <!-- <div class="row d-flex">
-            <div class="col-md-6 col-lg-4 d-flex ftco-animate">
-                <div class="blog-entry align-self-stretch">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('salvation/images/image_1.jpg');">
-                    </a>
-                    <div class="text p-4">
-                        <div class="meta mb-2">
-                            <div><a href="#">July 20, 2020</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Building Holy &amp; Healthy Lives God’s</a></h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                            Consonantia</p>
-                        <p><a href="#" class="btn btn-primary">Read more</a></p>
-                    </div>
-                </div>
-            </div>  
-        </div> -->
     </div>
 </section>
 
@@ -349,54 +275,26 @@
             </div>
         </div>
         <div class="row">
+            @foreach($events as $event)
             <div class="col-md-12 event-wrap d-md-flex ftco-animate">
-                <div class="img" style="background-image: url(salvation/images/event-1.jpg);"></div>
+                <div class="img" style="background-image: url(landingpage/event/{{$event->image}});"></div>
                 <div class="text p-4 px-md-5 d-flex align-items-center">
                     <div class="desc">
-                        <h2 class="mb-4"><a href="sermons.html">Giving Hope to Our Spiritual Needs</a></h2>
+                        <h2 class="mb-4"><a href=#>{{$event->title}}</a></h2>
                         <div class="meta">
                             <p>
-                                <span><i class="fa fa-calendar mr-2"></i> Monday, 8:00 Am - Tuesday, 8:00 Pm</span>
-                                <span><i class="fa fa-map-marker mr-2"></i> <a href="#">Salvation Church</a></span>
-                                <span><i class="fa fa-building mr-2"></i> 203 Fake St. Mountain View, San Francisco, California, USA</span>
+                                <span><i class="fa fa-calendar mr-2"></i> {{$event->start}}@if($event->end) until {{$event->end}}@endif</span>
+                                <span><i class="fa fa-map-marker mr-2"></i> <a href="#">{{$event->location}}</a></span>
+                                <span>{{$event->description}}</span>
                             </p>
                         </div>
-                        <p><a href="sermons.html" class="btn btn-primary">More Details</a></p>
+                        @if($event->link)
+                        <p><a href="{{$event->link}}" target="_blank" class="btn btn-primary">More Details</a></p>
+                        @endif
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 event-wrap d-md-flex ftco-animate">
-                <div class="img" style="background-image: url(salvation/images/event-2.jpg);"></div>
-                <div class="text p-4 px-md-5 d-flex align-items-center">
-                    <div class="desc">
-                        <h2 class="mb-4"><a href="sermons.html">Giving Hope to Our Spiritual Needs</a></h2>
-                        <div class="meta">
-                            <p>
-                                <span><i class="fa fa-calendar mr-2"></i> Monday, 8:00 Am - Tuesday, 8:00 Pm</span>
-                                <span><i class="fa fa-map-marker mr-2"></i> <a href="#">Salvation Church</a></span>
-                                <span><i class="fa fa-building mr-2"></i> 203 Fake St. Mountain View, San Francisco, California, USA</span>
-                            </p>
-                        </div>
-                        <p><a href="sermons.html" class="btn btn-primary">More Details</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 event-wrap d-md-flex ftco-animate">
-                <div class="img" style="background-image: url(salvation/images/event-3.jpg);"></div>
-                <div class="text p-4 px-md-5 d-flex align-items-center">
-                    <div class="desc">
-                        <h2 class="mb-4"><a href="sermons.html">Giving Hope to Our Spiritual Needs</a></h2>
-                        <div class="meta">
-                            <p>
-                                <span><i class="fa fa-calendar mr-2"></i> Monday, 8:00 Am - Tuesday, 8:00 Pm</span>
-                                <span><i class="fa fa-map-marker mr-2"></i> <a href="#">Salvation Church</a></span>
-                                <span><i class="fa fa-building mr-2"></i> 203 Fake St. Mountain View, San Francisco, California, USA</span>
-                            </p>
-                        </div>
-                        <p><a href="sermons.html" class="btn btn-primary">More Details</a></p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

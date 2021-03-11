@@ -8,6 +8,7 @@ use App\Models\LandingPageHome;
 use App\Models\LandingPageAbout;
 use Illuminate\Support\Facades\DB;
 use App\Models\LandingPageRenungan;
+use App\Models\LandingPageTestimony;
 use App\Models\LandingPageVisiMisi;
 
 class FrontEndController extends Controller
@@ -25,8 +26,14 @@ class FrontEndController extends Controller
         $about = DB::table('landing_page_abouts')->latest()->first();
         $renungans = LandingPageRenungan::latest()->take(3)->get()->sortByDesc("id");
         $psJumats = Event::where('type', 'PJ')->latest()->take(3)->get()->sortByDesc("id");
+        $testimonies = LandingPageTestimony::latest()->take(5)->get()->sortByDesc("id");
+        $events = Event::where('type', '!=', 'PJ')
+                        ->where('type', '!=', 'Student')
+                        ->where('type', '!=', 'Alumni')
+                        ->where('type', '!=', 'Lecturer')
+                        ->latest()->take(3)->get()->sortByDesc("id");
 
-        return view('home', compact('homes', 'VisiMisi', 'about', 'renungans', 'psJumats'));
+        return view('home', compact('homes', 'VisiMisi', 'about', 'renungans', 'psJumats', 'testimonies', 'events'));
     }
 
     public function indexHome()
@@ -53,6 +60,12 @@ class FrontEndController extends Controller
         return view('landingPageRenungan.index', compact('renungans'));
     }
 
+    public function indexTestimony()
+    {
+        $testimonies = LandingPageTestimony::all();
+        return view('landingPageTestimony.index', compact('testimonies'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -76,6 +89,11 @@ class FrontEndController extends Controller
     public function createRenungan()
     {
         return view('landingPageRenungan.create');
+    }
+
+    public function createTestimony()
+    {
+        return view('landingPageTestimony.create');
     }
 
     /**
@@ -171,6 +189,29 @@ class FrontEndController extends Controller
             ->with('success', 'Data landing page renungan berhasil ditambahkan');
     }
 
+    public function storeTestimony(Request $request)
+    {
+        if($request['image'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+            $file = $request['image'];
+            $nama_file = time().'_'.$file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'landingpage/testimony';
+            $file->move($tujuan_upload, $nama_file);
+        }
+        $renungan = LandingPageRenungan::create([
+            'name' => $request['name'],
+            'position' => $request['position'],
+            'quote' => $request['quote'],
+            'image' => $nama_file
+        ]);
+
+        return redirect()->route('landingPage.indexTestimony')
+            ->with('success', 'Data landing page kesaksian berhasil ditambahkan');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -199,6 +240,11 @@ class FrontEndController extends Controller
     {
         $renungan = LandingPageRenungan::select()->where('id', $id)->first();
         return view('landingPageRenungan.show', compact('renungan'));
+    }
+
+    public function showTestimony(LandingPageTestimony $testimony)
+    {
+        return view('landingPageTestimony.show', compact('testimony'));
     }
     
 
@@ -232,6 +278,11 @@ class FrontEndController extends Controller
         return view('landingPageRenungan.edit', compact('renungan'));
     }
 
+    public function editTestimony(LandingPageTestimony $testimony)
+    {
+        return view('landingPageTestimony.edit', compact('testimony'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -239,7 +290,7 @@ class FrontEndController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateHome(Request $request, $id)
+    public function updateHome(Request $request,  $id)
     {
         $home = LandingPageHome::select()->where('id', $id)->first();
 
@@ -300,7 +351,19 @@ class FrontEndController extends Controller
 
     }
 
-    public function updateHomeAvatar(Request $request, User $id)
+    public function updateTestimony(Request $request, LandingPageTestimony $testimony)
+    {
+        $testimony->name = $request->name;
+        $testimony->position = $request->position;
+        $testimony->quote = $request->quote;
+        $testimony->save();
+
+        return redirect()->route('landingPage.indexTestimony')
+                ->with('success', 'Data landing page kesaksian berhasil diubah');
+
+    }
+
+    public function updateHomeAvatar(Request $request, $id)
     {
         
         if($request['image'] == null){
@@ -323,7 +386,7 @@ class FrontEndController extends Controller
             ->with('success', 'Foto landing page home berhasil diubah');
     }
 
-    public function updateAboutAvatar(Request $request, User $id)
+    public function updateAboutAvatar(Request $request, LandingPageAbout $id)
     {
         
         if($request['image'] == null){
@@ -346,7 +409,7 @@ class FrontEndController extends Controller
             ->with('success', 'Foto landing page about berhasil diubah');
     }
 
-    public function updateRenunganAvatar(Request $request, User $id)
+    public function updateRenunganAvatar(Request $request, LandingPageRenungan $id)
     {
         
         if($request['image'] == null){
@@ -367,6 +430,27 @@ class FrontEndController extends Controller
 
         return redirect()->route('landingPage.indexRenungan')
             ->with('success', 'Foto landing page renungan berhasil diubah');
+    }
+
+    public function updateTestimonyAvatar(Request $request, LandingPageTestimony $testimony)
+    {
+        
+        if($request['image'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+            $file = $request['image'];
+            $nama_file = time().'_'.$file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'landingpage/testimony';
+            $file->move($tujuan_upload, $nama_file);
+        }
+
+        $testimony->image = $nama_file;
+        $testimony->save();
+
+        return redirect()->route('landingPage.indexTestimony')
+            ->with('success', 'Foto landing page kesaksian berhasil diubah');
     }
     
 
@@ -406,5 +490,12 @@ class FrontEndController extends Controller
         $Renungan->delete();
         return redirect()->route('landingPage.indexRenungan')
             ->with('success', 'Data landing page renungan berhasil dihapus');
+    }
+
+    public function destroyTestimony(LandingPageTestimony $testimony)
+    {
+        $testimony->delete();
+        return redirect()->route('landingPage.indexTestimony')
+            ->with('success', 'Data landing page kesaksian berhasil dihapus');
     }
 }

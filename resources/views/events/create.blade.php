@@ -66,6 +66,15 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
+                                <label for="location">Lokasi</label>
+                                <input type="text" class="form-control {{$errors->has('location') ? 'is-invalid' : ''}}" id="location" name="location" placeholder="Masukkan Lokasi Acara" value="{{old('location')}}" required>
+                                @error('location')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
                                 <label for="link">Link</label>
                                 <input type="link" class="form-control {{$errors->has('link') ? 'is-invalid' : ''}}" id="link" name="link" placeholder="Masukkan Link Video" value="{{old('link')}}">
                                 @error('link')
@@ -83,7 +92,7 @@
                                         <option value="Paskah">Paskah</option>
                                         <option value="Natal">Natal</option>
                                         <option value="LPJ">Laporan Pertanggungjawaban</option>
-                                        <option value="praRaker">Pra Rapat Kerja</option>
+                                        <option value="PraRaker">Pra Rapat Kerja</option>
                                         <option value="Raker">Rapat Kerja</option>
                                         <option value="Student">Mahasiswa</option>
                                         <option value="Lecturer">Dosen</option>

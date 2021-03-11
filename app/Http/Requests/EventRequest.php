@@ -28,6 +28,7 @@ class EventRequest extends FormRequest
             'description' => 'required|string',
             'type' => 'required|string',
             'reservationtime' => 'required|string',
+            'location' => 'required|string',
         ];
     }
 }

@@ -208,6 +208,13 @@
                                 </li>
 
                                 <li class="nav-item">
+                                    <a href="{{route ('landingPage.indexTestimony')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Kesaksian</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Event</p>

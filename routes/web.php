@@ -113,14 +113,15 @@ Route::prefix('admin')->group(function () {
     Route::put('/landingPageAbout/updateAvatar/{about}', [FrontEndControllerController::class, 'updateAboutAvatar'])->name('landingPage.updateAboutAvatar');
     Route::delete('/landingPageAbout/{about}', [FrontEndController::class, 'destroyAbout'])->name('landingPage.deleteAbout');
 
-    Route::get('/landingPageRenungan', [FrontEndController::class, 'indexRenungan'])->name('landingPage.indexRenungan');
-    Route::get('/landingPageRenungan/create', [FrontEndController::class, 'createRenungan'])->name('landingPage.createRenungan');
-    Route::post('/landingPageRenungan', [FrontEndController::class, 'storeRenungan'])->name('landingPage.storeRenungan');
-    Route::get('/landingPageRenungan/{renungan}', [FrontEndController::class, 'showRenungan'])->name('landingPage.showRenungan');
-    Route::get('/landingPageRenungan/{renungan}/edit', [FrontEndController::class, 'editRenungan'])->name('landingPage.editRenungan');
-    Route::put('/landingPageRenungan/{renungan}', [FrontEndController::class, 'updateRenungan'])->name('landingPage.updateRenungan');
-    Route::put('/landingPageRenungan/updateAvatar/{renungan}', [FrontEndControllerController::class, 'updateRenunganAvatar'])->name('landingPage.updateRenunganAvatar');
-    Route::delete('/landingPageRenungan/{renungan}', [FrontEndController::class, 'destroyRenungan'])->name('landingPage.deleteRenungan');
+    Route::get('/landingPageTestimony', [FrontEndController::class, 'indexTestimony'])->name('landingPage.indexTestimony');
+    Route::get('/landingPageTestimony/create', [FrontEndController::class, 'createTestimony'])->name('landingPage.createTestimony');
+    Route::post('/landingPageTestimony', [FrontEndController::class, 'storeTestimony'])->name('landingPage.storeTestimony');
+    Route::get('/landingPageTestimony/{testimony}/edit', [FrontEndController::class, 'editTestimony'])->name('landingPage.editTestimony');
+    Route::put('/landingPageTestimony/{testimony}', [FrontEndController::class, 'updateTestimony'])->name('landingPage.updateTestimony');
+    Route::put('/landingPageTestimony/updateAvatar/{testimony}', [FrontEndControllerController::class, 'updateTestimonyAvatar'])->name('landingPage.updateTestimonyAvatar');
+    Route::delete('/landingPageTestimony/{testimony}', [FrontEndController::class, 'destroyTestimony'])->name('landingPage.deleteTestimony');
+
+    
 });
 
 Route::get('/events/{slug}', [EventController::class, 'showSlug'])->name('events.showSlug');

@@ -47,6 +47,10 @@
                                     <td>{{$event->speaker}}</td>
                                 </tr>
                                 <tr>
+                                    <td>Lokasi</td>
+                                    <td>{{$event->location}}</td>
+                                </tr>
+                                <tr>
                                     <td>Link</td>
                                     <td>{{$event->link}}</td>
                                 </tr>

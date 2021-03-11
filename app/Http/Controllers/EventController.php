@@ -79,6 +79,7 @@ class EventController extends Controller
             'image' => $nama_file,
             'slug' => $this->createSlug($request->title),
             'speaker' => $request['speaker'],
+            'location' => $request['location'],
             'link' => $request['link'],
             'creator_id' => $user->id,
             'creator_type' => $creator,
@@ -159,6 +160,7 @@ class EventController extends Controller
         $event->report = $request['report'];
         $event->slug = $this->createSlug($request->title);
         $event->speaker = $request['speaker'];
+        $event->location = $request['location'];
         $event->link = $request['link'];
         $event->save();
 
