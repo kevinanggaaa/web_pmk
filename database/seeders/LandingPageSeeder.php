@@ -28,7 +28,7 @@ class LandingPageSeeder extends Seeder
         LandingPageHome::create([
             'title' => 'Perkumpulan Mahasiswa Kristen ITS',
             'subtitle' => 'PMK ITS',
-            'description' => 'Persekutuan Mahasiswa Kristen ITS adalah organisasi mahasiswa yang bergerak dalam bidang kerohanian Kristen. Beberapa pelayanan yang dikerjakan oleh PMK ITS antara lain Persekutuan Jumat, KKR Mahasiswa Baru, Camp Mahasiswa Baru, Natal & Paskah ITS, serta pelayanan diakonia dan lainnya.',
+            'description' => 'Persekutuan Mahasiswa Kristen ITS adalah organisasi mahasiswa yang bergerak dalam bidang kerohanian Kristen.',
             'image' => 'example2.JPG'
         ]);
 

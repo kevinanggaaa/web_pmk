@@ -200,6 +200,12 @@ class FrontEndController extends Controller
         $renungan = LandingPageRenungan::select()->where('id', $id)->first();
         return view('landingPageRenungan.show', compact('renungan'));
     }
+
+    public function showRenunganDetail($id)
+    {
+        $renungan = LandingPageRenungan::select()->where('id', $id)->first();
+        return view('landingPageRenungan.renungan', compact('renungan'));
+    }
     
 
     /**
