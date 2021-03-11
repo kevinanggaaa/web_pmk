@@ -58,9 +58,9 @@
                     <th>Nama</th>
                     <th>Content doa</th>
                     <th>Status</th>
-                    @if(auth()->user()->hasAnyPermission(['edit prayer request', 'delete prayer request']))
+                    @canany(['edit prayer request', 'delete prayer request']))
                     <th style="width: 280px">Action</th>
-                    @endif
+                    @endcanany
                 </tr>
             </thead>
             <tbody>
@@ -70,7 +70,7 @@
                     <td>{{ $prayerRequest->content }}</td>
                     <td>{{ $prayerRequest->status }}</td>
 
-                    @if(auth()->user()->hasAnyPermission(['edit prayer request', 'delete prayer request']))
+                    @canany(['edit prayer request', 'delete prayer request']))
                     <td>
                         <div style="display: flex">
 
@@ -91,7 +91,7 @@
                             @endcan
                         </div>
                     </td>
-                    @endif
+                    @endcanany
                 </tr>
                 @endforeach
             </tbody>

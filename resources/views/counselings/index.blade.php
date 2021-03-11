@@ -58,9 +58,9 @@
                     <th>Topik</th>
                     <th>Konselor</th>
                     <th>Tanggal</th>
-                    @if(auth()->user()->hasAnyPermission(['edit counseling', 'delete counseling']))
+                    @canany(['edit counseling', 'delete counseling']))
                     <th style="width: 280px">Action</th>
-                    @endif
+                    @endcanany
                 </tr>
             </thead>
             <tbody>
@@ -74,7 +74,7 @@
                     @endforeach
                     <td>{{ $counseling->date_time}}</td>
 
-                    @if(auth()->user()->hasAnyPermission(['edit counseling', 'delete counseling']))
+                    @canany(['edit counseling', 'delete counseling']))
                     <td>
                         <div style="display: flex">
                             @can('edit counseling')
@@ -94,7 +94,7 @@
                             @endcan
                         </div>
                     </td>
-                    @endif
+                    @endcanany
                 </tr>
                 @endforeach
             </tbody>

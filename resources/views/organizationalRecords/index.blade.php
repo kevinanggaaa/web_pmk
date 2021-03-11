@@ -61,9 +61,9 @@
                     <th>Kategori</th>
                     <th>Tahun mulai</th>
                     <th>Tahun selesai</th>
-                    @if(auth()->user()->hasAnyPermission(['view detail organizational record', 'edit organizational record', 'delete organizational record']))
+                    @canany(['view detail organizational record', 'edit organizational record', 'delete organizational record']))
                     <th style="width: 280px">Action</th>
-                    @endif
+                    @endcanany
                 </tr>
             </thead>
             <tbody>
@@ -81,7 +81,7 @@
                     <td>{{ $organizationalRecord->year_start }}</td>
                     <td>{{ $organizationalRecord->year_end }}</td>
 
-                    @if(auth()->user()->hasAnyPermission(['view detail organizational record', 'edit organizational record', 'delete organizational record']))
+                    @canany(['view detail organizational record', 'edit organizational record', 'delete organizational record']))
                     <td>
                         <div style="display: flex">
                             @can('view detail organizational record')
@@ -107,7 +107,7 @@
                             @endcan
                         </div>
                     </td>
-                    @endif
+                    @endcanany
                 </tr>
                 @endforeach
             </tbody>

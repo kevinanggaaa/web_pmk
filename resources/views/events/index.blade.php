@@ -59,9 +59,9 @@
                     <th>Tipe</th>
                     <th>Mulai</th>
                     <th>Berakhir</th>
-                    @if(auth()->user()->hasAnyPermission(['view detail event', 'edit event', 'delete event']))
+                    @canany(['view detail event', 'edit event', 'delete event']))
                     <th style="width: 280px">Action</th>
-                    @endif
+                    @endcanany
                 </tr>
             </thead>
             <tbody>
@@ -72,7 +72,7 @@
                     <td>{{ $event->start }}</td>
                     <td>{{ $event->end }}</td>
 
-                    @if(auth()->user()->hasAnyPermission(['view detail event', 'edit event', 'delete event']))
+                    @canany(['view detail event', 'edit event', 'delete event']))
                     <td>
                         <div style="display: flex">
                             @can('view detail event')
@@ -100,7 +100,7 @@
                             @endcan
                         </div>
                     </td>
-                    @endif
+                    @endcanany
                 </tr>
                 @endforeach
             </tbody>

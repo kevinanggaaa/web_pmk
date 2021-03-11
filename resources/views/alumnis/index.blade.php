@@ -101,9 +101,9 @@
                     <th>Department</th>
                     <th>Pekerjaan</th>
                     <th>Angkatan</th>
-                    @if(auth()->user()->hasAnyPermission(['view detail alumni', 'edit alumni', 'delete alumni']))
+                    @canany(['view detail alumni', 'edit alumni', 'delete alumni']))
                     <th style="width: 280px">Action</th>
-                    @endif
+                    @endcanany
                 </tr>
             </thead>
             <tbody>
@@ -114,7 +114,7 @@
                     <td>{{ $alumni->job }}</td>
                     <td>{{ $alumni->angkatan }}</td>
                     
-                    @if(auth()->user()->hasAnyPermission(['view detail alumni', 'edit alumni', 'delete alumni']))
+                    @canany(['view detail alumni', 'edit alumni', 'delete alumni']))
                     <td>
                         <div style="display: flex">
                             @can('view detail alumni')
@@ -140,7 +140,7 @@
                             @endcan
                         </div>
                     </td>
-                    @endif
+                    @endcanany
 
                 </tr>
                 @endforeach

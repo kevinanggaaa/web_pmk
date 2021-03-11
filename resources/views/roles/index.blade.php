@@ -58,9 +58,9 @@
             <tr>
                 <th style="">Role</th>
 
-                @if(auth()->user()->hasAnyPermission(['view detail role', 'edit role', 'delete role']))
+                @canany(['view detail role', 'edit role', 'delete role']))
                 <th style="">Action</th>
-                @endif
+                @endcanany
             </tr>
             </thead>
             <tbody>
@@ -68,7 +68,7 @@
                 <tr>
                     <td>{{ $role->name }}</td>
 
-                    @if(auth()->user()->hasAnyPermission(['view detail role', 'edit role', 'delete role']))
+                    @canany(['view detail role', 'edit role', 'delete role']))
                     <td>
                         <div style="display: flex">
                             @can('view detail role'))
@@ -96,7 +96,7 @@
                             @endcan
                         </div>
                     </td>
-                    @endif
+                    @endcanany
                 </tr>
             @endforeach
             </tbody>
