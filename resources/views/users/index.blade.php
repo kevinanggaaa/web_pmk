@@ -42,7 +42,7 @@
         </div>
         @endif
 
-        @can('add user'))
+        @can('add user')
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('users.create') }}"> Tambah data user</a>
@@ -59,9 +59,9 @@
                     <th>Email</th>
                     <th>Name</th>
 
-                    @if(auth()->user()->hasAnyPermission(['view detail user', 'edit user', 'delete user']))
+                    @canany(['view detail user', 'edit user', 'delete user'])
                     <th style="width: 280px">Action</th>
-                    @endif
+                    @endcanany
                 </tr>
             </thead>
             <tbody>
@@ -70,22 +70,22 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->name }}</td>
 
-                    @if(auth()->user()->hasAnyPermission(['view detail user', 'edit user', 'delete user']))
+                    @canany(['view detail user', 'edit user', 'delete user'])
                     <td>
                         <div style="display: flex">
-                            @can('view detail user'))
+                            @can('view detail user')
                                 <div style="margin-right: 5px;">
                                     <a class="btn btn-info" href="{{ route('users.show',$user->id) }}"><i class="fa fa-eye"></i></a>
                                 </div>
                             @endcan
 
-                            @can('edit user'))
+                            @can('edit user')
                                 <div style="margin-right: 5px;">
                                     <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-edit"></i></a>
                                 </div>
                             @endcan
 
-                            @can('delete user'))
+                            @can('delete user')
                                 <div style="margin-right: 5px;">
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="display: inline;">
                                         @csrf
@@ -96,7 +96,7 @@
                             @endcan
                         </div>
                     </td>
-                    @endif
+                    @endcanany
                 </tr>
                 @endforeach
             </tbody>

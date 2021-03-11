@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Profile;
 use App\Models\Student;
 use Maatwebsite\Excel\Row;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -20,7 +21,7 @@ class StudentImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        $ultah = explode('-', $row->birthdate);
+        $ultah = explode('-', $row['birthdate']);
         $year = $ultah[0];
         $month = $ultah[1];
         $day  = $ultah[2];
@@ -31,7 +32,7 @@ class StudentImport implements ToModel, WithHeadingRow
                 'email' => $row['email']
             ],
             [
-                'password' => bcrypt($ultah),
+                'password' => Hash::make($ultah),
                 'name' => $row['name'],
                 'pkk' => $row['pkk'],
                 'address' => $row['address'],
@@ -42,7 +43,7 @@ class StudentImport implements ToModel, WithHeadingRow
                 'birthdate' => $row['birthdate'],
                 'gender' => $row['gender'],
                 'date_death' => $row['date_death'],
-                'avatar' => "123",
+                'avatar' => "default.jpg",
             ]
         );
         

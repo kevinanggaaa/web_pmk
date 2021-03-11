@@ -31,18 +31,17 @@ use App\Http\Controllers\FrontEndController;
 // Route::get('/', function () {
 //     return view('home');
 // })->name('home');
-
-Route::get('/', [FrontEndController::class, 'indexAll'])->name('home');
-
 Route::get('/new-pray-requests', [PrayerRequestController::class, 'create'])->name('prayRequest.new');
-
 Route::get('/renungan/{renungan}', [FrontEndController::class, 'showRenunganDetail'])->name('renungan.show');
+
 
 Route::get('/new-alumni', [AlumniController::class, 'createform']);
 Route::get('/check-alumni', [AlumniController::class, 'nameBirthdate']);
 Route::get('/check-alumni-validate', [AlumniController::class, 'checkBirthdate'])->name('alumnis.checkBirthdate');
 
-Route::prefix('admin')->group(function () {
+Route::get('/', [FrontEndController::class, 'indexAll'])->name('home');
+
+Route::middleware(['change_password'])->prefix('admin')->group(function () {
     Route::get('/students/export_excel', [StudentController::class, 'export_excel'])->name('students.export_excel');
     Route::post('/students/import_excel', [StudentController::class, 'import_excel'])->name('students.import_excel');
     Route::resource('/students', StudentController::class);
@@ -82,7 +81,6 @@ Route::prefix('admin')->group(function () {
 
     Route::resource('/roles', RoleManagementController::class);
     Route::put('/users/updateAvatar/{user}', [UserController::class, 'updateAvatar'])->name('users.updateAvatar');
-    Route::put('/users/updatePassword/{user}', [UserController::class, 'updatePassword'])->name('users.updatePassword');
     Route::put('/users/updateImage/{event}', [EventController::class, 'updateImage'])->name('events.updateImage');
 
     Route::resource('/roles', RoleController::class);
@@ -115,6 +113,14 @@ Route::prefix('admin')->group(function () {
     Route::put('/landingPageAbout/updateAvatar/{about}', [FrontEndControllerController::class, 'updateAboutAvatar'])->name('landingPage.updateAboutAvatar');
     Route::delete('/landingPageAbout/{about}', [FrontEndController::class, 'destroyAbout'])->name('landingPage.deleteAbout');
 
+    Route::get('/landingPageRenungan', [FrontEndController::class, 'indexRenungan'])->name('landingPage.indexRenungan');
+    Route::get('/landingPageRenungan/create', [FrontEndController::class, 'createRenungan'])->name('landingPage.createRenungan');
+    Route::post('/landingPageRenungan', [FrontEndController::class, 'storeRenungan'])->name('landingPage.storeRenungan');
+    Route::get('/landingPageRenungan/{renungan}/edit', [FrontEndController::class, 'editRenungan'])->name('landingPage.editRenungan');
+    Route::put('/landingPageRenungan/{renungan}', [FrontEndController::class, 'updateRenungan'])->name('landingPage.updateRenungan');
+    Route::put('/landingPageRenungan/updateAvatar/{renungan}', [FrontEndControllerController::class, 'updateRenunganAvatar'])->name('landingPage.updateRenunganAvatar');
+    Route::delete('/landingPageRenungan/{renungan}', [FrontEndController::class, 'destroyRenungan'])->name('landingPage.deleteRenungan');
+
     Route::get('/landingPageTestimony', [FrontEndController::class, 'indexTestimony'])->name('landingPage.indexTestimony');
     Route::get('/landingPageTestimony/create', [FrontEndController::class, 'createTestimony'])->name('landingPage.createTestimony');
     Route::post('/landingPageTestimony', [FrontEndController::class, 'storeTestimony'])->name('landingPage.storeTestimony');
@@ -125,7 +131,7 @@ Route::prefix('admin')->group(function () {
 
     
 });
-
+Route::put('/users/updatePassword/{user}', [UserController::class, 'updatePassword'])->name('users.updatePassword');
 Route::get('/events/{slug}', [EventController::class, 'showSlug'])->name('events.showSlug');
 Route::get('/attends/{slug}', [EventController::class, 'attendView'])->name('events.attendView');
 Route::put('/events/{event}', [EventController::class, 'attend'])->name('events.attend');
