@@ -75,59 +75,59 @@
                                 </li>
                                 @endcan
 
-                                @if(auth()->user()->hasPermissionTo('view student'))
+                                @can('view student'))
                                 <li class="nav-item">
                                     <a href="{{route ('students.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Mahasiswa</p>
                                     </a>
                                 </li>
-                                @endif
+                                @endcan
                            
-                                @if(auth()->user()->hasPermissionTo('view alumni'))
+                                @can('view alumni'))
                                 <li class="nav-item">
                                     <a href="{{route ('alumnis.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Alumni</p>
                                     </a>
                                 </li>
-                                @endif
+                                @endcan
 
-                                @if(auth()->user()->hasPermissionTo('view organizational record'))
+                                @can('view organizational record'))
                                 <li class="nav-item">
                                     <a href="{{route ('organizational-records.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Histori Organisasi</p>
                                     </a>
                                 </li>
-                                @endif
+                                @endcan
 
-                                @if(auth()->user()->hasPermissionTo('view counselor'))
+                                @can('view counselor'))
                                 <li class="nav-item">
                                     <a href="{{route ('counselors.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Konselor</p>
                                     </a>
                                 </li>
-                                @endif
+                                @endcan
 
-                                @if(auth()->user()->hasPermissionTo('view counseling'))
+                                @can('view counseling'))
                                 <li class="nav-item">
                                     <a href="{{route ('counselings.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Konseling</p>
                                     </a>
                                 </li>
-                                @endif
+                                @endcan
 
-                                @if(auth()->user()->hasPermissionTo('view prayer request'))
+                                @can('view prayer request'))
                                 <li class="nav-item">
                                     <a href="{{route ('prayer-requests.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Pray Request</p>
                                     </a>
                                 </li>
-                                @endif
+                                @endcan
                                 <li class="nav-item">
                                     <a href="{{route ('events.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>

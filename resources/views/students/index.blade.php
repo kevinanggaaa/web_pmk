@@ -46,7 +46,7 @@
         </div>
         @endif
 
-        @if(auth()->user()->hasPermissionTo('add student'))
+        @can('add student'))
         <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
             IMPORT EXCEL
         </button>
@@ -77,19 +77,19 @@
                 </form>
             </div>
         </div>
-        @endif
+        @endcan
 
-        @if(auth()->user()->hasPermissionTo('view detail student'))
+        @can('view detail student'))
         <a href="{{route('students.export_excel')}}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
-        @endif
+        @endcan
 
-        @if(auth()->user()->hasPermissionTo('add student'))
+        @can('add student'))
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('students.create') }}"> Tambah data mahasiswa</a>
             </div>
         </div>
-        @endif
+        @endcan
     </div>
 
     <!-- /.card-header -->
@@ -117,19 +117,19 @@
                     <td>
                         <div style="display: flex">
 
-                            @if(auth()->user()->hasPermissionTo('view detail student'))
+                            @can('view detail student'))
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('students.show',$student->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->hasPermissionTo('edit student'))
+                            @can('edit student'))
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('students.edit',$student->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->hasPermissionTo('delete student'))
+                            @can('delete student'))
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('students.destroy', $student->id) }}" method="POST" class="display: inline;">
                                     @csrf
@@ -137,7 +137,7 @@
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
-                            @endif
+                            @endcan
                             
                         </div>
                     </td>

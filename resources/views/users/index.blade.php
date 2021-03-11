@@ -42,13 +42,13 @@
         </div>
         @endif
 
-        @if(auth()->user()->hasPermissionTo('add user'))
+        @can('add user'))
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('users.create') }}"> Tambah data user</a>
             </div>
         </div>
-        @endif
+        @endcan
     </div>
 
     <!-- /.card-header -->
@@ -73,19 +73,19 @@
                     @if(auth()->user()->hasAnyPermission(['view detail user', 'edit user', 'delete user']))
                     <td>
                         <div style="display: flex">
-                            @if(auth()->user()->hasPermissionTo('view detail user'))
+                            @can('view detail user'))
                                 <div style="margin-right: 5px;">
                                     <a class="btn btn-info" href="{{ route('users.show',$user->id) }}"><i class="fa fa-eye"></i></a>
                                 </div>
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->hasPermissionTo('edit user'))
+                            @can('edit user'))
                                 <div style="margin-right: 5px;">
                                     <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-edit"></i></a>
                                 </div>
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->hasPermissionTo('delete user'))
+                            @can('delete user'))
                                 <div style="margin-right: 5px;">
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="display: inline;">
                                         @csrf
@@ -93,7 +93,7 @@
                                         <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </div>
-                            @endif
+                            @endcan
                         </div>
                     </td>
                     @endif

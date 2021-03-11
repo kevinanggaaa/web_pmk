@@ -42,13 +42,13 @@
         </div>
         @endif
 
-        @if(auth()->user()->hasPermissionTo('add organizational record'))
+        @can('add organizational record'))
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('organizational-records.create') }}"> Tambah data organisasi</a>
             </div>
         </div>
-        @endif
+        @endcan
     </div>
 
     <!-- /.card-header -->
@@ -84,19 +84,19 @@
                     @if(auth()->user()->hasAnyPermission(['view detail organizational record', 'edit organizational record', 'delete organizational record']))
                     <td>
                         <div style="display: flex">
-                            @if(auth()->user()->hasPermissionTo('view detail organizational record'))
+                            @can('view detail organizational record'))
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('organizational-records.show',$organizationalRecord->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->hasPermissionTo('edit organizational record'))
+                            @can('edit organizational record'))
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('organizational-records.edit',$organizationalRecord->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->hasPermissionTo('delete organizational record'))
+                            @can('delete organizational record'))
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('organizational-records.destroy', $organizationalRecord->id) }}" method="POST" class="display: inline;">
                                     @csrf
@@ -104,7 +104,7 @@
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
-                            @endif
+                            @endcan
                         </div>
                     </td>
                     @endif

@@ -42,13 +42,13 @@
             </div>
         @endif
 
-        @if(auth()->user()->hasPermissionTo('add role'))
+        @can('add role'))
         <div class="card-tools">
                 <div class="">
                     <a class="btn btn-success" href="{{ route('roles.create') }}">Tambah Role Baru</a>
                 </div>
         </div>
-        @endif
+        @endcan
     </div>
 
     <!-- /.card-header -->
@@ -71,19 +71,19 @@
                     @if(auth()->user()->hasAnyPermission(['view detail role', 'edit role', 'delete role']))
                     <td>
                         <div style="display: flex">
-                            @if(auth()->user()->hasPermissionTo('view detail role'))
+                            @can('view detail role'))
                                 <div style="margin-right: 5px;">
                                         <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}"><i class="fa fa-eye"></i></a>
                                 </div>
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->hasPermissionTo('edit role'))
+                            @can('edit role'))
                                 <div style="margin-right: 5px;">
                                         <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}"><i class="fa fa-edit"></i></a>
                                 </div>
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->hasPermissionTo('delete role'))
+                            @can('delete role'))
                             <div style="margin-right: 5px;">
                                 @can('delete role')
                                     <form action="{{ route('roles.destroy', $role->id) }}" method="POST" class="display: inline;">
@@ -93,7 +93,7 @@
                                     </form>
                                 @endcan
                             </div>
-                            @endif
+                            @endcan
                         </div>
                     </td>
                     @endif

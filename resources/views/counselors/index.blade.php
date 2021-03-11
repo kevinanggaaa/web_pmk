@@ -41,13 +41,13 @@
         </div>
         @endif
 
-        @if(auth()->user()->hasPermissionTo('add counselor'))
+        @can('add counselor'))
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('counselors.create') }}"> Tambah data konselor</a>
             </div>
         </div>
-        @endif
+        @endcan
     </div>
 
     <!-- /.card-header -->
@@ -71,19 +71,19 @@
                     @if(auth()->user()->hasAnyPermission(['view detail counselor', 'edit counselor', 'delete counselor']))
                     <td>
                         <div style="display: flex">
-                            @if(auth()->user()->hasPermissionTo('view detail counselor'))
+                            @can('view detail counselor'))
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('counselors.show',$counselor->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->hasPermissionTo('edit counselor'))
+                            @can('edit counselor'))
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('counselors.edit',$counselor->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->hasPermissionTo('delete counselor'))
+                            @can('delete counselor'))
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('counselors.destroy', $counselor->id) }}" method="POST" class="display: inline;">
                                     @csrf
@@ -91,7 +91,7 @@
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
-                            @endif
+                            @endcan
                         </div>
                     </td>
                     @endif

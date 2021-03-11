@@ -41,13 +41,13 @@
         </div>
         @endif
 
-        @if(auth()->user()->hasPermissionTo('add counseling'))
+        @can('add counseling'))
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('counselings.create') }}"> Tambah data Counseling</a>
             </div>
         </div>
-        @endif
+        @endcan
     </div>
 
     <!-- /.card-header -->
@@ -77,13 +77,13 @@
                     @if(auth()->user()->hasAnyPermission(['edit counseling', 'delete counseling']))
                     <td>
                         <div style="display: flex">
-                            @if(auth()->user()->hasPermissionTo('edit counseling'))
+                            @can('edit counseling'))
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('counselings.edit',$counseling->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->hasPermissionTo('delete counseling'))
+                            @can('delete counseling'))
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('counselings.destroy', $counseling->id) }}" method="POST" class="display: inline;">
                                     @csrf
@@ -91,7 +91,7 @@
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
-                            @endif
+                            @endcan
                         </div>
                     </td>
                     @endif
