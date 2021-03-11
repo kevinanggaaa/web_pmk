@@ -41,7 +41,7 @@
         </div>
         @endif
 
-        @can('add event'))
+        @can('add event')
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('events.create') }}"> Tambah data event</a>
@@ -75,13 +75,13 @@
                     @if(auth()->user()->hasAnyPermission(['view detail event', 'edit event', 'delete event']))
                     <td>
                         <div style="display: flex">
-                            @can('view detail event'))
+                            @can('view detail event')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('events.show',$event->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
                             @endcan
 
-                            @can('edit event'))
+                            @can('edit event')
                                 @if($event->creator_id == $user->id)
                                 <div style="margin-right: 5px;">
                                     <a class="btn btn-primary" href="{{ route('events.edit',$event->id) }}"><i class="fa fa-edit"></i></a>
@@ -89,7 +89,7 @@
                                 @endif
                             @endcan
 
-                            @can('delete event'))
+                            @can('delete event')
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('events.destroy', $event->id) }}" method="POST" class="display: inline;">
                                     @csrf

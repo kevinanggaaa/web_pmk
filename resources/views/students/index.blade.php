@@ -46,7 +46,7 @@
         </div>
         @endif
 
-        @can('add student'))
+        @can('add student')
         <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
             IMPORT EXCEL
         </button>
@@ -79,11 +79,11 @@
         </div>
         @endcan
 
-        @can('view detail student'))
+        @can('view detail student')
         <a href="{{route('students.export_excel')}}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
         @endcan
 
-        @can('add student'))
+        @can('add student')
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('students.create') }}"> Tambah data mahasiswa</a>
@@ -117,19 +117,19 @@
                     <td>
                         <div style="display: flex">
 
-                            @can('view detail student'))
+                            @can('view detail student')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('students.show',$student->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
                             @endcan
 
-                            @can('edit student'))
+                            @can('edit student')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('students.edit',$student->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
                             @endcan
 
-                            @can('delete student'))
+                            @can('delete student')
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('students.destroy', $student->id) }}" method="POST" class="display: inline;">
                                     @csrf

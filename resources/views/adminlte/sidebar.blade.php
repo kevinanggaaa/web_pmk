@@ -75,7 +75,7 @@
                                 </li>
                                 @endcan
 
-                                @can('view student'))
+                                @can('view student')
                                 <li class="nav-item">
                                     <a href="{{route ('students.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -84,7 +84,7 @@
                                 </li>
                                 @endcan
                            
-                                @can('view alumni'))
+                                @can('view alumni')
                                 <li class="nav-item">
                                     <a href="{{route ('alumnis.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -93,7 +93,7 @@
                                 </li>
                                 @endcan
 
-                                @can('view organizational record'))
+                                @can('view organizational record')
                                 <li class="nav-item">
                                     <a href="{{route ('organizational-records.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -102,7 +102,7 @@
                                 </li>
                                 @endcan
 
-                                @can('view counselor'))
+                                @can('view counselor')
                                 <li class="nav-item">
                                     <a href="{{route ('counselors.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -111,7 +111,7 @@
                                 </li>
                                 @endcan
 
-                                @can('view counseling'))
+                                @can('view counseling')
                                 <li class="nav-item">
                                     <a href="{{route ('counselings.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -120,7 +120,7 @@
                                 </li>
                                 @endcan
 
-                                @can('view prayer request'))
+                                @can('view prayer request')
                                 <li class="nav-item">
                                     <a href="{{route ('prayer-requests.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>

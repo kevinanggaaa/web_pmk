@@ -20,13 +20,18 @@ class StudentImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+        $ultah = explode('-', $row->birthdate);
+        $year = $ultah[0];
+        $month = $ultah[1];
+        $day  = $ultah[2];
+        $ultah = $day . '' . $month . '' . $year;
 
         $user = User::firstOrCreate(
             [
                 'email' => $row['email']
             ],
             [
-                'password' => bcrypt($row['nrp']),
+                'password' => bcrypt($ultah),
                 'name' => $row['name'],
                 'pkk' => $row['pkk'],
                 'address' => $row['address'],
