@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <label for="image">Image</label>
                                 <input type="file" name="image" id="image" class="form-control" value="{{ $event->image }}">
-                                @error('avatar')
+                                @error('image')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>

@@ -23,6 +23,10 @@ class Event extends Model
         'report',
         'creator_id',
         'creator_type',
+        'image',
+        'location',
+        'speaker',
+        'link'
     ];
 
     public function user()
