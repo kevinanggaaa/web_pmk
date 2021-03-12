@@ -12,6 +12,7 @@ use Session;
 use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AlumniController extends Controller
 {
@@ -72,11 +73,14 @@ class AlumniController extends Controller
         $user_id = User::select()->where('id', $profile->user_id)->first();
 
         if($birthdate == $user_id->birthdate){
-
+            return redirect()->route('alumnis.check')
+                ->with('success', 'Data yang dimasukkan benar. Silahkan login ke website utama');
         }
         else{
-            return view('alumnis.name-birthdate', compact('alumnis'))
-                ->with('fail','Maaf data yang dimasukkan salah.');;
+            return redirect()->route('alumnis.check')
+                ->with('fail', 'Maaf data yang dimasukkan salah.');
+            // return view('alumnis.name-birthdate', compact('alumnis'))
+            //     ->with('fail','Maaf data yang dimasukkan salah.');
         } 
     }
 
@@ -150,15 +154,34 @@ class AlumniController extends Controller
             ]);
 
             $user->assignRole('Alumni');
+            
+            $contains = Str::contains(url()->previous(), 'new-alumni');
 
-            return redirect()->route('alumnis.index')
-                ->with('success', 'Data alumni berhasil ditambahkan');
+            
+            if($contains){
+                return redirect()->route('alumnis.check')
+                    ->with('success', 'Data alumni berhasil ditambahkan. Silahkan login ke website utama');
+            }
+            else{
+                return redirect()->route('alumnis.index')
+                    ->with('success', 'Data alumni berhasil ditambahkan');
+            }
+            
         }
-        
-        return view('alumnis.create-error')
+
+        $contains = Str::contains(url()->previous(), 'new-alumni');
+
+        if($contains){
+            return view('alumnis.form-create-error')
+            ->with('request', $request);
+        }
+        else{
+            return view('alumnis.create-error')
             ->with('request', $request)
             ->with('message','Data alumni gagal ditambahkan karena terdapat duplikasi pada email');
+        }
     }
+
 
     /**
      * Display the specified resource.

@@ -80,6 +80,15 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="tanggal">Tanggal renungan</label>
+                                <input type="date" class="form-control {{$errors->has('tanggal') ? 'is-invalid' : ''}}" id="tanggal" name="tanggal" placeholder="Masukkan tanggal lahir" value="{{old('tanggal')}}" required>
+                                @error('tanggal')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="image">Gambar</label>

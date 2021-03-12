@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Form ALumni PMk</title>
+    <title>Form ALumni PMK</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -55,18 +55,41 @@
 </head>
 
 <body >
+    
 @if ($sukses = Session::get('fail'))
-<div class="card">
+<div class="card bg-warning">
     <div class="card-header">
         {{-- notifikasi gagal --}}
         
-        <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>
+        <div class="alert alert-danger">
+            <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
             <strong>{{ $sukses }}</strong>
         </div>
     </div>
 </div>
 @endif
+
+@if ($sukses = Session::get('success'))
+<div class="card bg-warning">
+    <div class="card-header">
+        {{-- notifikasi sukses --}}
+        
+        <div class="alert alert-success">
+            <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
+            <strong>{{ $sukses }}</strong>
+            <a class="btn btn-info ml-2" href="{{ route('home') }}">Kunjungi Website</a>
+        </div>
+    </div>
+</div>
+@endif
+
+    <nav class="navbar navbar-light bg-warning justify-content-between">
+        <a class="navbar-brand"></a>
+        <form class="form-inline">
+            <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
+            <a class="btn btn-outline-dark bg-dark my-2 my-sm-0" href="{{ route('alumnis.new') }}"><span style="color:white;">Register</span></a>
+        </form>
+    </nav>
 
 <div class="container contact">
 	<div class="row">

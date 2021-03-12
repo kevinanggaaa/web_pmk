@@ -69,8 +69,8 @@
                                     <td>{{ $renungan->bacaan }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Tanggal buat</td>
-                                    <td>{{ $renungan->created_at }}</td>
+                                    <td>Tanggal Renungan</td>
+                                    <td>{{ $renungan->tanggal }}</td>
                                 </tr>
                             </tbody>
                         </table>

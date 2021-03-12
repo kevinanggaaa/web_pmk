@@ -253,7 +253,7 @@
                     </a>
                     <div class="text p-4">
                         <div class="meta mb-2">
-                            <div><a href="#">{{$renungan->created_at}}</a></div>
+                            <div><a href="#">{{$renungan->tanggal}}</a></div>
                         </div>
                         <h3 class="heading"><a href="#">{{$renungan->lokasiFirman}}</a></h3>
                         <p>{{$renungan->isiFirman}}</p>

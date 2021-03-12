@@ -16,6 +16,7 @@ class LandingPageRenungan extends Model
         'lokasiFirman',
         'isiFirman',
         'bacaan',
+        'tanggal',
         'image',
     ];
 }

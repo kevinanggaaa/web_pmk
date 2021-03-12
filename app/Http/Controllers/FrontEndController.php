@@ -182,6 +182,7 @@ class FrontEndController extends Controller
             'lokasiFirman' => $request['lokasiFirman'],
             'isiFirman' => $request['isiFirman'],
             'bacaan' => $request['bacaan'],
+            'tanggal' => $request['tanggal'],
             'image' => $nama_file
         ]);
 
@@ -218,27 +219,27 @@ class FrontEndController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showHome($id)
+    public function showHome(LandingPageHome $home)
     {
-        $home = LandingPageHome::select()->where('id', $id)->first();
+        // $home = LandingPageHome::select()->where('id', $id)->first();
         return view('landingPageHome.show', compact('home'));
     }
 
-    public function showVisiMisi($id)
+    public function showVisiMisi(LandingPageVisiMisi $VisiMisi)
     {
-        $VisiMisi = LandingPageVisiMisi::select()->where('id', $id)->first();
+        // $VisiMisi = LandingPageVisiMisi::select()->where('id', $id)->first();
         return view('landingPageVisiMisi.show', compact('VisiMisi'));
     }
 
-    public function showAbout($id)
+    public function showAbout(LandingPageAbout $about)
     {
-        $about = LandingPageAbout::select()->where('id', $id)->first();
+        // $about = LandingPageAbout::select()->where('id', $id)->first();
         return view('landingPageAbout.show', compact('about'));
     }
 
-    public function showRenungan($id)
+    public function showRenungan(LandingPageRenungan $renungan)
     {
-        $renungan = LandingPageRenungan::select()->where('id', $id)->first();
+        // $renungan = LandingPageRenungan::select()->where('id', $id)->first();
         return view('landingPageRenungan.show', compact('renungan'));
     }
 
@@ -248,9 +249,9 @@ class FrontEndController extends Controller
         return view('landingPageTestimony.show', compact('testimony'));
     }
 
-    public function showRenunganDetail($id)
+    public function showRenunganDetail(LandingPageRenungan $renungan)
     {
-        $renungan = LandingPageRenungan::select()->where('id', $id)->first();
+        // $renungan = LandingPageRenungan::select()->where('id', $id)->first();
         return view('landingPageRenungan.renungan', compact('renungan'));
     }
     
@@ -261,27 +262,27 @@ class FrontEndController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editHome($id)
+    public function editHome(LandingPageHome $home)
     {
-        $home = LandingPageHome::select()->where('id', $id)->first();
+        // $home = LandingPageHome::select()->where('id', $id)->first();
         return view('landingPageHome.edit', compact('home'));
     }
 
-    public function editVisiMisi($id)
+    public function editVisiMisi(LandingPageVisiMisi $VisiMisi)
     {
-        $VisiMisi = LandingPageVisiMisi::select()->where('id', $id)->first();
+        // $VisiMisi = LandingPageVisiMisi::select()->where('id', $id)->first();
         return view('landingPageVisiMisi.edit', compact('VisiMisi'));
     }
 
-    public function editAbout($id)
+    public function editAbout(LandingPageAbout $about)
     {
-        $about = LandingPageAbout::select()->where('id', $id)->first();
+        // $about = LandingPageAbout::select()->where('id', $id)->first();
         return view('landingPageAbout.edit', compact('about'));
     }
 
-    public function editRenungan($id)
+    public function editRenungan(LandingPageRenungan $renungan)
     {
-        $renungan = LandingPageRenungan::select()->where('id', $id)->first();
+        // $renungan = LandingPageRenungan::select()->where('id', $id)->first();
         return view('landingPageRenungan.edit', compact('renungan'));
     }
 
@@ -297,9 +298,9 @@ class FrontEndController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateHome(Request $request,  $id)
+    public function updateHome(Request $request,  LandingPageHome $home)
     {
-        $home = LandingPageHome::select()->where('id', $id)->first();
+        // $home = LandingPageHome::select()->where('id', $id)->first();
 
         $home->title = $request->title;
         $home->subtitle = $request->subtitle;
@@ -310,10 +311,10 @@ class FrontEndController extends Controller
                 ->with('success', 'Data landing page home berhasil diubah');
     }
 
-    public function updateVisiMisi(Request $request, $id)
+    public function updateVisiMisi(Request $request, LandingPageVisiMisi $VisiMisi)
     {
 
-        $VisiMisi = LandingPageVisiMisi::select()->where('id', $id)->first();
+        // $VisiMisi = LandingPageVisiMisi::select()->where('id', $id)->first();
 
         $VisiMisi->title1 = $request->title1;
         $VisiMisi->description1 = $request->description1;
@@ -329,9 +330,9 @@ class FrontEndController extends Controller
             ->with('success', 'Data landing page visi misi berhasil diubah');
     }
 
-    public function updateAbout(Request $request, $id)
+    public function updateAbout(Request $request, LandingPageAbout $about)
     {
-        $about = LandingPageAbout::select()->where('id', $id)->first();
+        // $about = LandingPageAbout::select()->where('id', $id)->first();
 
         $about->title = $request->title;
         $about->subtitle = $request->subtitle;
@@ -342,15 +343,16 @@ class FrontEndController extends Controller
                 ->with('success', 'Data landing page about berhasil diubah');
     }
 
-    public function updateRenungan(Request $request, $id)
+    public function updateRenungan(Request $request, LandingPageRenungan $renungan)
     {
 
-        $renungan = LandingPageRenungan::select()->where('id', $id)->first();
+        // $renungan = LandingPageRenungan::select()->where('id', $id)->first();
 
         $renungan->title = $request->title;
         $renungan->lokasiFirman = $request->lokasiFirman;
         $renungan->isiFirman = $request->isiFirman;
         $renungan->bacaan = $request->bacaan;
+        $renungan->tanggal = $request->tanggal;
         $renungan->save();
 
         return redirect()->route('landingPage.indexRenungan')
@@ -370,7 +372,7 @@ class FrontEndController extends Controller
 
     }
 
-    public function updateHomeAvatar(Request $request, $id)
+    public function updateHomeAvatar(Request $request, LandingPageHome $home)
     {
         
         if($request['image'] == null){
@@ -384,7 +386,7 @@ class FrontEndController extends Controller
             $file->move($tujuan_upload, $nama_file);
         }
 
-        $home = LandingPageHome::select()->where('id', $id)->first();
+        // $home = LandingPageHome::select()->where('id', $id)->first();
 
         $home->image = $nama_file;
         $home->save();
@@ -393,7 +395,7 @@ class FrontEndController extends Controller
             ->with('success', 'Foto landing page home berhasil diubah');
     }
 
-    public function updateAboutAvatar(Request $request, LandingPageAbout $id)
+    public function updateAboutAvatar(Request $request, LandingPageAbout $about)
     {
         
         if($request['image'] == null){
@@ -407,7 +409,7 @@ class FrontEndController extends Controller
             $file->move($tujuan_upload, $nama_file);
         }
 
-        $about = LandingPageAbout::select()->where('id', $id)->first();
+        // $about = LandingPageAbout::select()->where('id', $id)->first();
 
         $about->image = $nama_file;
         $about->save();
@@ -416,7 +418,7 @@ class FrontEndController extends Controller
             ->with('success', 'Foto landing page about berhasil diubah');
     }
 
-    public function updateRenunganAvatar(Request $request, LandingPageRenungan $id)
+    public function updateRenunganAvatar(Request $request, LandingPageRenungan $renungan)
     {
         
         if($request['image'] == null){
@@ -430,7 +432,7 @@ class FrontEndController extends Controller
             $file->move($tujuan_upload, $nama_file);
         }
 
-        $renungan = LandingPageRenungan::select()->where('id', $id)->first();
+        // $renungan = LandingPageRenungan::select()->where('id', $id)->first();
 
         $renungan->image = $nama_file;
         $renungan->save();
@@ -467,34 +469,34 @@ class FrontEndController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroyHome($id)
+    public function destroyHome(LandingPageHome $home)
     {
-        $home = LandingPageHome::select()->where('id', $id)->first();
+        // $home = LandingPageHome::select()->where('id', $id)->first();
         $home->delete();
         return redirect()->route('landingPage.indexHome')
             ->with('success', 'Data landing page home berhasil dihapus');
     }
 
-    public function destroyVisiMisi($id)
+    public function destroyVisiMisi(LandingPageVisiMisi $VisiMisi)
     {
-        $VisiMisi = LandingPageVisiMisi::select()->where('id', $id)->first();
+        // $VisiMisi = LandingPageVisiMisi::select()->where('id', $id)->first();
         $VisiMisi->delete();
         return redirect()->route('landingPage.indexVisiMisi')
             ->with('success', 'Data landing page visi misi berhasil dihapus');
     }
 
-    public function destroyAbout($id)
+    public function destroyAbout(LandingPageAbout $about)
     {
-        $about = LandingPageAbout::select()->where('id', $id)->first();
-        $About->delete();
+        // $about = LandingPageAbout::select()->where('id', $id)->first();
+        $about->delete();
         return redirect()->route('landingPage.indexAbout')
             ->with('success', 'Data landing page about berhasil dihapus');
     }
 
-    public function destroyRenungan($id)
+    public function destroyRenungan(LandingPageRenungan $renungan)
     {
-        $renungan = LandingPageRenungan::select()->where('id', $id)->first();
-        $Renungan->delete();
+        // $renungan = LandingPageRenungan::select()->where('id', $id)->first();
+        $renungan->delete();
         return redirect()->route('landingPage.indexRenungan')
             ->with('success', 'Data landing page renungan berhasil dihapus');
     }

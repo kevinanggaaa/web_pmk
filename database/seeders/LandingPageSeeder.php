@@ -186,6 +186,7 @@ class LandingPageSeeder extends Seeder
             'lokasiFirman' => '2 KORINTUS 8:1-15',
             'isiFirman' => 'Karena itu, sekarang, sama seperti kamu kaya dalam segala sesuatu—dalam iman, dalam perkataan, dalam pengetahuan, dalam kesungguhan untuk membantu, dan dalam kasihmu terhadap kami—demikianlah juga hendaknya kamu kaya dalam pelayanan kasih ini. (2 Korintus 8:7)',
             'bacaan' => 'Kekayaan di dalam iman kepada Tuhan Yesus Kristus tidak bergantung kepada harta benda. Karena itu tidak perlu menunggu memiliki banyak harta untuk dapat menjadi kaya di dalam Tuhan. Pun tidak perlu menunggu berkelimpahan harta untuk dapat melakukan kasih.',
+            'tanggal' => '2021-02-18',
             'image' => 'example1.JPG'
         ]);
         
@@ -194,6 +195,7 @@ class LandingPageSeeder extends Seeder
             'lokasiFirman' => ' 2 KORINTUS 5:1-10',
             'isiFirman' => 'Selama kita di dalam kemah ini, kita mengeluh, karena kita rindu mengenakan tempat kediaman surgawi. (2 Korintus 5:2)',
             'bacaan' => 'Rick Warren mengatakan, hidup adalah persiapan untuk kekekalan. Di dunia ini Allah ingin melatih kita untuk hidup dalam kekekalan. Tuhan lebih tertarik kepada karakter kita daripada kesuksesan kita, kesucian hidup daripada kesenangan.',
+            'tanggal' => '2021-02-19',
             'image' => 'example2.JPG'
         ]);
 
@@ -202,6 +204,7 @@ class LandingPageSeeder extends Seeder
             'lokasiFirman' => 'AMSAL 22:6, 24-25',
             'isiFirman' => 'Didiklah orang muda menurut jalan yang patut baginya, maka pada masa tuanya pun ia tidak akan menyimpang dari pada jalan itu. (Amsal 22:6)',
             'bacaan' => 'Kitab Amsal banyak mengusung tema pendidikan. Kunci pendidikan terletak pada kebiasaan yang dibangun lewat pengulangan dari waktu ke waktu. Akhirnya, kebiasaan yang terbentuk itulah yang mengendalikan sebagian besar dari perilaku dan tindakan kita.',
+            'tanggal' => '2021-02-20',
             'image' => 'example3.JPG'
         ]);
 

@@ -146,10 +146,10 @@
 		<!-- <span class="the">The</span> 
 		<span class="heart">Heart</span> -->
 	</h1>
-	<!-- <cite>
-		by <span class="name">Jay Wamsley</span> | 
-		Photos by <span class="name">Jay Drowns</span>
-	</cite> -->
+	<cite>
+		Renungan harian <span class="name">PMK ITS</span> | 
+		Tanggal <span class="name">{{$renungan->tanggal}}</span>
+	</cite>
 	<img src="{{url('landingpage/renungan/'.$renungan->image)}}" />
     
 	<aside><strong>{{$renungan->isiFirman}}<br><br>{{$renungan->lokasiFirman}}</br></strong></aside>

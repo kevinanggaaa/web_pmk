@@ -61,7 +61,7 @@
                     <th>Id</th>
                     <th>Judul</th>
                     <th>Firman</th>
-                    <th>Dibuat pada</th>
+                    <th>Tanggal renungan</th>
                     <th style="width: 280px">Action</th>
 
                 </tr>
@@ -72,7 +72,7 @@
                     <td>{{ $renungan->id }}</td>
                     <td>{{ $renungan->title }}</td>
                     <td>{{ $renungan->lokasiFirman }}</td>
-                    <td>{{ $renungan->created_at }}</td>
+                    <td>{{ $renungan->tanggal }}</td>
                     
                     <td>
                         <div style="display: flex">
