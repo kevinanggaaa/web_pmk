@@ -102,7 +102,7 @@
                     <th>Nama</th>
                     <th>Department</th>
 
-                    @canany(['view detail lecturer', 'edit lecturer', 'delete lecturer']))
+                    @canany(['view detail lecturer', 'edit lecturer', 'delete lecturer'])
                     <th style="width: 280px">Action</th>
                     @endcanany
                 </tr>
@@ -114,7 +114,7 @@
                     <td>{{ $lecturer->name }}</td>
                     <td>{{ $lecturer->department }}</td>
                     
-                    @canany(['view detail lecturer', 'edit lecturer', 'delete lecturer']))
+                    @canany(['view detail lecturer', 'edit lecturer', 'delete lecturer'])
                     <td>
                         <div style="display: flex">
                             @can('view detail lecturer')

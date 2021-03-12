@@ -58,7 +58,7 @@
                     <th>Topik</th>
                     <th>Konselor</th>
                     <th>Tanggal</th>
-                    @canany(['edit counseling', 'delete counseling']))
+                    @canany(['edit counseling', 'delete counseling'])
                     <th style="width: 280px">Action</th>
                     @endcanany
                 </tr>
@@ -74,7 +74,7 @@
                     @endforeach
                     <td>{{ $counseling->date_time}}</td>
 
-                    @canany(['edit counseling', 'delete counseling']))
+                    @canany(['edit counseling', 'delete counseling'])
                     <td>
                         <div style="display: flex">
                             @can('edit counseling')

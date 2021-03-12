@@ -61,7 +61,7 @@
                     <th>Kategori</th>
                     <th>Tahun mulai</th>
                     <th>Tahun selesai</th>
-                    @canany(['view detail organizational record', 'edit organizational record', 'delete organizational record']))
+                    @canany(['view detail organizational record', 'edit organizational record', 'delete organizational record'])
                     <th style="width: 280px">Action</th>
                     @endcanany
                 </tr>
@@ -81,7 +81,7 @@
                     <td>{{ $organizationalRecord->year_start }}</td>
                     <td>{{ $organizationalRecord->year_end }}</td>
 
-                    @canany(['view detail organizational record', 'edit organizational record', 'delete organizational record']))
+                    @canany(['view detail organizational record', 'edit organizational record', 'delete organizational record'])
                     <td>
                         <div style="display: flex">
                             @can('view detail organizational record')

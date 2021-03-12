@@ -42,7 +42,7 @@
             </div>
         @endif
 
-        @can('add role'))
+        @can('add role')
         <div class="card-tools">
                 <div class="">
                     <a class="btn btn-success" href="{{ route('roles.create') }}">Tambah Role Baru</a>
@@ -58,7 +58,7 @@
             <tr>
                 <th style="">Role</th>
 
-                @canany(['view detail role', 'edit role', 'delete role']))
+                @canany(['view detail role', 'edit role', 'delete role'])
                 <th style="">Action</th>
                 @endcanany
             </tr>
@@ -68,22 +68,22 @@
                 <tr>
                     <td>{{ $role->name }}</td>
 
-                    @canany(['view detail role', 'edit role', 'delete role']))
+                    @canany(['view detail role', 'edit role', 'delete role'])
                     <td>
                         <div style="display: flex">
-                            @can('view detail role'))
+                            @can('view detail role')
                                 <div style="margin-right: 5px;">
                                         <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}"><i class="fa fa-eye"></i></a>
                                 </div>
                             @endcan
 
-                            @can('edit role'))
+                            @can('edit role')
                                 <div style="margin-right: 5px;">
                                         <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}"><i class="fa fa-edit"></i></a>
                                 </div>
                             @endcan
 
-                            @can('delete role'))
+                            @can('delete role')
                             <div style="margin-right: 5px;">
                                 @can('delete role')
                                     <form action="{{ route('roles.destroy', $role->id) }}" method="POST" class="display: inline;">

@@ -58,7 +58,7 @@
                     <th>Nama</th>
                     <th>Content doa</th>
                     <th>Status</th>
-                    @canany(['edit prayer request', 'delete prayer request']))
+                    @canany(['edit prayer request', 'delete prayer request'])
                     <th style="width: 280px">Action</th>
                     @endcanany
                 </tr>
@@ -70,17 +70,17 @@
                     <td>{{ $prayerRequest->content }}</td>
                     <td>{{ $prayerRequest->status }}</td>
 
-                    @canany(['edit prayer request', 'delete prayer request']))
+                    @canany(['edit prayer request', 'delete prayer request'])
                     <td>
                         <div style="display: flex">
 
-                            @can('edit prayer request'))
+                            @can('edit prayer request')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('prayer-requests.edit',$prayerRequest->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
                             @endcan
 
-                            @can('delete prayer request'))
+                            @can('delete prayer request')
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('prayer-requests.destroy', $prayerRequest->id) }}" method="POST" class="display: inline;">
                                     @csrf

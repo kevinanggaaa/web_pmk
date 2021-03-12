@@ -59,7 +59,7 @@
                     <th>Tipe</th>
                     <th>Mulai</th>
                     <th>Berakhir</th>
-                    @canany(['view detail event', 'edit event', 'delete event']))
+                    @canany(['view detail event', 'edit event', 'delete event'])
                     <th style="width: 280px">Action</th>
                     @endcanany
                 </tr>
@@ -72,7 +72,7 @@
                     <td>{{ $event->start }}</td>
                     <td>{{ $event->end }}</td>
 
-                    @canany(['view detail event', 'edit event', 'delete event']))
+                    @canany(['view detail event', 'edit event', 'delete event'])
                     <td>
                         <div style="display: flex">
                             @can('view detail event')
