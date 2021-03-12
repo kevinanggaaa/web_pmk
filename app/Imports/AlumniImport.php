@@ -41,29 +41,28 @@ class AlumniImport implements ToModel, WithHeadingRow
             ]
         );
 
-        $user = User::firstOrCreate(
-            [
-                'email' => $row['email'],
-            ],
-            [
-                'password' => Hash::make($ultah),
-                'name' => $row['name'],
-                'pkk' => $row['pkk'],
-                'address' => $row['address'],
-                'address_origin' => $row['address_origin'],
-                'phone' => $row['phone'],
-                'parent_phone' => $row['parent_phone'],
-                'line' => $row['line'],
-                'birthdate' => $row['birthdate'],
-                'gender' => $row['gender'],
-                'date_death' => $row['date_death'],
-                'avatar' => "default.jpg",
-            ]
-        );
-
-        $user->assignRole('Alumni');
-
         if ($alumni->wasRecentlyCreated) {
+            $user = User::firstOrCreate(
+                [
+                    'email' => $row['email'],
+                ],
+                [
+                    'password' => Hash::make($ultah),
+                    'name' => $row['name'],
+                    'pkk' => $row['pkk'],
+                    'address' => $row['address'],
+                    'address_origin' => $row['address_origin'],
+                    'phone' => $row['phone'],
+                    'parent_phone' => $row['parent_phone'],
+                    'line' => $row['line'],
+                    'birthdate' => $row['birthdate'],
+                    'gender' => $row['gender'],
+                    'date_death' => $row['date_death'],
+                    'avatar' => "default.jpg",
+                ]
+            );
+    
+            $user->assignRole('Alumni');
             $model_id = Alumni::select('id')->where('email', $row['email'])->first();
             $user_id = User::select('id')->where('email', $row['email'])->first();
 

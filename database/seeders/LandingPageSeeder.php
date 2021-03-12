@@ -20,14 +20,14 @@ class LandingPageSeeder extends Seeder
     public function run()
     {
         LandingPageHome::create([
-            'title' => 'Tim Pembina Kerohanian ITS',
+            'title' => 'Tim Pembina Kerohanian Kristen ITS',
             'subtitle' => 'TPKK ITS',
             'description' => 'TPK Kristen mewadahi mahasiswa beragama Kristen dan menyelenggarakan berbagai acara keagamaan.',
             'image' => 'example1.JPG'
         ]);
 
         LandingPageHome::create([
-            'title' => 'Perkumpulan Mahasiswa Kristen ITS',
+            'title' => 'Persekutuan Mahasiswa Kristen ITS',
             'subtitle' => 'PMK ITS',
             'description' => 'Persekutuan Mahasiswa Kristen ITS adalah organisasi mahasiswa yang bergerak dalam bidang kerohanian Kristen.',
             'image' => 'example2.JPG'

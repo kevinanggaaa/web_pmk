@@ -38,29 +38,28 @@ class LecturerImport implements ToModel, WithHeadingRow
                 'department' => $row['department'],
         ]);
 
-        $user = User::firstOrCreate(
-            [
-                'email' => $row['email'],
-            ],
-            [
-                'password' => Hash::make($ultah),
-                'name' => $row['name'],
-                'pkk' => $row['pkk'],
-                'address' => $row['address'],
-                'address_origin' => $row['address_origin'],
-                'phone' => $row['phone'],
-                'parent_phone' => $row['parent_phone'],
-                'line' => $row['line'],
-                'birthdate' => $row['birthdate'],
-                'gender' => $row['gender'],
-                'date_death' => $row['date_death'],
-                'avatar' => "default.jpg",
-            ]
-        );
-
-        $user->assignRole('Dosen');
-
         if ($lecturer->wasRecentlyCreated) {
+            $user = User::firstOrCreate(
+                [
+                    'email' => $row['email'],
+                ],
+                [
+                    'password' => Hash::make($ultah),
+                    'name' => $row['name'],
+                    'pkk' => $row['pkk'],
+                    'address' => $row['address'],
+                    'address_origin' => $row['address_origin'],
+                    'phone' => $row['phone'],
+                    'parent_phone' => $row['parent_phone'],
+                    'line' => $row['line'],
+                    'birthdate' => $row['birthdate'],
+                    'gender' => $row['gender'],
+                    'date_death' => $row['date_death'],
+                    'avatar' => "default.jpg",
+                ]
+            );
+
+            $user->assignRole('Dosen');
             $model_id = Lecturer::select('id')->where('nidn', $row['nidn'])->first();
             $user_id = User::select('id')->where('email', $row['email'])->first();
 

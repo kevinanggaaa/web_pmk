@@ -26,28 +26,6 @@ class StudentImport implements ToModel, WithHeadingRow
         $month = $ultah[1];
         $day  = $ultah[2];
         $ultah = $day . '' . $month . '' . $year;
-
-        $user = User::firstOrCreate(
-            [
-                'email' => $row['email']
-            ],
-            [
-                'password' => Hash::make($ultah),
-                'name' => $row['name'],
-                'pkk' => $row['pkk'],
-                'address' => $row['address'],
-                'address_origin' => $row['address_origin'],
-                'phone' => $row['phone'],
-                'parent_phone' => $row['parent_phone'],
-                'line' => $row['line'],
-                'birthdate' => $row['birthdate'],
-                'gender' => $row['gender'],
-                'date_death' => $row['date_death'],
-                'avatar' => "default.jpg",
-            ]
-        );
-        
-        $user ->assignRole('Mahasiswa');
         
         $student = Student::firstOrCreate(
             [
@@ -62,6 +40,26 @@ class StudentImport implements ToModel, WithHeadingRow
         );
 
         if($student->wasRecentlyCreated){
+            $user = User::firstOrCreate(
+                [
+                    'email' => $row['email']
+                ],
+                [
+                    'password' => Hash::make($ultah),
+                    'name' => $row['name'],
+                    'pkk' => $row['pkk'],
+                    'address' => $row['address'],
+                    'address_origin' => $row['address_origin'],
+                    'phone' => $row['phone'],
+                    'parent_phone' => $row['parent_phone'],
+                    'line' => $row['line'],
+                    'birthdate' => $row['birthdate'],
+                    'gender' => $row['gender'],
+                    'date_death' => $row['date_death'],
+                    'avatar' => "default.jpg",
+                ]
+            );
+            $user ->assignRole('Mahasiswa');
             $model_id = Student::select('id')->where('nrp', $row['nrp'])->first();
             $user_id = User::select('id')->where('email', $row['email'])->first();
 
