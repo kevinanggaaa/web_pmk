@@ -21,7 +21,6 @@
 
                 <p class="pl-1">
                     Profile
-                    <i class="right fas fa-angle-left"></i>
                 </p>
 
             </a>
