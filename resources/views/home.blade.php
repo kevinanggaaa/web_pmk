@@ -109,48 +109,47 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 mb-5 mb-md-0 text-center text-md-left">
-                <h2 class="font-weight-bold" style="color: #fff; font-size: 22px; text-transform: uppercase;">We're
-                    on a mission to help all your problems</h2>
+                <h2 class="font-weight-bold" style="color: #fff; font-size: 22px; text-transform: uppercase;">Jumlah Saat Ini</h2>
             </div>
             <div class="col-md-9">
                 <div class="row">
                     <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18 text-center">
                             <div class="text">
-                                <strong class="number" data-number="1005000">0</strong>
+                                <strong class="number" data-number="{{$count->students}}">0</strong>
                             </div>
                             <div class="text">
-                                <span>Members</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                        <div class="block-18 text-center">
-                            <div class="text">
-                                <strong class="number" data-number="65000">0</strong>
-                            </div>
-                            <div class="text">
-                                <span>Pastors</span>
+                                <span>Mahasiswa</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18 text-center">
                             <div class="text">
-                                <strong class="number" data-number="500000">0</strong>
+                                <strong class="number" data-number="{{$count->lecturers}}">0</strong>
                             </div>
                             <div class="text">
-                                <span>Donations</span>
+                                <span>Dosen</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18 text-center">
                             <div class="text">
-                                <strong class="number" data-number="50">0</strong>
+                                <strong class="number" data-number="{{$count->alumnis}}">0</strong>
                             </div>
                             <div class="text">
-                                <span>Churches</span>
+                                <span>Alumni</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <strong class="number" data-number="{{$count->events}}">0</strong>
+                            </div>
+                            <div class="text">
+                                <span>Event</span>
                             </div>
                         </div>
                     </div>

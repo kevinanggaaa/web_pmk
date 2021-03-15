@@ -157,81 +157,54 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{route ('landingPage.indexHome')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Home</p>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a href="{{route ('landingPage.indexHome')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Home</p>
+                                </a>
+                            </li>
 
-                                <li class="nav-item">
-                                    <a href="{{route ('landingPage.indexVisiMisi')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Visi Misi</p>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a href="{{route ('landingPage.indexVisiMisi')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Visi Misi</p>
+                                </a>
+                            </li>
 
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Count</p>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a href="{{route ('landingPage.indexCount')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Count</p>
+                                </a>
+                            </li>
 
-                                <li class="nav-item">
-                                    <a href="{{route ('landingPage.indexAbout')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>About</p>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a href="{{route ('landingPage.indexAbout')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>About</p>
+                                </a>
+                            </li>
 
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Persekutuann jumat</p>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a href="{{route ('landingPage.indexTestimony')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Testimoni</p>
+                                </a>
+                            </li>
 
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Testimoni</p>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a href="{{route ('landingPage.indexRenungan')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Renungan harian</p>
+                                </a>
+                            </li>
 
-                                <li class="nav-item">
-                                    <a href="{{route ('landingPage.indexRenungan')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Renungan harian</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="{{route ('landingPage.indexTestimony')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Kesaksian</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Event</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Banner</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{route ('posts.index')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Post</p>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a href="{{route ('landingPage.indexTestimony')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kesaksian</p>
+                                </a>
+                            </li>
                         </ul>
                       </li>                
         </ul>
