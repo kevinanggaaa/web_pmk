@@ -6,6 +6,7 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Models\LandingPageHome;
 use App\Models\LandingPageAbout;
+use App\Models\LandingPageCount;
 use Illuminate\Support\Facades\DB;
 use App\Models\LandingPageRenungan;
 use App\Models\LandingPageTestimony;
@@ -66,6 +67,12 @@ class FrontEndController extends Controller
         return view('landingPageTestimony.index', compact('testimonies'));
     }
 
+    public function indexCount()
+    {
+        $counts = LandingPageCount::all();
+        return view('landingPageCount.index', compact('counts'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -94,6 +101,11 @@ class FrontEndController extends Controller
     public function createTestimony()
     {
         return view('landingPageTestimony.create');
+    }
+
+    public function createCount()
+    {
+        return view('landingPageCount.create');
     }
 
     /**
@@ -202,7 +214,7 @@ class FrontEndController extends Controller
             $tujuan_upload = 'landingpage/testimony';
             $file->move($tujuan_upload, $nama_file);
         }
-        $renungan = LandingPageRenungan::create([
+        $testimony= LandingPageTestimony::create([
             'name' => $request['name'],
             'position' => $request['position'],
             'quote' => $request['quote'],
@@ -211,6 +223,19 @@ class FrontEndController extends Controller
 
         return redirect()->route('landingPage.indexTestimony')
             ->with('success', 'Data landing page kesaksian berhasil ditambahkan');
+    }
+
+    public function storeCount(Request $request)
+    {
+        $count = LandingPageCount::create([
+            'students' => $request['students'],
+            'lecturers' => $request['lecturers'],
+            'alumnis' => $request['alumnis'],
+            'events' => $request['events'],
+        ]);
+
+        return redirect()->route('landingPage.indexCount')
+            ->with('success', 'Data landing page jumlah berhasil ditambahkan');
     }
 
     /**
@@ -247,6 +272,11 @@ class FrontEndController extends Controller
     public function showTestimony(LandingPageTestimony $testimony)
     {
         return view('landingPageTestimony.show', compact('testimony'));
+    }
+
+    public function showCount(LandingPageCount $count)
+    {
+        return view('landingPageCount.show', compact('count'));
     }
 
     public function showRenunganDetail(LandingPageRenungan $renungan)
@@ -289,6 +319,11 @@ class FrontEndController extends Controller
     public function editTestimony(LandingPageTestimony $testimony)
     {
         return view('landingPageTestimony.edit', compact('testimony'));
+    }
+
+    public function editCount(LandingPageCount $count)
+    {
+        return view('landingPageCount.edit', compact('count'));
     }
 
     /**
@@ -369,7 +404,18 @@ class FrontEndController extends Controller
 
         return redirect()->route('landingPage.indexTestimony')
                 ->with('success', 'Data landing page kesaksian berhasil diubah');
+    }
 
+    public function updateCount(Request $request, LandingPageCount $count)
+    {
+        $count->students = $request->students;
+        $count->lecturers = $request->lecturers;
+        $count->alumnis = $request->alumnis;
+        $count->events = $request->events;
+        $count->save();
+
+        return redirect()->route('landingPage.indexCount')
+                ->with('success', 'Data landing page jumlah berhasil diubah');
     }
 
     public function updateHomeAvatar(Request $request, LandingPageHome $home)
@@ -506,5 +552,12 @@ class FrontEndController extends Controller
         $testimony->delete();
         return redirect()->route('landingPage.indexTestimony')
             ->with('success', 'Data landing page kesaksian berhasil dihapus');
+    }
+
+    public function destroyCount(LandingPageCount $count)
+    {
+        $count->delete();
+        return redirect()->route('landingPage.indexCount')
+            ->with('success', 'Data landing page jumlah berhasil dihapus');
     }
 }

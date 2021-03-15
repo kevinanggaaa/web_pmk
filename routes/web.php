@@ -72,6 +72,7 @@ Route::middleware(['change_password'])->prefix('admin')->group(function () {
     Route::resource('/counselings', CounselingController::class);
 
     Route::resource('/profiles', ProfileController::class);
+    Route::get('/profiles/{user}/editUser', [ProfileController::class, 'editUser'])->name('profiles.editUser');
     Route::get('/profiles/{student}/editStudent', [ProfileController::class, 'editStudent'])->name('profiles.editStudent');
     Route::get('/profiles/{alumni}/editAlumni', [ProfileController::class, 'editAlumni'])->name('profiles.editAlumni');
     Route::get('/profiles/{lecturer}/editLecturer', [ProfileController::class, 'editLecturer'])->name('profiles.editLecturer');
@@ -132,6 +133,6 @@ Route::middleware(['change_password'])->prefix('admin')->group(function () {
     
 });
 Route::put('/users/updatePassword/{user}', [UserController::class, 'updatePassword'])->name('users.updatePassword');
-Route::get('/events/{slug}', [EventController::class, 'showSlug'])->name('events.showSlug');
+Route::get('/events/{slug}', [EventController::class, 'showSlug'])->name('events.showSlug')->middleware(['change_password']);
 Route::get('/attends/{slug}', [EventController::class, 'attendView'])->name('events.attendView');
 Route::put('/events/{event}', [EventController::class, 'attend'])->name('events.attend');

@@ -45,7 +45,7 @@
         <div class="card">
             <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link active fas fa-user-cog" href="{{ route('users.edit',$user->id) }}"></a>
+                    <li class="nav-item"><a class="nav-link active fas fa-user-cog" href="{{ route('profiles.editUser',$user->id) }}"></a>
                     </li>
                 </ul>
 

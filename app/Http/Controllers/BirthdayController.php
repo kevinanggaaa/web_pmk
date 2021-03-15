@@ -14,6 +14,11 @@ class BirthdayController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:view birthday')->only('index');
+    }
+
     public function index()
     {
         $users = 

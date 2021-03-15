@@ -13,6 +13,16 @@ use App\Models\Profile;
 
 class EventController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view event')->only('index');
+        $this->middleware('permission:view detail event')->only('show');
+        $this->middleware('permission:view detail event')->only('showSlug');
+        $this->middleware('permission:add event')->only('create');
+        $this->middleware('permission:edit event')->only('edit');
+        $this->middleware('permission:edit event')->only('finnish');
+        $this->middleware('permission:delete event')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -272,26 +282,31 @@ class EventController extends Controller
 
     public function finnish(Event $event)
     {
+        $user = Auth::user();
+        if($event->creator_id == $user->id){
+            $attends = UserEvent::where('event_id', $event->id)->get();
+            $count = 0;
+            $temp = '';
 
-        $attends = UserEvent::where('event_id', $event->id)->get();
-        $count = 0;
-        $temp = '';
+            //menyimpan data dari peserta yang melakukan absen pada database UserEvent menjadi string, serta menghitung jumlah peserta
+            foreach ($attends as $attend) {
+                $temp .= $attend->user_id  . ";";
+                $count += 1;
+            }
 
-        //menyimpan data dari peserta yang melakukan absen pada database UserEvent menjadi string, serta menghitung jumlah peserta
-        foreach ($attends as $attend) {
-            $temp .= $attend->user_id  . ";";
-            $count += 1;
+            //menginput data string peserta dan jumlah ke database
+            $event->attendant_count = $count;
+            $event->attendant_id = $temp;
+            $event->save();
+
+            //menghapus data peserta pada userEvent yang telah disimpan pada string peserta
+            UserEvent::where('event_id', $event->id)->delete();
+
+            return redirect()->route('events.index')
+                ->with('success', 'Event telah selesai');
         }
-
-        //menginput data string peserta dan jumlah ke database
-        $event->attendant_count = $count;
-        $event->attendant_id = $temp;
-        $event->save();
-
-        //menghapus data peserta pada userEvent yang telah disimpan pada string peserta
-        UserEvent::where('event_id', $event->id)->delete();
-
-        return redirect()->route('events.index')
-            ->with('success', 'Event telah selesai');
+        else{
+            abort(401);
+        }
     }
 }
