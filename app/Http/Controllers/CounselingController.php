@@ -65,6 +65,7 @@ class CounselingController extends Controller
             'counselor_id' => $request['counselor_id'],
             'date_time' => $request['date_time'],
             'topic' => $request['topic'],
+            'status' => "requested",
         ]);
 
         return redirect()->route('counselings.index')
@@ -79,7 +80,8 @@ class CounselingController extends Controller
      */
     public function show(Counseling $counseling)
     {
-        
+        $counselor = Counselor::select()->where('id',$counseling->counselor_id)->first();
+        return view('counselings.show', compact('counselor'));
     }
 
     /**
@@ -91,8 +93,20 @@ class CounselingController extends Controller
     public function edit(Counseling $counseling)
     {
         $counselors = Counselor::all();
+        $auth = Auth::user();
 
-        return view('counselings.edit', compact('counseling', 'counselors'));
+        if(Auth::user()->hasRole(['ketua', 'sekretaris', 'bendahara'])){
+            return view('counselings.edit', compact('counseling', 'counselors'));
+        }
+        else{
+            if($auth->id == $counseling->user_id){
+                return view('counselings.edit', compact('counseling', 'counselors'));
+            }
+            else{
+                abort(401);
+            }
+    
+        }
     }
 
     /**
@@ -104,9 +118,11 @@ class CounselingController extends Controller
      */
     public function update(CounselingRequest $request, Counseling $counseling)
     {
+
         $counseling->date_time = $request['date_time'];
         $counseling->topic = $request['topic'];
         $counseling->counselor_id = $request['counselor_id'];
+        $counseling->status = $request['status'];
         $counseling->save();
 
         return redirect()->route('counselings.index')

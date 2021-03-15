@@ -46,10 +46,14 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="category">Kategori</label>
-                                <input type="text" class="form-control {{$errors->has('category') ? 'is-invalid' : ''}}" id="category" name="category" placeholder="Masukkan kategori organisasi" value="{{old('category')}}" required>
+                                <select name="category" id="category" class="form-control {{$errors->has('category') ? 'is-invalid' : ''}}" required>
+                                    <option value="">== Pilih Kategori ==</option>
+                                        <option value="PMK ITS" >PMK ITS</option>
+                                        <option value="TPKK ITS" >TPKK ITS</option>
+                                </select>
                                 @error('category')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror

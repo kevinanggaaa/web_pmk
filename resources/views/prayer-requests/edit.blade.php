@@ -60,8 +60,13 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="status">Status</label>
-                                <input type="text" class="form-control {{$errors->has('status') ? 'is-invalid' : ''}}" id="status" name="status" placeholder="Masukkan Status" value="{{ $prayerRequest->status }}" >
-                                @error('status')
+                                <select name="status" id="status" class="form-control {{$errors->has('status') ? 'is-invalid' : ''}}" required>
+                                    <option value="">== Pilih Status ==</option>
+                                        <option value="requested" <?php if($prayerRequest->status=="requested") echo 'selected="selected"'; ?>>Requested</option>
+                                        <option value="rejected" <?php if($prayerRequest->status=="rejected") echo 'selected="selected"'; ?>>Rejected</option>
+                                        <option value="finish" <?php if($prayerRequest->status=="finish") echo 'selected="selected"'; ?>>Finish</option>
+                                </select>
+                                @error('type')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>

@@ -19,6 +19,7 @@ class CreateCounselingsTable extends Migration
             $table->foreignId('counselor_id');
             $table->dateTime('date_time');
             $table->string('topic');
+            $table->string('status');
             $table->timestamps();
 
             $table->foreign('user_id')

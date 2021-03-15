@@ -50,7 +50,7 @@ class OrganizationalRecordController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user()->id;
-        // dd($request['year_end']);
+
         OrganizationalRecord::create([
             'user_id' => $user,
             'position' => $request['position'],

@@ -167,6 +167,8 @@ class RoleSeeder extends Seeder
         $edit_user = Permission::create(['name' => 'edit user', 'guard_name' => 'web']);
         $delete_user = Permission::create(['name' => 'delete user', 'guard_name' => 'web']);
 
+        $view_birthday = Permission::create(['name' => 'view birthday', 'guard_name' => 'web']);
+        
         // Give Role Permission
         
         /*

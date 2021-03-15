@@ -50,7 +50,7 @@
     </div>
 
     <!-- /.card-header -->
-    @if(auth()->user()->hasRole(['bph dope', 'pengurus dope']))
+    @if(auth()->user()->hasRole(['bph dope', 'pengurus dope', 'Super Admin']))
     <div class="card-body p-3">
         <table id="example1" class="table table-bordered table-striped">
             <thead>

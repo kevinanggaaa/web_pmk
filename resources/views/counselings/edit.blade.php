@@ -70,6 +70,21 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select name="status" id="status" class="form-control {{$errors->has('status') ? 'is-invalid' : ''}}" required>
+                                    <option value="">== Pilih Status ==</option>
+                                        <option value="requested" <?php if($counseling->status=="requested") echo 'selected="selected"'; ?>>Requested</option>
+                                        <option value="accepted" <?php if($counseling->status=="accepted") echo 'selected="selected"'; ?>>Accepted</option>
+                                        <option value="rejected" <?php if($counseling->status=="rejected") echo 'selected="selected"'; ?>>Rejected</option>
+                                        <option value="finish" <?php if($counseling->status=="finish") echo 'selected="selected"'; ?>>Finish</option>
+                                </select>
+                                @error('type')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-footer">

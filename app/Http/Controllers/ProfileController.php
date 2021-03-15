@@ -47,11 +47,26 @@ class ProfileController extends Controller
 
     public function editLecturer(Lecturer $lecturer)
     {
-        return view('lecturers.edit', compact('lecturer'));
+        $profile = Profile::where("model_type", "App\Models\Lecturer")->where('model_id', $lecturer->id)->first();
+        $auth = Auth::user();
+        if($auth->id == $profile->user_id){
+            return view('lecturers.edit', compact('lecturer'));
+        }
+        else{
+            abort(401);
+        }
+    
     }
 
     public function editAlumni(Alumni $alumni)
     {
-        return view('alumnis.edit', compact('alumni'));
+        $profile = Profile::where("model_type", "App\Models\Alumni")->where('model_id', $alumni->id)->first();
+        $auth = Auth::user();
+        if($auth->id == $profile->user_id){
+            return view('alumnis.edit', compact('alumni'));
+        }
+        else{
+            abort(401);
+        }
     }
 }

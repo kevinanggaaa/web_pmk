@@ -15,7 +15,8 @@ class Counseling extends Model
         'user_id',
         'counselor_id',
         'date_time',
-        'topic'
+        'topic',
+        'status'
     ];
 
     public function counselor()

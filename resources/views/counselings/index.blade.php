@@ -58,7 +58,8 @@
                     <th>Topik</th>
                     <th>Konselor</th>
                     <th>Tanggal</th>
-                    @canany(['edit counseling', 'delete counseling'])
+                    <th>Status</th>
+                    @canany(['edit counseling', 'delete counseling', 'view detail counseling'])
                     <th style="width: 280px">Action</th>
                     @endcanany
                 </tr>
@@ -73,10 +74,16 @@
                         @endif
                     @endforeach
                     <td>{{ $counseling->date_time}}</td>
+                    <td>{{ $counseling->status}}</td>
 
-                    @canany(['edit counseling', 'delete counseling'])
+                    @canany(['edit counseling', 'delete counseling', 'view detail counseling'])
                     <td>
                         <div style="display: flex">
+                            @can('view detail counseling')
+                            <div style="margin-right: 5px;">
+                                <a class="btn btn-info" href="{{ route('counselings.show',$counseling->id) }}"><i class="fa fa-eye"></i></a>
+                            </div>
+                            @endcan
                             @can('edit counseling')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('counselings.edit',$counseling->id) }}"><i class="fa fa-edit"></i></a>
