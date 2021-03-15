@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Event;
 use App\Models\LandingPageAbout;
+use App\Models\LandingPageCount;
 use App\Models\LandingPageHome;
 use App\Models\LandingPageRenungan;
 use App\Models\LandingPageTestimony;
@@ -241,6 +242,13 @@ class LandingPageSeeder extends Seeder
             'position' => 'Bendahara PMK ITS 2050',
             'quote' => 'Belajarlah rendah hati, rendahkan hatimu serendah-rendahnya hingga tidak ada seorangpun yang bisa merendahkanmu.',
             'image' => 'susi.jpg'
+        ]);
+
+        LandingPageCount::create([
+            'students' => '5000',
+            'lecturers' => '200',
+            'alumnis' => '10000',
+            'events' => '50'
         ]);
     }
 }

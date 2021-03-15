@@ -125,10 +125,19 @@ Route::middleware(['change_password'])->prefix('admin')->group(function () {
     Route::get('/landingPageTestimony', [FrontEndController::class, 'indexTestimony'])->name('landingPage.indexTestimony');
     Route::get('/landingPageTestimony/create', [FrontEndController::class, 'createTestimony'])->name('landingPage.createTestimony');
     Route::post('/landingPageTestimony', [FrontEndController::class, 'storeTestimony'])->name('landingPage.storeTestimony');
+    Route::get('/landingPageTestimony/{testimony}', [FrontEndController::class, 'showTestimony'])->name('landingPage.showTestimony');
     Route::get('/landingPageTestimony/{testimony}/edit', [FrontEndController::class, 'editTestimony'])->name('landingPage.editTestimony');
     Route::put('/landingPageTestimony/{testimony}', [FrontEndController::class, 'updateTestimony'])->name('landingPage.updateTestimony');
     Route::put('/landingPageTestimony/updateAvatar/{testimony}', [FrontEndControllerController::class, 'updateTestimonyAvatar'])->name('landingPage.updateTestimonyAvatar');
     Route::delete('/landingPageTestimony/{testimony}', [FrontEndController::class, 'destroyTestimony'])->name('landingPage.deleteTestimony');
+
+    Route::get('/landingPageCount', [FrontEndController::class, 'indexCount'])->name('landingPage.indexCount');
+    Route::get('/landingPageCount/create', [FrontEndController::class, 'createCount'])->name('landingPage.createCount');
+    Route::post('/landingPageCount', [FrontEndController::class, 'storeCount'])->name('landingPage.storeCount');
+    Route::get('/landingPageCount/{count}', [FrontEndController::class, 'showCount'])->name('landingPage.showCount');
+    Route::get('/landingPageCount/{count}/edit', [FrontEndController::class, 'editCount'])->name('landingPage.editCount');
+    Route::put('/landingPageCount/{count}', [FrontEndController::class, 'updateCount'])->name('landingPage.updateCount');
+    Route::delete('/landingPageCount/{count}', [FrontEndController::class, 'destroyCount'])->name('landingPage.deleteCount');
 
     
 });

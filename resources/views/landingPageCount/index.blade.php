@@ -68,7 +68,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($counts as $Count)
+                @foreach ($counts as $count)
                 <tr>
                     <td>{{ $count->id }}</td>
                     <td>{{ $count->students }}</td>

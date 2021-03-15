@@ -23,8 +23,8 @@ class FrontEndController extends Controller
     public function indexAll()
     {
         $homes = LandingPageHome::latest()->take(3)->get()->sortByDesc("id");
-        $VisiMisi = DB::table('landing_page_visi_misis')->latest()->first();
-        $about = DB::table('landing_page_abouts')->latest()->first();
+        $VisiMisi = LandingPageVisiMisi::latest()->first();
+        $about = LandingPageAbout::latest()->first();
         $renungans = LandingPageRenungan::latest()->take(3)->get()->sortByDesc("id");
         $psJumats = Event::where('type', 'PJ')->latest()->take(3)->get()->sortByDesc("id");
         $testimonies = LandingPageTestimony::latest()->take(5)->get()->sortByDesc("id");
@@ -33,8 +33,9 @@ class FrontEndController extends Controller
                         ->where('type', '!=', 'Alumni')
                         ->where('type', '!=', 'Lecturer')
                         ->latest()->take(3)->get()->sortByDesc("id");
+        $count = LandingPageCount::latest()->first();
 
-        return view('home', compact('homes', 'VisiMisi', 'about', 'renungans', 'psJumats', 'testimonies', 'events'));
+        return view('home', compact('homes', 'VisiMisi', 'about', 'renungans', 'psJumats', 'testimonies', 'events', 'count'));
     }
 
     public function indexHome()
