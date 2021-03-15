@@ -70,10 +70,9 @@
                 @foreach ($organizationalRecords as $organizationalRecord)
                 <tr>
                     @foreach($users as $user)
-                        @if($organizationalRecord->user_id == $user->id){
+                        @if($organizationalRecord->user_id == $user->id)
                             <td>{{ $user->name }}</td>
                             @break
-                        }
                         @endif
                     @endforeach
                     <td>{{ $organizationalRecord->position }}</td>

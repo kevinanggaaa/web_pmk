@@ -85,7 +85,6 @@ Route::middleware(['change_password'])->prefix('admin')->group(function () {
     Route::put('/users/updateImage/{event}', [EventController::class, 'updateImage'])->name('events.updateImage');
 
     Route::resource('/roles', RoleController::class);
-    Route::resource('/posts', PostController::class);
     Route::resource('/alumnis', AlumniController::class);
 
     Route::get('/landingPageHome', [FrontEndController::class, 'indexHome'])->name('landingPage.indexHome');
@@ -94,7 +93,7 @@ Route::middleware(['change_password'])->prefix('admin')->group(function () {
     Route::get('/landingPageHome/{home}', [FrontEndController::class, 'showHome'])->name('landingPage.showHome');
     Route::get('/landingPageHome/{home}/edit', [FrontEndController::class, 'editHome'])->name('landingPage.editHome');
     Route::put('/landingPageHome/{home}', [FrontEndController::class, 'updateHome'])->name('landingPage.updateHome');
-    Route::put('/landingPageHome/updateAvatar/{home}', [FrontEndControllerController::class, 'updateHomeAvatar'])->name('landingPage.updateHomeAvatar');
+    Route::put('/landingPageHome/updateAvatar/{home}', [FrontEndController::class, 'updateHomeAvatar'])->name('landingPage.updateHomeAvatar');
     Route::delete('/landingPageHome/{home}', [FrontEndController::class, 'destroyHome'])->name('landingPage.deleteHome');
 
     Route::get('/landingPageVisiMisi', [FrontEndController::class, 'indexVisiMisi'])->name('landingPage.indexVisiMisi');
@@ -111,7 +110,7 @@ Route::middleware(['change_password'])->prefix('admin')->group(function () {
     Route::get('/landingPageAbout/{about}', [FrontEndController::class, 'showAbout'])->name('landingPage.showAbout');
     Route::get('/landingPageAbout/{about}/edit', [FrontEndController::class, 'editAbout'])->name('landingPage.editAbout');
     Route::put('/landingPageAbout/{about}', [FrontEndController::class, 'updateAbout'])->name('landingPage.updateAbout');
-    Route::put('/landingPageAbout/updateAvatar/{about}', [FrontEndControllerController::class, 'updateAboutAvatar'])->name('landingPage.updateAboutAvatar');
+    Route::put('/landingPageAbout/updateAvatar/{about}', [FrontEndController::class, 'updateAboutAvatar'])->name('landingPage.updateAboutAvatar');
     Route::delete('/landingPageAbout/{about}', [FrontEndController::class, 'destroyAbout'])->name('landingPage.deleteAbout');
 
     Route::get('/landingPageRenungan', [FrontEndController::class, 'indexRenungan'])->name('landingPage.indexRenungan');
@@ -119,7 +118,7 @@ Route::middleware(['change_password'])->prefix('admin')->group(function () {
     Route::post('/landingPageRenungan', [FrontEndController::class, 'storeRenungan'])->name('landingPage.storeRenungan');
     Route::get('/landingPageRenungan/{renungan}/edit', [FrontEndController::class, 'editRenungan'])->name('landingPage.editRenungan');
     Route::put('/landingPageRenungan/{renungan}', [FrontEndController::class, 'updateRenungan'])->name('landingPage.updateRenungan');
-    Route::put('/landingPageRenungan/updateAvatar/{renungan}', [FrontEndControllerController::class, 'updateRenunganAvatar'])->name('landingPage.updateRenunganAvatar');
+    Route::put('/landingPageRenungan/updateAvatar/{renungan}', [FrontEndController::class, 'updateRenunganAvatar'])->name('landingPage.updateRenunganAvatar');
     Route::delete('/landingPageRenungan/{renungan}', [FrontEndController::class, 'destroyRenungan'])->name('landingPage.deleteRenungan');
 
     Route::get('/landingPageTestimony', [FrontEndController::class, 'indexTestimony'])->name('landingPage.indexTestimony');
@@ -128,7 +127,7 @@ Route::middleware(['change_password'])->prefix('admin')->group(function () {
     Route::get('/landingPageTestimony/{testimony}', [FrontEndController::class, 'showTestimony'])->name('landingPage.showTestimony');
     Route::get('/landingPageTestimony/{testimony}/edit', [FrontEndController::class, 'editTestimony'])->name('landingPage.editTestimony');
     Route::put('/landingPageTestimony/{testimony}', [FrontEndController::class, 'updateTestimony'])->name('landingPage.updateTestimony');
-    Route::put('/landingPageTestimony/updateAvatar/{testimony}', [FrontEndControllerController::class, 'updateTestimonyAvatar'])->name('landingPage.updateTestimonyAvatar');
+    Route::put('/landingPageTestimony/updateAvatar/{testimony}', [FrontEndController::class, 'updateTestimonyAvatar'])->name('landingPage.updateTestimonyAvatar');
     Route::delete('/landingPageTestimony/{testimony}', [FrontEndController::class, 'destroyTestimony'])->name('landingPage.deleteTestimony');
 
     Route::get('/landingPageCount', [FrontEndController::class, 'indexCount'])->name('landingPage.indexCount');

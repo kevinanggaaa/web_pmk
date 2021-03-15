@@ -73,25 +73,7 @@ class StudentController extends Controller
           $file->move($tujuan_upload, $nama_file);
         }
       
-        $user = User::firstOrCreate(
-            [
-                'email' => $request['email']
-            ],
-            [
-                'password' => bcrypt($ultah),
-                'name' => $request['name'],
-                'pkk' => $request['pkk'],
-                'address' => $request['address'],
-                'address_origin' => $request['address_origin'],
-                'phone' => $request['phone'],
-                'parent_phone' => $request['parent_phone'],
-                'line' => $request['line'],
-                'birthdate' => $request['birthdate'],
-                'gender' => $request['gender'],
-                'date_death' => $request['date_death'],
-                'avatar' => $nama_file,
-            ]
-        );
+        
 
         $student = Student::firstOrCreate(
             [
@@ -106,13 +88,33 @@ class StudentController extends Controller
         );
 
         if($student->wasRecentlyCreated){
-            $model_id = Student::select('id')->where('nrp', $request['nrp'])->first();
-            $user_id = User::select('id')->where('email', $request['email'])->first();
+            // $model_id = Student::select('id')->where('nrp', $request['nrp'])->first();
+            // $user_id = User::select('id')->where('email', $request['email'])->first();
+
+            $user = User::firstOrCreate(
+                [
+                    'email' => $request['email']
+                ],
+                [
+                    'password' => bcrypt($ultah),
+                    'name' => $request['name'],
+                    'pkk' => $request['pkk'],
+                    'address' => $request['address'],
+                    'address_origin' => $request['address_origin'],
+                    'phone' => $request['phone'],
+                    'parent_phone' => $request['parent_phone'],
+                    'line' => $request['line'],
+                    'birthdate' => $request['birthdate'],
+                    'gender' => $request['gender'],
+                    'date_death' => $request['date_death'],
+                    'avatar' => $nama_file,
+                ]
+            );
 
             Profile::create([
                 'profile_id' => $request['nrp'],
-                'user_id' => $user_id->id,
-                'model_id' => $model_id->id,
+                'user_id' => $user->id,
+                'model_id' => $student->id,
                 'model_type' => 'App\Models\Student',
             ]);
 

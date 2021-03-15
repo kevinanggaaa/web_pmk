@@ -59,7 +59,7 @@ class OrganizationalRecordController extends Controller
             'year_end' => $request['year_end'],
         ]);
 
-        return redirect()->route('organizationalRecords.index')
+        return redirect()->route('organizational-records.index')
             ->with('success', 'Data organisasi berhasil ditambahkan');
     }
 
@@ -101,7 +101,7 @@ class OrganizationalRecordController extends Controller
 
         $organizationalRecord->save();
 
-        return redirect()->route('organizationalRecords.index')
+        return redirect()->route('organizational-records.index')
             ->with('success', 'Data organisasi berhasil diubah');
     }
 
