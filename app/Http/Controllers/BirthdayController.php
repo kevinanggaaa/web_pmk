@@ -32,15 +32,4 @@ class BirthdayController extends Controller
 
         return view('birthday.index', compact('users'));
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        
-    }
 }

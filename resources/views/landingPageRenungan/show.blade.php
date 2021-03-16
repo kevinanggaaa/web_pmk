@@ -27,6 +27,7 @@
                 <div class="text-center">
                     <img class="profile-user-img img-fluid img-circle" src="{{ url('/landingpage/renungan/'.$renungan->image) }}" alt="Image Renungan">
                 </div>
+                <h3 class="profile-username text-center pt-3">{{$renungan->title}}</h3>
             </div>
             <!-- /.card-body -->
         </div>
@@ -52,10 +53,6 @@
                         <table class="table">
 
                             <tbody>
-                                <tr>
-                                    <td>Judul</td>
-                                    <td>{{ $renungan->title }}</td>
-                                </tr>
                                 <tr>
                                     <td>Firman</td>
                                     <td>{{ $renungan->lokasiFirman }}</td>

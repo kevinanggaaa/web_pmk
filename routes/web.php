@@ -116,6 +116,7 @@ Route::middleware(['change_password'])->prefix('admin')->group(function () {
     Route::get('/landingPageRenungan', [FrontEndController::class, 'indexRenungan'])->name('landingPage.indexRenungan');
     Route::get('/landingPageRenungan/create', [FrontEndController::class, 'createRenungan'])->name('landingPage.createRenungan');
     Route::post('/landingPageRenungan', [FrontEndController::class, 'storeRenungan'])->name('landingPage.storeRenungan');
+    Route::get('/landingPageRenungan/{renungan}', [FrontEndController::class, 'showRenungan'])->name('landingPage.showRenungan');
     Route::get('/landingPageRenungan/{renungan}/edit', [FrontEndController::class, 'editRenungan'])->name('landingPage.editRenungan');
     Route::put('/landingPageRenungan/{renungan}', [FrontEndController::class, 'updateRenungan'])->name('landingPage.updateRenungan');
     Route::put('/landingPageRenungan/updateAvatar/{renungan}', [FrontEndController::class, 'updateRenunganAvatar'])->name('landingPage.updateRenunganAvatar');

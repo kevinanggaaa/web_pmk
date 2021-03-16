@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\User;
 use App\Models\Alumni;
 use App\Models\Profile;
 use App\Models\Student;
 use App\Models\Lecturer;
+use Spatie\Permission\Models\Role;
 use App\Models\OrganizationalRecord;
-use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -24,9 +25,11 @@ class ProfileController extends Controller
 
     public function editUser(User $user)
     {
+        $selected_roles = $user->roles;
+        $unselected_roles = Role::all()->diff($selected_roles);
         $auth = Auth::user();
         if($auth->id == $user->id){
-            return view('users.edit', compact('user'));
+            return view('users.edit', compact('user','selected_roles','unselected_roles'));
         }
         else{
             abort(401);
