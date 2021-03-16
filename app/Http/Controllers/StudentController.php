@@ -137,18 +137,8 @@ class StudentController extends Controller
     {
         $profile = Profile::select()->where('profile_id', $student['nrp'])->first();
         $user = User::select()->where('id',$profile->user_id)->first();
-        $metadata = Storage::disk('google')->listContents('1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm');
-        $path=null;
-        foreach($metadata as $item){
-            $name = "1oEa6ivIQ16Iu_WgyGa6ftMOxqOj7whwm/" . $item['name'];
-            if($name == $user->avatar){
-                $path = $item['path'];
-                break;
-            }
-        };
-        $url = Storage::disk('google')->url($path);
  
-        return view('students.show', compact('student', 'user', 'url'));
+        return view('students.show', compact('student', 'user'));
     }
 
     /**
