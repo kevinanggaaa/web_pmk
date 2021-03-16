@@ -87,7 +87,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="department">Department</label>
-                                <input type="text" class="form-control {{$errors->has('department') ? 'is-invalid' : ''}}" id="department" name="department" placeholder="Masukkan department mahasiswa" value="{{$request->department}}" >
+                                <input type="text" class="form-control {{$errors->has('department') ? 'is-invalid' : ''}}" id="department" name="department" placeholder="Masukkan department mahasiswa" value="{{$request->department}}" required>
                                 @error('department')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -105,7 +105,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="address_origin">Alamat Asal</label>
-                                <input type="text" class="form-control {{$errors->has('address_origin') ? 'is-invalid' : ''}}" id="address_origin" name="address_origin" placeholder="Masukkan alamat asal" value="{{$request->address_origin}}" >
+                                <input type="text" class="form-control {{$errors->has('address_origin') ? 'is-invalid' : ''}}" id="address_origin" name="address_origin" placeholder="Masukkan alamat asal" value="{{$request->address_origin}}" required>
                                 @error('address_origin')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -114,7 +114,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="phone">No telp</label>
-                                <input type="text" class="form-control {{$errors->has('phone') ? 'is-invalid' : ''}}" id="phone" name="phone" placeholder="Masukkan no telp" value="{{$request->phone}}" >
+                                <input type="text" class="form-control {{$errors->has('phone') ? 'is-invalid' : ''}}" id="phone" name="phone" placeholder="Masukkan no telp" value="{{$request->phone}}" required>
                                 @error('phone')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -123,7 +123,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="parent_phone">No telp ortu</label>
-                                <input type="text" class="form-control {{$errors->has('parent_phone') ? 'is-invalid' : ''}}" id="parent_phone" name="parent_phone" placeholder="Masukkan no telp orang tua" value="{{$request->parent_phone}}" >
+                                <input type="text" class="form-control {{$errors->has('parent_phone') ? 'is-invalid' : ''}}" id="parent_phone" name="parent_phone" placeholder="Masukkan no telp orang tua" value="{{$request->parent_phone}}" required>
                                 @error('parent_phone')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -156,15 +156,6 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <label for="date_death">Tanggal meninggal</label>
-                                <input type="date" class="form-control {{$errors->has('date_death') ? 'is-invalid' : ''}}" id="date_death" name="date_death" placeholder="Masukkan tanggal meninggal" value="{{$request->date_death}}">
-                                @error('date_death')
-                                <span class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
                         <div class="col-md-6">
                             <!-- Date dd/mm/yyyy -->
                             <div class="form-group">
@@ -173,25 +164,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                     </div>
-                                    <input name="year_entry" id="year_entry" type="text" class="datemask form-control {{$errors->has('year_entry') ? 'is-invalid' : ''}}" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask value="{{$request->year_entry}}" >
+                                    <input name="year_entry" id="year_entry" type="text" class="datemask form-control {{$errors->has('year_entry') ? 'is-invalid' : ''}}" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask value="{{$request->year_entry}}" required>
                                     @error('year_entry')
-                                    <span class="error invalid-feedback">{{$message}}</span>
-                                    @enderror
-                                </div>
-                                <!-- /.input group -->
-                            </div>
-                            <!-- /.form group -->
-                        </div>
-                        <div class="col-md-6">
-                            <!-- Date dd/mm/yyyy -->
-                            <div class="form-group">
-                                <label for="year_end">Tahun Lulus</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                    </div>
-                                    <input name="year_end" id="year_end" type="text" class="datemask form-control {{$errors->has('year_exit') ? 'is-invalid' : ''}}" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask value="{{$request->year_end}}">
-                                    @error('year_end')
                                     <span class="error invalid-feedback">{{$message}}</span>
                                     @enderror
                                 </div>

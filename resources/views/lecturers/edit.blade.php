@@ -65,7 +65,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="department">Departemen</label>
-                                <input type="text" class="form-control {{$errors->has('department') ? 'is-invalid' : ''}}" id="department" name="department" placeholder="Masukkan departemen " value="{{$lecturer->department}}" >
+                                <input type="text" class="form-control {{$errors->has('department') ? 'is-invalid' : ''}}" id="department" name="department" placeholder="Masukkan departemen " value="{{$lecturer->department}}" required>
                                 @error('department')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror

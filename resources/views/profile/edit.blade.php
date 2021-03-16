@@ -140,6 +140,7 @@
                             </div>
                             <!-- /.form group -->
                         </div>
+                        @if(auth()->user()->hasRole(['ketua', 'sekretaris', 'bendahara']))
                         <div class="col-md-6">
                             <!-- Date dd/mm/yyyy -->
                             <div class="form-group">

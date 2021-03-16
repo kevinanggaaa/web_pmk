@@ -64,7 +64,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="department">Department</label>
-                                <input type="text" name="department" id="department" class="form-control {{$errors->has('department') ? 'is-invalid' : ''}}" placeholder="Masukkan Nama Department" value="{{ $alumni->department }}" >
+                                <input type="text" name="department" id="department" class="form-control {{$errors->has('department') ? 'is-invalid' : ''}}" placeholder="Masukkan Nama Department" value="{{ $alumni->department }}" required>
                                 @error('department')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -73,7 +73,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="job">Pekerjaan</label>
-                                <input type="text" name="job" id="job" class="form-control {{$errors->has('job') ? 'is-invalid' : ''}}" placeholder="Masukkan Nama Pekerjaan" value="{{ $alumni->job }}">
+                                <input type="text" name="job" id="job" class="form-control {{$errors->has('job') ? 'is-invalid' : ''}}" placeholder="Masukkan Nama Pekerjaan" value="{{ $alumni->job }}" required>
                                 @error('job')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -82,7 +82,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="angkatan">Angkatan</label>
-                                <input type="text" name="angkatan" id="angkatan" class="form-control {{$errors->has('angkatan') ? 'is-invalid' : ''}}" placeholder="Masukkan angkatan" value="{{ $alumni->angkatan }}">
+                                <input type="text" name="angkatan" id="angkatan" class="form-control {{$errors->has('angkatan') ? 'is-invalid' : ''}}" placeholder="Masukkan angkatan" value="{{ $alumni->angkatan }}" required>
                                 @error('angkatan')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror

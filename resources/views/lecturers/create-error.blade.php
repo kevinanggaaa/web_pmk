@@ -62,7 +62,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="address_origin">Alamat Asal</label>
-                                <input type="text" class="form-control {{$errors->has('address_origin') ? 'is-invalid' : ''}}" id="address_origin" name="address_origin" placeholder="Masukkan alamat asal" value="{{$request->address_origin}}" >
+                                <input type="text" class="form-control {{$errors->has('address_origin') ? 'is-invalid' : ''}}" id="address_origin" name="address_origin" placeholder="Masukkan alamat asal" value="{{$request->address_origin}}" required>
                                 @error('address_origin')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -71,7 +71,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="phone">No telp</label>
-                                <input type="text" class="form-control {{$errors->has('phone') ? 'is-invalid' : ''}}" id="phone" name="phone" placeholder="Masukkan no telp" value="{{$request->phone}}" >
+                                <input type="text" class="form-control {{$errors->has('phone') ? 'is-invalid' : ''}}" id="phone" name="phone" placeholder="Masukkan no telp" value="{{$request->phone}}" required>
                                 @error('phone')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -80,7 +80,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="parent_phone">No telp ortu</label>
-                                <input type="text" class="form-control {{$errors->has('parent_phone') ? 'is-invalid' : ''}}" id="parent_phone" name="parent_phone" placeholder="Masukkan no telp orang tua" value="{{$request->parent_phone}}" >
+                                <input type="text" class="form-control {{$errors->has('parent_phone') ? 'is-invalid' : ''}}" id="parent_phone" name="parent_phone" placeholder="Masukkan no telp orang tua" value="{{$request->parent_phone}}" required>
                                 @error('parent_phone')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -122,15 +122,6 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <label for="date_death">Tanggal meninggal</label>
-                                <input type="date" class="form-control {{$errors->has('date_death') ? 'is-invalid' : ''}}" id="date_death" name="date_death" placeholder="Masukkan tanggal meninggal" value="{{$request->date_death}}" >
-                                @error('date_death')
-                                <span class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="nidn">Nid Dosen</label>
@@ -152,7 +143,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="department">Department</label>
-                                <input type="text" class="form-control {{$errors->has('department') ? 'is-invalid' : ''}}" id="department" name="department" placeholder="Masukkan depatemen" value="{{$request->department}}" >
+                                <input type="text" class="form-control {{$errors->has('department') ? 'is-invalid' : ''}}" id="department" name="department" placeholder="Masukkan depatemen" value="{{$request->department}}" required>
                                 @error('department')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror

@@ -56,7 +56,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="department">Department</label>
-                                <input type="text" class="form-control {{$errors->has('department') ? 'is-invalid' : ''}}" id="department" name="department" placeholder="Masukkan department mahasiswa" value="{{$student->department}}" >
+                                <input type="text" class="form-control {{$errors->has('department') ? 'is-invalid' : ''}}" id="department" name="department" placeholder="Masukkan department mahasiswa" value="{{$student->department}}" required>
                                 @error('department')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -88,6 +88,7 @@
                             </div>
                             <!-- /.form group -->
                         </div>
+                        @if(auth()->user()->hasRole(['ketua', 'sekretaris', 'bendahara']))
                         <div class="col-md-6">
                             <!-- Date dd/mm/yyyy -->
                             <div class="form-group">
@@ -103,6 +104,7 @@
                             </div>
                             <!-- /.form group -->
                         </div>
+                        @endif
                     </div>
                 </div>
 
