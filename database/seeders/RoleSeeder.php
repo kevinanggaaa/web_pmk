@@ -16,7 +16,7 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $super_admin = Role::create([
+        Role::create([
             'name' => 'Super Admin',
             'guard_name' => 'web',
         ]);

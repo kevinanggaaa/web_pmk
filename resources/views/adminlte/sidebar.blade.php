@@ -26,7 +26,7 @@
             </a>
           </li>
          
-          @if(auth()->user()->hasRole(['Super Admin', 'ketua', 'sekretaris', 'bendahara']))
+          @role('Super Admin', 'KSB'))
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link active">
               <i class="nav-icon fa fa-users"></i>
@@ -146,7 +146,7 @@
         </ul>
 
      
-        @if(auth()->user()->hasRole('Super Admin'))
+        @can('edit landing page')
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                           with font-awesome or any other icon font library -->                   
@@ -159,51 +159,58 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
+                            @can('view home')
                             <li class="nav-item">
                                 <a href="{{route ('landingPage.indexHome')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Home</p>
                                 </a>
                             </li>
-
+                            @endcan
+                            @can('view visi misi')
                             <li class="nav-item">
                                 <a href="{{route ('landingPage.indexVisiMisi')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Visi Misi</p>
                                 </a>
                             </li>
-
+                            @endcan
+                            @can('view count')
                             <li class="nav-item">
                                 <a href="{{route ('landingPage.indexCount')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Count</p>
                                 </a>
                             </li>
-
+                            @endcan
+                            @can('view about')
                             <li class="nav-item">
                                 <a href="{{route ('landingPage.indexAbout')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>About</p>
                                 </a>
                             </li>
-
+                            @endcan
+                            @can('view renungan')
                             <li class="nav-item">
                                 <a href="{{route ('landingPage.indexRenungan')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Renungan harian</p>
                                 </a>
                             </li>
-
+                            @endcan
+                            @can('view testimony')
                             <li class="nav-item">
                                 <a href="{{route ('landingPage.indexTestimony')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Kesaksian</p>
                                 </a>
                             </li>
+                            @endcan
                         </ul>
                       </li>                
         </ul>
-        @endif
+        @endcan
       </nav>
     </div>
   </aside>

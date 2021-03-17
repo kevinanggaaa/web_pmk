@@ -112,18 +112,18 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="current_address">Alamat Saat Ini</label>
-                                <input type="text" class="form-control {{$errors->has('current_address') ? 'is-invalid' : ''}}" id="current_address" name="current_address" placeholder="Masukkan alamat mahasiswa" value="{{$user->address}}">
-                                @error('current_address')
+                                <label for="address">Alamat Saat Ini</label>
+                                <input type="text" class="form-control {{$errors->has('address') ? 'is-invalid' : ''}}" id="address" name="address" placeholder="Masukkan alamat mahasiswa" value="{{$user->address}}">
+                                @error('address')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="origin_address">Alamat Asal</label>
-                                <input type="text" class="form-control {{$errors->has('origin_address') ? 'is-invalid' : ''}}" id="origin_address" name="origin_address" placeholder="Masukkan alamat asal mahasiswa" value="{{$user->address_origin}}" required>
-                                @error('origin_address')
+                                <label for="address_origin">Alamat Asal</label>
+                                <input type="text" class="form-control {{$errors->has('address_origin') ? 'is-invalid' : ''}}" id="address_origin" name="address_origin" placeholder="Masukkan alamat asal mahasiswa" value="{{$user->address_origin}}" required>
+                                @error('address_origin')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>
@@ -168,7 +168,7 @@
                                 @enderror
                             </div>
                         </div>
-                        @if(auth()->user()->hasRole(['Super Admin', 'ketua', 'sekretaris', 'bendahara']))
+                        @can('edit year')
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="date_death">Tanggal Wafat</label>
@@ -178,7 +178,7 @@
                                 @enderror
                             </div>
                         </div>
-                        @endif
+                        @endcan
                         @role('Super Admin')
                         <div class="col-12">
                             <div class="form-group">
