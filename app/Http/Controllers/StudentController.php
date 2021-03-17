@@ -73,8 +73,6 @@ class StudentController extends Controller
           $file->move($tujuan_upload, $nama_file);
         }
       
-        
-
         $student = Student::firstOrCreate(
             [
                 'nrp' => $request['nrp']
@@ -88,9 +86,6 @@ class StudentController extends Controller
         );
 
         if($student->wasRecentlyCreated){
-            // $model_id = Student::select('id')->where('nrp', $request['nrp'])->first();
-            // $user_id = User::select('id')->where('email', $request['email'])->first();
-
             $user = User::firstOrCreate(
                 [
                     'email' => $request['email']
@@ -151,7 +146,6 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        // return view('students.edit', compact('student'))->with('messages','error');
         return view('students.edit', compact('student'));
     }
 
@@ -187,9 +181,6 @@ class StudentController extends Controller
             
             return redirect('admin/profiles/'.$student->id.'/editStudent')
                 ->with('fail','Data mahasiswa gagal diubah karena duplikasi nrp');
-
-            // return redirect()->route('students.edit')
-            //     ->with('fail', 'Data mahasiswa gagal diubah karena duplikasi nrp');
         }
     }
 
@@ -206,6 +197,7 @@ class StudentController extends Controller
         ->where('model_id',$student->id)
         ->first();
 
+        //Untuk mengecek apakah memiliki profile lain
         $check_profile = Profile::select()
         ->whereNotIn('model_type',['App\Models\Student'])
         ->where('user_id',$user->user_id)

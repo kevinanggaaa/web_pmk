@@ -52,7 +52,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text" class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}" id="email" name="email" placeholder="Masukkan Email Alumni" value="{{ $alumni->email }}" required>

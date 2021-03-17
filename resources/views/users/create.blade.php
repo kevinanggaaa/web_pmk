@@ -114,17 +114,6 @@
                                 @enderror
                             </div>
                         </div>
-                        @role('admin')
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <label for="death_date">Tanggal Wafat</label>
-                                <input type="date" name="death_date" id="death_date" class="form-control {{$errors->has('death_date') ? 'is-invalid' : ''}}" value="{{old('death_date')}}">
-                                @error('death_date')
-                                <span class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        @endrole
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="gender">Jenis Kelamin</label>

@@ -26,7 +26,7 @@
             </a>
           </li>
          
-          @if(auth()->user()->hasRole('Super Admin'))
+          @if(auth()->user()->hasRole(['Super Admin', 'ketua', 'sekretaris', 'bendahara']))
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link active">
               <i class="nav-icon fa fa-users"></i>

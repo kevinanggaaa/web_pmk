@@ -31,7 +31,7 @@
                             <table class="table">
                             @foreach ($users as $user)
                                 <tbody>
-                                    <td>{{$user->email}}</td> 
+                                        <td>{{$user->email}}</td> 
                                 </tbody>
                             @endforeach
                             </table>
@@ -46,10 +46,12 @@
 
                     <!-- /.tab-content -->
                 </div><!-- /.card-body -->
+
+                
             </div>
             <!-- /.nav-tabs-custom -->
         </div>
         <!-- /.col -->
-
+    
     </div>
 @endsection

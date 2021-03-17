@@ -5,13 +5,13 @@ namespace App\Exports;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Student;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Events\AfterSheet;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Color;
-use Maatwebsite\Excel\Concerns\WithEvents;
-use Maatwebsite\Excel\Concerns\WithMapping;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\FromCollection;
 
 class StudentExport implements FromCollection, WithHeadings, WithEvents, WithMapping
 {
@@ -30,9 +30,19 @@ class StudentExport implements FromCollection, WithHeadings, WithEvents, WithMap
     {
         return [
             'name',
+            'email',
             'nrp',
             'email',
             'department',
+            'pkk',
+            'address',
+            'address_origin',
+            'phone',
+            'parent_phone',
+            'line',
+            'birthdate',
+            'gender',
+            'date_death',
             'year_entry',
             'year_graduate',
         ];
@@ -45,7 +55,7 @@ class StudentExport implements FromCollection, WithHeadings, WithEvents, WithMap
     {
         return [
             AfterSheet::class   =>  function (AfterSheet $event) {
-                $event->sheet->getDelegate()->getStyle('A1:F1')
+                $event->sheet->getDelegate()->getStyle('A1:O1')
                     ->getFill()->setFillType(Fill::FILL_SOLID)
                     ->getStartColor()->setARGB(Color::COLOR_YELLOW);
             },
@@ -63,9 +73,19 @@ class StudentExport implements FromCollection, WithHeadings, WithEvents, WithMap
         $user = User::where('id',$profile->user_id)->first();
         return [
             $row->name,
+            $user->email,
             $row->nrp,
             $user->email,
             $row->department,
+            $user->pkk,
+            $user->address,
+            $user->address_origin,
+            $user->phone,
+            $user->parent_phone,
+            $user->line,
+            $user->birthdate,
+            $user->gender,
+            $user->date_death,
             $row->year_entry,
             $row->year_graduate,
         ];

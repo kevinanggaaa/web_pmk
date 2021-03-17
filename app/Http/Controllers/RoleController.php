@@ -27,7 +27,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $pageNumber = $request->query('page');
-        $roles = Role::paginate(10, ['*'], 'page', $pageNumber);
+        $roles = Role::where('name', '!=', 'Super Admin')->paginate(10, ['*'], 'page', $pageNumber);
 
         return view('roles.index', compact('roles'));
     }

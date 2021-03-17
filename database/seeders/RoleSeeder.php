@@ -213,18 +213,31 @@ class RoleSeeder extends Seeder
         $ketua->givePermissionTo($add_student);
         $ketua->givePermissionTo($view_student);
         $ketua->givePermissionTo($view_detail_student);
+        $ketua->givePermissionTo($delete_student);
+
         $ketua->givePermissionTo($view_alumni);
+        $ketua->givePermissionTo($view_detail_alumni);
+
+        $ketua->givePermissionTo($add_lecturer);
         $ketua->givePermissionTo($view_lecturer);
         $ketua->givePermissionTo($view_detail_lecturer);
-        $ketua->givePermissionTo($view_event);
-        $ketua->givePermissionTo($view_detail_event);
-        $ketua->givePermissionTo($add_counselor);
-        $ketua->givePermissionTo($view_counselor);
-        $ketua->givePermissionTo($view_detail_counselor);
+        $ketua->givePermissionTo($edit_lecturer);
+        $ketua->givePermissionTo($delete_lecturer);
+
+        $ketua->givePermissionTo($add_counseling);
+        $ketua->givePermissionTo($edit_counseling);
         $ketua->givePermissionTo($view_counseling);
         $ketua->givePermissionTo($view_detail_counseling);
-        $ketua->givePermissionTo($add_counseling);
         $ketua->givePermissionTo($delete_counseling);
+
+        $ketua->givePermissionTo($add_counselor);
+        $ketua->givePermissionTo($edit_counselor);
+        $ketua->givePermissionTo($view_counselor);
+        $ketua->givePermissionTo($view_detail_counselor);
+        $ketua->givePermissionTo($delete_counselor);
+
+        $ketua->givePermissionTo($view_event);
+        $ketua->givePermissionTo($view_detail_event);
         $ketua->givePermissionTo($view_prayer_request);
         $ketua->givePermissionTo($view_detail_prayer_request);
         $ketua->givePermissionTo($add_prayer_request);
@@ -238,18 +251,31 @@ class RoleSeeder extends Seeder
         $sekretaris->givePermissionTo($add_student);
         $sekretaris->givePermissionTo($view_student);
         $sekretaris->givePermissionTo($view_detail_student);
+        $sekretaris->givePermissionTo($delete_student);
+
         $sekretaris->givePermissionTo($view_alumni);
+        $sekretaris->givePermissionTo($view_detail_alumni);
+
+        $sekretaris->givePermissionTo($add_lecturer);
         $sekretaris->givePermissionTo($view_lecturer);
         $sekretaris->givePermissionTo($view_detail_lecturer);
-        $sekretaris->givePermissionTo($view_event);
-        $sekretaris->givePermissionTo($view_detail_event);
-        $sekretaris->givePermissionTo($add_counselor);
-        $sekretaris->givePermissionTo($view_counselor);
-        $sekretaris->givePermissionTo($view_detail_counselor);
+        $sekretaris->givePermissionTo($edit_lecturer);
+        $sekretaris->givePermissionTo($delete_lecturer);
+
+        $sekretaris->givePermissionTo($add_counseling);
+        $sekretaris->givePermissionTo($edit_counseling);
         $sekretaris->givePermissionTo($view_counseling);
         $sekretaris->givePermissionTo($view_detail_counseling);
-        $sekretaris->givePermissionTo($add_counseling);
         $sekretaris->givePermissionTo($delete_counseling);
+
+        $sekretaris->givePermissionTo($add_counselor);
+        $sekretaris->givePermissionTo($edit_counselor);
+        $sekretaris->givePermissionTo($view_counselor);
+        $sekretaris->givePermissionTo($view_detail_counselor);
+        $sekretaris->givePermissionTo($delete_counselor);
+
+        $sekretaris->givePermissionTo($view_event);
+        $sekretaris->givePermissionTo($view_detail_event);
         $sekretaris->givePermissionTo($view_prayer_request);
         $sekretaris->givePermissionTo($view_detail_prayer_request);
         $sekretaris->givePermissionTo($add_prayer_request);
@@ -263,18 +289,31 @@ class RoleSeeder extends Seeder
         $bendahara->givePermissionTo($add_student);
         $bendahara->givePermissionTo($view_student);
         $bendahara->givePermissionTo($view_detail_student);
+        $bendahara->givePermissionTo($delete_student);
+
         $bendahara->givePermissionTo($view_alumni);
+        $bendahara->givePermissionTo($view_detail_alumni);
+
+        $bendahara->givePermissionTo($add_lecturer);
         $bendahara->givePermissionTo($view_lecturer);
         $bendahara->givePermissionTo($view_detail_lecturer);
-        $bendahara->givePermissionTo($view_event);
-        $bendahara->givePermissionTo($view_detail_event);
-        $bendahara->givePermissionTo($add_counselor);
-        $bendahara->givePermissionTo($view_counselor);
-        $bendahara->givePermissionTo($view_detail_counselor);
+        $bendahara->givePermissionTo($edit_lecturer);
+        $bendahara->givePermissionTo($delete_lecturer);
+
+        $bendahara->givePermissionTo($add_counseling);
+        $bendahara->givePermissionTo($edit_counseling);
         $bendahara->givePermissionTo($view_counseling);
         $bendahara->givePermissionTo($view_detail_counseling);
-        $bendahara->givePermissionTo($add_counseling);
         $bendahara->givePermissionTo($delete_counseling);
+
+        $bendahara->givePermissionTo($add_counselor);
+        $bendahara->givePermissionTo($edit_counselor);
+        $bendahara->givePermissionTo($view_counselor);
+        $bendahara->givePermissionTo($view_detail_counselor);
+        $bendahara->givePermissionTo($delete_counselor);
+
+        $bendahara->givePermissionTo($view_event);
+        $bendahara->givePermissionTo($view_detail_event);
         $bendahara->givePermissionTo($view_prayer_request);
         $bendahara->givePermissionTo($view_detail_prayer_request);
         $bendahara->givePermissionTo($add_prayer_request);
@@ -283,246 +322,110 @@ class RoleSeeder extends Seeder
         $bendahara->givePermissionTo($add_organizational_record);
 
         /*
-            Bph dope
-        */
-        $bph_dope->givePermissionTo($add_student);
-        $bph_dope->givePermissionTo($view_student);
-        $bph_dope->givePermissionTo($view_detail_student);
-        $bph_dope->givePermissionTo($view_alumni);
-        $bph_dope->givePermissionTo($view_lecturer);
-        $bph_dope->givePermissionTo($view_detail_lecturer);
-        $bph_dope->givePermissionTo($view_event);
-        $bph_dope->givePermissionTo($view_detail_event);
-        $bph_dope->givePermissionTo($add_counselor);
-        $bph_dope->givePermissionTo($view_counselor);
-        $bph_dope->givePermissionTo($view_detail_counselor);
-        $bph_dope->givePermissionTo($view_counseling);
-        $bph_dope->givePermissionTo($view_detail_counseling);
-        $bph_dope->givePermissionTo($delete_counseling);
-        $bph_dope->givePermissionTo($add_counseling);
-        $bph_dope->givePermissionTo($view_prayer_request);
-        $bph_dope->givePermissionTo($view_detail_prayer_request);
-        $bph_dope->givePermissionTo($add_prayer_request);
-        $bph_dope->givePermissionTo($view_organizational_record);
-        $bph_dope->givePermissionTo($view_detail_organizational_record);
-        $bph_dope->givePermissionTo($add_organizational_record);
-
-        /*
-            Bph kutu
-        */
-        $bph_kutu->givePermissionTo($add_student);
-        $bph_kutu->givePermissionTo($view_student);
-        $bph_kutu->givePermissionTo($view_detail_student);
-        $bph_kutu->givePermissionTo($view_alumni);
-        $bph_kutu->givePermissionTo($view_lecturer);
-        $bph_kutu->givePermissionTo($view_detail_lecturer);
-        $bph_kutu->givePermissionTo($view_event);
-        $bph_kutu->givePermissionTo($view_detail_event);
-        $bph_kutu->givePermissionTo($add_counselor);
-        $bph_dope->givePermissionTo($view_counselor);
-        $bph_kutu->givePermissionTo($view_detail_counselor);
-        $bph_kutu->givePermissionTo($view_counseling);
-        $bph_kutu->givePermissionTo($view_detail_counseling);
-        $bph_kutu->givePermissionTo($add_counseling);
-        $bph_kutu->givePermissionTo($delete_counseling);
-        $bph_kutu->givePermissionTo($view_prayer_request);
-        $bph_kutu->givePermissionTo($view_detail_prayer_request);
-        $bph_kutu->givePermissionTo($add_prayer_request);
-        $bph_kutu->givePermissionTo($view_organizational_record);
-        $bph_kutu->givePermissionTo($view_detail_organizational_record);
-        $bph_kutu->givePermissionTo($add_organizational_record);
-
-        /*
-            Bph medfo
-        */
-        $bph_medfo->givePermissionTo($add_student);
-        $bph_medfo->givePermissionTo($view_student);
-        $bph_medfo->givePermissionTo($view_detail_student);
-        $bph_medfo->givePermissionTo($view_alumni);
-        $bph_medfo->givePermissionTo($view_lecturer);
-        $bph_medfo->givePermissionTo($view_detail_lecturer);
-        $bph_medfo->givePermissionTo($view_event);
-        $bph_medfo->givePermissionTo($view_detail_event);
-        $bph_medfo->givePermissionTo($add_counselor);
-        $bph_medfo->givePermissionTo($view_counselor);
-        $bph_medfo->givePermissionTo($view_detail_counselor);
-        $bph_medfo->givePermissionTo($view_counseling);
-        $bph_medfo->givePermissionTo($view_detail_counseling);
-        $bph_medfo->givePermissionTo($add_counseling);
-        $bph_medfo->givePermissionTo($delete_counseling);
-        $bph_medfo->givePermissionTo($view_prayer_request);
-        $bph_medfo->givePermissionTo($view_detail_prayer_request);
-        $bph_medfo->givePermissionTo($add_prayer_request);
-        $bph_medfo->givePermissionTo($view_organizational_record);
-        $bph_medfo->givePermissionTo($view_detail_organizational_record);
-        $bph_medfo->givePermissionTo($add_organizational_record);
-
-        /*
-            Bph pemuridan
-        */
-        $bph_pemuridan->givePermissionTo($add_student);
-        $bph_pemuridan->givePermissionTo($view_student);
-        $bph_pemuridan->givePermissionTo($view_detail_student);
-        $bph_pemuridan->givePermissionTo($view_alumni);
-        $bph_pemuridan->givePermissionTo($view_lecturer);
-        $bph_pemuridan->givePermissionTo($view_detail_lecturer);
-        $bph_pemuridan->givePermissionTo($view_event);
-        $bph_pemuridan->givePermissionTo($view_detail_event);
-        $bph_pemuridan->givePermissionTo($add_counselor);
-        $bph_pemuridan->givePermissionTo($view_counselor);
-        $bph_pemuridan->givePermissionTo($view_detail_counselor);
-        $bph_pemuridan->givePermissionTo($view_counseling);
-        $bph_pemuridan->givePermissionTo($view_detail_counseling);
-        $bph_pemuridan->givePermissionTo($add_counseling);
-        $bph_pemuridan->givePermissionTo($delete_counseling);
-        $bph_pemuridan->givePermissionTo($view_prayer_request);
-        $bph_pemuridan->givePermissionTo($view_detail_prayer_request);
-        $bph_pemuridan->givePermissionTo($add_prayer_request);
-        $bph_pemuridan->givePermissionTo($view_organizational_record);
-        $bph_pemuridan->givePermissionTo($view_detail_organizational_record);
-        $bph_pemuridan->givePermissionTo($add_organizational_record);
-
-
-        /*  
-            Pengurus pemuridan
-        */
-        $pengurus_pemuridan->givePermissionTo($add_student);
-        $pengurus_pemuridan->givePermissionTo($view_student);
-        $pengurus_pemuridan->givePermissionTo($view_lecturer);
-        $pengurus_pemuridan->givePermissionTo($view_event);
-        $pengurus_pemuridan->givePermissionTo($view_detail_event);
-        $pengurus_pemuridan->givePermissionTo($view_counselor);
-        $pengurus_pemuridan->givePermissionTo($view_counseling);
-        $pengurus_pemuridan->givePermissionTo($view_detail_counseling);
-        $pengurus_pemuridan->givePermissionTo($add_counseling);
-        $pengurus_pemuridan->givePermissionTo($delete_counseling);
-        $pengurus_pemuridan->givePermissionTo($view_prayer_request);
-        $pengurus_pemuridan->givePermissionTo($view_detail_prayer_request);
-        $pengurus_pemuridan->givePermissionTo($add_prayer_request);
-        $pengurus_pemuridan->givePermissionTo($view_organizational_record);
-        $pengurus_pemuridan->givePermissionTo($view_detail_organizational_record);
-        $pengurus_pemuridan->givePermissionTo($add_organizational_record);
-
-        /*  
-            Pengurus dope
-        */
-        $pengurus_dope->givePermissionTo($add_student);
-        $pengurus_dope->givePermissionTo($view_student);
-        $pengurus_dope->givePermissionTo($view_lecturer);
-        $pengurus_dope->givePermissionTo($view_event);
-        $pengurus_dope->givePermissionTo($view_detail_event);
-        $pengurus_dope->givePermissionTo($view_counselor);
-        $pengurus_dope->givePermissionTo($view_counseling);
-        $pengurus_dope->givePermissionTo($view_detail_counseling);
-        $pengurus_dope->givePermissionTo($add_counseling);
-        $pengurus_dope->givePermissionTo($delete_counseling);
-        $pengurus_dope->givePermissionTo($view_prayer_request);
-        $pengurus_dope->givePermissionTo($view_detail_prayer_request);
-        $pengurus_dope->givePermissionTo($add_prayer_request);
-        $pengurus_dope->givePermissionTo($view_organizational_record);
-        $pengurus_dope->givePermissionTo($view_detail_organizational_record);
-        $pengurus_dope->givePermissionTo($add_organizational_record);
-
-        /*  
-            Pengurus medfo
-        */
-        $pengurus_medfo->givePermissionTo($add_student);
-        $pengurus_medfo->givePermissionTo($view_student);
-        $pengurus_medfo->givePermissionTo($view_lecturer);
-        $pengurus_medfo->givePermissionTo($view_event);
-        $pengurus_medfo->givePermissionTo($view_detail_event);
-        $pengurus_medfo->givePermissionTo($view_counselor);
-        $pengurus_medfo->givePermissionTo($view_counseling);
-        $pengurus_medfo->givePermissionTo($view_detail_counseling);
-        $pengurus_medfo->givePermissionTo($add_counseling);
-        $pengurus_medfo->givePermissionTo($delete_counseling);
-        $pengurus_medfo->givePermissionTo($view_prayer_request);
-        $pengurus_medfo->givePermissionTo($view_detail_prayer_request);
-        $pengurus_medfo->givePermissionTo($add_prayer_request);
-        $pengurus_medfo->givePermissionTo($view_organizational_record);
-        $pengurus_medfo->givePermissionTo($view_detail_organizational_record);
-        $pengurus_medfo->givePermissionTo($add_organizational_record);
-
-
-        /*
             Mahasiswa
         */
         $mahasiswa->givePermissionTo($view_student);
+
         $mahasiswa->givePermissionTo($view_lecturer);
-        $mahasiswa->givePermissionTo($view_event);
-        $mahasiswa->givePermissionTo($view_detail_event);
-        $mahasiswa->givePermissionTo($view_counselor);
+
+        $mahasiswa->givePermissionTo($add_counseling);
+        $mahasiswa->givePermissionTo($edit_counseling);
         $mahasiswa->givePermissionTo($view_counseling);
         $mahasiswa->givePermissionTo($view_detail_counseling);
-        $mahasiswa->givePermissionTo($add_counseling);
-        $mahasiswa->givePermissionTo($delete_counseling);
+
+        $mahasiswa->givePermissionTo($view_counselor);
+
+        $mahasiswa->givePermissionTo($view_event);
+        $mahasiswa->givePermissionTo($view_detail_event);
         $mahasiswa->givePermissionTo($view_prayer_request);
         $mahasiswa->givePermissionTo($view_detail_prayer_request);
         $mahasiswa->givePermissionTo($add_prayer_request);
         $mahasiswa->givePermissionTo($view_organizational_record);
         $mahasiswa->givePermissionTo($view_detail_organizational_record);
         $mahasiswa->givePermissionTo($add_organizational_record);
-        
-        /*
-            PKK
-        */
-        $pkk->givePermissionTo($view_student);
-        $pkk->givePermissionTo($view_lecturer);
-        $pkk->givePermissionTo($view_event);
-        $pkk->givePermissionTo($view_detail_event);
-        $pkk->givePermissionTo($view_counselor);
-        $pkk->givePermissionTo($view_counseling);
-        $pkk->givePermissionTo($view_detail_counseling);
-        $pkk->givePermissionTo($add_counseling);
-        $pkk->givePermissionTo($delete_counseling);
-        $pkk->givePermissionTo($view_prayer_request);
-        $pkk->givePermissionTo($view_detail_prayer_request);
-        $pkk->givePermissionTo($add_prayer_request);
-        $pkk->givePermissionTo($view_organizational_record);
-        $pkk->givePermissionTo($view_detail_organizational_record);
-        $pkk->givePermissionTo($add_organizational_record);
-
 
         /*
             Dosen
         */
         $dosen->givePermissionTo($view_student);
+
         $dosen->givePermissionTo($view_alumni);
+
         $dosen->givePermissionTo($view_lecturer);
+
+        $dosen->givePermissionTo($add_counseling);
+        $dosen->givePermissionTo($edit_counseling);
+        $dosen->givePermissionTo($view_counseling);
+        $dosen->givePermissionTo($view_detail_counseling);
+
+        $dosen->givePermissionTo($view_counselor);
+
         $dosen->givePermissionTo($view_event);
         $dosen->givePermissionTo($view_detail_event);
-        $dosen->givePermissionTo($view_counselor);
+        
 
 
         /*
             Dosen pengurus tpkk
         */
         $pengurus_tpkk->givePermissionTo($view_student);
+
         $pengurus_tpkk->givePermissionTo($view_alumni);
+
+        $pengurus_tpkk->givePermissionTo($add_lecturer);
         $pengurus_tpkk->givePermissionTo($view_lecturer);
         $pengurus_tpkk->givePermissionTo($view_detail_lecturer);
-        $pengurus_tpkk->givePermissionTo($view_event);
-        $pengurus_tpkk->givePermissionTo($view_detail_event);
+        $pengurus_tpkk->givePermissionTo($delete_lecturer);
+
+        $pengurus_tpkk->givePermissionTo($add_counseling);
+        $pengurus_tpkk->givePermissionTo($edit_counseling);
+        $pengurus_tpkk->givePermissionTo($view_counseling);
+        $pengurus_tpkk->givePermissionTo($view_detail_counseling);
+
         $pengurus_tpkk->givePermissionTo($view_counselor);
         $pengurus_tpkk->givePermissionTo($view_detail_counselor);
 
+        $pengurus_tpkk->givePermissionTo($view_event);
+        $pengurus_tpkk->givePermissionTo($view_detail_event);
+        
 
+    
         /*
             Alumni
         */
         $alumni->givePermissionTo($view_alumni);
-        $alumni->givePermissionTo($view_lecturer);
+
+        $alumni->givePermissionTo($add_counseling);
+        $alumni->givePermissionTo($edit_counseling);
+        $alumni->givePermissionTo($view_counseling);
+        $alumni->givePermissionTo($view_detail_counseling);
+
+        $alumni->givePermissionTo($view_counselor);
+
         $alumni->givePermissionTo($view_event);
         $alumni->givePermissionTo($view_detail_event);
 
-
+        
         /*
             Pengurus alumni
         */
+        $pengurus_alumni->givePermissionTo($add_alumni);
         $pengurus_alumni->givePermissionTo($view_alumni);
         $pengurus_alumni->givePermissionTo($view_detail_alumni);
+        $pengurus_alumni->givePermissionTo($edit_alumni);
+        $pengurus_alumni->givePermissionTo($delete_alumni);
+
         $pengurus_alumni->givePermissionTo($view_lecturer);
+
+        $pengurus_alumni->givePermissionTo($add_counseling);
+        $pengurus_alumni->givePermissionTo($edit_counseling);
+        $pengurus_alumni->givePermissionTo($view_counseling);
+        $pengurus_alumni->givePermissionTo($view_detail_counseling);
+
+        $pengurus_alumni->givePermissionTo($view_counselor);
+        
         $pengurus_alumni->givePermissionTo($view_event);
         $pengurus_alumni->givePermissionTo($view_detail_event);
+        
     }
 }

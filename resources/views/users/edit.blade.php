@@ -103,8 +103,8 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="pkk">Nrp PKK</label>
-                                <input type="text" class="form-control {{$errors->has('pkk') ? 'is-invalid' : ''}}" id="pkk" name="pkk" placeholder="Masukkan nrp PKK" value="{{$user->pkk}}" >
+                                <label for="pkk">PKK</label>
+                                <input type="text" class="form-control {{$errors->has('pkk') ? 'is-invalid' : ''}}" id="pkk" name="pkk" placeholder="Masukkan PKK" value="{{$user->pkk}}" >
                                 @error('pkk')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -122,34 +122,25 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="origin_address">Alamat Asal</label>
-                                <input type="text" class="form-control {{$errors->has('origin_address') ? 'is-invalid' : ''}}" id="origin_address" name="origin_address" placeholder="Masukkan alamat asal mahasiswa" value="{{$user->address_origin}}">
+                                <input type="text" class="form-control {{$errors->has('origin_address') ? 'is-invalid' : ''}}" id="origin_address" name="origin_address" placeholder="Masukkan alamat asal mahasiswa" value="{{$user->address_origin}}" required>
                                 @error('origin_address')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="avatar">Avatar</label>
-                                <input type="file" name="avatar" id="avatar" class="form-control" value="{{ $user->avatar }}">
-                                @error('avatar')
-                                <span class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 ">
                             <div class="form-group">
                                 <label for="phone">Nomor Telepon</label>
-                                <input type="text" name="phone" id="phone" class="form-control {{$errors->has('phone') ? 'is-invalid' : ''}}" value="{{$user->phone}}">
+                                <input type="text" name="phone" id="phone" class="form-control {{$errors->has('phone') ? 'is-invalid' : ''}}" value="{{$user->phone}}" required>
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="parent_phone">Nomor Telepon Orang tua / Wali</label>
                                 <input type="text" name="parent_phone" id="parent_phone" class="form-control {{$errors->has('parent_phone') ? 'is-invalid' : ''}}" value="{{$user->parent_phone}}">
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="line">Line</label>
                                 <input type="text" name="line" id="line" class="form-control {{$errors->has('line') ? 'is-invalid' : ''}}" value="{{$user->line}}">
@@ -177,6 +168,7 @@
                                 @enderror
                             </div>
                         </div>
+                        @if(auth()->user()->hasRole(['Super Admin', 'ketua', 'sekretaris', 'bendahara']))
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="date_death">Tanggal Wafat</label>
@@ -186,6 +178,7 @@
                                 @enderror
                             </div>
                         </div>
+                        @endif
                         @role('Super Admin')
                         <div class="col-12">
                             <div class="form-group">
@@ -231,6 +224,13 @@
         selectedListLabel: 'Chosen Roles',
         moveOnSelect: false,
         moveAllLabel: 'aaa'
+    });
+    $(function () {
+        var dualListContainer = $('select[name="role_ids[]"]').bootstrapDualListbox('getContainer');
+        dualListContainer.find('.moveall i').removeClass().addClass('fa fa-arrow-right');
+        dualListContainer.find('.removeall i').removeClass().addClass('fa fa-arrow-left');
+        dualListContainer.find('.move i').removeClass().addClass('fa fa-arrow-right');
+        dualListContainer.find('.remove i').removeClass().addClass('fa fa-arrow-left');
     });
 </script>
 @endpush
