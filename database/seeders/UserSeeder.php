@@ -34,6 +34,7 @@ class UserSeeder extends Seeder
         ]);
 
         $super_admin->assignRole('Super Admin');
+        $super_admin->assignRole('Mahasiswa');
 
         Student::create([
             'name' => 'superadmin',
@@ -53,6 +54,7 @@ class UserSeeder extends Seeder
             'name' => 'superadmin',
             'department' => 'Teknik Informatika',
             'job' => 'Pedagang',
+            'angkatan' => '2018',
         ]);
 
         Profile::create([
@@ -159,6 +161,7 @@ class UserSeeder extends Seeder
             'name' => 'alumni',
             'department' => 'Teknik Informatika',
             'job' => 'Pedagang',
+            'angkatan' => '2018',
         ]);
 
         Profile::create([

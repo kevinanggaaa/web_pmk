@@ -82,7 +82,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="speaker">Pembicara</label>
-                                <input type="text" class="form-control {{$errors->has('speaker') ? 'is-invalid' : ''}}" id="speaker" name="speaker" placeholder="Masukkan Deskripsi Acara" value="{{$event->speaker}}">
+                                <input type="text" class="form-control {{$errors->has('speaker') ? 'is-invalid' : ''}}" id="speaker" name="speaker" placeholder="Masukkan Deskripsi Acara" value="{{$event->speaker}}" required>
                                 @error('speaker')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -91,7 +91,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="location">Lokasi</label>
-                                <input type="text" class="form-control {{$errors->has('location') ? 'is-invalid' : ''}}" id="location" name="location" placeholder="Masukkan Lokasi Acara" value="{{$event->location}}">
+                                <input type="text" class="form-control {{$errors->has('location') ? 'is-invalid' : ''}}" id="location" name="location" placeholder="Masukkan Lokasi Acara" value="{{$event->location}}" required>
                                 @error('location')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -135,7 +135,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-clock"></i></span>
                                     </div>
-                                    <input type="text" class="form-control float-right" name="reservationtime" id="reservationtime" value="{{$event->start}} - {{$event->end}}">
+                                    <input type="text" class="form-control float-right" name="reservationtime" id="reservationtime" value="{{$event->start}} - {{$event->end}}" required>
                                     @error('reservationtime')
                                     <span class="error invalid-feedback">{{$message}}</span>
                                     @enderror
