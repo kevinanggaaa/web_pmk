@@ -165,10 +165,17 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="gender">Jenis Kelamin</label>
-                                <input type="text" name="gender" id="gender" class="form-control {{$errors->has('gender') ? 'is-invalid' : ''}}" value="{{$user->gender}}">
+                                <select name="gender" id="gender" class="form-control {{$errors->has('gender') ? 'is-invalid' : ''}}" required>
+                                <option value="">== Pilih Type ==</option>
+                                        <option value="P" <?php if($user->gender=="P") echo 'selected="selected"'; ?>>Perempuan</option>
+                                        <option value="L" <?php if($user->gender=="L") echo 'selected="selected"'; ?>>Laki-Laki</option>
+                                </select>
+                                @error('gender')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-sm-12">
@@ -180,7 +187,7 @@
                                 @enderror
                             </div>
                         </div>
-                        @if(auth()->user()->hasRole('Super Admin'))
+                        @role('Super Admin')
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Roles:</label>
@@ -195,7 +202,7 @@
                             </div>
                             <!-- /.form-group -->
                         </div>
-                        @endif
+                        @endrole
                     </div>
                 </div>
 
