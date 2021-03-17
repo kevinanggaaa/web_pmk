@@ -20,7 +20,6 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active">Jumlah</li>
                 </ol>
             </div>
@@ -46,11 +45,13 @@
         </div>
         @endif
 
+        @can('add count')
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('landingPage.createCount') }}"> Tambah Jumlah</a>
             </div>
         </div>
+        @endcan
     </div>
 
     <!-- /.card-header -->
@@ -63,8 +64,9 @@
                     <th>Jumlah Dosen</th>
                     <th>Jumlah Alumni</th>
                     <th>Jumlah Event</th>
+                    @canany(['view detail count', 'edit count', 'delete count'])
                     <th style="width: 280px">Action</th>
-
+                    @endcanany
                 </tr>
             </thead>
             <tbody>
@@ -76,17 +78,23 @@
                     <td>{{ $count->alumnis }}</td>
                     <td>{{ $count->events }}</td>
                     
+                    @canany(['view detail count', 'edit count', 'delete count'])
                     <td>
                         <div style="display: flex">
 
+                            @can('view detail count')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('landingPage.showCount',$count->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
+                            @endcan
 
+                            @can('edit count')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('landingPage.editCount',$count->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
+                            @endcan
                             
+                            @can('delete count')
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('landingPage.deleteCount', $count->id) }}" method="POST" class="display: inline;">
                                     @csrf
@@ -94,8 +102,10 @@
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
+                            @endcan
                         </div>
                     </td>
+                    @endcanany
                 </tr>
                 @endforeach
             </tbody>

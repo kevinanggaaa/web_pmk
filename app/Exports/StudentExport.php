@@ -2,16 +2,16 @@
 
 namespace App\Exports;
 
-use App\Models\Student;
-use App\Models\Profile;
 use App\Models\User;
+use App\Models\Profile;
+use App\Models\Student;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Events\AfterSheet;
-use PhpOffice\PhpSpreadsheet\Style\Color;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Color;
 
 class StudentExport implements FromCollection, WithHeadings, WithEvents, WithMapping
 {
@@ -32,6 +32,7 @@ class StudentExport implements FromCollection, WithHeadings, WithEvents, WithMap
             'name',
             'email',
             'nrp',
+            'email',
             'department',
             'pkk',
             'address',
@@ -68,13 +69,13 @@ class StudentExport implements FromCollection, WithHeadings, WithEvents, WithMap
      */
     public function map($row): array
     {
-        $profile = Profile::select()->where('profile_id', $row->nrp)->first();
-        $user = User::select()->where('id', $profile->user_id)->first();
-
+        $profile = Profile::where('profile_id',$row->nrp)->first();
+        $user = User::where('id',$profile->user_id)->first();
         return [
             $row->name,
             $user->email,
             $row->nrp,
+            $user->email,
             $row->department,
             $user->pkk,
             $user->address,

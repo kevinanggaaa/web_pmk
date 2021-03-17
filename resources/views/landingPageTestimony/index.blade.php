@@ -20,7 +20,6 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active">Testimony</li>
                 </ol>
             </div>
@@ -46,11 +45,13 @@
         </div>
         @endif
 
+        @can('add testimony')
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('landingPage.createTestimony') }}"> Tambah kesaksian</a>
             </div>
         </div>
+        @endcan
     </div>
 
     <!-- /.card-header -->
@@ -61,8 +62,9 @@
                     <th>Id</th>
                     <th>Nama</th>
                     <th>Posisi</th>
+                    @canany(['view detail testimony', 'edit testimony', 'delete testimony'])
                     <th style="width: 280px">Action</th>
-
+                    @endcanany
                 </tr>
             </thead>
             <tbody>
@@ -72,17 +74,23 @@
                     <td>{{ $testimony->name }}</td>
                     <td>{{ $testimony->position }}</td>
                     
+                    @canany(['view detail testimony', 'edit testimony', 'delete testimony'])
                     <td>
                         <div style="display: flex">
 
+                            @can('view detail testimony')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('landingPage.showTestimony',$testimony->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
+                            @endcan
 
+                            @can('edit testimony')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('landingPage.editTestimony',$testimony->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
-                            
+                            @endcan
+
+                            @can('delete testimony')
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('landingPage.deleteTestimony', $testimony->id) }}" method="POST" class="display: inline;">
                                     @csrf
@@ -90,10 +98,11 @@
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
-                            
+                            @endcan
                             
                         </div>
                     </td>
+                    @endcanany
                 </tr>
                 @endforeach
             </tbody>

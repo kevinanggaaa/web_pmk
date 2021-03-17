@@ -168,6 +168,42 @@ class RoleSeeder extends Seeder
         $delete_user = Permission::create(['name' => 'delete user', 'guard_name' => 'web']);
 
         $view_birthday = Permission::create(['name' => 'view birthday', 'guard_name' => 'web']);
+
+        $add_home = Permission::create(['name' => 'add home', 'guard_name' => 'web']);
+        $view_home = Permission::create(['name' => 'view home', 'guard_name' => 'web']);
+        $view_detail_home = Permission::create(['name' => 'view detail home', 'guard_name' => 'web']);
+        $edit_home = Permission::create(['name' => 'edit home', 'guard_name' => 'web']);
+        $delete_home = Permission::create(['name' => 'delete home', 'guard_name' => 'web']);
+
+        $add_visi_misi = Permission::create(['name' => 'add visi misi', 'guard_name' => 'web']);
+        $view_visi_misi = Permission::create(['name' => 'view visi misi', 'guard_name' => 'web']);
+        $view_detail_visi_misi = Permission::create(['name' => 'view detail visi misi', 'guard_name' => 'web']);
+        $edit_visi_misi = Permission::create(['name' => 'edit visi misi', 'guard_name' => 'web']);
+        $delete_visi_misi = Permission::create(['name' => 'delete visi misi', 'guard_name' => 'web']);
+
+        $add_about = Permission::create(['name' => 'add about', 'guard_name' => 'web']);
+        $view_about = Permission::create(['name' => 'view about', 'guard_name' => 'web']);
+        $view_detail_about = Permission::create(['name' => 'view detail about', 'guard_name' => 'web']);
+        $edit_about = Permission::create(['name' => 'edit about', 'guard_name' => 'web']);
+        $delete_about = Permission::create(['name' => 'delete about', 'guard_name' => 'web']);
+
+        $add_renungan = Permission::create(['name' => 'add renungan', 'guard_name' => 'web']);
+        $view_renungan = Permission::create(['name' => 'view renungan', 'guard_name' => 'web']);
+        $view_detail_renungan = Permission::create(['name' => 'view detail renungan', 'guard_name' => 'web']);
+        $edit_renungan = Permission::create(['name' => 'edit renungan', 'guard_name' => 'web']);
+        $delete_renungan = Permission::create(['name' => 'delete renungan', 'guard_name' => 'web']);
+
+        $add_testimony = Permission::create(['name' => 'add testimony', 'guard_name' => 'web']);
+        $view_testimony = Permission::create(['name' => 'view testimony', 'guard_name' => 'web']);
+        $view_detail_testimony = Permission::create(['name' => 'view detail testimony', 'guard_name' => 'web']);
+        $edit_testimony = Permission::create(['name' => 'edit testimony', 'guard_name' => 'web']);
+        $delete_testimony = Permission::create(['name' => 'delete testimony', 'guard_name' => 'web']);
+
+        $add_count = Permission::create(['name' => 'add count', 'guard_name' => 'web']);
+        $view_count = Permission::create(['name' => 'view count', 'guard_name' => 'web']);
+        $view_detail_count = Permission::create(['name' => 'view detail count', 'guard_name' => 'web']);
+        $edit_count = Permission::create(['name' => 'edit count', 'guard_name' => 'web']);
+        $delete_count = Permission::create(['name' => 'delete count', 'guard_name' => 'web']);
         
         // Give Role Permission
         
