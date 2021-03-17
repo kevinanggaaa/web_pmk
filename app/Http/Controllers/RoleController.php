@@ -66,10 +66,11 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(Role $role, Request $request)
     {
-        $users = $role->users()->get();
-        return view('roles.show')->with(['role' => $role, 'permissions' => $role->permissions, 'users' => $users]);
+        $pageNumber = $request->query('page');
+        $users = $role->users()->paginate(1, ['*'], 'page', $pageNumber);
+        return view('roles.show')->with(['role' => $role, 'permissions' => $role->permissions, 'users' => $users, 'pageNumber' => $pageNumber]);
     }
 
     /**

@@ -16,7 +16,6 @@ class FrontEndController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:view all')->only('indexAll');
         $this->middleware('permission:view home')->only('indexHome');
         $this->middleware('permission:view visi misi')->only('indexVisiMisi');
         $this->middleware('permission:view about')->only('indexAbout');

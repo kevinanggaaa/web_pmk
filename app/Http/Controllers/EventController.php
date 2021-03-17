@@ -35,22 +35,42 @@ class EventController extends Controller
         $roles = 0;
         foreach ($user->roles as $role){
             if($role->name == 'Mahasiswa'){
-                $events = Event::where('type', '!=', 'Lecturer')->where('type', '!=', 'Alumni')->get();
-                break;
+                $roles += 1;
             }
             else if($role->name == 'Dosen'){
-                $events = Event::where('type', '!=', 'Student')->where('type', '!=', 'Alumni')->get();
-                break;
+                $roles += 10;
             }
             else if($role->name == 'Alumni'){
-                $events = Event::where('type', '!=', 'Lecturer')->where('type', '!=', 'Student')->get();
-                break;
+                $roles += 100;
             }
             else if($role->name == 'Super Admin'){
-                $events = Event::all();
-                break;
+                $roles = 0;
             }
         }
+
+        if($roles == 1){
+            $events = Event::where('type', '!=', 'Lecturer')->where('type', '!=', 'Alumni')->get();
+        }
+        else if($roles == 10){
+            $events = Event::where('type', '!=', 'Alumni')->where('type', '!=', 'Student')->get();
+        }
+        else if($roles == 100){
+            $events = Event::where('type', '!=', 'Lecturer')->where('type', '!=', 'Student')->get();
+        }
+        else if($roles == 11){
+            $events = Event::where('type', '!=', 'Alumni')->get();
+        }
+        else if($roles == 101){
+            $events = Event::where('type', '!=', 'Lecturer')->get();
+        }
+        else if($roles == 110){
+            $events = Event::where('type', '!=', 'Student')->get();
+        }
+        else if($roles == 0 || $roles == 111){
+            $events = Event::all();
+        }
+
+        
 
         return view('events.index', compact('events', 'user', 'attends'));
     }
