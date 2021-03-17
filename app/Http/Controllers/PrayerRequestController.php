@@ -9,9 +9,10 @@ use App\Http\Requests\PrayerRequestRequest;
 
 class PrayerRequestController extends Controller
 {
-    public function __construct()
+     public function __construct()
     {
         $this->middleware('permission:view prayer request')->only('index');
+        $this->middleware('permission:add prayer request')->only('create');
         $this->middleware('permission:edit prayer request')->only('edit');
         $this->middleware('permission:delete prayer request')->only('destroy');
     }
