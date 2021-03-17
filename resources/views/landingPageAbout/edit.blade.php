@@ -27,8 +27,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Landing Page</a></li>
-                    <li class="breadcrumb-item active">About</li>
+                    <li class="breadcrumb-item">About</li>
                     <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </div>

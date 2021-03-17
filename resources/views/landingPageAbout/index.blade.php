@@ -20,7 +20,6 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active">About</li>
                 </ol>
             </div>
@@ -46,11 +45,13 @@
         </div>
         @endif
 
+        @can('add about')
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('landingPage.createAbout') }}"> Tambah about</a>
             </div>
         </div>
+        @endcan
     </div>
 
     <!-- /.card-header -->
@@ -62,8 +63,9 @@
                     <th>Judul</th>
                     <th>Sub Judul</th>
                     <th>Dibuat pada</th>
+                    @canany(['view detail about', 'edit about', 'delete about'])
                     <th style="width: 280px">Action</th>
-
+                    @endcanany
                 </tr>
             </thead>
             <tbody>
@@ -74,17 +76,23 @@
                     <td>{{ $about->subtitle }}</td>
                     <td>{{ $about->created_at }}</td>
                     
+                    @canany(['view detail about', 'edit about', 'delete about'])
                     <td>
                         <div style="display: flex">
 
+                            @can('view detail about')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('landingPage.showAbout',$about->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
+                            @endcan
 
+                            @can('edit about')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('landingPage.editAbout',$about->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
+                            @endcan
                             
+                            @can('delete aboit')
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('landingPage.deleteAbout', $about->id) }}" method="POST" class="display: inline;">
                                     @csrf
@@ -92,10 +100,12 @@
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
+                            @endcan
                             
                             
                         </div>
                     </td>
+                    @endcanany
                 </tr>
                 @endforeach
             </tbody>
