@@ -6,6 +6,7 @@ use Session;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Student;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Exports\StudentExport;
 use App\Imports\StudentImport;
@@ -173,8 +174,17 @@ class StudentController extends Controller
             $student->nrp = $request['nrp'];
             $student->save();
 
-            return redirect()->route('students.index')
+            $contains = Str::contains(url()->previous(), 'profiles');
+
+            if($contains){
+                //Jika diakses dari form 
+                return redirect()->route('profiles.index')
                 ->with('success', 'Data mahasiswa berhasil diubah');
+            }
+            else{
+                return redirect()->route('students.index')
+                ->with('success', 'Data mahasiswa berhasil diubah');
+            }
         }
 
         else{

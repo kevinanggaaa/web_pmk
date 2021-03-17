@@ -233,8 +233,17 @@ class AlumniController extends Controller
             ->where('id', $user_id)
             ->update(['email' => $request['email']]);
 
-            return redirect()->route('alumnis.index')
-            ->with('success', 'Data alumni berhasil diubah');
+            $contains = Str::contains(url()->previous(), 'profiles');
+
+            if($contains){
+                //Jika diakses dari form 
+                return redirect()->route('profiles.index')
+                ->with('success', 'Data alumni berhasil diubah');
+            }
+            else{
+                return redirect()->route('lecturers.index')
+                ->with('success', 'Data alumni berhasil diubah');
+            }
         }
         else{
             $alumni->name = $request['name'];

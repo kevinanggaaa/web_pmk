@@ -54,6 +54,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $ultah = explode('-', $request->birthdate);
+        $year = $ultah[0];
+        $month = $ultah[1];
+        $day  = $ultah[2];
+        $ultah = $day . '' . $month . '' . $year;
+
         if($request['avatar'] == null){
             $nama_file = 'default.jpg';
         }
@@ -66,7 +72,7 @@ class UserController extends Controller
         }
         $user = User::create([
             'email' => $request['email'],
-            'password' => Hash::make($request['password']),
+            'password' => bcrypt($ultah),
             'name' => $request['name'],
             'pkk' => $request['pkk'],
             'address' => $request['address'],

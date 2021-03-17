@@ -91,12 +91,12 @@
                         <div class="col-md-6">
                             <!-- Date dd/mm/yyyy -->
                             <div class="form-group">
-                                <label for="year_end">Tahun Lulus</label>
+                                <label for="year_graduate">Tahun Lulus</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                     </div>
-                                    <input name="year_end" id="year_end" type="text" class="datemask form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask value="{{$student->year_end}}">
+                                    <input name="year_graduate" id="year_graduate" type="text" class="datemask form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask value="{{$student->year_graduate}}">
 
                                 </div>
                                 <!-- /.input group -->

@@ -26,7 +26,7 @@
             </a>
           </li>
          
-          @role('Super Admin', 'KSB'))
+          @hasanyrole('Super Admin|KSB')
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link active">
               <i class="nav-icon fa fa-users"></i>
@@ -50,7 +50,7 @@
               </li>
             </ul>
           </li>
-          @endif
+          @endhasanyrole
         </ul>
 
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">

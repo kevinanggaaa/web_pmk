@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lecturer;
-use Illuminate\Http\Request;
-use App\Http\Requests\LecturerRequest;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\LecturerExport;
-use App\Imports\LecturerImport;
 use Session;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Lecturer;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Exports\LecturerExport;
+use App\Imports\LecturerImport;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\LecturerRequest;
 
 class LecturerController extends Controller
 {
@@ -168,8 +169,17 @@ class LecturerController extends Controller
             $lecturer->nidn = $request['nidn'];
             $lecturer->save();
 
-            return redirect()->route('lecturers.index')
+            $contains = Str::contains(url()->previous(), 'profiles');
+
+            if($contains){
+                //Jika diakses dari form 
+                return redirect()->route('profiles.index')
                 ->with('success', 'Data dosen berhasil diubah');
+            }
+            else{
+                return redirect()->route('lecturers.index')
+                ->with('success', 'Data dosen berhasil diubah');
+            }
         }
         else{
 

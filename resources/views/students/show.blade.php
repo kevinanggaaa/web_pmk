@@ -72,7 +72,7 @@
                                 </tr>
                                 <tr>
                                     <td>Tahun lulus</td>
-                                    <td>{{ $student->year_end }}</td>
+                                    <td>{{ $student->year_graduate }}</td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>

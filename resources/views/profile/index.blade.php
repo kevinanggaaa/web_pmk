@@ -156,10 +156,12 @@
                                     <td>Tahun masuk</td>
                                     <td>{{ $profile->model->year_entry }}</td>
                                 </tr>
+                                @if($profile->model->year_graduate)
                                 <tr>
                                     <td>Tahun lulus</td>
-                                    <td>{{ $profile->model->year_end }}</td>
+                                    <td>{{ $profile->model->year_graduate }}</td>
                                 </tr>
+                                @endif
                             </tbody>
                         </table>
 

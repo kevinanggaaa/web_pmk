@@ -42,12 +42,6 @@
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" required>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="email">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" required>
-                            </div>
-                        </div>
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="name">Nama </label>
@@ -60,7 +54,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="pkk">Nama PKK</label>
-                                <input type="text" class="form-control {{$errors->has('pkk') ? 'is-invalid' : ''}}" id="pkk" name="pkk" placeholder="Masukkan nama PKK" value="{{old('pkk')}}" required>
+                                <input type="text" class="form-control {{$errors->has('pkk') ? 'is-invalid' : ''}}" id="pkk" name="pkk" placeholder="Masukkan nama PKK" value="{{old('pkk')}}">
                                 @error('pkk')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
