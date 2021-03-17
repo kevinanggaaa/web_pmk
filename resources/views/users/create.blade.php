@@ -60,8 +60,8 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="pkk">Nrp PKK</label>
-                                <input type="text" class="form-control {{$errors->has('pkk') ? 'is-invalid' : ''}}" id="pkk" name="pkk" placeholder="Masukkan nrp PKK" value="{{old('pkk')}}" required>
+                                <label for="pkk">Nama PKK</label>
+                                <input type="text" class="form-control {{$errors->has('pkk') ? 'is-invalid' : ''}}" id="pkk" name="pkk" placeholder="Masukkan nama PKK" value="{{old('pkk')}}" required>
                                 @error('pkk')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -69,18 +69,18 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="current_address">Alamat Saat Ini</label>
-                                <input type="text" class="form-control {{$errors->has('current_address') ? 'is-invalid' : ''}}" id="current_address" name="current_address" placeholder="Masukkan alamat " value="{{old('current_address')}}">
-                                @error('current_address')
+                                <label for="address">Alamat Saat Ini</label>
+                                <input type="text" class="form-control {{$errors->has('address') ? 'is-invalid' : ''}}" id="address" name="address" placeholder="Masukkan alamat" value="{{old('address')}}">
+                                @error('address')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="origin_address">Alamat Asal</label>
-                                <input type="text" class="form-control {{$errors->has('origin_address') ? 'is-invalid' : ''}}" id="origin_address" name="origin_address" placeholder="Masukkan alamat asal " value="{{old('origin_address')}}">
-                                @error('origin_address')
+                                <label for="address_origin">Alamat Asal</label>
+                                <input type="text" class="form-control {{$errors->has('address_origin') ? 'is-invalid' : ''}}" id="address_origin" name="address_origin" placeholder="Masukkan alamat asal" value="{{old('address_origin')}}" required>
+                                @error('address_origin')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>
@@ -88,19 +88,22 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="phone">Nomor Telepon</label>
-                                <input type="text" name="phone" id="phone" class="form-control" value="{{old('phone')}}">
+                                <input type="text" class="form-control {{$errors->has('phone') ? 'is-invalid' : ''}}" name="phone" id="phone" class="form-control" placeholder="Masukkan Nomor Telepon" value="{{old('phone')}}" required>
+                                @error('phone')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="parent_phone">Nomor Telepon Orang tua / Wali</label>
-                                <input type="text" name="parent_phone" id="parent_phone" class="form-control" value="{{old('parent_phone')}}">
+                                <input type="text" class="form-control {{$errors->has('parent_phone') ? 'is-invalid' : ''}}" name="parent_phone" id="parent_phone" class="form-control" placeholder="Masukkan Nomor Telepon Orang Tua" value="{{old('parent_phone')}}">
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="line">Line</label>
-                                <input type="text" name="line" id="line" class="form-control" value="{{old('line')}}">
+                                <input type="text" class="form-control {{$errors->has('line') ? 'is-invalid' : ''}}" name="line" id="line" class="form-control" placeholder="Masukkan ID Line" value="{{old('line')}}">
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
@@ -112,6 +115,7 @@
                                 @enderror
                             </div>
                         </div>
+                        @role('admin')
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="death_date">Tanggal Wafat</label>
@@ -121,10 +125,18 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        @endrole
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="gender">Jenis Kelamin</label>
-                                <input type="text" name="gender" id="gender" class="form-control" value="{{old('gender')}}">
+                                <select name="gender" id="gender" class="form-control {{$errors->has('gender') ? 'is-invalid' : ''}}" required>
+                                <option value="">== Pilih Type ==</option>
+                                        <option value="P">Perempuan</option>
+                                        <option value="L">Laki-Laki</option>
+                                </select>
+                                @error('gender')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-sm-12">
