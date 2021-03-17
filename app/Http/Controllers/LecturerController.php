@@ -159,19 +159,19 @@ class LecturerController extends Controller
         ->whereNotIn('id', [$lecturer->id])
         ->first();
 
-        if($cek_email == null){
+        
+        $lecturer->name = $request['name'];
+        $lecturer->department = $request['department'];
+        $lecturer->save();
+
+        if($cek_nidn == null){
             $lecturer->nidn = $request['nidn'];
-            $lecturer->name = $request['name'];
-            $lecturer->department = $request['department'];
             $lecturer->save();
 
             return redirect()->route('lecturers.index')
                 ->with('success', 'Data dosen berhasil diubah');
         }
         else{
-            $lecturer->name = $request['name'];
-            $lecturer->department = $request['department'];
-            $lecturer->save();
 
             return redirect('admin/profiles/'.$lecturer->id.'/editLecturer')
                 ->with('fail','Data dosen gagal diubah karena duplikasi nidn');

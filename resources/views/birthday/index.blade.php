@@ -23,55 +23,42 @@
     </div><!-- /.container-fluid -->
 </section>
 
-<div class="card">
-    <div class="card-header">
-
-        {{-- notifikasi form validasi --}}
-        @if ($errors->has('file'))
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $errors->first('file') }}</strong>
-        </span>
-        @endif
-
-        {{-- notifikasi sukses --}}
-        @if ($sukses = Session::get('sukses'))
-        <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>{{ $sukses }}</strong>
+<div class="row mb-2 px-4">
+<div class="col-sm-6">
+    <div class="card px-3">
+        <div class="card-header">
+            <h3 class="pl-2 text-center">Ulang tahun bulan ini</h3>
         </div>
-        @endif
-    </div>
-
-    <!-- /.card-header -->
-    <div class="card-body p-12">
-        <table id="example0" class="table table-bordered table-striped">
-            
-            <thead>
-            <h3 class="pl-2">Ulang tahun bulan ini</h3>
-                <tr>
-                    <th>Nama</th>
-                    <th>Tanggal lahir</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
-                <tr>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->birthdate }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="card-body p-12">
+            <table id="example0" class="table table-bordered table-striped">
+                
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Tanggal lahir</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                    <tr>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->birthdate }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-
-<div class="card mt-5">
-    <div class="card-header">
-        <div class="card-body pl-0 pr-0">
+<div class="col-sm-6">
+    <div class="card px-3">
+        <div class="card-header">
+            <h3 class="pl-2 text-center">Ulang tahun bulan depan</h3>
+        </div>
+        <div class="card-body p-12">
             <table id="example1" class="table table-bordered table-striped">
                 
                 <thead>
-                    <h3 class="pl-2">Ulang tahun bulan depan</h3>
                     <tr>
                         <th>Nama</th>
                         <th>Tanggal lahir</th>
@@ -88,6 +75,7 @@
             </table>
         </div>
     </div>
+</div>
 </div>
 
 @endsection

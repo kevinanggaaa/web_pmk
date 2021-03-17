@@ -16,7 +16,7 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $super_admin = Role::create([
+        Role::create([
             'name' => 'Super Admin',
             'guard_name' => 'web',
         ]);
@@ -36,46 +36,6 @@ class RoleSeeder extends Seeder
             'guard_name' => 'web',
         ]);
 
-        $pengurus_pemuridan = Role::create([
-            'name' => 'pengurus pemuridan',
-            'guard_name' => 'web',
-        ]);
-
-        $pengurus_dope = Role::create([
-            'name' => 'pengurus dope',
-            'guard_name' => 'web',
-        ]);
-
-        $pengurus_medfo = Role::create([
-            'name' => 'pengurus medfo',
-            'guard_name' => 'web',
-        ]);
-
-        $pengurus_kutu = Role::create([
-            'name' => 'pengurus kutu',
-            'guard_name' => 'web',
-        ]);
-
-        $bph_pemuridan = Role::create([
-            'name' => 'bph pemuridan',
-            'guard_name' => 'web',
-        ]);
-
-        $bph_dope = Role::create([
-            'name' => 'bph dope',
-            'guard_name' => 'web',
-        ]);
-
-        $bph_kutu = Role::create([
-            'name' => 'bph kutu',
-            'guard_name' => 'web',
-        ]);
-
-        $bph_medfo = Role::create([
-            'name' => 'bph medfo',
-            'guard_name' => 'web',
-        ]);
-
         $ketua = Role::create([
             'name' => 'ketua',
             'guard_name' => 'web',
@@ -88,11 +48,6 @@ class RoleSeeder extends Seeder
 
         $bendahara = Role::create([
             'name' => 'bendahara',
-            'guard_name' => 'web',
-        ]);
-
-        $pkk = Role::create([
-            'name' => 'pkk',
             'guard_name' => 'web',
         ]);
 
