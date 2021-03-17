@@ -46,11 +46,13 @@
         </div>
         @endif
 
+        @can('add home')
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('landingPage.createHome') }}"> Tambah home</a>
             </div>
         </div>
+        @endcan
     </div>
 
     <!-- /.card-header -->
@@ -62,8 +64,9 @@
                     <th>Judul</th>
                     <th>Sub Judul</th>
                     <th>Dibuat pada</th>
+                    @canany(['view detail home', 'edit home', 'delete home'])
                     <th style="width: 280px">Action</th>
-
+                    @endcanany
                 </tr>
             </thead>
             <tbody>
@@ -74,17 +77,23 @@
                     <td>{{ $home->subtitle }}</td>
                     <td>{{ $home->created_at }}</td>
                     
+                    @canany(['view detail home', 'edit home', 'delete home'])
                     <td>
                         <div style="display: flex">
 
+                            @can('view detail home')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('landingPage.showHome',$home->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
+                            @endcan
 
+                            @can('edit home')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('landingPage.editHome',$home->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
+                            @endcan
                             
+                            @can('delete home')
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('landingPage.deleteHome', $home->id) }}" method="POST" class="display: inline;">
                                     @csrf
@@ -92,10 +101,11 @@
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
-                            
+                            @endcan
                             
                         </div>
                     </td>
+                    @endcanany
                 </tr>
                 @endforeach
             </tbody>

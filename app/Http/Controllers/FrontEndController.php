@@ -14,11 +14,42 @@ use App\Models\LandingPageVisiMisi;
 
 class FrontEndController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('permission:view all')->only('indexAll');
+        $this->middleware('permission:view home')->only('indexHome');
+        $this->middleware('permission:view visi misi')->only('indexVisiMisi');
+        $this->middleware('permission:view about')->only('indexAbout');
+        $this->middleware('permission:view renungan')->only('indexRenungan');
+        $this->middleware('permission:view testimony')->only('indexTestimony');
+        $this->middleware('permission:view count')->only('indexCount');
+        $this->middleware('permission:add home')->only('createHome');
+        $this->middleware('permission:add visi misi')->only('createVisiMisi');
+        $this->middleware('permission:add about')->only('createAbout');
+        $this->middleware('permission:add renungan')->only('createRenungan');
+        $this->middleware('permission:add testimony')->only('createTestimony');
+        $this->middleware('permission:add count')->only('createCount');
+        $this->middleware('permission:view detail home')->only('showHome');
+        $this->middleware('permission:view detail visi misi')->only('showVisiMisi');
+        $this->middleware('permission:view detail about')->only('showAbout');
+        $this->middleware('permission:view detail renungan')->only('showRenungan');
+        $this->middleware('permission:view detail testimony')->only('showTestimony');
+        $this->middleware('permission:view detail count')->only('showCount');
+        $this->middleware('permission:view detail renungan detail')->only('showRenunganDetail');
+        $this->middleware('permission:edit home')->only('editHome');
+        $this->middleware('permission:edit visi misi')->only('editVisiMisi');
+        $this->middleware('permission:edit about')->only('editeAbout');
+        $this->middleware('permission:edit renungan')->only('editRenungan');
+        $this->middleware('permission:edit testimony')->only('editTestimony');
+        $this->middleware('permission:edit count')->only('editCount');
+        $this->middleware('permission:delete home')->only('destroyHome');
+        $this->middleware('permission:delete visi misi')->only('destroyVisiMisi');
+        $this->middleware('permission:delete about')->only('destroyAbout');
+        $this->middleware('permission:delete renungan')->only('destroyRenungan');
+        $this->middleware('permission:delete testimony')->only('destroyTestimony');
+        $this->middleware('permission:delete count')->only('destroyCount');
+
+    }
 
     public function indexAll()
     {

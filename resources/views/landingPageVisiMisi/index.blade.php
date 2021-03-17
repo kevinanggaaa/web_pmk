@@ -46,11 +46,13 @@
         </div>
         @endif
 
+        @can('add visi misi')
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('landingPage.createVisiMisi') }}"> Tambah visi misi</a>
             </div>
         </div>
+        @endcan
     </div>
 
     <!-- /.card-header -->
@@ -63,8 +65,9 @@
                     <th>Judul 2</th>
                     <th>Judul 3</th>
                     <th>Dibuat pada</th>
+                    @canany(['view detail visi misi', 'edit visi misi', 'delete visi misi'])
                     <th style="width: 280px">Action</th>
-
+                    @endcanany
                 </tr>
             </thead>
             <tbody>
@@ -76,17 +79,23 @@
                     <td>{{ $VisiMisi->title3 }}</td>
                     <td>{{ $VisiMisi->created_at }}</td>
                     
+                    @canany(['view detail visi misi', 'edit visi misi', 'delete visi misi'])
                     <td>
                         <div style="display: flex">
 
+                            @can('view detail visi misi')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-info" href="{{ route('landingPage.showVisiMisi',$VisiMisi->id) }}"><i class="fa fa-eye"></i></a>
                             </div>
+                            @endcan
 
+                            @can('edit visi misi')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('landingPage.editVisiMisi',$VisiMisi->id) }}"><i class="fa fa-edit"></i></a>
                             </div>
-                            
+                            @endcan
+
+                            @can('delete visi misi')
                             <div style="margin-right: 5px;">
                                 <form action="{{ route('landingPage.deleteVisiMisi', $VisiMisi->id) }}" method="POST" class="display: inline;">
                                     @csrf
@@ -95,7 +104,9 @@
                                 </form>
                             </div>
                         </div>
+                        @endcan
                     </td>
+                    @endcanany
                 </tr>
                 @endforeach
             </tbody>
