@@ -21,7 +21,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">Role</li>
+                        <li class="breadcrumb-item">Role</li>
+                        <li class="breadcrumb-item active">Add</li>
                     </ol>
                 </div>
             </div>
