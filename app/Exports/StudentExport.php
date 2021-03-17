@@ -3,6 +3,8 @@
 namespace App\Exports;
 
 use App\Models\Student;
+use App\Models\Profile;
+use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -28,8 +30,18 @@ class StudentExport implements FromCollection, WithHeadings, WithEvents, WithMap
     {
         return [
             'name',
+            'email',
             'nrp',
             'department',
+            'pkk',
+            'address',
+            'address_origin',
+            'phone',
+            'parent_phone',
+            'line',
+            'birthdate',
+            'gender',
+            'date_death',
             'year_entry',
             'year_graduate',
         ];
@@ -42,7 +54,7 @@ class StudentExport implements FromCollection, WithHeadings, WithEvents, WithMap
     {
         return [
             AfterSheet::class   =>  function (AfterSheet $event) {
-                $event->sheet->getDelegate()->getStyle('A1:E1')
+                $event->sheet->getDelegate()->getStyle('A1:O1')
                     ->getFill()->setFillType(Fill::FILL_SOLID)
                     ->getStartColor()->setARGB(Color::COLOR_YELLOW);
             },
@@ -56,10 +68,23 @@ class StudentExport implements FromCollection, WithHeadings, WithEvents, WithMap
      */
     public function map($row): array
     {
+        $profile = Profile::select()->where('profile_id', $row->nrp)->first();
+        $user = User::select()->where('id', $profile->user_id)->first();
+
         return [
             $row->name,
+            $user->email,
             $row->nrp,
             $row->department,
+            $user->pkk,
+            $user->address,
+            $user->address_origin,
+            $user->phone,
+            $user->parent_phone,
+            $user->line,
+            $user->birthdate,
+            $user->gender,
+            $user->date_death,
             $row->year_entry,
             $row->year_graduate,
         ];

@@ -79,8 +79,6 @@ class AlumniController extends Controller
         else{
             return redirect()->route('alumnis.check')
                 ->with('fail', 'Maaf data yang dimasukkan salah.');
-            // return view('alumnis.name-birthdate', compact('alumnis'))
-            //     ->with('fail','Maaf data yang dimasukkan salah.');
         } 
     }
 
@@ -110,26 +108,6 @@ class AlumniController extends Controller
           $file->move($tujuan_upload, $file_name);
         }
 
-        $user = User::firstOrCreate(
-            [
-                'email' => $request['email']
-            ],
-            [
-                'password' => bcrypt($ultah),
-                'name' => $request['name'],
-                'pkk' => $request['pkk'],
-                'address' => $request['address'],
-                'address_origin' => $request['address_origin'],
-                'phone' => $request['phone'],
-                'parent_phone' => $request['parent_phone'],
-                'line' => $request['line'],
-                'birthdate' => $request['birthdate'],
-                'gender' => $request['gender'],
-                'date_death' => $request['date_death'],
-                'avatar' => $file_name,        
-            ]
-        );
-
         $alumni = Alumni::firstOrCreate(
             [
                 'email' => $request['email']
@@ -143,13 +121,31 @@ class AlumniController extends Controller
         );
 
         if($alumni->wasRecentlyCreated){
-            $model_id = Alumni::select('id')->where('email', $request['email'])->first();
-            $user_id = User::select('id')->where('email', $request['email'])->first();
+
+            $user = User::firstOrCreate(
+                [
+                    'email' => $request['email']
+                ],
+                [
+                    'password' => bcrypt($ultah),
+                    'name' => $request['name'],
+                    'pkk' => $request['pkk'],
+                    'address' => $request['address'],
+                    'address_origin' => $request['address_origin'],
+                    'phone' => $request['phone'],
+                    'parent_phone' => $request['parent_phone'],
+                    'line' => $request['line'],
+                    'birthdate' => $request['birthdate'],
+                    'gender' => $request['gender'],
+                    'date_death' => $request['date_death'],
+                    'avatar' => $file_name,        
+                ]
+            );
 
             Profile::create([
                 'profile_id' => $request['email'],
-                'user_id' => $user_id->id,
-                'model_id' => $model_id->id,
+                'user_id' => $user->id,
+                'model_id' => $alumni->id,
                 'model_type' => 'App\Models\Alumni',
             ]);
 
@@ -159,6 +155,7 @@ class AlumniController extends Controller
 
             
             if($contains){
+                //Jika diakses dari form
                 return redirect()->route('alumnis.check')
                     ->with('success', 'Data alumni berhasil ditambahkan. Silahkan login ke website utama');
             }
@@ -172,6 +169,7 @@ class AlumniController extends Controller
         $contains = Str::contains(url()->previous(), 'new-alumni');
 
         if($contains){
+            //Jika diakses dari form 
             return view('alumnis.form-create-error')
             ->with('request', $request);
         }

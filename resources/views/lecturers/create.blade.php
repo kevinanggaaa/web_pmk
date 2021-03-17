@@ -48,16 +48,7 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="address">Alamat</label>
-                                <input type="text" class="form-control {{$errors->has('address') ? 'is-invalid' : ''}}" id="address" name="address" placeholder="Masukkan alamat" value="{{old('address')}}" >
-                                @error('address')
-                                <span class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="address_origin">Alamat Asal</label>
+                                <label for="address_origin">Alamat</label>
                                 <input type="text" class="form-control {{$errors->has('address_origin') ? 'is-invalid' : ''}}" id="address_origin" name="address_origin" placeholder="Masukkan alamat asal" value="{{old('address_origin')}}" required>
                                 @error('address_origin')
                                 <span class="error invalid-feedback">{{$message}}</span>
@@ -69,15 +60,6 @@
                                 <label for="phone">No telp</label>
                                 <input type="text" class="form-control {{$errors->has('phone') ? 'is-invalid' : ''}}" id="phone" name="phone" placeholder="Masukkan no telp" value="{{old('phone')}}" required>
                                 @error('phone')
-                                <span class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <label for="parent_phone">No telp ortu</label>
-                                <input type="text" class="form-control {{$errors->has('parent_phone') ? 'is-invalid' : ''}}" id="parent_phone" name="parent_phone" placeholder="Masukkan no telp orang tua" value="{{old('parent_phone')}}" >
-                                @error('parent_phone')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>
@@ -100,20 +82,11 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="avatar">Avatar</label>
                                 <input type="file" name="avatar" id="avatar" class="form-control " value="{{old('avatar')}}">
                                 @error('avatar')
-                                <span class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <label for="pkk">PKK</label>
-                                <input type="text" class="form-control {{$errors->has('pkk') ? 'is-invalid' : ''}}" id="pkk" name="pkk" placeholder="Masukkan PKK" value="{{old('pkk')}}" >
-                                @error('pkk')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>

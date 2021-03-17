@@ -27,7 +27,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $pageNumber = $request->query('page');
-        $roles = Role::paginate(10, ['*'], 'page', $pageNumber);
+        $roles = Role::where('name', '!=', 'Super Admin')->paginate(10, ['*'], 'page', $pageNumber);
 
         return view('roles.index', compact('roles'));
     }
@@ -66,9 +66,11 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(Role $role, Request $request)
     {
-        $users = $role->users()->get();
+        $pageNumber = $request->query('page');
+        $users = $role->users()->paginate(1, ['*'], 'page', $pageNumber);
+
         return view('roles.show')->with(['role' => $role, 'permissions' => $role->permissions, 'users' => $users]);
     }
 

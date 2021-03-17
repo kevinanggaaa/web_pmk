@@ -3,6 +3,8 @@
 namespace App\Exports;
 
 use App\Models\Alumni;
+use App\Models\Profile;
+use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -19,7 +21,7 @@ class AlumniExport implements FromCollection, WithHeadings, WithEvents, WithMapp
     public function collection()
     {
         return Alumni::get([
-            'name', 'department', 'job', 'alumni',
+            'name', 'department', 'job', 'alumni', 'angkatan',
         ]);
     }
 
@@ -27,9 +29,16 @@ class AlumniExport implements FromCollection, WithHeadings, WithEvents, WithMapp
     {
         return [
             'name',
+            'email',
             'department',
             'job',
-            'alumni',
+            'angkatan',
+            'address_origin',
+            'phone',
+            'line',
+            'birthdate',
+            'gender',
+            'date_death',
         ];
     }
 
@@ -40,7 +49,7 @@ class AlumniExport implements FromCollection, WithHeadings, WithEvents, WithMapp
     {
         return [
             AfterSheet::class   =>  function (AfterSheet $event) {
-                $event->sheet->getDelegate()->getStyle('A1:D1')
+                $event->sheet->getDelegate()->getStyle('A1:K1')
                     ->getFill()->setFillType(Fill::FILL_SOLID)
                     ->getStartColor()->setARGB(Color::COLOR_YELLOW);
             },
@@ -54,11 +63,21 @@ class AlumniExport implements FromCollection, WithHeadings, WithEvents, WithMapp
      */
     public function map($row): array
     {
+        $profile = Profile::select()->where('profile_id', $row->email)->first();
+        $user = User::select()->where('id', $profile->user_id)->first();
+
         return [
             $row->name,
+            $user->email,
             $row->department,
             $row->job,
-            $row->alumni,
+            $user->angkatan,
+            $user->address_origin,
+            $user->phone,
+            $user->line,
+            $user->birthdate,
+            $user->gender,
+            $user->date_death,
         ];
     }
 }

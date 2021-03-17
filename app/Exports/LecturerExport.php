@@ -3,6 +3,8 @@
 namespace App\Exports;
 
 use App\Models\Lecturer;
+use App\Models\Profile;
+use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -28,7 +30,14 @@ class LecturerExport implements FromCollection, WithHeadings, WithEvents, WithMa
         return [
             'nidn',
             'name',
+            'email',
             'department',
+            'address_origin',
+            'phone',
+            'line',
+            'birthdate',
+            'gender',
+            'date_death',
         ];
     }
 
@@ -39,7 +48,7 @@ class LecturerExport implements FromCollection, WithHeadings, WithEvents, WithMa
     {
         return [
             AfterSheet::class   =>  function (AfterSheet $event) {
-                $event->sheet->getDelegate()->getStyle('A1:C1')
+                $event->sheet->getDelegate()->getStyle('A1:J1')
                     ->getFill()->setFillType(Fill::FILL_SOLID)
                     ->getStartColor()->setARGB(Color::COLOR_YELLOW);
             },
@@ -53,10 +62,19 @@ class LecturerExport implements FromCollection, WithHeadings, WithEvents, WithMa
      */
     public function map($row): array
     {
+        $profile = Profile::select()->where('profile_id', $row->nidn)->first();
+        $user = User::select()->where('id', $profile->user_id)->first();
         return [
             $row->nidn,
             $row->name,
+            $user->email,
             $row->department,
+            $user->address_origin,
+            $user->phone,
+            $user->line,
+            $user->birthdate,
+            $user->gender,
+            $user->date_death,
         ];
     }
 }

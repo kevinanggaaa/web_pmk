@@ -11,7 +11,7 @@
                     <ul class="nav nav-pills">
                         <li class="nav-item"><a class="nav-link active" href="#informasi" data-toggle="tab">Informasi</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#peserta" data-toggle="tab">Peserta</a>
+                        <li class="nav-item" ><a class="nav-link" @if (Request::query('page') === null || Request::query('page') == 'home') class="active" @endif href="#peserta" data-toggle="tab">User</a>
                         </li>
                     </ul>
                 </div><!-- /.card-header -->
@@ -25,15 +25,20 @@
                                 </tbody>
                                 @endforeach
                             </table>
-
                         </div>
-                        <!-- /.tab-pane -->
-                        <div class="tab-pane" id="peserta">
+
+                        <!-- /.tab-pane --> 
+                        <div class="tab-pane @if (Request::query('page') === null || Request::query('page') == 'home') active @endif" id="peserta">
+                        <table class="table">
                             @foreach ($users as $user)
                                 <tbody>
-                                    <td>{{$user->email}}</td> 
+                                        <td>{{$user->email}}</td> 
                                 </tbody>
                             @endforeach
+                        </table>
+                        <div class="card-footer">
+                            {{$users->appends(['page' => 'home'])->links("pagination::bootstrap-4")}}
+                        </div>
                         </div>
                         <!-- /.tab-pane -->
                     </div>
@@ -41,10 +46,30 @@
 
                     <!-- /.tab-content -->
                 </div><!-- /.card-body -->
+
+                
             </div>
             <!-- /.nav-tabs-custom -->
         </div>
         <!-- /.col -->
-
+    
     </div>
 @endsection
+
+@push('scripts')
+<script>
+$(document).ready(function(){
+
+var url = document.location.toString();
+ if (url.match('#')) {
+     $('.nav-item a[href="#' + url.split('#')[1] + '"]')[0].click();
+ } 
+
+ //To make sure that the page always goes to the top
+ setTimeout(function () {
+     window.scrollTo(0, 0);
+ },200);
+
+});
+</script>
+@endpush

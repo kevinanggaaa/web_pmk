@@ -73,19 +73,11 @@
                                 </tr>
                                 <tr>
                                     <td>Alamat</td>
-                                    <td>{{ $user->address }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Alamat asal</td>
                                     <td>{{ $user->address_origin }}</td>
                                 </tr>
                                 <tr>
                                     <td>No telp</td>
                                     <td>{{ $user->phone }}</td>
-                                </tr>
-                                <tr>
-                                    <td>No telp ortu</td>
-                                    <td>{{ $user->parent_phone }}</td>
                                 </tr>
                                 <tr>
                                     <td>Id line</td>

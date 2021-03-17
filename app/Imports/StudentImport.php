@@ -60,13 +60,12 @@ class StudentImport implements ToModel, WithHeadingRow
                 ]
             );
             $user ->assignRole('Mahasiswa');
-            $model_id = Student::select('id')->where('nrp', $row['nrp'])->first();
-            $user_id = User::select('id')->where('email', $row['email'])->first();
+
 
             Profile::create([
                 'profile_id' => $row['nrp'],
-                'user_id' => $user_id->id,
-                'model_id' => $model_id->id,
+                'user_id' => $user->id,
+                'model_id' => $student->id,
                 'model_type' => 'App\Models\Student',
             ]);
         }

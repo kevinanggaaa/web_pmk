@@ -27,7 +27,7 @@ class CounselingController extends Controller
     {
         $counselors = Counselor::all();
 
-        if(Auth::user()->hasRole(['Super Admin', 'bph medfo', 'pengurus medfo'])){
+        if(Auth::user()->hasRole(['Super Admin', 'ketua', 'sekretaris', 'bendahara'])){
             $counselings = Counseling::all();
         } 
         else{

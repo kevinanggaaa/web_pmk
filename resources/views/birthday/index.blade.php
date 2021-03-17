@@ -44,9 +44,11 @@
     </div>
 
     <!-- /.card-header -->
-    <div class="card-body p-0">
-        <table id="example1" class="table table-bordered table-striped">
+    <div class="card-body p-12">
+        <table id="example0" class="table table-bordered table-striped">
+            
             <thead>
+            <h3 class="pl-2">Ulang tahun bulan ini</h3>
                 <tr>
                     <th>Nama</th>
                     <th>Tanggal lahir</th>
@@ -64,6 +66,31 @@
     </div>
 </div>
 
+<div class="card mt-5">
+    <div class="card-header">
+        <div class="card-body pl-0 pr-0">
+            <table id="example1" class="table table-bordered table-striped">
+                
+                <thead>
+                    <h3 class="pl-2">Ulang tahun bulan depan</h3>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Tanggal lahir</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users1 as $user)
+                    <tr>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->birthdate }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')
@@ -74,6 +101,10 @@
 <script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <script>
     $(function() {
+        $("#example0").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
         $("#example1").DataTable({
             "responsive": true,
             "autoWidth": false,

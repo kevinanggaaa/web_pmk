@@ -60,13 +60,11 @@ class LecturerImport implements ToModel, WithHeadingRow
             );
 
             $user->assignRole('Dosen');
-            $model_id = Lecturer::select('id')->where('nidn', $row['nidn'])->first();
-            $user_id = User::select('id')->where('email', $row['email'])->first();
 
             Profile::create([
                 'profile_id' => $row['nidn'],
-                'user_id' => $user_id->id,
-                'model_id' => $model_id->id,
+                'user_id' => $user->id,
+                'model_id' => $lecturer->id,
                 'model_type' => 'App\Models\Lecturer',
             ]);
         }

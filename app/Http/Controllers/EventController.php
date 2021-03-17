@@ -33,6 +33,7 @@ class EventController extends Controller
         $user = Auth::user();
         $attends = UserEvent::where('user_id', $user->id)->get();
         $roles = 0;
+        
         foreach ($user->roles as $role){
             if($role->name == 'Mahasiswa'){
                 $events = Event::where('type', '!=', 'Lecturer')->where('type', '!=', 'Alumni')->get();

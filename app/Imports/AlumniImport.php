@@ -63,13 +63,11 @@ class AlumniImport implements ToModel, WithHeadingRow
             );
     
             $user->assignRole('Alumni');
-            $model_id = Alumni::select('id')->where('email', $row['email'])->first();
-            $user_id = User::select('id')->where('email', $row['email'])->first();
 
             Profile::create([
                 'profile_id' => $row['email'],
-                'user_id' => $user_id->id,
-                'model_id' => $model_id->id,
+                'user_id' => $user->id,
+                'model_id' => $alumni->id,
                 'model_type' => 'App\Models\Alumni',
             ]);
         }

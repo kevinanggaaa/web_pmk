@@ -70,26 +70,6 @@ class LecturerController extends Controller
           $tujuan_upload = 'avatar';
           $file->move($tujuan_upload, $nama_file);
         }
-      
-        $user = User::firstOrCreate(
-            [
-                'email' => $request['email']
-            ],
-            [
-                'password' => bcrypt($ultah),
-                'name' => $request['name'],
-                'pkk' => $request['pkk'],
-                'address' => $request['address'],
-                'address_origin' => $request['address_origin'],
-                'phone' => $request['phone'],
-                'parent_phone' => $request['parent_phone'],
-                'line' => $request['line'],
-                'birthdate' => $request['birthdate'],
-                'gender' => $request['gender'],
-                'date_death' => $request['date_death'],
-                'avatar' => $nama_file,
-            ]
-        );
 
         $lecturer = Lecturer::firstOrCreate(
             [
@@ -102,13 +82,31 @@ class LecturerController extends Controller
         );
 
         if($lecturer->wasRecentlyCreated){
-            $model_id = Lecturer::select('id')->where('nidn', $request['nidn'])->first();
-            $user_id = User::select('id')->where('email', $request['email'])->first();
+
+            $user = User::firstOrCreate(
+                [
+                    'email' => $request['email']
+                ],
+                [
+                    'password' => bcrypt($ultah),
+                    'name' => $request['name'],
+                    'pkk' => $request['pkk'],
+                    'address' => $request['address'],
+                    'address_origin' => $request['address_origin'],
+                    'phone' => $request['phone'],
+                    'parent_phone' => $request['parent_phone'],
+                    'line' => $request['line'],
+                    'birthdate' => $request['birthdate'],
+                    'gender' => $request['gender'],
+                    'date_death' => $request['date_death'],
+                    'avatar' => $nama_file,
+                ]
+            );
 
             Profile::create([
                 'profile_id' => $request['nidn'],
-                'user_id' => $user_id->id,
-                'model_id' => $model_id->id,
+                'user_id' => $user->id,
+                'model_id' => $lecturer->id,
                 'model_type' => 'App\Models\Lecturer',
             ]);
 
@@ -179,7 +177,6 @@ class LecturerController extends Controller
                 ->with('fail','Data dosen gagal diubah karena duplikasi nidn');
         }  
 
-        
     }
 
     /**
