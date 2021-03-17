@@ -107,12 +107,13 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
+        $creator = User::where('id', $event->creator_id)->first();
         $users = collect(new User);
         foreach (explode(';', $event->attendant_id) as $attend_id) {
             $attendant = User::where('id', $attend_id)->first();
             $users =   $users->addIfNotNull($attendant);
         }
-        return view('events.show', compact('event', 'users'));
+        return view('events.show', compact('event', 'users', 'creator'));
     }
 
     public function showSlug($slug)

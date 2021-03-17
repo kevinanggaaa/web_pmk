@@ -75,8 +75,8 @@
                                     <td>{{$event->report}}</td>
                                 </tr>
                                 <tr>
-                                    <td>ID Creator</td>
-                                    <td>{{$event->creator_id}}</td>
+                                    <td>Creator</td>
+                                    <td>{{$creator->name}}</td>
                                 </tr>
                                 <tr>
                                     <td>Tipe Creator</td>
