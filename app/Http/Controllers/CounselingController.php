@@ -27,7 +27,7 @@ class CounselingController extends Controller
     {
         $counselors = Counselor::all();
 
-        if(Auth::user()->hasRole(['Super Admin', 'ketua', 'sekretaris', 'bendahara'])){
+        if(Auth::user()->hasPermissionTo('view all counseling')){
             $counselings = Counseling::all();
         } 
         else{
@@ -95,7 +95,7 @@ class CounselingController extends Controller
         $counselors = Counselor::all();
         $auth = Auth::user();
 
-        if(Auth::user()->hasRole(['ketua', 'sekretaris', 'bendahara'])){
+        if(Auth::user()->hasPermissionTo('view all counseling')){
             return view('counselings.edit', compact('counseling', 'counselors'));
         }
         else{

@@ -36,63 +36,8 @@ class RoleSeeder extends Seeder
             'guard_name' => 'web',
         ]);
 
-        $pengurus_pemuridan = Role::create([
-            'name' => 'pengurus pemuridan',
-            'guard_name' => 'web',
-        ]);
-
-        $pengurus_dope = Role::create([
-            'name' => 'pengurus dope',
-            'guard_name' => 'web',
-        ]);
-
-        $pengurus_medfo = Role::create([
-            'name' => 'pengurus medfo',
-            'guard_name' => 'web',
-        ]);
-
-        $pengurus_kutu = Role::create([
-            'name' => 'pengurus kutu',
-            'guard_name' => 'web',
-        ]);
-
-        $bph_pemuridan = Role::create([
-            'name' => 'bph pemuridan',
-            'guard_name' => 'web',
-        ]);
-
-        $bph_dope = Role::create([
-            'name' => 'bph dope',
-            'guard_name' => 'web',
-        ]);
-
-        $bph_kutu = Role::create([
-            'name' => 'bph kutu',
-            'guard_name' => 'web',
-        ]);
-
-        $bph_medfo = Role::create([
-            'name' => 'bph medfo',
-            'guard_name' => 'web',
-        ]);
-
-        $ketua = Role::create([
-            'name' => 'ketua',
-            'guard_name' => 'web',
-        ]);
-
-        $sekretaris = Role::create([
-            'name' => 'sekretaris',
-            'guard_name' => 'web',
-        ]);
-
-        $bendahara = Role::create([
-            'name' => 'bendahara',
-            'guard_name' => 'web',
-        ]);
-
-        $pkk = Role::create([
-            'name' => 'pkk',
+        $ksb = Role::create([
+            'name' => 'KSB',
             'guard_name' => 'web',
         ]);
 
@@ -111,6 +56,7 @@ class RoleSeeder extends Seeder
         $view_student = Permission::create(['name' => 'view student', 'guard_name' => 'web']);
         $view_detail_student = Permission::create(['name' => 'view detail student', 'guard_name' => 'web']);
         $edit_student = Permission::create(['name' => 'edit student', 'guard_name' => 'web']);
+        $edit_year = Permission::create(['name' => 'edit year', 'guard_name' => 'web']);
         $delete_student = Permission::create(['name' => 'delete student', 'guard_name' => 'web']);
 
         $add_alumni = Permission::create(['name' => 'add alumni', 'guard_name' => 'web']);
@@ -128,12 +74,14 @@ class RoleSeeder extends Seeder
         $add_event = Permission::create(['name' => 'add event', 'guard_name' => 'web']);
         $view_event = Permission::create(['name' => 'view event', 'guard_name' => 'web']);
         $view_detail_event = Permission::create(['name' => 'view detail event', 'guard_name' => 'web']);
+        $view_event_report = Permission::create(['name' => 'view event report', 'guard_name' => 'web']);
         $edit_event = Permission::create(['name' => 'edit event', 'guard_name' => 'web']);
         $delete_event = Permission::create(['name' => 'delete event', 'guard_name' => 'web']);
 
         $add_counseling = Permission::create(['name' => 'add counseling', 'guard_name' => 'web']);
         $view_counseling = Permission::create(['name' => 'view counseling', 'guard_name' => 'web']);
         $view_detail_counseling = Permission::create(['name' => 'view detail counseling', 'guard_name' => 'web']);
+        $view_all_counseling = Permission::create(['name' => 'view all counseling', 'guard_name' => 'web']);
         $edit_counseling = Permission::create(['name' => 'edit counseling', 'guard_name' => 'web']);
         $delete_counseling = Permission::create(['name' => 'delete counseling', 'guard_name' => 'web']);
 
@@ -204,123 +152,55 @@ class RoleSeeder extends Seeder
         $view_detail_count = Permission::create(['name' => 'view detail count', 'guard_name' => 'web']);
         $edit_count = Permission::create(['name' => 'edit count', 'guard_name' => 'web']);
         $delete_count = Permission::create(['name' => 'delete count', 'guard_name' => 'web']);
+
+        $edit_landing_page = Permission::create(['name' => 'edit landing page', 'guard_name' => 'web']);
         
         // Give Role Permission
         
         /*
-            Ketua
+            Ksb
         */
-        $ketua->givePermissionTo($add_student);
-        $ketua->givePermissionTo($view_student);
-        $ketua->givePermissionTo($view_detail_student);
-        $ketua->givePermissionTo($delete_student);
+        $ksb->givePermissionTo($add_student);
+        $ksb->givePermissionTo($view_student);
+        $ksb->givePermissionTo($view_detail_student);
+        $ksb->givePermissionTo($delete_student);
+        $ksb->givePermissionTo($edit_year);
 
-        $ketua->givePermissionTo($view_alumni);
-        $ketua->givePermissionTo($view_detail_alumni);
+        $ksb->givePermissionTo($view_alumni);
+        $ksb->givePermissionTo($view_detail_alumni);
 
-        $ketua->givePermissionTo($add_lecturer);
-        $ketua->givePermissionTo($view_lecturer);
-        $ketua->givePermissionTo($view_detail_lecturer);
-        $ketua->givePermissionTo($edit_lecturer);
-        $ketua->givePermissionTo($delete_lecturer);
+        $ksb->givePermissionTo($add_lecturer);
+        $ksb->givePermissionTo($view_lecturer);
+        $ksb->givePermissionTo($view_detail_lecturer);
+        $ksb->givePermissionTo($edit_lecturer);
+        $ksb->givePermissionTo($delete_lecturer);
 
-        $ketua->givePermissionTo($add_counseling);
-        $ketua->givePermissionTo($edit_counseling);
-        $ketua->givePermissionTo($view_counseling);
-        $ketua->givePermissionTo($view_detail_counseling);
-        $ketua->givePermissionTo($delete_counseling);
+        $ksb->givePermissionTo($add_counseling);
+        $ksb->givePermissionTo($edit_counseling);
+        $ksb->givePermissionTo($view_counseling);
+        $ksb->givePermissionTo($view_detail_counseling);
+        $ksb->givePermissionTo($view_all_counseling);
+        $ksb->givePermissionTo($delete_counseling);
 
-        $ketua->givePermissionTo($add_counselor);
-        $ketua->givePermissionTo($edit_counselor);
-        $ketua->givePermissionTo($view_counselor);
-        $ketua->givePermissionTo($view_detail_counselor);
-        $ketua->givePermissionTo($delete_counselor);
+        $ksb->givePermissionTo($add_counselor);
+        $ksb->givePermissionTo($edit_counselor);
+        $ksb->givePermissionTo($view_counselor);
+        $ksb->givePermissionTo($view_detail_counselor);
+        $ksb->givePermissionTo($delete_counselor);
 
-        $ketua->givePermissionTo($view_event);
-        $ketua->givePermissionTo($view_detail_event);
-        $ketua->givePermissionTo($view_prayer_request);
-        $ketua->givePermissionTo($view_detail_prayer_request);
-        $ketua->givePermissionTo($add_prayer_request);
-        $ketua->givePermissionTo($view_organizational_record);
-        $ketua->givePermissionTo($view_detail_organizational_record);
-        $ketua->givePermissionTo($add_organizational_record);
+        $ksb->givePermissionTo($view_organizational_record);
+        $ksb->givePermissionTo($add_organizational_record);
+        $ksb->givePermissionTo($edit_organizational_record);
+        $ksb->givePermissionTo($delete_organizational_record);
 
-        /*
-            Sekretaris
-        */
-        $sekretaris->givePermissionTo($add_student);
-        $sekretaris->givePermissionTo($view_student);
-        $sekretaris->givePermissionTo($view_detail_student);
-        $sekretaris->givePermissionTo($delete_student);
+        $ksb->givePermissionTo($add_event);
+        $ksb->givePermissionTo($edit_event);
+        $ksb->givePermissionTo($view_event);
+        $ksb->givePermissionTo($view_detail_event);
+        $ksb->givePermissionTo($view_event_report);
+        $ksb->givePermissionTo($delete_event);
 
-        $sekretaris->givePermissionTo($view_alumni);
-        $sekretaris->givePermissionTo($view_detail_alumni);
-
-        $sekretaris->givePermissionTo($add_lecturer);
-        $sekretaris->givePermissionTo($view_lecturer);
-        $sekretaris->givePermissionTo($view_detail_lecturer);
-        $sekretaris->givePermissionTo($edit_lecturer);
-        $sekretaris->givePermissionTo($delete_lecturer);
-
-        $sekretaris->givePermissionTo($add_counseling);
-        $sekretaris->givePermissionTo($edit_counseling);
-        $sekretaris->givePermissionTo($view_counseling);
-        $sekretaris->givePermissionTo($view_detail_counseling);
-        $sekretaris->givePermissionTo($delete_counseling);
-
-        $sekretaris->givePermissionTo($add_counselor);
-        $sekretaris->givePermissionTo($edit_counselor);
-        $sekretaris->givePermissionTo($view_counselor);
-        $sekretaris->givePermissionTo($view_detail_counselor);
-        $sekretaris->givePermissionTo($delete_counselor);
-
-        $sekretaris->givePermissionTo($view_event);
-        $sekretaris->givePermissionTo($view_detail_event);
-        $sekretaris->givePermissionTo($view_prayer_request);
-        $sekretaris->givePermissionTo($view_detail_prayer_request);
-        $sekretaris->givePermissionTo($add_prayer_request);
-        $sekretaris->givePermissionTo($view_organizational_record);
-        $sekretaris->givePermissionTo($view_detail_organizational_record);
-        $sekretaris->givePermissionTo($add_organizational_record);
-
-        /*
-            Bendahara
-        */
-        $bendahara->givePermissionTo($add_student);
-        $bendahara->givePermissionTo($view_student);
-        $bendahara->givePermissionTo($view_detail_student);
-        $bendahara->givePermissionTo($delete_student);
-
-        $bendahara->givePermissionTo($view_alumni);
-        $bendahara->givePermissionTo($view_detail_alumni);
-
-        $bendahara->givePermissionTo($add_lecturer);
-        $bendahara->givePermissionTo($view_lecturer);
-        $bendahara->givePermissionTo($view_detail_lecturer);
-        $bendahara->givePermissionTo($edit_lecturer);
-        $bendahara->givePermissionTo($delete_lecturer);
-
-        $bendahara->givePermissionTo($add_counseling);
-        $bendahara->givePermissionTo($edit_counseling);
-        $bendahara->givePermissionTo($view_counseling);
-        $bendahara->givePermissionTo($view_detail_counseling);
-        $bendahara->givePermissionTo($delete_counseling);
-
-        $bendahara->givePermissionTo($add_counselor);
-        $bendahara->givePermissionTo($edit_counselor);
-        $bendahara->givePermissionTo($view_counselor);
-        $bendahara->givePermissionTo($view_detail_counselor);
-        $bendahara->givePermissionTo($delete_counselor);
-
-        $bendahara->givePermissionTo($view_event);
-        $bendahara->givePermissionTo($view_detail_event);
-        $bendahara->givePermissionTo($view_prayer_request);
-        $bendahara->givePermissionTo($view_detail_prayer_request);
-        $bendahara->givePermissionTo($add_prayer_request);
-        $bendahara->givePermissionTo($view_organizational_record);
-        $bendahara->givePermissionTo($view_detail_organizational_record);
-        $bendahara->givePermissionTo($add_organizational_record);
-
+        
         /*
             Mahasiswa
         */
@@ -335,14 +215,10 @@ class RoleSeeder extends Seeder
 
         $mahasiswa->givePermissionTo($view_counselor);
 
+        $mahasiswa->givePermissionTo($view_organizational_record);
+
         $mahasiswa->givePermissionTo($view_event);
         $mahasiswa->givePermissionTo($view_detail_event);
-        $mahasiswa->givePermissionTo($view_prayer_request);
-        $mahasiswa->givePermissionTo($view_detail_prayer_request);
-        $mahasiswa->givePermissionTo($add_prayer_request);
-        $mahasiswa->givePermissionTo($view_organizational_record);
-        $mahasiswa->givePermissionTo($view_detail_organizational_record);
-        $mahasiswa->givePermissionTo($add_organizational_record);
 
         /*
             Dosen
@@ -359,10 +235,11 @@ class RoleSeeder extends Seeder
         $dosen->givePermissionTo($view_detail_counseling);
 
         $dosen->givePermissionTo($view_counselor);
+        
+        $dosen->givePermissionTo($view_organizational_record);
 
         $dosen->givePermissionTo($view_event);
         $dosen->givePermissionTo($view_detail_event);
-        
 
 
         /*
@@ -385,11 +262,18 @@ class RoleSeeder extends Seeder
         $pengurus_tpkk->givePermissionTo($view_counselor);
         $pengurus_tpkk->givePermissionTo($view_detail_counselor);
 
+        $pengurus_tpkk->givePermissionTo($view_organizational_record);
+        $pengurus_tpkk->givePermissionTo($add_organizational_record);
+        $pengurus_tpkk->givePermissionTo($edit_organizational_record);
+        $pengurus_tpkk->givePermissionTo($delete_organizational_record);
+
+        $pengurus_tpkk->givePermissionTo($add_event);
+        $pengurus_tpkk->givePermissionTo($edit_event);
         $pengurus_tpkk->givePermissionTo($view_event);
         $pengurus_tpkk->givePermissionTo($view_detail_event);
-        
+        $pengurus_tpkk->givePermissionTo($delete_event);
 
-    
+
         /*
             Alumni
         */
@@ -424,8 +308,11 @@ class RoleSeeder extends Seeder
 
         $pengurus_alumni->givePermissionTo($view_counselor);
         
+        $pengurus_alumni->givePermissionTo($add_event);
+        $pengurus_alumni->givePermissionTo($edit_event);
         $pengurus_alumni->givePermissionTo($view_event);
         $pengurus_alumni->givePermissionTo($view_detail_event);
+        $pengurus_alumni->givePermissionTo($delete_event);
         
     }
 }

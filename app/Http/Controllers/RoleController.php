@@ -69,7 +69,7 @@ class RoleController extends Controller
     public function show(Role $role, Request $request)
     {
         $pageNumber = $request->query('page');
-        $users = $role->users()->paginate(1, ['*'], 'page', $pageNumber);
+        $users = $role->users()->paginate(10, ['*'], 'page', $pageNumber);
         return view('roles.show')->with(['role' => $role, 'permissions' => $role->permissions, 'users' => $users, 'pageNumber' => $pageNumber]);
     }
 
@@ -118,7 +118,6 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        $role = Role::findById($id);
         $role->delete();
 
         return redirect()->route('roles.index')
