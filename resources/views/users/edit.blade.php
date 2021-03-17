@@ -168,7 +168,7 @@
                                 @enderror
                             </div>
                         </div>
-                        @if(auth()->user()->hasRole(['Super Admin', 'ketua', 'sekretaris', 'bendahara']))
+                        @can('edit year')
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="date_death">Tanggal Wafat</label>
@@ -178,7 +178,7 @@
                                 @enderror
                             </div>
                         </div>
-                        @endif
+                        @endcan
                         @role('Super Admin')
                         <div class="col-12">
                             <div class="form-group">

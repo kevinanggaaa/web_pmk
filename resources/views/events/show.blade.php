@@ -69,6 +69,7 @@
                                     <td>Jumlah Peserta</td>
                                     <td>{{$event->attendant_count}}</td>
                                 </tr>
+                                @can('view event report')
                                 <tr>
                                     <td>Report</td>
                                     <td>{{$event->report}}</td>
@@ -81,6 +82,7 @@
                                     <td>Tipe Creator</td>
                                     <td>{{$event->creator_type}}</td>
                                 </tr>
+                                @endcan
                             </tbody>
                         </table>
 
