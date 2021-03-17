@@ -1,164 +1,121 @@
-<!DOCTYPE html>
-<html>
+@extends('adminlte.template')
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Renungan Harian PMK ITS</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+@section('content')
+@if ($message = Session::get('success'))
+<div class="alert alert-success">
+    <p>{{ $message }}</p>
+</div>
+@elseif ($message = Session::get('fail'))
+<div class="alert alert-danger">
+    <p>{{ $message }}</p>
+</div>
+@endif
 
-    <style type="text/css">
-        /* Layout */
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Landing Page PMK ITS</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active">Renungan</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
 
-        html, body {
-            background: #eee3c8;
-            margin: 0;
-            padding: 0 0 15px;
-        }
+<div class="card">
+    <div class="card-header">
 
-        article {
-            margin: auto;
-            max-width: 1000px;
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            grid-gap: .5em;
-        }
-        h1, cite, img, aside, main {
-            grid-column: 2;
-        }
-        main {
-            max-width: 650px;
-            margin: auto;
-            text-align: justify;
-        }
-        img {
-            width: 100%;
-        }
-        p:first-child {
-            margin-top: 0;
-        }
-        p:last-child::after {
-            content: ' ■';
-            opacity: 0.2;
-        }
-        /* Title Layout */
-        h1 span {
-            display: block;
-        }
-        .focusing {
-            margin-bottom: -10px;
-        }
-        .the {
-            transform: translateY(50%);
-            background: #eee3c8;
-            width: 50px;
-            margin: auto;
-        }
-        .heart {
-            border: thin solid black;
-            border-width: thin 0;
-            padding: 10px 0 0;
-        }
-        /* Typography */
-        h1 {
-            text-align: center;
-        }
-        .focusing {
-            font-family: 'questa-grande';
-            text-transform: uppercase;
-            font-size: 0.5em;
-        }
-        .the {
-            font-family: 'brandon-grotesque';
-            text-transform: uppercase;
-            font-size: 0.5em;
-        }
-        .heart {
-            font-family: 'ltc-bodoni-175';
-            text-transform: uppercase;
-            font-size: 2em;
-        }
-        cite {
-            font-family: 'brandon-grotesque';
-            font-style: normal;
-            text-transform: uppercase;
-            text-align: center;
-        }
-        .name {
-            font-weight: 900;
-        }
-        main {
-            font-family: 'abril-text';
-        }
-        .dropcap {
-            font-family: 'brandon-grotesque';
-            text-transform: uppercase;
-            font-size: 0.9em;
-            letter-spacing: 0.1em;
-        }
-        aside {
-            font-family: 'brandon-grotesque';
-            font-style: italic;
-            text-align: right;
-        }
+        {{-- notifikasi form validasi --}}
+        @if ($errors->has('file'))
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $errors->first('file') }}</strong>
+        </span>
+        @endif
 
+        {{-- notifikasi sukses --}}
+        @if ($sukses = Session::get('sukses'))
+        <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $sukses }}</strong>
+        </div>
+        @endif
 
-        @media only screen and (min-width:750px) {
-            /* Layout */
-            html, body { padding: 10px 0; }
+        <div class="card-tools">
+            <div class="">
+                <a class="btn btn-success" href="{{ route('landingPage.createRenungan') }}"> Tambah renungan</a>
+            </div>
+        </div>
+    </div>
 
-            article {
-                grid-template-columns: 1fr 3fr 1fr;
-                grid-gap: 1.5em;
-            }
-            main {
-                margin: 0;
-            }
-            aside {
-                grid-column: 1;
-                grid-row: 4;
-                margin-top: -10em;
-            }
-            /* Title */
-            .focusing {
-                padding-top : 10px;
-                font-size: 1em;
-                margin-bottom: -15px;
-            }
-            .the {
-                font-size: 0.75em;
-            }
-            .heart {
-                font-size: 4em;
-            }
-        }
-    </style>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Judul</th>
+                    <th>Firman</th>
+                    <th>Tanggal renungan</th>
+                    <th style="width: 280px">Action</th>
 
-</head>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($renungans as $renungan)
+                <tr>
+                    <td>{{ $renungan->id }}</td>
+                    <td>{{ $renungan->title }}</td>
+                    <td>{{ $renungan->lokasiFirman }}</td>
+                    <td>{{ $renungan->tanggal }}</td>
+                    
+                    <td>
+                        <div style="display: flex">
 
-<body >
-<article>
-    <h1>
-        <span class="focusing">{{$renungan->title}}</span> 
-        <br>
-        <!-- <span class="the">The</span> 
-        <span class="heart">Heart</span> -->
-    </h1>
-    <cite>
-        Renungan harian <span class="name">PMK ITS</span> | 
-        Tanggal <span class="name">{{$renungan->tanggal}}</span>
-    </cite>
-    <img src="{{url('landingpage/renungan/'.$renungan->image)}}" />
-    
-    <aside><strong>{{$renungan->isiFirman}}<br><br>{{$renungan->lokasiFirman}}</br></strong></aside>
-    <!-- <aside>{{$renungan->lokasiFirman}}</aside> -->
-    <main>
-        <br></br>
-        <p><center>{{$renungan->bacaan}}</center></p>
-    </main>
-</article>
-</body>
+                            <div style="margin-right: 5px;">
+                                <a class="btn btn-info" href="{{ route('landingPage.showRenungan',$renungan->id) }}"><i class="fa fa-eye"></i></a>
+                            </div>
 
-</html>
+                            <div style="margin-right: 5px;">
+                                <a class="btn btn-primary" href="{{ route('landingPage.editRenungan',$renungan->id) }}"><i class="fa fa-edit"></i></a>
+                            </div>
+                            
+                            <div style="margin-right: 5px;">
+                                <form action="{{ route('landingPage.deleteRenungan', $renungan->id) }}" method="POST" class="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
+                                </form>
+                            </div>
+                            
+                            
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@endsection
+
+@push('scripts')
+<!-- Datatables -->
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+    });
+</script>
+@endpush
