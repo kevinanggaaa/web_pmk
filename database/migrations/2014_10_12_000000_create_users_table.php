@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->date('birthdate');
             $table->string('gender');
             $table->string('avatar')->nullable();
-            $table->date('date_death');
+            $table->date('date_death')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

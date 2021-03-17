@@ -32,7 +32,25 @@ class EventController extends Controller
     {
         $user = Auth::user();
         $attends = UserEvent::where('user_id', $user->id)->get();
-        $events = Event::all();
+        $roles = 0;
+        foreach ($user->roles as $role){
+            if($role->name == 'Mahasiswa'){
+                $events = Event::where('type', '!=', 'Lecturer')->where('type', '!=', 'Alumni')->get();
+                break;
+            }
+            else if($role->name == 'Dosen'){
+                $events = Event::where('type', '!=', 'Student')->where('type', '!=', 'Alumni')->get();
+                break;
+            }
+            else if($role->name == 'Alumni'){
+                $events = Event::where('type', '!=', 'Lecturer')->where('type', '!=', 'Student')->get();
+                break;
+            }
+            else if($role->name == 'Super Admin'){
+                $events = Event::all();
+                break;
+            }
+        }
 
         return view('events.index', compact('events', 'user', 'attends'));
     }
@@ -72,7 +90,7 @@ class EventController extends Controller
 
         $user = Auth::user();
 
-        if ($user->hasRole('Mahasiswa')) {
+        if ($user->hasRole('Mahasiswa') || $user->hasRole('Super Admin')) {
             $creator = 'mahasiswa';
         } elseif ($user->hasRole('Dosen')) {
             $creator = 'dosen';
@@ -107,12 +125,13 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
+        $creator = User::where('id', $event->creator_id)->first();
         $users = collect(new User);
         foreach (explode(';', $event->attendant_id) as $attend_id) {
             $attendant = User::where('id', $attend_id)->first();
             $users =   $users->addIfNotNull($attendant);
         }
-        return view('events.show', compact('event', 'users'));
+        return view('events.show', compact('event', 'users', 'creator'));
     }
 
     public function showSlug($slug)

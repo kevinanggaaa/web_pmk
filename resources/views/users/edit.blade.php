@@ -187,7 +187,7 @@
                                 @enderror
                             </div>
                         </div>
-                        @if(auth()->user()->hasRole('Super Admin'))
+                        @role('Super Admin')
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Roles:</label>
@@ -202,7 +202,7 @@
                             </div>
                             <!-- /.form-group -->
                         </div>
-                        @endif
+                        @endrole
                     </div>
                 </div>
 
