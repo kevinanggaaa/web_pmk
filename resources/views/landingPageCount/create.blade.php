@@ -52,7 +52,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="lecturers">Jumlah Dosen</label>
                                 <input type="text" class="form-control {{$errors->has('lecturers') ? 'is-invalid' : ''}}" id="lecturers" name="lecturers" placeholder="Masukkan deskripsi 1" value="{{old('lecturers')}}" required>
@@ -70,7 +70,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="events">Jumlah Event</label>
                                 <input type="text" class="form-control {{$errors->has('events') ? 'is-invalid' : ''}}" id="events" name="events" placeholder="Masukkan deskripsi 2" value="{{old('events')}}" required>

@@ -105,10 +105,12 @@
         $("#example0").DataTable({
             "responsive": true,
             "autoWidth": false,
+            order:[[1,"desc"]],
         });
         $("#example1").DataTable({
             "responsive": true,
             "autoWidth": false,
+            order:[[1,"desc"]],
         });
     });
 </script>
