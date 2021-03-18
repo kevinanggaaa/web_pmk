@@ -1,24 +1,22 @@
 <footer class="footer">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-around">
             <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
                 <h2 class="footer-heading">TPKK ITS</h2>
                 <p>Tim Pembina Kerohanian Kristen ITS</p>
                 <ul class="ftco-footer-social p-0">
-                    <li class="ftco-animate"><a href="https://www.youtube.com/channel/UCi-OPHvUK0ycxF7u_OXEWEA" data-toggle="tooltip" data-placement="top" title="Youtube"><span class="fa fa-youtube"></span></a></li>
-                    <li class="ftco-animate"><a href="https://line.me/ti/p/~@cox6942k" data-toggle="tooltip" data-placement="top" title="Line"><span>Line</span></a></li>
-                    <li class="ftco-animate"><a href="https://www.instagram.com/pmk_its/" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
+                    <li class="ftco-animate"><a href="https://www.youtube.com/channel/UCi-OPHvUK0ycxF7u_OXEWEA" target="_blank" data-toggle="tooltip" data-placement="top" title="Youtube"><span class="fa fa-youtube"></span></a></li>
+                    <li class="ftco-animate"><a href="https://line.me/ti/p/~@cox6942k" target="_blank" data-toggle="tooltip" data-placement="top" title="Line"><span>Line</span></a></li>
+                    <li class="ftco-animate"><a href="https://www.instagram.com/pmk_its/" target="_blank" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
                 </ul>
             </div>
             <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
                 <h2 class="footer-heading">Quick Links</h2>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="py-2 d-block">Home</a></li>
-                    <li><a href="#" class="py-2 d-block">About</a></li>
-                    <li><a href="#" class="py-2 d-block">Sermons</a></li>
-                    <li><a href="#" class="py-2 d-block">Events</a></li>
-                    <li><a href="#" class="py-2 d-block">Blog</a></li>
-                    <li><a href="#" class="py-2 d-block">Contact</a></li>
+                    <li><a href="#about" class="py-2 d-block">About</a></li>
+                    <li><a href="#persekutuan-jumat" class="py-2 d-block">Persekutuan Jumat</a></li>
+                    <li><a href="#renungan" class="py-2 d-block">Renungan</a></li>
+                    <li><a href="#event" class="py-2 d-block">Event</a></li>
                 </ul>
             </div>
             <div class="col-md-6 col-lg-3 mb-4 mb-md-0">

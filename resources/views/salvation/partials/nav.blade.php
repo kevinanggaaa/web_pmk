@@ -34,7 +34,6 @@
                 <li class="nav-item"><a href="#persekutuan-jumat" class="nav-link">Persekutuan Jumat</a></li>
                 <li class="nav-item"><a href="#renungan" class="nav-link">Renungan</a></li>
                 <li class="nav-item"><a href="#event" class="nav-link">Event</a></li>
-                <li class="nav-item"><a href="contact" class="nav-link">Contact</a></li>
                 @auth
                 <li class="nav-item cta dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

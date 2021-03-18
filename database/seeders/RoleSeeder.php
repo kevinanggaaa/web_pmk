@@ -154,6 +154,7 @@ class RoleSeeder extends Seeder
         $delete_count = Permission::create(['name' => 'delete count', 'guard_name' => 'web']);
 
         $edit_landing_page = Permission::create(['name' => 'edit landing page', 'guard_name' => 'web']);
+        $edit_status = Permission::create(['name' => 'edit status', 'guard_name' => 'web']);
         
         // Give Role Permission
         

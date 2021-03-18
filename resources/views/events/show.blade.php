@@ -18,7 +18,20 @@
 </section>
 
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-md-3">
+
+        <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+                <div class="text-center">
+                    <img class="img-fluid" src="{{ url('/landingpage/event/'.$event->image) }}" alt="User profile picture">
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </div>
+    <div class="col-sm-9">
         <div class="card">
             <div class="card-header p-2">
                 <ul class="nav nav-pills">
