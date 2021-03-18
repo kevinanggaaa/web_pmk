@@ -33,7 +33,7 @@
             <thead>
                 <tr>
                     <th>Nama</th>
-                    <th>Tanggal lahir</th>
+                    <th>Tanggal lahir (yyyy-mm-dd)</th>
                     <th>Jurusan</th>
                     <th>Angkatan</th>
                 </tr>
@@ -67,7 +67,7 @@
             <thead>
                 <tr>
                     <th>Nama</th>
-                    <th>Tanggal lahir</th>
+                    <th>Tanggal lahir (yyyy-mm-dd)</th>
                     <th>Jurusan</th>
                     <th>Angkatan</th>
                 </tr>
@@ -105,12 +105,12 @@
         $("#example0").DataTable({
             "responsive": true,
             "autoWidth": false,
-            order:[[1,"desc"]],
+            order:[[1,"asc"]],
         });
         $("#example1").DataTable({
             "responsive": true,
             "autoWidth": false,
-            order:[[1,"desc"]],
+            order:[[1,"asc"]],
         });
     });
 </script>
