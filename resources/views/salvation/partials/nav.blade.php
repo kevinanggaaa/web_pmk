@@ -10,8 +10,8 @@
                 <div class="social-media">
                     <p class="mb-0 d-flex">
                         <a href="https://www.instagram.com/pmk_its/" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
-                        <a href="https://line.me/ti/p/~@cox6942k" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fab fa-line">Line</span></a>
-                        {{-- <a href="https://line.me/ti/p/~@cox6942k" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fab fa-youtube">UTube</span></a> --}}
+                        <a href="https://line.me/ti/p/~@cox6942k" target="_blank" class="d-flex align-items-center justify-content-center">Line</a>
+                        <a href="https://www.youtube.com/channel/UCi-OPHvUK0ycxF7u_OXEWEA" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-youtube"></span></a>
                     </p>
                 </div>
             </div>
@@ -34,7 +34,6 @@
                 <li class="nav-item"><a href="#persekutuan-jumat" class="nav-link">Persekutuan Jumat</a></li>
                 <li class="nav-item"><a href="#renungan" class="nav-link">Renungan</a></li>
                 <li class="nav-item"><a href="#event" class="nav-link">Event</a></li>
-                <li class="nav-item"><a href="contact" class="nav-link">Contact</a></li>
                 @auth
                 <li class="nav-item cta dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

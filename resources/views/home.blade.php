@@ -254,7 +254,7 @@
                         <div class="meta mb-2">
                             <div><a href="#">{{$renungan->tanggal}}</a></div>
                         </div>
-                        <h3 class="heading"><a href="#">{{$renungan->lokasiFirman}}</a></h3>
+                        <h3 class="heading"><a href="#">{{$renungan->title}}</a></h3>
                         <p>{{$renungan->isiFirman}}</p>
                         <p><a href="{{ route('renungan.show',$renungan->id) }}" class="btn btn-primary">Read more</a></p>
                     </div>

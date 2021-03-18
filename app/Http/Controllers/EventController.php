@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Event;
+use App\Models\Profile;
+use App\Models\UserEvent;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use App\Http\Requests\EventRequest;
-use App\Models\User;
-use App\Models\UserEvent;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Profile;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Container\Container;
 
 class EventController extends Controller
 {
@@ -138,21 +142,44 @@ class EventController extends Controller
             ->with('success', 'Event berhasil ditambahkan');
     }
 
+    public static function paginate(Collection $results, $pageSize)
+    {
+        $page = Paginator::resolveCurrentPage('page');
+        
+        $total = $results->count();
+
+        return self::paginator($results->forPage($page, $pageSize), $total, $pageSize, $page, [
+            'path' => Paginator::resolveCurrentPath(),
+            'pageName' => 'page',
+        ]);
+
+    }
+
+    protected static function paginator($items, $total, $perPage, $currentPage, $options)
+    {
+        return Container::getInstance()->makeWith(LengthAwarePaginator::class, compact(
+            'items', 'total', 'perPage', 'currentPage', 'options'
+        ));
+    }
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(Event $event, Request $request)
     {
+        $pageNumber = $request->query('page');
         $creator = User::where('id', $event->creator_id)->first();
         $users = collect(new User);
         foreach (explode(';', $event->attendant_id) as $attend_id) {
             $attendant = User::where('id', $attend_id)->first();
             $users =   $users->addIfNotNull($attendant);
         }
-        return view('events.show', compact('event', 'users', 'creator'));
+        $users = $this->paginate($users,10);
+        
+        return view('events.show', compact('event', 'users', 'creator', 'pageNumber'));
     }
 
     public function showSlug($slug)

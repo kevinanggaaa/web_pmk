@@ -102,7 +102,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-md-6 col-sm-12">
                             <!-- Date and time range -->
                             <div class="form-group">
                                 <label for="reservationtime">Date and time range:</label>

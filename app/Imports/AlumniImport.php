@@ -57,10 +57,13 @@ class AlumniImport implements ToModel, WithHeadingRow
                     'line' => $row['line'],
                     'birthdate' => $row['birthdate'],
                     'gender' => $row['gender'],
-                    'date_death' => $row['date_death'],
                     'avatar' => "default.jpg",
                 ]
             );
+
+            if(!($user->wasRecentlyCreated)){
+                $user->removeRole('Mahasiswa');
+            }
     
             $user->assignRole('Alumni');
 

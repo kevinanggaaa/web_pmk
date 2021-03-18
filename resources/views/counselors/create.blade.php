@@ -36,7 +36,7 @@
                 @csrf
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-8">
                             <div class="form-group">
                                 <label for="name">Nama Konselor</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Nama Konselor" required>
@@ -45,7 +45,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-sm-8">
                             <div class="form-group">
                                 <label for="phone">Nomor Telepon</label>
                                 <input type="text" class="form-control" id="phone" name="phone" placeholder="Masukkan Nomor Telepon" required>

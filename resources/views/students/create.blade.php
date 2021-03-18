@@ -90,6 +90,19 @@
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
+                                <label for="gender">Jenis Kelamin</label>
+                                <select name="gender" id="gender" class="form-control {{$errors->has('gender') ? 'is-invalid' : ''}}" required>
+                                <option value="">== Pilih Type ==</option>
+                                        <option value="P">Perempuan</option>
+                                        <option value="L">Laki-Laki</option>
+                                </select>
+                                @error('gender')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
                                 <label for="address">Alamat</label>
                                 <input type="text" class="form-control {{$errors->has('address') ? 'is-invalid' : ''}}" id="address" name="address" placeholder="Masukkan alamat" value="{{old('address')}}" >
                                 @error('address')

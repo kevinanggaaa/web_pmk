@@ -54,6 +54,7 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Topik</th>
                     <th>Konselor</th>
                     <th>Tanggal</th>
@@ -66,6 +67,7 @@
             <tbody>
                 @foreach ($counselings as $counseling)
                 <tr>
+                    <td>{{ $counseling->id }}</td>
                     <td>{{ $counseling->topic }}</td>
                     @foreach ($counselors as $counselor)
                         @if ($counselor->id == $counseling->counselor_id)
@@ -119,8 +121,15 @@
     <script>
       $(function () {
         $("#example1").DataTable({
-          "responsive": true,
-          "autoWidth": false,
+            "responsive": true,
+            "autoWidth": false,
+            columnDefs: [
+                {   "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                },
+                ],
+            order:[[0,"desc"]]
         });
       });
     </script>

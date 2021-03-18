@@ -24,7 +24,7 @@
         <div class="card card-primary card-outline">
             <div class="card-body box-profile">
                 <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle" src="{{ url('/landingpage/renungan/'.$renungan->image) }}" alt="Image Renungan">
+                    <img class="img-fluid" src="{{ url('/landingpage/renungan/'.$renungan->image) }}" alt="Image Renungan">
                 </div>
                 <h3 class="profile-username text-center pt-3">{{$renungan->title}}</h3>
             </div>

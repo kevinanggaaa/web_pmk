@@ -18,24 +18,41 @@
 </section>
 
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-md-3">
+
+        <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+                <div class="text-center">
+                    <img class="img-fluid" src="{{ url('/landingpage/event/'.$event->image) }}" alt="User profile picture">
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </div>
+    <div class="col-sm-9">
         <div class="card">
             <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link active" href="#informasi" data-toggle="tab">Informasi</a>
+                    <li class="nav-item"><a class="nav-link @if ($pageNumber == 0) active @endif" href="#informasi" data-toggle="tab">Informasi</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="#peserta" data-toggle="tab">Peserta</a>
+                    <li class="nav-item"><a class="nav-link @if ($pageNumber != 0) active @endif" href="#peserta" data-toggle="tab">Peserta</a>
                     </li>
                 </ul>
             </div><!-- /.card-header -->
             <div class="card-body">
                 <div class="tab-content">
-                    <div class="active tab-pane" id="informasi">
+                    <div class="@if ($pageNumber == 0) active @endif tab-pane" id="informasi">
                         <table class="table">
                             <tbody>
                                 <tr>
                                     <td>Nama Acara</td>
                                     <td>{{$event->title}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Slug</td>
+                                    <td>{{$event->slug}}</td>
                                 </tr>
                                 <tr>
                                     <td>Deskripsi</td>
@@ -88,7 +105,7 @@
 
                     </div>
                     <!-- /.tab-pane -->
-                    <div class="tab-pane" id="peserta">
+                    <div class="@if ($pageNumber != 0) active @endif tab-pane" id="peserta">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -107,6 +124,9 @@
                                 @endif
                             </tbody>
                         </table>
+                        <div class="card-footer">
+                                {{$users->links("pagination::bootstrap-4")}}
+                        </div>
 
                     </div>
                     <!-- /.tab-pane -->

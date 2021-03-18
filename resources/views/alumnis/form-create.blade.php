@@ -146,7 +146,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="job">Pekerjaan</label>
-                                <input type="text" name="job" id="job" class="form-control {{$errors->has('job') ? 'is-invalid' : ''}}" placeholder="Masukkan Nama Pekerjaan" value="{{old('job')}}" required>
+                                <input type="text" name="job" id="job" class="form-control {{$errors->has('job') ? 'is-invalid' : ''}}" placeholder="Masukkan Nama Pekerjaan" value="{{old('job')}}">
                                 @error('job')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror

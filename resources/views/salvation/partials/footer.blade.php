@@ -1,56 +1,29 @@
 <footer class="footer">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-around">
             <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-                <h2 class="footer-heading">PMK ITS</h2>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h2 class="footer-heading">TPKK ITS</h2>
+                <p>Tim Pembina Kerohanian Kristen ITS</p>
                 <ul class="ftco-footer-social p-0">
-                    <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
-                    <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
-                    <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
+                    <li class="ftco-animate"><a href="https://www.youtube.com/channel/UCi-OPHvUK0ycxF7u_OXEWEA" target="_blank" data-toggle="tooltip" data-placement="top" title="Youtube"><span class="fa fa-youtube"></span></a></li>
+                    <li class="ftco-animate"><a href="https://line.me/ti/p/~@cox6942k" target="_blank" data-toggle="tooltip" data-placement="top" title="Line"><span>Line</span></a></li>
+                    <li class="ftco-animate"><a href="https://www.instagram.com/pmk_its/" target="_blank" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
                 </ul>
-            </div>
-            <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-                <h2 class="footer-heading">Latest News</h2>
-                <div class="block-21 mb-4 d-flex">
-                    <a class="img mr-4 rounded" style="background-image: url('salvation/images/image_1.jpg');"></a>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">"Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h3>
-                        <div class="meta">
-                            <div><a href="#">Aug. 10, 2020</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#">19</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="block-21 mb-4 d-flex">
-                    <a class="img mr-4 rounded" style="background-image: url('salvation/images/image_2.jpg');"></a>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                        <div class="meta">
-                            <div><a href="#">Aug. 10, 2020</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#">19</a></div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
                 <h2 class="footer-heading">Quick Links</h2>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="py-2 d-block">Home</a></li>
-                    <li><a href="#" class="py-2 d-block">About</a></li>
-                    <li><a href="#" class="py-2 d-block">Sermons</a></li>
-                    <li><a href="#" class="py-2 d-block">Events</a></li>
-                    <li><a href="#" class="py-2 d-block">Blog</a></li>
-                    <li><a href="#" class="py-2 d-block">Contact</a></li>
+                    <li><a href="#about" class="py-2 d-block">About</a></li>
+                    <li><a href="#persekutuan-jumat" class="py-2 d-block">Persekutuan Jumat</a></li>
+                    <li><a href="#renungan" class="py-2 d-block">Renungan</a></li>
+                    <li><a href="#event" class="py-2 d-block">Event</a></li>
                 </ul>
             </div>
             <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
                 <h2 class="footer-heading">Have a Questions?</h2>
                 <div class="block-23 mb-3">
                     <ul>
-                        <li><span class="icon fa fa-map"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+                        <li><span class="icon fa fa-map"></span><span class="text">Sukolilo (60111), Surabaya, East Java , Jawa Timur, Indonesia</span></li>
                         <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
                         <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
                     </ul>

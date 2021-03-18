@@ -56,6 +56,7 @@
                                 @enderror
                             </div>
                         </div>
+                        @can('edit status')
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="status">Status</label>
@@ -70,6 +71,7 @@
                                 @enderror
                             </div>
                         </div>
+                        @endcan
                     </div>
 
                     <div class="card-footer">
