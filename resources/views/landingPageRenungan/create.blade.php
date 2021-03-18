@@ -52,10 +52,10 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="lokasiFirman">Lokasi Firman</label>
-                                <input type="text" class="form-control {{$errors->has('lokasiFirman') ? 'is-invalid' : ''}}" id="lokasiFirman" name="lokasi firman" placeholder="Masukkan sub judul" value="{{old('lokasiFirman')}}" required>
+                                <input type="text" class="form-control {{$errors->has('lokasiFirman') ? 'is-invalid' : ''}}" id="lokasiFirman" name="lokasiFirman" placeholder="Masukkan sub judul" value="{{old('lokasiFirman')}}" required>
                                 @error('lokasiFirman')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -64,7 +64,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="isiFirman">Isi Firman</label>
-                                <input type="text" class="form-control {{$errors->has('isiFirman') ? 'is-invalid' : ''}}" id="isiFirman" name="isi firman" placeholder="Masukkan deskripsi" value="{{old('isiFirman')}}" required>
+                                <input type="text" class="form-control {{$errors->has('isiFirman') ? 'is-invalid' : ''}}" id="isiFirman" name="isiFirman" placeholder="Masukkan deskripsi" value="{{old('isiFirman')}}" required>
                                 @error('isiFirman')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -73,13 +73,13 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="bacaan">Bacaan</label>
-                                <input type="text" class="form-control {{$errors->has('bacaan') ? 'is-invalid' : ''}}" id="bacaan" name="bacaan" placeholder="Masukkan bacaan" value="{{old('bacaan')}}" required>
+                                <textarea rows="10" class="form-control {{$errors->has('bacaan') ? 'is-invalid' : ''}}" id="bacaan" name="bacaan" placeholder="Masukkan bacaan" value="{{old('bacaan')}}" required></textarea>
                                 @error('bacaan')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="tanggal">Tanggal renungan</label>
                                 <input type="date" class="form-control {{$errors->has('tanggal') ? 'is-invalid' : ''}}" id="tanggal" name="tanggal" placeholder="Masukkan tanggal lahir" value="{{old('tanggal')}}" required>

@@ -52,7 +52,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="subtitle">Sub Judul</label>
                                 <input type="text" class="form-control {{$errors->has('subtitle') ? 'is-invalid' : ''}}" id="subtitle" name="subtitle" placeholder="Masukkan sub judul" value="{{old('subtitle')}}" required>

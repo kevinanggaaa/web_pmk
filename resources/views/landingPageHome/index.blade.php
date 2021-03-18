@@ -101,7 +101,6 @@
                                 </form>
                             </div>
                             @endcan
-                            
                         </div>
                     </td>
                     @endcanany
@@ -109,9 +108,6 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="card-footer">
-        {{$homes->links("pagination::bootstrap-4")}}
-        </div>
     </div>
 </div>
 
@@ -128,6 +124,7 @@
         $("#example1").DataTable({
             "responsive": true,
             "autoWidth": false,
+            order:[[0,"desc"]]
         });
     });
 </script>

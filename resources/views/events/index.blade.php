@@ -54,7 +54,8 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th style="">Acara</th>
+                    <th>Id</th>
+                    <th>Acara</th>
                     <th>Tipe</th>
                     <th>Mulai</th>
                     <th>Berakhir</th>
@@ -66,6 +67,7 @@
             <tbody>
                 @foreach ($events as $event)
                 <tr>
+                    <td>{{ $event->id }}</td>
                     <td>{{ $event->title }}</td>
                     <td>{{ $event->type }}</td>
                     <td>{{ $event->start }}</td>
@@ -120,6 +122,13 @@
         $("#example1").DataTable({
             "responsive": true,
             "autoWidth": false,
+            columnDefs: [
+            {   "targets": [0],
+                "visible": false,
+                "searchable": false
+            },
+            ],
+            order:[[0,"desc"]],
         });
     });
 </script>

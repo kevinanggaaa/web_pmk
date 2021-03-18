@@ -53,6 +53,7 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Nama</th>
                     <th>Content doa</th>
                     <th>Status</th>
@@ -64,6 +65,7 @@
             <tbody>
                 @foreach ($prayerRequests as $prayerRequest)
                 <tr>
+                    <td>{{ $prayerRequest->id }}</td>
                     <td>{{ $prayerRequest->name }}</td>
                     <td>{{ $prayerRequest->content }}</td>
                     <td>{{ $prayerRequest->status }}</td>
@@ -113,6 +115,13 @@
         $("#example1").DataTable({
           "responsive": true,
           "autoWidth": false,
+          columnDefs: [
+            {   "targets": [0],
+                "visible": false,
+                "searchable": false
+            },
+            ],
+          order:[[0,"desc"]]
         });
       });
     </script>

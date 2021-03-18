@@ -102,8 +102,9 @@
                                     <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
+                            @endcan
                         </div>
-                        @endcan
+                        
                     </td>
                     @endcanany
                 </tr>
@@ -126,6 +127,7 @@
         $("#example1").DataTable({
             "responsive": true,
             "autoWidth": false,
+            order:[[0,"desc"]]
         });
     });
 </script>
