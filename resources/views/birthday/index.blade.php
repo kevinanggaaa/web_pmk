@@ -23,60 +23,74 @@
     </div><!-- /.container-fluid -->
 </section>
 
-<div class="row mb-2 px-4">
-<div class="col-sm-6">
-    <div class="card px-3">
-        <div class="card-header">
-            <h3 class="pl-2 text-center">Ulang tahun bulan ini</h3>
-        </div>
-        <div class="card-body p-12">
-            <table id="example0" class="table table-bordered table-striped">
-                
-                <thead>
-                    <tr>
-                        <th>Nama</th>
-                        <th>Tanggal lahir</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($users as $user)
-                    <tr>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->birthdate }}</td>
-                    </tr>
+<div class="card">
+    <div class="card-header">
+        <h3 class="pl-2 text-center">Ulang tahun bulan ini</h3>
+    </div>
+    <div class="card-body p-12">
+        <table id="example0" class="table table-bordered table-striped">
+            
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Tanggal lahir</th>
+                    <th>Jurusan</th>
+                    <th>Angkatan</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($users as $user)
+                <tr>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->birthdate }}</td>
+                    @foreach ($user->profiles as $profile)
+                        @if($profile->model_type == "App\Models\Student")
+                            <td>{{ $profile->model->department }}</td>
+                            <td>{{ $profile->model->year_entry }}</td>
+                            @break
+                        @endif
                     @endforeach
-                </tbody>
-            </table>
-        </div>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
-<div class="col-sm-6">
-    <div class="card px-3">
-        <div class="card-header">
-            <h3 class="pl-2 text-center">Ulang tahun bulan depan</h3>
-        </div>
-        <div class="card-body p-12">
-            <table id="example1" class="table table-bordered table-striped">
-                
-                <thead>
-                    <tr>
-                        <th>Nama</th>
-                        <th>Tanggal lahir</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($users1 as $user)
-                    <tr>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->birthdate }}</td>
-                    </tr>
+
+<div class="card px-3">
+    <div class="card-header">
+        <h3 class="pl-2 text-center">Ulang tahun bulan depan</h3>
+    </div>
+    <div class="card-body p-12">
+        <table id="example1" class="table table-bordered table-striped">
+            
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Tanggal lahir</th>
+                    <th>Jurusan</th>
+                    <th>Angkatan</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($users1 as $user)
+                <tr>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->birthdate }}</td>
+                    @foreach ($user->profiles as $profile)
+                        @if($profile->model_type == "App\Models\Student")
+                            <td>{{ $profile->model->department }}</td>
+                            <td>{{ $profile->model->year_entry }}</td>
+                            @break
+                        @endif
                     @endforeach
-                </tbody>
-            </table>
-        </div>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
-</div>
+
 
 @endsection
 
