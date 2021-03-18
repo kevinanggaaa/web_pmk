@@ -109,6 +109,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="card-footer">
+        {{$homes->links("pagination::bootstrap-4")}}
+        </div>
     </div>
 </div>
 

@@ -68,9 +68,10 @@ class FrontEndController extends Controller
         return view('home', compact('homes', 'VisiMisi', 'about', 'renungans', 'psJumats', 'testimonies', 'events', 'count'));
     }
 
-    public function indexHome()
+    public function indexHome(Request $request)
     {
-        $homes = LandingPageHome::all();
+        $pageNumber = $request->query('page');
+        $homes = LandingPageHome::paginate(10, ['*'], 'page', $pageNumber);
         return view('landingPageHome.index', compact('homes'));
     }
 

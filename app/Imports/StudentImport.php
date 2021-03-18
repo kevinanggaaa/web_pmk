@@ -55,7 +55,6 @@ class StudentImport implements ToModel, WithHeadingRow
                     'line' => $row['line'],
                     'birthdate' => $row['birthdate'],
                     'gender' => $row['gender'],
-                    'date_death' => $row['date_death'],
                     'avatar' => "default.jpg",
                 ]
             );
