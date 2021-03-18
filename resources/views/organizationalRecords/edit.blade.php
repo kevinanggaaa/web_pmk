@@ -39,6 +39,20 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
+                                <label for="name">Nama</label>
+                                    <select id="name" name="name" class="form-control select2-single" required>
+                                        <option>== Pilih Nama ==</option>
+                                        @foreach ($users as $user)
+                                            <option value= {{ $user->id }} <?php if($organizationalRecord->user_id == $user->id) echo 'selected="selected"'; ?>>{{$user->name}}</option>
+                                        @endforeach
+                                    </select>
+                                @error('name')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
                                 <label for="position">Posisi</label>
                                 <input type="text" class="form-control {{$errors->has('position') ? 'is-invalid' : ''}}" id="position" name="position" placeholder="Masukkan posisi" value="{{$organizationalRecord->position}}" required>
                                 @error('organizationalRecord')
@@ -46,7 +60,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="category">Kategori</label>
                                 <select name="category" id="category" class="form-control {{$errors->has('category') ? 'is-invalid' : ''}}" required>

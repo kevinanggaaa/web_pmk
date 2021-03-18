@@ -38,7 +38,8 @@ class OrganizationalRecordController extends Controller
      */
     public function create()
     {
-        return view('organizationalRecords.create');
+        $users = User::all();
+        return view('organizationalRecords.create', compact('users'));
     }
 
     /**
@@ -49,10 +50,10 @@ class OrganizationalRecordController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user()->id;
+        $user_id = $request->input('name');
 
         OrganizationalRecord::create([
-            'user_id' => $user,
+            'user_id' => $user_id,
             'position' => $request['position'],
             'category' => $request['category'],
             'year_start' => $request['year_start'],
@@ -71,7 +72,7 @@ class OrganizationalRecordController extends Controller
      */
     public function show(OrganizationalRecord $organizationalRecord)
     {
-        return view('organizationalRecords.show', compact('organizationalRecord'));
+        
     }
 
     /**
@@ -82,7 +83,8 @@ class OrganizationalRecordController extends Controller
      */
     public function edit(OrganizationalRecord $organizationalRecord)
     {
-        return view('organizationalRecords.edit', compact('organizationalRecord'));
+        $users = User::all();
+        return view('organizationalRecords.edit', compact('organizationalRecord','users'));
     }
 
     /**
@@ -94,6 +96,8 @@ class OrganizationalRecordController extends Controller
      */
     public function update(Request $request, OrganizationalRecord $organizationalRecord)
     {
+        $user_id = $request->input('name');
+        $organizationalRecord->user_id = $user_id;
         $organizationalRecord->position = $request['position'];
         $organizationalRecord->category = $request['category'];
         $organizationalRecord->year_start = $request['year_start'];
@@ -115,7 +119,7 @@ class OrganizationalRecordController extends Controller
     {
         $organizationalRecord->delete();
 
-        return redirect()->route('organizationalRecords.index')
+        return redirect()->route('organizational-records.index')
             ->with('success', 'Data organisasi berhasil dihapus');
     }
 }

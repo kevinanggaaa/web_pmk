@@ -12,6 +12,11 @@
 </div>
 @endif
 
+@if ($message = Session::get('fail'))
+<div class="alert alert-danger">
+    <p>{{ $message }}</p>
+</div>
+@endif
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -113,8 +118,8 @@
                                 <label for="gender">Jenis Kelamin</label>
                                 <select name="gender" id="gender" class="form-control {{$errors->has('gender') ? 'is-invalid' : ''}}" required>
                                 <option value="">== Pilih Type ==</option>
-                                        <option value="P">Perempuan</option>
-                                        <option value="L">Laki-Laki</option>
+                                        <option value="P" <?php if(old('gender')=="P") echo 'selected="selected"'; ?>>Perempuan</option>
+                                        <option value="L" <?php if(old('gender')=="L") echo 'selected="selected"'; ?>>Laki-Laki</option>
                                 </select>
                                 @error('gender')
                                 <span class="error invalid-feedback">{{$message}}</span>
@@ -133,11 +138,11 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label>Roles:</label>
-                                <select class="duallistbox" multiple="multiple" name="role_ids[]">
+                                    <select class="duallistbox" multiple="multiple" name="role_ids[]">
                                     @foreach($roles as $role)
                                     <option value="{{$role->id}}">{{$role->name}}</option>
                                     @endforeach
-                                </select>
+                                    </select>
                             </div>
                             <!-- /.form-group -->
                         </div>

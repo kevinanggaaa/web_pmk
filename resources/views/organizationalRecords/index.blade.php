@@ -82,12 +82,6 @@
                     @canany(['view detail organizational record', 'edit organizational record', 'delete organizational record'])
                     <td>
                         <div style="display: flex">
-                            @can('view detail organizational record')
-                            <div style="margin-right: 5px;">
-                                <a class="btn btn-info" href="{{ route('organizational-records.show',$organizationalRecord->id) }}"><i class="fa fa-eye"></i></a>
-                            </div>
-                            @endcan
-
                             @can('edit organizational record')
                             <div style="margin-right: 5px;">
                                 <a class="btn btn-primary" href="{{ route('organizational-records.edit',$organizationalRecord->id) }}"><i class="fa fa-edit"></i></a>

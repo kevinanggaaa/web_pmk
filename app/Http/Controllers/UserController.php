@@ -54,42 +54,53 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $ultah = explode('-', $request->birthdate);
-        $year = $ultah[0];
-        $month = $ultah[1];
-        $day  = $ultah[2];
-        $ultah = $day . '' . $month . '' . $year;
+        $cek_email = User::select()
+        ->where('email',$request->email)
+        ->first();
 
-        if($request['avatar'] == null){
-            $nama_file = 'default.jpg';
+        if($cek_email == null){
+            $ultah = explode('-', $request->birthdate);
+            $year = $ultah[0];
+            $month = $ultah[1];
+            $day  = $ultah[2];
+            $ultah = $day . '' . $month . '' . $year;
+
+            if($request['avatar'] == null){
+                $nama_file = 'default.jpg';
+            }
+            else{
+                $file = $request['avatar'];
+                $nama_file = time().'_'.$file->getClientOriginalName();
+                // isi dengan nama folder tempat kemana file diupload
+                $tujuan_upload = 'avatar';
+                $file->move($tujuan_upload, $nama_file);
+            }
+            $user = User::create([
+                'email' => $request['email'],
+                'password' => bcrypt($ultah),
+                'name' => $request['name'],
+                'pkk' => $request['pkk'],
+                'address' => $request['address'],
+                'address_origin' => $request['address_origin'],
+                'phone' => $request['phone'],
+                'parent_phone' => $request['parent_phone'],
+                'line' => $request['line'],
+                'birthdate' => $request['birthdate'],
+                'gender' => $request['gender'],
+                'avatar' => $nama_file,
+                'date_death' => $request['date_death']
+            ]);
+
+            $user->assignRole($request->role_ids);
+
+            return redirect()->route('users.index')
+                ->with('success', 'Data user berhasil ditambahkan');
         }
         else{
-            $file = $request['avatar'];
-            $nama_file = time().'_'.$file->getClientOriginalName();
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'avatar';
-            $file->move($tujuan_upload, $nama_file);
+            return redirect()->back()
+                        ->with('fail', 'Data user gagal ditambahkan karena duplikasi email')
+                        ->withInput();
         }
-        $user = User::create([
-            'email' => $request['email'],
-            'password' => bcrypt($ultah),
-            'name' => $request['name'],
-            'pkk' => $request['pkk'],
-            'address' => $request['address'],
-            'address_origin' => $request['address_origin'],
-            'phone' => $request['phone'],
-            'parent_phone' => $request['parent_phone'],
-            'line' => $request['line'],
-            'birthdate' => $request['birthdate'],
-            'gender' => $request['gender'],
-            'avatar' => $nama_file,
-            'date_death' => $request['date_death']
-        ]);
-
-        $user->assignRole($request->role_ids);
-
-        return redirect()->route('users.index')
-            ->with('success', 'Data user berhasil ditambahkan');
     }
 
     /**
@@ -113,7 +124,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $selected_roles = $user->roles;
-        $unselected_roles = Role::all()->diff($selected_roles);
+        $unselected_roles = Role::all()->diff($selected_roles); 
         return view('users.edit')
             ->with([
                 'user' => $user,
@@ -183,12 +194,16 @@ class UserController extends Controller
     
     public function updateAvatar(Request $request, User $user)
     {
-        
-        $file = $request['avatar'];
-        $nama_file = time().'_'.$file->getClientOriginalName();
-        // isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'avatar';
-        $file->move($tujuan_upload, $nama_file);
+        if($request['avatar'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+            $file = $request['avatar'];
+            $nama_file = time().'_'.$file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'avatar';
+            $file->move($tujuan_upload, $nama_file);
+        }
         
         $user->avatar = $nama_file;
         $user->save();

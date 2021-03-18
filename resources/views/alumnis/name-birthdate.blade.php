@@ -111,11 +111,6 @@
                             <div class="form-group">
                                 <label for="name" class="control-label">Name</label>
                                 <div class="input-group">
-                                    <!-- <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button" data-select2-open="name">
-                                            <span class="glyphicon glyphicon-search"></span>
-                                        </button>
-                                    </span> -->
                                     <select id="name" name="name" class="form-control select2-single" required>
                                         <option></option>
                                         @foreach ($alumnis as $alumni)
