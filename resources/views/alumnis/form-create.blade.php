@@ -55,6 +55,11 @@
 </head>
 
 <body >
+@if ($message = Session::get('fail'))
+<div class="alert alert-danger">
+    <p>{{ $message }}</p>
+</div>
+@endif
 <div class="container contact">
 	<div class="row">
 		<div class="col-md-3">
@@ -157,6 +162,19 @@
                                 <label for="angkatan">Angkatan</label>
                                 <input type="text" name="angkatan" id="angkatan" class="form-control {{$errors->has('angkatan') ? 'is-invalid' : ''}}" placeholder="Masukkan angkatan" value="{{old('angkatan')}}" required>
                                 @error('angkatan')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="gender">Jenis Kelamin</label>
+                                <select name="gender" id="gender" class="form-control {{$errors->has('gender') ? 'is-invalid' : ''}}" required>
+                                <option value="">== Pilih Type ==</option>
+                                        <option value="P" <?php if(old('gender')=="P") echo 'selected="selected"'; ?>>Perempuan</option>
+                                        <option value="L" <?php if(old('gender')=="L") echo 'selected="selected"'; ?>>Laki-Laki</option>
+                                </select>
+                                @error('gender')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>
