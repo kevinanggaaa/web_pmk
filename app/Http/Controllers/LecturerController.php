@@ -117,9 +117,9 @@ class LecturerController extends Controller
                 ->with('success', 'Data dosen berhasil ditambahkan');
         }
 
-        return view('lecturers.create-error')
-            ->with('request', $request)
-            ->with('message','Data dosen gagal ditambahkan karena terdapat duplikasi pada email / nidn');
+        return redirect()->back()
+                        ->with('fail', 'Data dosen gagal ditambahkan karena terdapat duplikasi pada nidn')
+                        ->withInput();
     }
 
     /**
@@ -165,11 +165,11 @@ class LecturerController extends Controller
         $lecturer->department = $request['department'];
         $lecturer->save();
 
+        $contains = Str::contains(url()->previous(), 'profiles');
+
         if($cek_nidn == null){
             $lecturer->nidn = $request['nidn'];
             $lecturer->save();
-
-            $contains = Str::contains(url()->previous(), 'profiles');
 
             if($contains){
                 //Jika diakses dari form 
@@ -183,8 +183,9 @@ class LecturerController extends Controller
         }
         else{
 
-            return redirect('admin/profiles/'.$lecturer->id.'/editLecturer')
-                ->with('fail','Data dosen gagal diubah karena duplikasi nidn');
+            return redirect()->back()
+                        ->with('fail', 'Data dosen gagal ditambahkan karena duplikasi nidn')
+                        ->withInput();
         }  
 
     }

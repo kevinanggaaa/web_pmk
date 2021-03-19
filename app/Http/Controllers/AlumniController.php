@@ -166,18 +166,21 @@ class AlumniController extends Controller
             
         }
 
-        $contains = Str::contains(url()->previous(), 'new-alumni');
+        return redirect()->back()
+                        ->with('fail', 'Data alumni gagal ditambahkan karena terdapat duplikasi pada email')
+                        ->withInput();
+        // $contains = Str::contains(url()->previous(), 'new-alumni');
 
-        if($contains){
-            //Jika diakses dari form 
-            return view('alumnis.form-create-error')
-            ->with('request', $request);
-        }
-        else{
-            return view('alumnis.create-error')
-            ->with('request', $request)
-            ->with('message','Data alumni gagal ditambahkan karena terdapat duplikasi pada email');
-        }
+        // if($contains){
+        //     //Jika diakses dari form 
+        //     return view('alumnis.form-create-error')
+        //     ->with('request', $request);
+        // }
+        // else{
+        //     return view('alumnis.create-error')
+        //     ->with('request', $request)
+        //     ->with('message','Data alumni gagal ditambahkan karena terdapat duplikasi pada email');
+        // }
     }
 
 
@@ -252,8 +255,12 @@ class AlumniController extends Controller
             $alumni->angkatan = $request['angkatan'];
             $alumni->save();
 
-            return redirect('admin/profiles/'.$alumni->id.'/editAlumni')
-                ->with('fail','Data alumni gagal diubah karena duplikasi email');
+            return redirect()->back()
+                        ->with('fail', 'Data alumni gagal ditambahkan karena terdapat duplikasi pada email')
+                        ->withInput();
+
+            // return redirect('admin/profiles/'.$alumni->id.'/editAlumni')
+            //     ->with('fail','Data alumni gagal diubah karena duplikasi email');
         }    
     }
 

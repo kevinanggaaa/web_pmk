@@ -98,7 +98,7 @@ class UserController extends Controller
         }
         else{
             return redirect()->back()
-                        ->with('fail', 'Data user gagal ditambahkan karena duplikasi email')
+                        ->with('fail', 'Data dosen gagal ditambahkan karena duplikasi email')
                         ->withInput();
         }
     }

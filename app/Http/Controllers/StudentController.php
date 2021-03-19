@@ -120,9 +120,9 @@ class StudentController extends Controller
                 ->with('success', 'Data mahasiswa berhasil ditambahkan');
         }
 
-        return view('students.create-error')
-            ->with('request', $request)
-            ->with('message','Data mahasiswa gagal ditambahkan karena terdapat duplikasi pada email / nrp');
+        return redirect()->back()
+                        ->with('fail', 'Data mahasiswa gagal ditambahkan karena terdapat duplikasi pada nrp')
+                        ->withInput();
     }
 
     /**
@@ -188,9 +188,9 @@ class StudentController extends Controller
         }
 
         else{
-            
-            return redirect('admin/profiles/'.$student->id.'/editStudent')
-                ->with('fail','Data mahasiswa gagal diubah karena duplikasi nrp');
+            return redirect()->back()
+                        ->with('fail', 'Data mahasiswa gagal diubah karena terdapat duplikasi pada nrp')
+                        ->withInput();
         }
     }
 
