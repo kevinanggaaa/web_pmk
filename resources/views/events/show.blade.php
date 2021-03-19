@@ -35,15 +35,15 @@
         <div class="card">
             <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link @if ($pageNumber == 0) active @endif" href="#informasi" data-toggle="tab">Informasi</a>
+                    <li class="nav-item"><a class="active nav-link" href="#informasi" data-toggle="tab">Informasi</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link @if ($pageNumber != 0) active @endif" href="#peserta" data-toggle="tab">Peserta</a>
+                    <li class="nav-item"><a class="nav-link" href="#peserta" data-toggle="tab">Peserta</a>
                     </li>
                 </ul>
             </div><!-- /.card-header -->
             <div class="card-body">
                 <div class="tab-content">
-                    <div class="@if ($pageNumber == 0) active @endif tab-pane" id="informasi">
+                    <div class="tab-pane active" id="informasi">
                         <table class="table">
                             <tbody>
                                 <tr>
@@ -105,8 +105,8 @@
 
                     </div>
                     <!-- /.tab-pane -->
-                    <div class="@if ($pageNumber != 0) active @endif tab-pane" id="peserta">
-                        <table class="table">
+                    <div class="tab-pane" id="peserta">
+                        <table id="example1" class="table">
                             <thead>
                                 <tr>
                                     <th>Nama</th>
@@ -124,9 +124,6 @@
                                 @endif
                             </tbody>
                         </table>
-                        <div class="card-footer">
-                                {{$users->links("pagination::bootstrap-4")}}
-                        </div>
 
                     </div>
                     <!-- /.tab-pane -->
@@ -142,3 +139,19 @@
 
 </div>
 @endsection
+
+@push('scripts')
+<!-- Datatables -->
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+    });
+</script>
+@endpush

@@ -8,12 +8,8 @@ use App\Models\Profile;
 use App\Models\UserEvent;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use App\Http\Requests\EventRequest;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Container\Container;
 
 class EventController extends Controller
 {
@@ -142,26 +138,6 @@ class EventController extends Controller
             ->with('success', 'Event berhasil ditambahkan');
     }
 
-    public static function paginate(Collection $results, $pageSize)
-    {
-        $page = Paginator::resolveCurrentPage('page');
-        
-        $total = $results->count();
-
-        return self::paginator($results->forPage($page, $pageSize), $total, $pageSize, $page, [
-            'path' => Paginator::resolveCurrentPath(),
-            'pageName' => 'page',
-        ]);
-
-    }
-
-    protected static function paginator($items, $total, $perPage, $currentPage, $options)
-    {
-        return Container::getInstance()->makeWith(LengthAwarePaginator::class, compact(
-            'items', 'total', 'perPage', 'currentPage', 'options'
-        ));
-    }
-
     /**
      * Display the specified resource.
      *
@@ -170,16 +146,14 @@ class EventController extends Controller
      */
     public function show(Event $event, Request $request)
     {
-        $pageNumber = $request->query('page');
         $creator = User::where('id', $event->creator_id)->first();
         $users = collect(new User);
         foreach (explode(';', $event->attendant_id) as $attend_id) {
             $attendant = User::where('id', $attend_id)->first();
             $users =   $users->addIfNotNull($attendant);
         }
-        $users = $this->paginate($users,10);
         
-        return view('events.show', compact('event', 'users', 'creator', 'pageNumber'));
+        return view('events.show', compact('event', 'users', 'creator'));
     }
 
     public function showSlug($slug)

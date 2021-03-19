@@ -52,9 +52,10 @@
 
     <!-- /.card-header -->
     <div class="card-body p-0">
-        <table class="table table-hover table-striped">
+        <table id="example1" class="table table-hover table-striped">
             <thead>
             <tr>
+                <th>Id</th>
                 <th style="">Role</th>
 
                 @canany(['view detail role', 'edit role', 'delete role'])
@@ -65,6 +66,7 @@
             <tbody>
             @foreach ($roles as $role)
                 <tr>
+                    <td>{{ $role->id }}</td>
                     <td>{{ $role->name }}</td>
 
                     @canany(['view detail role', 'edit role', 'delete role'])
@@ -101,9 +103,28 @@
             </tbody>
         </table>
     </div>
-    <div class="card-footer">
-        {{$roles->links("pagination::bootstrap-4")}}
-    </div>
 </div>
-
 @endsection
+
+@push('scripts')
+<!-- Datatables -->
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+            columnDefs: [
+                {   "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                },
+                ],
+            order:[[0,"desc"]]
+        });
+    });
+</script>
+@endpush
