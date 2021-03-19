@@ -39,6 +39,15 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
+                                <label for="name">Nama Alumni</label>
+                                <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" id="name" name="name" placeholder="Masukkan Nama Alumni" value="{{old('name')}}" required>
+                                @error('name')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text" class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}" id="email" name="email" placeholder="Masukkan email" value="{{old('email')}}" required>
                                 @error('email')
@@ -91,15 +100,6 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <label for="name">Nama Alumni</label>
-                                <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" id="name" name="name" placeholder="Masukkan Nama Alumni" value="{{old('name')}}" required>
-                                @error('name')
-                                <span class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="department">Department</label>
@@ -123,6 +123,19 @@
                                 <label for="angkatan">Angkatan</label>
                                 <input type="text" name="angkatan" id="angkatan" class="form-control {{$errors->has('angkatan') ? 'is-invalid' : ''}}" placeholder="Masukkan angkatan" value="{{old('angkatan')}}" required>
                                 @error('angkatan')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="gender">Jenis Kelamin</label>
+                                <select name="gender" id="gender" class="form-control {{$errors->has('gender') ? 'is-invalid' : ''}}" required>
+                                <option value="">== Pilih Type ==</option>
+                                        <option value="P">Perempuan</option>
+                                        <option value="L">Laki-Laki</option>
+                                </select>
+                                @error('gender')
                                 <span class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>

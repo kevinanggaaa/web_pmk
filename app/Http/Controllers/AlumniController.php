@@ -74,7 +74,7 @@ class AlumniController extends Controller
 
         if($birthdate == $user_id->birthdate){
             return redirect()->route('alumnis.check')
-                ->with('success', 'Data yang dimasukkan benar. Silahkan login ke website utama');
+                ->with('success', 'Data yang dimasukkan benar. User terdaftar dengan email "' . $user_id->email . '". Silahkan login ke website utama');
         }
         else{
             return redirect()->route('alumnis.check')
