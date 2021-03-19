@@ -3,10 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Counseling;
+use App\Models\Counselor;
 use Illuminate\Http\Request;
+use App\Http\Requests\CounselingRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CounselingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view counseling')->only('index');
+        $this->middleware('permission:add counseling')->only('create');
+        $this->middleware('permission:edit counseling')->only('edit');
+        $this->middleware('permission:delete counseling')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,17 @@ class CounselingController extends Controller
      */
     public function index()
     {
-        //
+        $counselors = Counselor::all();
+
+        if(Auth::user()->hasPermissionTo('view all counseling')){
+            $counselings = Counseling::all();
+        } 
+        else{
+            $user = Auth::user()->id;
+            $counselings = Counseling::select()->where('user_id', $user)->get();
+        }   
+
+        return view('counselings.index', compact('counselings', 'counselors'));
     }
 
     /**
@@ -24,7 +45,9 @@ class CounselingController extends Controller
      */
     public function create()
     {
-        //
+        $counselors = Counselor::all();
+
+        return view('counselings.create', compact('counselors'));
     }
 
     /**
@@ -33,9 +56,20 @@ class CounselingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CounselingRequest $request)
     {
-        //
+        
+        $user = Auth::user()->id;
+        Counseling::create([
+            'user_id' => $user,
+            'counselor_id' => $request['counselor_id'],
+            'date_time' => $request['date_time'],
+            'topic' => $request['topic'],
+            'status' => "requested",
+        ]);
+
+        return redirect()->route('counselings.index')
+            ->with('success', 'Data konseling berhasil ditambahkan');
     }
 
     /**
@@ -46,7 +80,8 @@ class CounselingController extends Controller
      */
     public function show(Counseling $counseling)
     {
-        //
+        $counselor = Counselor::select()->where('id',$counseling->counselor_id)->first();
+        return view('counselings.show', compact('counselor'));
     }
 
     /**
@@ -57,7 +92,21 @@ class CounselingController extends Controller
      */
     public function edit(Counseling $counseling)
     {
-        //
+        $counselors = Counselor::all();
+        $auth = Auth::user();
+
+        if(Auth::user()->hasPermissionTo('view all counseling')){
+            return view('counselings.edit', compact('counseling', 'counselors'));
+        }
+        else{
+            if($auth->id == $counseling->user_id){
+                return view('counselings.edit', compact('counseling', 'counselors'));
+            }
+            else{
+                abort(401);
+            }
+    
+        }
     }
 
     /**
@@ -67,9 +116,17 @@ class CounselingController extends Controller
      * @param  \App\Models\Counseling  $counseling
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Counseling $counseling)
+    public function update(CounselingRequest $request, Counseling $counseling)
     {
-        //
+
+        $counseling->date_time = $request['date_time'];
+        $counseling->topic = $request['topic'];
+        $counseling->counselor_id = $request['counselor_id'];
+        $counseling->status = $request['status'];
+        $counseling->save();
+
+        return redirect()->route('counselings.index')
+            ->with('success', 'Data konseling berhasil diubah');
     }
 
     /**
@@ -80,6 +137,9 @@ class CounselingController extends Controller
      */
     public function destroy(Counseling $counseling)
     {
-        //
+        $counseling->delete();
+
+        return redirect()->route('counselings.index')
+            ->with('success', 'Data counseling berhasil dihapus');
     }
 }

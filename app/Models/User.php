@@ -6,10 +6,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +21,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'pkk',
+        'address',
+        'address_origin',
+        'phone',
+        'parent_phone',
+        'line',
+        'birthdate',
+        'gender',
+        'avatar',
+        'date_death',
     ];
 
     /**
@@ -40,4 +51,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class);
+    }
+
+    public function event()
+    {
+        return $this->belongsToMany('App\Event');
+    }
+
+
 }

@@ -8,6 +8,14 @@ use App\Http\Requests\CounselorRequest;
 
 class CounselorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view counselor')->only('index');
+        $this->middleware('permission:view detail counselor')->only('show');
+        $this->middleware('permission:add counselor')->only('create');
+        $this->middleware('permission:edit counselor')->only('edit');
+        $this->middleware('permission:delete counselor')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

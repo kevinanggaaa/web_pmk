@@ -2,12 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use App\Models\User;
+use App\Models\Profile;
 use App\Models\Student;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Exports\StudentExport;
+use App\Imports\StudentImport;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StudentRequest;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view student')->only('index');
+        $this->middleware('permission:view detail student')->only('export_excel');
+        $this->middleware('permission:view detail student')->only('show');
+        $this->middleware('permission:add student')->only('create');
+        $this->middleware('permission:add student')->only('import_excel');
+        $this->middleware('permission:edit student')->only('edit');
+        $this->middleware('permission:delete student')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -37,17 +56,73 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StudentRequest $request)
-    {
-        Student::create([
-            'name' => $request['name'],
-            'nrp' => $request['nrp'],
-            'department' => $request['department'],
-            'year_entry' => $request['year_entry'],
-            'year_graduate' => $request['year_graduate']
-        ]);
+    {   
+        $ultah = explode('-', $request->birthdate);
+        $year = $ultah[0];
+        $month = $ultah[1];
+        $day  = $ultah[2];
+        $ultah = $day . '' . $month . '' . $year;
 
-        return redirect()->route('students.index')
-            ->with('success', 'Data mahasiswa berhasil ditambahkan');
+        if($request['avatar'] == null){
+            $nama_file = 'default.jpg';
+        }
+        else{
+          $file = $request['avatar'];
+          $nama_file = time().'_'.$file->getClientOriginalName();
+          // isi dengan nama folder tempat kemana file diupload
+          $tujuan_upload = 'avatar';
+          $file->move($tujuan_upload, $nama_file);
+        }
+      
+        $student = Student::firstOrCreate(
+            [
+                'nrp' => $request['nrp']
+            ],
+            [
+                'name' => $request['name'],
+                'department' => $request['department'],
+                'year_entry' => $request['year_entry'],
+                'year_graduate' => $request['year_graduate']
+            ]
+        );
+
+        if($student->wasRecentlyCreated){
+            $user = User::firstOrCreate(
+                [
+                    'email' => $request['email']
+                ],
+                [
+                    'password' => bcrypt($ultah),
+                    'name' => $request['name'],
+                    'pkk' => $request['pkk'],
+                    'address' => $request['address'],
+                    'address_origin' => $request['address_origin'],
+                    'phone' => $request['phone'],
+                    'parent_phone' => $request['parent_phone'],
+                    'line' => $request['line'],
+                    'birthdate' => $request['birthdate'],
+                    'gender' => $request['gender'],
+                    'date_death' => $request['date_death'],
+                    'avatar' => $nama_file,
+                ]
+            );
+
+            Profile::create([
+                'profile_id' => $request['nrp'],
+                'user_id' => $user->id,
+                'model_id' => $student->id,
+                'model_type' => 'App\Models\Student',
+            ]);
+
+            $user->assignRole('Mahasiswa');
+
+            return redirect()->route('students.index')
+                ->with('success', 'Data mahasiswa berhasil ditambahkan');
+        }
+
+        return redirect()->back()
+                        ->with('fail', 'Data mahasiswa gagal ditambahkan karena terdapat duplikasi pada nrp')
+                        ->withInput();
     }
 
     /**
@@ -58,7 +133,10 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        return view('students.show', compact('student'));
+        $profile = Profile::select()->where('profile_id', $student['nrp'])->first();
+        $user = User::select()->where('id',$profile->user_id)->first();
+ 
+        return view('students.show', compact('student', 'user'));
     }
 
     /**
@@ -81,16 +159,39 @@ class StudentController extends Controller
      */
     public function update(StudentRequest $request, Student $student)
     {
+        $cek_nrp = Student::select()
+        ->where('nrp',$request->nrp)
+        ->whereNotIn('id', [$student->id])
+        ->first();
 
         $student->name = $request['name'];
-        $student->nrp = $request['nrp'];
         $student->department = $request['department'];
         $student->year_entry = $request['year_entry'];
         $student->year_graduate = $request['year_graduate'];
         $student->save();
 
-        return redirect()->route('students.index')
-            ->with('success', 'Data mahasiswa berhasil diubah');
+        if($cek_nrp == null){
+            $student->nrp = $request['nrp'];
+            $student->save();
+
+            $contains = Str::contains(url()->previous(), 'profiles');
+
+            if($contains){
+                //Jika diakses dari form 
+                return redirect()->route('profiles.index')
+                ->with('success', 'Data mahasiswa berhasil diubah');
+            }
+            else{
+                return redirect()->route('students.index')
+                ->with('success', 'Data mahasiswa berhasil diubah');
+            }
+        }
+
+        else{
+            return redirect()->back()
+                        ->with('fail', 'Data mahasiswa gagal diubah karena terdapat duplikasi pada nrp')
+                        ->withInput();
+        }
     }
 
     /**
@@ -101,9 +202,60 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
+        $user = Profile::select()
+        ->where('model_type',"App\Models\Student")
+        ->where('model_id',$student->id)
+        ->first();
+
+        //Untuk mengecek apakah memiliki profile lain
+        $check_profile = Profile::select()
+        ->whereNotIn('model_type',['App\Models\Student'])
+        ->where('user_id',$user->user_id)
+        ->get();
+
         $student->delete();
 
+        $delete_profile = Profile::select()
+        ->where('model_type',"App\Models\Student")
+        ->where('user_id',$user->user_id)
+        ->delete();
+
+        if($check_profile->isEmpty()){
+            $delete_user = User::select()->where('id',$user->user_id)->delete();
+        }
+        
         return redirect()->route('students.index')
             ->with('success', 'Data mahasiswa berhasil dihapus');
+    }
+
+    public function export_excel()
+    {
+        return Excel::download(new StudentExport, 'mahasiswa.xlsx');
+    }
+
+    public function import_excel(Request $request)
+    {
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx',
+        ]);
+
+        // menangkap file excel
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = rand().$file->getClientOriginalName();
+
+        // upload ke folder file_siswa di dalam folder public
+        $file->move('file_mahasiswa', $nama_file);
+
+        // import data
+        Excel::import(new StudentImport, public_path('/file_mahasiswa/'.$nama_file));
+
+        // notifikasi dengan session
+        Session::flash('sukses', 'Data Mahasiswa Telah Diimport!');
+
+        // alihkan halaman kembali
+        return redirect('/admin/students');
     }
 }

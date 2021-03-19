@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Collection;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Collection::macro('addIfNotNull', function ($element) {
+            $collection = collect($this->items);
+            if ($element != null) {
+                $collection = $collection->push($element);
+            }
+            return $collection;
+        });
     }
 }

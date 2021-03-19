@@ -11,7 +11,6 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active">user</li>
                 </ol>
             </div>
@@ -25,7 +24,7 @@
         <div class="card card-primary card-outline">
             <div class="card-body box-profile">
                 <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle" src="{{ url('/avatar_user/'.$user->avatar) }}" alt="User profile picture">
+                    <img class="profile-user-img img-fluid img-circle" src="{{ url('/avatar/'.$user->avatar) }}" alt="User profile picture">
                 </div>
                 <h3 class="profile-username text-center">{{$user->name}}</h3>
 
@@ -98,6 +97,15 @@
                                 <tr>
                                     <td>Tanggal Wafat</td>
                                     <td>{{ $user->date_death }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Role</td>
+                                    @foreach($selected_roles as $role)
+                                    <tr>
+                                        <td></td>
+                                        <td>{{$role->name}}</td>
+                                    </tr>
+                                    @endforeach
                                 </tr>
                             </tbody>
                         </table>

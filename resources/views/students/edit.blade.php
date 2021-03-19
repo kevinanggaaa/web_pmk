@@ -12,6 +12,12 @@
 </div>
 @endif
 
+@if ($message = Session::get('fail'))
+<div class="alert alert-danger">
+    <p>{{ $message }}</p>
+</div>
+@endif
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -21,8 +27,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Mahasiswa</li>
+                    <li class="breadcrumb-item ">Mahasiswa</li>
                     <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </div>
@@ -38,7 +43,7 @@
                 @method('PUT')
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="name">Nama Mahasiswa</label>
                                 <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" id="name" name="name" placeholder="Masukkan nama mahasiswa" value="{{$student->name}}" required>
@@ -73,7 +78,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                     </div>
-                                    <input name="year_entry" id="year_entry" type="text" class="datemask form-control {{$errors->has('year_entry') ? 'is-invalid' : ''}}" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask value="{{$student->year_entry}}" required>
+                                    <input name="year_entry" id="year_entry" type="text" class="datemask form-control {{$errors->has('year_entry') ? 'is-invalid' : ''}}" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask value="{{$student->year_entry}}" >
                                     @error('year_entry')
                                     <span class="error invalid-feedback">{{$message}}</span>
                                     @enderror
@@ -82,21 +87,23 @@
                             </div>
                             <!-- /.form group -->
                         </div>
+                        @can('edit year')
                         <div class="col-md-6">
                             <!-- Date dd/mm/yyyy -->
                             <div class="form-group">
-                                <label for="year_end">Tahun Lulus</label>
+                                <label for="year_graduate">Tahun Lulus</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                     </div>
-                                    <input name="year_end" id="year_end" type="text" class="datemask form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask value="{{$student->year_end}}">
+                                    <input name="year_graduate" id="year_graduate" type="text" class="datemask form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask value="{{$student->year_graduate}}">
 
                                 </div>
                                 <!-- /.input group -->
                             </div>
                             <!-- /.form group -->
                         </div>
+                        @endcan
                     </div>
                 </div>
 
@@ -110,8 +117,8 @@
 @endsection
 
 @push('scripts')
-<script src="{{asset('/adminlte/plugins/moment/moment.min.js')}}"></script>
-<script src="{{asset('/adminlte/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
+<script src="{{asset('/AdminLTE-3.0.5/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('/AdminLTE-3.0.5/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
 
 <script>
     $('.datemask').inputmask('yyyy', {

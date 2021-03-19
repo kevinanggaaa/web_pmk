@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Counseling extends Model
 {
     use HasFactory;
+
+    protected $table = 'counselings';
+
+    protected $fillable = [
+        'user_id',
+        'counselor_id',
+        'date_time',
+        'topic',
+        'status'
+    ];
+
+    public function counselor()
+    {
+        return $this->belongsTo(Counselor::class);
+    }
 }

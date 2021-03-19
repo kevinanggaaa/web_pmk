@@ -21,8 +21,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Konselor</li>
+                    <li class="breadcrumb-item">Konselor</li>
                     <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </div>
@@ -70,8 +69,8 @@
 @endsection
 
 @push('scripts')
-<script src="{{asset('/adminlte/plugins/moment/moment.min.js')}}"></script>
-<script src="{{asset('/adminlte/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
+<script src="{{asset('/AdminLTE-3.0.5/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('/AdminLTE-3.0.5/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
 
 <script>
     $('.datemask').inputmask('yyyy', {

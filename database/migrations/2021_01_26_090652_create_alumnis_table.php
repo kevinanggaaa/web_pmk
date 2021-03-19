@@ -15,9 +15,11 @@ class CreateAlumnisTable extends Migration
     {
         Schema::create('alumnis', function (Blueprint $table) {
             $table->id();
+            $table->string('email')->unique();
             $table->string('name');
             $table->string('department');
             $table->string('job')->nullable();
+            $table->string('angkatan');
             $table->timestamps();
             $table->softDeletes();
         });

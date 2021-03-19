@@ -11,7 +11,6 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active">Mahasiswa</li>
                 </ol>
             </div>
@@ -25,7 +24,7 @@
         <div class="card card-primary card-outline">
             <div class="card-body box-profile">
                 <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle" src="{{ url('/avatar_mahasiswa/'.$student->avatar) }}" alt="User profile picture">
+                    <img class="profile-user-img img-fluid img-circle" src="{{ url('/avatar/'.$user->avatar) }}" alt="User profile picture">
                 </div>
                 <h3 class="profile-username text-center">{{$student->name}}</h3>
 
@@ -73,7 +72,43 @@
                                 </tr>
                                 <tr>
                                     <td>Tahun lulus</td>
-                                    <td>{{ $student->year_end }}</td>
+                                    <td>{{ $student->year_graduate }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>{{ $user->email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>PKK</td>
+                                    <td>{{ $user->pkk }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Alamat</td>
+                                    <td>{{ $user->address }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Alamat asal</td>
+                                    <td>{{ $user->address_origin }}</td>
+                                </tr>
+                                <tr>
+                                    <td>No telp</td>
+                                    <td>{{ $user->phone }}</td>
+                                </tr>
+                                <tr>
+                                    <td>No telp ortu</td>
+                                    <td>{{ $user->parent_phone }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Id line</td>
+                                    <td>{{ $user->line }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tanggal lahir</td>
+                                    <td>{{ $user->birthdate }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Jenis kelamin</td>
+                                    <td>{{ $user->gender }}</td>
                                 </tr>
                             </tbody>
                         </table>

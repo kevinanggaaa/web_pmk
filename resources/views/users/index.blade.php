@@ -16,8 +16,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">user</li>
+                    <li class="breadcrumb-item active">User</li>
                 </ol>
             </div>
         </div>
@@ -42,11 +41,13 @@
         </div>
         @endif
 
+        @can('add user')
         <div class="card-tools">
             <div class="">
                 <a class="btn btn-success" href="{{ route('users.create') }}"> Tambah data user</a>
             </div>
         </div>
+        @endcan
     </div>
 
     <!-- /.card-header -->
@@ -56,7 +57,10 @@
                 <tr>
                     <th>Email</th>
                     <th>Name</th>
+
+                    @canany(['view detail user', 'edit user', 'delete user'])
                     <th style="width: 280px">Action</th>
+                    @endcanany
                 </tr>
             </thead>
             <tbody>
@@ -65,24 +69,33 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->name }}</td>
 
+                    @canany(['view detail user', 'edit user', 'delete user'])
                     <td>
                         <div style="display: flex">
-                            <div style="margin-right: 5px;">
-                                <a class="btn btn-info" href="{{ route('users.show',$user->id) }}"><i class="fa fa-eye"></i></a>
-                            </div>
-                            <div style="margin-right: 5px;">
-                                <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-edit"></i></a>
-                            </div>
-                            <div style="margin-right: 5px;">
-                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
-                                </form>
-                            </div>
+                            @can('view detail user')
+                                <div style="margin-right: 5px;">
+                                    <a class="btn btn-info" href="{{ route('users.show',$user->id) }}"><i class="fa fa-eye"></i></a>
+                                </div>
+                            @endcan
+
+                            @can('edit user')
+                                <div style="margin-right: 5px;">
+                                    <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-edit"></i></a>
+                                </div>
+                            @endcan
+
+                            @can('delete user')
+                                <div style="margin-right: 5px;">
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger deleteData"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            @endcan
                         </div>
                     </td>
-
+                    @endcanany
                 </tr>
                 @endforeach
             </tbody>
@@ -94,10 +107,10 @@
 
 @push('scripts')
 <!-- Datatables -->
-<script src="{{ asset('/adminlte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{ asset('/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{ asset('/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{ asset('/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('/AdminLTE-3.0.5/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <script>
     $(function() {
         $("#example1").DataTable({
