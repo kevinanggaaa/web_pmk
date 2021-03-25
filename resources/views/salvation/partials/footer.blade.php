@@ -24,8 +24,7 @@
                 <div class="block-23 mb-3">
                     <ul>
                         <li><span class="icon fa fa-map"></span><span class="text">Sukolilo (60111), Surabaya, East Java , Jawa Timur, Indonesia</span></li>
-                        <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                        <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
+                        <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">bphpmkits@gmail.com</span></a></li>
                     </ul>
                 </div>
             </div>
